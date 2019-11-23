@@ -1,10 +1,25 @@
-.content, .page-home {
+.page-home {
   height: 100%;
   border: 2px solid black;
 }
 
+ion-footer {
+  position: fixed;
+}
+
 ion-phaser-ce {
-  display: block;
   width: 100%;
   height: 100%;
+}
+
+.logo {
+  display: none;
+  justify-content: space-around;
+  align-items: center;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: scale-down;
 }
