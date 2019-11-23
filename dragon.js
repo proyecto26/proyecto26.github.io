@@ -48,7 +48,7 @@
         }
 
         if (this.dragon.x > this.game.world.width) {
-          worker.port.postMessage('bootEnd')
+          worker.postMessage('bootEnd')
           ionPhaser.destroy()
         }
       }

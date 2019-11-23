@@ -20,8 +20,8 @@
   function detectWokerEvent (e) {
     if (e.data === 'logoStart') {
       animatableLogo.autoPlay = true
-      worker.port.removeEventListener('message', detectWokerEvent)
+      worker.removeEventListener('message', detectWokerEvent)
     }
   }
-  worker.port.addEventListener('message', detectWokerEvent)
+  worker.addEventListener('message', detectWokerEvent)
 })(window)

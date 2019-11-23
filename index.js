@@ -1,6 +1,5 @@
-(({ SharedWorker }) => {
-  window.worker = new SharedWorker('worker.js')
-  window.worker.port.start()
+(({ Worker }) => {
+  window.worker = new Worker('worker.js')
 
   window.delay = time => new Promise(resolve => setTimeout(() => resolve(), time))
 })(window)
