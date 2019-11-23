@@ -1,10 +1,19 @@
-.page-home {
+.page-home, ion-content {
   height: 100%;
+}
+
+.page-home {
   border: 2px solid black;
 }
 
-ion-footer {
+.ninja {
   position: fixed;
+  left: -100px;
+  bottom: 0;
+  height: 7rem;
+  width: 100%;
+  object-fit: contain;
+  object-position: left;
 }
 
 ion-phaser-ce {
