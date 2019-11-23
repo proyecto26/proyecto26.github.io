@@ -41,6 +41,7 @@
       },
       update: function () {
         this.dragon.x += 8
+        this.dragon.y = this.game.world.centerY
         if (this.dragon.aditionalInfo.roar &&
           this.dragon.x > this.game.world.centerX - this.dragon.width) {
           this.dragon.aditionalInfo.roar = false
