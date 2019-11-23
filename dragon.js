@@ -35,7 +35,7 @@ ionPhaser.game = {
       this.dragonRoar = this.add.audio('dragon')
     },
     update: function () {
-      this.dragon.x += 3
+      this.dragon.x += 10
       if (this.dragon.aditionalInfo.roar &&
         this.dragon.x > this.game.world.centerX) {
         this.dragon.aditionalInfo.roar = false
@@ -47,8 +47,6 @@ ionPhaser.game = {
 
 (async () => {
   await window.customElements.whenDefined('ion-phaser-ce')
-
-  ionPhaser.initialize = true
   ionPhaser.getInstance()
     .then((i) => console.log(i))
     .catch((error) => console.error(error))
