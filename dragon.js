@@ -1,14 +1,15 @@
 (async ({ Phaser, worker }) => {
-  const ionPhaser = document.querySelector('ion-phaser-ce')
+  const ionPhaser = document.querySelector('#dragon')
 
   ionPhaser.game = {
     width: '100%',
     height: '100%',
+    transparent: true,
     renderer: Phaser.AUTO,
     roundPixels: true,
     alignH: true,
     alignV: true,
-    backgroundColor: '#fff',
+    // backgroundColor: '#fff',
     scaleMode: Phaser.ScaleManager.RESIZE,
     disableVisibilityChange: true,
     state: {

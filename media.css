@@ -1,0 +1,6 @@
+@media (min-width: 736px) {
+  ion-title {
+    margin-top: 2rem;
+    font-size: 2.6rem;
+  }
+}

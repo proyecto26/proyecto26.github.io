@@ -1,4 +1,4 @@
-.page-home, ion-content {
+.page-home {
   height: 100%;
 }
 
@@ -9,7 +9,7 @@
 .ninja {
   position: fixed;
   left: -100px;
-  bottom: 0;
+  bottom: -14px;
   height: 7rem;
   width: 100%;
   object-fit: contain;
@@ -17,6 +17,7 @@
 }
 
 ion-phaser-ce {
+  position: absolute;
   width: 100%;
   height: 100%;
 }
@@ -31,4 +32,54 @@ ion-phaser-ce {
   width: 100%;
   height: 100%;
   object-fit: scale-down;
+}
+
+#homeContent {
+  display: none;
+  padding: 3rem;
+}
+
+ion-title {
+  font-size: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  letter-spacing: -.03em;
+  line-height: 1.1;
+  font-family: Eina, system-ui, sans-serif;;
+}
+
+ion-card {
+  box-shadow : 0 2px 5px rgba(0, 0, 0, 0.49), 0 3px 8px rgba(0, 0, 0, 0.40) !important;
+}
+
+ion-card img {
+  max-height: 300px !important;
+  object-fit: contain;
+}
+
+ion-toolbar img {
+  width: 80px;
+  height: 80px;
+}
+
+.resume ion-col:first-child {
+  display: flex;
+  justify-content: flex-end !important;
+  margin-right: 60px;
+}
+
+.resume ion-label {
+  font-size: 1.4rem !important;
+}
+
+.team {
+  max-height: 500px;
+}
+
+ion-col p {
+  font-family: Computer Modern, Garamond, Georgia, serif;
+  line-height: 1.4;
+  font-size: 1.5em;
+  text-align: left;
+  max-width: 500px;
 }

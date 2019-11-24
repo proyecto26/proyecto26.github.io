@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" />
 
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="media.css" />
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser-ce/2.13.3/phaser.min.js"></script>
 
@@ -24,8 +25,8 @@
   <body>
     <ion-app>
       <ion-page class="page-home">
-        <ion-content no-bounce class="content">
-          <ion-phaser-ce></ion-phaser-ce>
+        <ion-content id="splashContent" no-bounce class="content">
+          <ion-phaser-ce id="dragon"></ion-phaser-ce>
           <animatable-component id="animatableLogo" animation="zoomInDown" duration="800">
             <img class="logo" src="img/logo.png" />
           </animatable-component>
@@ -33,11 +34,147 @@
             <img class="ninja" src="img/ninja-back.gif" />
           </animatable-component>
         </ion-content>
+        <ion-content id="homeContent" class="content">
+          <ion-phaser-ce id="home"></ion-phaser-ce>
+          <ion-toolbar color="tertiary">
+            <ion-title>Open Source Projects</ion-title>
+          </ion-toolbar>
+          <ion-grid class="ion-margin">
+            <ion-row>
+              <ion-col size="12" size-md="6" size-lg="3">
+                <animatable-component>
+                  <ion-card>
+                    <ion-card-header>
+                      <ion-card-title>
+                        <strong>&#60;</strong>animatable <strong> &#8725; &#62;</strong>
+                      </ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content>
+                      <img src="img/projects/animatable.png" />
+                      <ion-button href="https://proyecto26.github.io/animatable-component" fill="outline" slot="end">Ver</ion-button>
+                    </ion-card-content>
+                  </ion-card>
+                </animatable-component>
+              </ion-col>
+              <ion-col size="12" size-md="6" size-lg="3">
+                <animatable-component>
+                  <ion-card>
+                    <ion-card-header>
+                      <ion-card-title>
+                        IonPhaser
+                      </ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content>
+                      <img src="img/projects/ionphaser.png" />
+                      <ion-button href="https://github.com/proyecto26/ion-phaser" fill="outline" slot="end">Ver</ion-button>
+                    </ion-card-content>
+                  </ion-card>
+                </animatable-component>
+              </ion-col>
+              <ion-col size="12" size-md="6" size-lg="3">
+                <animatable-component>
+                  <ion-card>
+                    <ion-card-header>
+                      <ion-card-title>
+                        InAppBrowser for React Native
+                      </ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content>
+                      <img src="img/projects/inappbrowser-react-native.png" />
+                      <ion-button href="https://github.com/proyecto26/react-native-inappbrowser" fill="outline" slot="end">Ver</ion-button>
+                    </ion-card-content>
+                  </ion-card>
+                </animatable-component>
+              </ion-col>
+              <ion-col size="12" size-md="6" size-lg="3">
+                <animatable-component>
+                  <ion-card>
+                    <ion-card-header>
+                      <ion-card-title>
+                        InAppBrowser for NativeScript
+                      </ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content>
+                      <img src="img/projects/inappbrowser-nativescript.png" />
+                      <ion-button href="https://github.com/proyecto26/nativescript-inappbrowser" fill="outline" slot="end">Ver</ion-button>
+                    </ion-card-content>
+                  </ion-card>
+                </animatable-component>
+              </ion-col>
+              <ion-col size="12" size-md="6" size-lg="3">
+                <animatable-component>
+                  <ion-card>
+                    <ion-card-header>
+                      <ion-card-title>
+                        RestClient for Unity
+                      </ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content>
+                      <img src="img/projects/restclient.png" />
+                      <ion-button href="https://github.com/proyecto26/RestClient" fill="outline" slot="end">Ver</ion-button>
+                    </ion-card-content>
+                  </ion-card>
+                </animatable-component>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+          <ion-toolbar color="secondary">
+            <ion-title>Other Projects</ion-title>
+          </ion-toolbar>
+          <ion-grid class="ion-margin ion-padding">
+            <ion-row>
+              <ion-col size="12" size-md="6" size-lg="3">
+                <ion-card>
+                  <ion-card-header>
+                    <ion-card-title>
+                      NinjaDev
+                    </ion-card-title>
+                  </ion-card-header>
+                  <ion-card-content>
+                    <img src="img/projects/ninja-dev.svg" />
+                    <ion-button href="https://github.com/proyecto26/NinjaDev" fill="outline" slot="end">Ver</ion-button>
+                  </ion-card-content>
+                </ion-card>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+          <ion-toolbar color="danger">
+            <ion-title>Team</ion-title>
+          </ion-toolbar>
+          <ion-grid class="ion-margin ion-padding resume">
+            <ion-row>
+              <ion-col>
+                <ion-list>
+                  <ion-item color="medium">
+                    <ion-label>
+                      Juan D. Nicholls (Founder)
+                    </ion-label>
+                  </ion-item>
+                  <img class="team" src="img/jdnichollsc.jpg" />
+                </ion-list>
+              </ion-col>
+              <ion-col>
+                <p>
+                  Developer with a background in web and mobile development, having 7+ years of practice and leadership building interactive experiences.
+                </p>
+                <ion-button href="https://stackoverflow.com/cv/jdnichollsc" shape="round" fill="outline">
+                  DOWNLOAD RESUME
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+          <ion-toolbar color="dark">
+            <h3 class="ion-padding">Proyecto 26</h3>
+            <img src="img/v1-a.svg" slot="secondary" />
+          </ion-toolbar>
+        </ion-content>
       </ion-page>
     </ion-app>
+    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
     <script type="javascript/worker" src="worker.js"></script>
     <script type="text/javascript" src="index.js"></script>
-    <script type="text/javascript" src="logo.js"></script>
     <script type="text/javascript" src="dragon.js"></script>
+    <script type="text/javascript" src="splash.js"></script>
+    <script type="text/javascript" src="home.js"></script>
   </body>
 </html>
