@@ -58,6 +58,8 @@ ion-card img {
 }
 
 ion-toolbar img {
+  -webkit-filter: contrast(260%);
+  filter: contrast(260%);
   width: 80px;
   height: 80px;
 }
