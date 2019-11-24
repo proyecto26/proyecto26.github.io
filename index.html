@@ -4,14 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Animate things using Web Components and Web Animations API" />
     <title>Proyecto 26</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+
+    <!--  Essential META Tags -->
+    <meta property="og:site_name" content="Proyecto 26">
+    <meta property="og:title" content="Proyecto 26 - WebSite" />
+    <meta property="og:url" content="https://proyecto26.com" />
+    <meta property="og:description" content="Changing the world with small contributions" />
+    <meta property="og:image" content="https://raw.githubusercontent.com/proyecto26/website/master/img/logo.png" />
+
+    <!--  Non-Essential, But Recommended -->
+    <meta name="twitter:title" content="Proyecto 26 - WebSite">
+    <meta name="twitter:description" content="Changing the world with small contributions">
+    <meta name="twitter:card" value="Animate things using Web Components and Web Animations API">
+    <meta name="twitter:site" content="@proyecto26">
+    <meta name="twitter:creator" content="@jdnichollsc">
+
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="media.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/css/ionicons.min.css" />
 
     <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
     <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" />
-
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="media.css" />
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser-ce/2.13.3/phaser.min.js"></script>
 
@@ -35,14 +59,16 @@
           </animatable-component>
         </ion-content>
         <ion-content id="homeContent" class="content">
-          <ion-phaser-ce id="home"></ion-phaser-ce>
+          <ion-toolbar class="header">
+            <img src="img/v3-01.svg" />
+          </ion-toolbar>
           <ion-toolbar color="tertiary">
             <ion-title>Open Source Projects</ion-title>
           </ion-toolbar>
           <ion-grid class="ion-margin">
             <ion-row>
               <ion-col size="12" size-md="6" size-lg="3">
-                <animatable-component>
+                <animatable-component duration="400" animation="pulse" class="projects">
                   <ion-card>
                     <ion-card-header>
                       <ion-card-title>
@@ -51,13 +77,13 @@
                     </ion-card-header>
                     <ion-card-content>
                       <img src="img/projects/animatable.png" />
-                      <ion-button href="https://proyecto26.github.io/animatable-component" fill="outline" slot="end">Ver</ion-button>
+                      <ion-button href="https://proyecto26.github.io/animatable-component" fill="outline" slot="end">Open</ion-button>
                     </ion-card-content>
                   </ion-card>
                 </animatable-component>
               </ion-col>
               <ion-col size="12" size-md="6" size-lg="3">
-                <animatable-component>
+                <animatable-component duration="400" animation="pulse" class="projects">
                   <ion-card>
                     <ion-card-header>
                       <ion-card-title>
@@ -66,13 +92,13 @@
                     </ion-card-header>
                     <ion-card-content>
                       <img src="img/projects/ionphaser.png" />
-                      <ion-button href="https://github.com/proyecto26/ion-phaser" fill="outline" slot="end">Ver</ion-button>
+                      <ion-button href="https://github.com/proyecto26/ion-phaser" fill="outline" slot="end">Open</ion-button>
                     </ion-card-content>
                   </ion-card>
                 </animatable-component>
               </ion-col>
               <ion-col size="12" size-md="6" size-lg="3">
-                <animatable-component>
+                <animatable-component duration="400" animation="pulse" class="projects">
                   <ion-card>
                     <ion-card-header>
                       <ion-card-title>
@@ -81,13 +107,13 @@
                     </ion-card-header>
                     <ion-card-content>
                       <img src="img/projects/inappbrowser-react-native.png" />
-                      <ion-button href="https://github.com/proyecto26/react-native-inappbrowser" fill="outline" slot="end">Ver</ion-button>
+                      <ion-button href="https://github.com/proyecto26/react-native-inappbrowser" fill="outline" slot="end">Open</ion-button>
                     </ion-card-content>
                   </ion-card>
                 </animatable-component>
               </ion-col>
               <ion-col size="12" size-md="6" size-lg="3">
-                <animatable-component>
+                <animatable-component duration="400" animation="pulse" class="projects">
                   <ion-card>
                     <ion-card-header>
                       <ion-card-title>
@@ -96,13 +122,13 @@
                     </ion-card-header>
                     <ion-card-content>
                       <img src="img/projects/inappbrowser-nativescript.png" />
-                      <ion-button href="https://github.com/proyecto26/nativescript-inappbrowser" fill="outline" slot="end">Ver</ion-button>
+                      <ion-button href="https://github.com/proyecto26/nativescript-inappbrowser" fill="outline" slot="end">Open</ion-button>
                     </ion-card-content>
                   </ion-card>
                 </animatable-component>
               </ion-col>
               <ion-col size="12" size-md="6" size-lg="3">
-                <animatable-component>
+                <animatable-component duration="400" animation="pulse" class="projects">
                   <ion-card>
                     <ion-card-header>
                       <ion-card-title>
@@ -111,7 +137,7 @@
                     </ion-card-header>
                     <ion-card-content>
                       <img src="img/projects/restclient.png" />
-                      <ion-button href="https://github.com/proyecto26/RestClient" fill="outline" slot="end">Ver</ion-button>
+                      <ion-button href="https://github.com/proyecto26/RestClient" fill="outline" slot="end">Open</ion-button>
                     </ion-card-content>
                   </ion-card>
                 </animatable-component>
@@ -124,17 +150,19 @@
           <ion-grid class="ion-margin ion-padding">
             <ion-row>
               <ion-col size="12" size-md="6" size-lg="3">
-                <ion-card>
-                  <ion-card-header>
-                    <ion-card-title>
-                      NinjaDev
-                    </ion-card-title>
-                  </ion-card-header>
-                  <ion-card-content>
-                    <img src="img/projects/ninja-dev.svg" />
-                    <ion-button href="https://github.com/proyecto26/NinjaDev" fill="outline" slot="end">Ver</ion-button>
-                  </ion-card-content>
-                </ion-card>
+                <animatable-component duration="400" animation="pulse" class="projects">
+                  <ion-card>
+                    <ion-card-header>
+                      <ion-card-title>
+                        NinjaDev
+                      </ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content>
+                      <img src="img/projects/ninja-dev.svg" />
+                      <ion-button href="https://github.com/proyecto26/NinjaDev" fill="outline" slot="end">Open</ion-button>
+                    </ion-card-content>
+                  </ion-card>
+                </animatable-component>
               </ion-col>
             </ion-row>
           </ion-grid>
@@ -144,14 +172,16 @@
           <ion-grid class="ion-margin ion-padding resume">
             <ion-row>
               <ion-col>
-                <ion-list>
-                  <ion-item color="medium">
-                    <ion-label>
-                      Juan D. Nicholls (Founder)
-                    </ion-label>
-                  </ion-item>
-                  <img class="team" src="img/jdnichollsc.jpg" />
-                </ion-list>
+                <animatable-component delay="400" duration="2000" animation="jello">
+                  <ion-list>
+                    <ion-item color="medium">
+                      <ion-label>
+                        Juan D. Nicholls (Founder)
+                      </ion-label>
+                    </ion-item>
+                    <img class="team" src="img/jdnichollsc.jpg" />
+                  </ion-list>
+                </animatable-component>
               </ion-col>
               <ion-col>
                 <p>
@@ -163,18 +193,19 @@
               </ion-col>
             </ion-row>
           </ion-grid>
-          <ion-toolbar color="dark">
+          <ion-toolbar class="footer" color="dark">
             <h3 class="ion-padding">Proyecto 26</h3>
             <img src="img/v1-a.svg" slot="secondary" />
           </ion-toolbar>
         </ion-content>
       </ion-page>
     </ion-app>
-    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
-    <script type="javascript/worker" src="worker.js"></script>
-    <script type="text/javascript" src="index.js"></script>
-    <script type="text/javascript" src="dragon.js"></script>
-    <script type="text/javascript" src="splash.js"></script>
-    <script type="text/javascript" src="home.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/noframework.waypoints.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/ionicons.js"></script>
+    <script type="javascript/worker" src="scripts/worker.js"></script>
+    <script type="text/javascript" src="scripts/index.js"></script>
+    <script type="text/javascript" src="scripts/dragon.js"></script>
+    <script type="text/javascript" src="scripts/splash.js"></script>
+    <script type="text/javascript" src="scripts/home.js"></script>
   </body>
 </html>

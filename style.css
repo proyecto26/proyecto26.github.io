@@ -57,7 +57,12 @@ ion-card img {
   object-fit: contain;
 }
 
-ion-toolbar img {
+.header img {
+  width: 100%;
+  max-height: 300px;
+}
+
+.footer img {
   -webkit-filter: contrast(260%);
   filter: contrast(260%);
   width: 80px;
@@ -84,4 +89,8 @@ ion-col p {
   font-size: 1.5em;
   text-align: left;
   max-width: 500px;
+}
+
+.projects {
+  opacity: 0;
 }
