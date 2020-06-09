@@ -58,6 +58,7 @@ ion-card {
 }
 
 ion-card img {
+  width: 100%;
   max-height: 300px !important;
   object-fit: contain;
 }
