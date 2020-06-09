@@ -13,7 +13,7 @@ function initializeWorkbox() {
     new workbox.strategies.CacheFirst({
       cacheName: 'images',
       plugins: [
-        new workbox.ExpirationPlugin({
+        new workbox.expiration.ExpirationPlugin({
           maxAgeSeconds: 30 * 24 * 60 * 60,
           maxEntries: 60,
         }),
@@ -26,11 +26,11 @@ function initializeWorkbox() {
     new workbox.strategies.StaleWhileRevalidate({
       cacheName: 'cors-images',
       plugins: [
-        new workbox.ExpirationPlugin({
+        new workbox.expiration.ExpirationPlugin({
           maxAgeSeconds: 30 * 24 * 60 * 60,
           maxEntries: 60,
         }),
-        new workbox.cacheableResponse.CacheableResponse({
+        new workbox.cacheableResponse.CacheableResponsePlugin({
           statuses: [0, 200],
         }),
       ],
