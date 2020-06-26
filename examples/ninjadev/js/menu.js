@@ -69,9 +69,9 @@ var menuState = {
 		for (var i = 0; i < 20; i++) {
 			points.push(new Phaser.Point(i * length, 0));
 		}
-		this.dragon = this.game.add.rope(this.game.world.centerX - (dragonCache.width /2), 100, 'dragon', null, points);
+		this.dragon = this.game.add.rope(this.game.world.centerX - dragonCache.width / 2, 100, 'dragon', null, points);
 		this.dragon.pivot.set(0.5);
-		this.dragon.scale.set(0.5);
+		this.dragon.scale.set(0.3);
 		this.dragon.updateAnimation = function() {
 			count += 0.1;
 			for (var i = 0; i < this.points.length; i++) {
@@ -171,5 +171,8 @@ var menuState = {
 	resizeBodyByCurrentFrame: function(atlasName, sprite) {
 		var frameData = this.cache.getFrameData(atlasName).getFrame(sprite.frame);
 		sprite.body.setSize(frameData.width, frameData.height, 0, 0);
+	},
+	resize: function() {
+		this.dragon.position.x = this.game.world.centerX - this.dragon.width / 2;
 	}
 };
