@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Proyecto 26, Changing the world with small contributions 🧚" />
+    <title>Proyecto 26 - Examples</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+
+    <!--  Essential META Tags -->
+    <meta property="og:site_name" content="Proyecto 26">
+    <meta property="og:title" content="Proyecto 26 - Examples" />
+    <meta property="og:url" content="https://proyecto26.com" />
+    <meta property="og:description" content="Changing the world with small contributions 🧚" />
+    <meta property="og:image" content="https://raw.githubusercontent.com/proyecto26/website/master/img/logo.png" />
+
+    <!--  Non-Essential, But Recommended -->
+    <meta name="twitter:title" content="Proyecto 26 - Examples">
+    <meta name="twitter:description" content="Changing the world with small contributions 🧚">
+    <meta name="twitter:card" value="Proyecto 26 is an initiative that seeks to solve problems with technology, using Open Source projects to find better ways to fix issues by connecting people, sharing the knowledge with others and changing the world with small contributions 🧚">
+    <meta name="twitter:site" content="@proyecto26">
+    <meta name="twitter:creator" content="@jdnichollsc">
+
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/media.css" />
+    <link rel="stylesheet" href="./styles/index.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/css/ionicons.min.css" />
+
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.3.2/web-animations.min.js"></script>
+    <script type="module" src="https://unpkg.com/@proyecto26/animatable-component@1.1.8/dist/animatable-component/animatable-component.esm.js"></script>
+    <script nomodule src="https://unpkg.com/@proyecto26/animatable-component@1.1.8/dist/animatable-component/animatable-component.js"></script>
+  </head>
+  <body>
+    <ion-app>
+      <ion-page class="page-home">
+        <ion-content id="splashContent" no-bounce class="content">
+          <animatable-component id="animatableSplash" animation="bounce-in-top" direction="reverse" duration="1000">
+            <div class="wall"></div>
+          </animatable-component>
+        </ion-content>
+        <ion-content id="homeContent" class="content">
+          <ion-toolbar class="header">
+            <a href="https://github.com/proyecto26">
+              <img alt="Proyecto 26 - Examples" src="/img/v3-01.svg" />
+            </a>
+          </ion-toolbar>
+          <ion-toolbar color="tertiary">
+            <ion-title>Examples</ion-title>
+          </ion-toolbar>
+          <ion-grid class="ion-margin">
+            <ion-row>
+              <ion-col size="12" size-md="6" size-lg="3">
+                <animatable-component duration="400" animation="pulse" class="projects">
+                  <ion-card>
+                    <ion-card-header>
+                      <ion-card-title>
+                        Grand theft Zombies 🧟
+                      </ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content>
+                      <img src="./img/zombies.png" />
+                      <ion-button href="./zombies" fill="outline" slot="end">Open</ion-button>
+                    </ion-card-content>
+                  </ion-card>
+                </animatable-component>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+          <ion-toolbar class="footer" color="dark">
+            <h3 class="ion-padding">
+              © Proyecto 26
+            </h3>
+            <a href="https://github.com/proyecto26" style="position:absolute;right: 0;bottom: 0;">
+              <img alt="Proyecto 26" src="/img/v1-a.svg" slot="secondary" />
+            </a>
+          </ion-toolbar>
+        </ion-content>
+      </ion-page>
+    </ion-app>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/noframework.waypoints.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/ionicons.js"></script>
+    <script type="javascript/worker" src="/scripts/worker.js"></script>
+    <script type="text/javascript" src="/scripts/index.js"></script>
+    <script type="text/javascript" src="/scripts/home.js"></script>
+    <script type="text/javascript" src="./scripts/splash.js"></script>
+  </body>
+</html>
