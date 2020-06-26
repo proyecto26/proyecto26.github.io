@@ -1,0 +1,125 @@
+{"frames": [
+
+{
+	"filename": "ninja1.png",
+	"frame": {"x":2,"y":424,"w":273,"h":281},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":273,"h":281},
+	"sourceSize": {"w":273,"h":281}
+},
+{
+	"filename": "ninja2.png",
+	"frame": {"x":2,"y":302,"w":313,"h":120},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":313,"h":120},
+	"sourceSize": {"w":313,"h":120}
+},
+{
+	"filename": "ninja3.png",
+	"frame": {"x":179,"y":1537,"w":173,"h":282},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":173,"h":282},
+	"sourceSize": {"w":173,"h":282}
+},
+{
+	"filename": "ninja4.png",
+	"frame": {"x":2,"y":1253,"w":176,"h":282},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":176,"h":282},
+	"sourceSize": {"w":176,"h":282}
+},
+{
+	"filename": "ninja5.png",
+	"frame": {"x":2,"y":969,"w":195,"h":282},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":195,"h":282},
+	"sourceSize": {"w":195,"h":282}
+},
+{
+	"filename": "ninja6.png",
+	"frame": {"x":215,"y":850,"w":196,"h":280},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":196,"h":280},
+	"sourceSize": {"w":196,"h":280}
+},
+{
+	"filename": "ninja7.png",
+	"frame": {"x":2,"y":707,"w":211,"h":260},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":211,"h":260},
+	"sourceSize": {"w":211,"h":260}
+},
+{
+	"filename": "ninja8.png",
+	"frame": {"x":277,"y":569,"w":233,"h":279},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":233,"h":279},
+	"sourceSize": {"w":233,"h":279}
+},
+{
+	"filename": "ninja9.png",
+	"frame": {"x":2,"y":153,"w":314,"h":147},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":314,"h":147},
+	"sourceSize": {"w":314,"h":147}
+},
+
+{
+	"filename": "ninja10.png",
+	"frame": {"x":2,"y":2,"w":316,"h":149},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":316,"h":149},
+	"sourceSize": {"w":316,"h":149}
+},
+{
+	"filename": "ninja11.png",
+	"frame": {"x":318,"y":286,"w":185,"h":281},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":185,"h":281},
+	"sourceSize": {"w":185,"h":281}
+},
+{
+	"filename": "ninja12.png",
+	"frame": {"x":320,"y":2,"w":186,"h":282},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":186,"h":282},
+	"sourceSize": {"w":186,"h":282}
+},
+{
+	"filename": "ninja13.png",
+	"frame": {"x":199,"y":1132,"w":178,"h":282},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":178,"h":282},
+	"sourceSize": {"w":178,"h":282}
+},
+{
+	"filename": "ninja14.png",
+	"frame": {"x":2,"y":1537,"w":175,"h":282},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":175,"h":282},
+	"sourceSize": {"w":175,"h":282}
+}],
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "ninjadev.png",
+	"format": "RGBA8888",
+	"size": {"w":512,"h":1821},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:ef2bd572642ca7985d1a44c51b8146cd:91d5667cd0a33e92449883dcca5c58ee:a02da9903b915b6656517e428627d49b$"
+}
+}
