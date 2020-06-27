@@ -5,7 +5,7 @@
 #animatableSplash {
   position: absolute;
   display: block;
-  z-index: 10;
+  z-index: 1000;
 }
 
 .wall {
