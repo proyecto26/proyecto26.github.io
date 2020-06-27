@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=7" />
+		<link href='http://fonts.googleapis.com/css?family=Press+Start+2P' rel='stylesheet' type='text/css'>
+		<!--<link rel="apple-touch-icon" href="img/game-icon.png">-->
+ 		<meta name="apple-mobile-web-app-capable" content="yes">
+ 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+ 		<meta name="viewport" content="user-scalable=0, initial-scale=1, minimum-scale=1, maximum-scale=1, width=device-width, minimal-ui=1">
+		<title>NINJA DEV</title>
+		<meta property="og:title" content="NINJADEV, Juego hecho en HTML5 con Phaser y Monaco"/>
+		<meta property="og:url" content="http://phaser.azurewebsites.net/game2/"/>
+		<meta property="og:site_name" content="NINJADEV - Nicholls">
+		<meta property="og:image" content="http://phaser.azurewebsites.net/assets/nicholls.png">
+		<meta property="og:description" content="NINJADEV es un juego creado con Phaser y Monaco (El editor de código de Visual Studio Online - Sitio Web en Azure) y al ser hecho en HTML5 corre en múltiples plataformas"/>
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		
+		
+	</head>
+	<body style="overflow: hidden;">
+		<div id="rotate" style="display:none;width: 100%;height: 100%;">
+			<h1 style="font-family: 'Press Start 2P', cursive;">NINJADEV</h1>
+			<img alt="rotar pantalla" style="margin: 0 auto;" src="../assets/rotate.png"/>
+		</div>
+		<div id="game"></div>
+		<!--<pre>game.state.getCurrentState();</pre>-->
+		<pre>Música del Menú hecha por los hermanos <a href="https://www.facebook.com/GONZALOCANTARELLI">Cantarelli</a></pre>
+		
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/phaser-ce/2.16.0/phaser.min.js"></script>
+		<script src="js/MovableTile.js"></script>
+		<script src="js/load.js"></script>
+		<script src="js/menu.js"></script>
+		<script src="js/play.js"></script>
+		<script src="js/game.js"></script>
+		<!--[if IE]><script type="text/javascript" src="js/excanvas.js"></script><![endif]-->
+	</body>
+</html>

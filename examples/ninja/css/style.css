@@ -1,0 +1,20 @@
+body{
+	text-align:center;
+}
+canvas{
+	margin:0 auto;
+}
+
+pre{
+	display: block;
+	padding: 9.5px;
+	margin: 20px 15px;
+	font-size: 13px;
+	line-height: 1.428571429;
+	word-break: break-all;
+	word-wrap: break-word;
+	color: #333333;
+	background-color: whitesmoke;
+	border: 1px solid #cccccc;
+	border-radius: 4px;
+}
