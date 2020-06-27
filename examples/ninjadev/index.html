@@ -1,91 +1,89 @@
 ﻿<!DOCTYPE html>
 <html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+		<meta name="viewport" content="user-scalable=0, initial-scale=1, minimum-scale=1, maximum-scale=1, width=device-width, minimal-ui=1">
+		<title>NinjaDev</title>
+		<!--@font-face {
+				font-family: "Oswald-Bold";
+				font-weight: 700;
+				font-style: normal;
+				src: url('fonts/Oswald-Bold.eot'); /* IE9 Compat Modes */
+				src: url('fonts/Oswald-Bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+						 url('fonts/Oswald-Bold.woff2') format('woff2'), /* Super Modern Browsers */
+						 url('fonts/Oswald-Bold.woff') format('woff'), /* Pretty Modern Browsers */
+						 url('fonts/Oswald-Bold.ttf')  format('truetype'), /* Safari, Android, iOS */
+						 url('fonts/Oswald-Bold.svg#svgFontName') format('svg'); /* Legacy iOS */
+				text-transform: none;
+			}-->
+		<style>
+			.fontPreload{
+				position:absolute;
+				left:-100px;
+			}
+			body{
+				margin: 0px 0px 1px 0px;
+				overflow: hidden;
+				text-align:center;                
+			}
+			#rotate{
+				display:none;
+				width: 100%;
+				height: 100%;
+				position: absolute;
+			}
+			.helper {
+				display: inline-block;
+				height: 100%;
+				vertical-align: middle;
+			}
+			#rotate img{
+				vertical-align: middle;
+			}
+			#game{
+				width: 100%;
+				height: 100%;
+				position: absolute;
+			}
+		</style>
+	</head>
     
-    <head>
-        <meta charset="utf-8" />
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-        <meta name="viewport" content="user-scalable=0, initial-scale=1, minimum-scale=1, maximum-scale=1, width=device-width, minimal-ui=1">
-        <title>NinjaDev</title>
-        <!--@font-face {
-              font-family: "Oswald-Bold";
-              font-weight: 700;
-              font-style: normal;
-              src: url('fonts/Oswald-Bold.eot'); /* IE9 Compat Modes */
-              src: url('fonts/Oswald-Bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-                   url('fonts/Oswald-Bold.woff2') format('woff2'), /* Super Modern Browsers */
-                   url('fonts/Oswald-Bold.woff') format('woff'), /* Pretty Modern Browsers */
-                   url('fonts/Oswald-Bold.ttf')  format('truetype'), /* Safari, Android, iOS */
-                   url('fonts/Oswald-Bold.svg#svgFontName') format('svg'); /* Legacy iOS */
-              text-transform: none;
-            }-->
-        <style>
-            .fontPreload{
-                position:absolute;
-                left:-100px;
-            }
-            body{
-                margin: 0px 0px 1px 0px;
-                overflow: hidden;
-                text-align:center;                
-            }
-            #rotate{
-                display:none;
-                width: 100%;
-                height: 100%;
-                position: absolute;
-            }
-            .helper {
-                display: inline-block;
-                height: 100%;
-                vertical-align: middle;
-            }
-            #rotate img{
-                vertical-align: middle;
-            }
-            #game{
-                width: 100%;
-                height: 100%;
-                position: absolute;
-            }
-        </style>
-    </head>
-    
-    <body>
-        <div class="fontPreload" style="font-family: 'Oswald-Bold';">hola mundo</div>
-        <div id="rotate">
-            <span class="helper"></span>
-            <img alt="rotar pantalla" src="assets/rotate.png" />
-        </div>
-        <div id="game"></div>
-        <script src="js/boot.js"></script>
-        <script src="js/load.js"></script>
-        <script src="js/menu.js"></script>
-        <script src="js/play.js"></script>
-        <script src="lib/phaser.js"></script>
-        <script src="lib/phaser-state-transition-plugin.min.js"></script>
-        <script type="text/javascript">
-            
-            //Small – 360x240
-            //Normal – 480x320
-            //Large – 720x480
-            //XLarge – 960x640
-            //XXLarge – 1440x960
-            
-            var innerWidth = window.innerWidth;
-            var innerHeight = window.innerHeight;
-            
-          var gameRatio = innerWidth/innerHeight;        
-          var h = 480;
-          var w  = h*gameRatio;
-			
-            var game = new Phaser.Game(w, h, Phaser.AUTO, 'game');
-            game.state.add('boot', bootState);
-            game.state.add('load', loadState);
-            game.state.add('menu', menuState);
-            game.state.add('play', playState);
-            game.state.start('boot');
-        </script>
-    </body>
+	<body>
+		<div class="fontPreload" style="font-family: 'Oswald-Bold';">Hello World</div>
+		<div id="rotate">
+			<span class="helper"></span>
+			<img alt="Rotate screen" src="assets/rotate.png" />
+		</div>
+		<div id="game"></div>
+		<script src="js/boot.js"></script>
+		<script src="js/load.js"></script>
+		<script src="js/menu.js"></script>
+		<script src="js/play.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/phaser-ce/2.16.0/phaser.min.js"></script>
+		<script src="lib/phaser-state-transition-plugin.min.js"></script>
+		<script type="text/javascript">
 
+			//Small – 360x240
+			//Normal – 480x320
+			//Large – 720x480
+			//XLarge – 960x640
+			//XXLarge – 1440x960
+
+			var innerWidth = window.innerWidth;
+			var innerHeight = window.innerHeight;
+
+			var gameRatio = innerWidth / innerHeight;        
+			var h = 480;
+			var w  = h * gameRatio;
+
+			var game = new Phaser.Game(w, h, Phaser.AUTO, 'game');
+			game.state.add('boot', bootState);
+			game.state.add('load', loadState);
+			game.state.add('menu', menuState);
+			game.state.add('play', playState);
+			game.state.start('boot');
+		</script>
+	</body>
 </html>
