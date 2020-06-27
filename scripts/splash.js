@@ -1,5 +1,6 @@
 (async ({ worker, delay }) => {
   var animatableSplash = document.querySelector('#animatableSplash')
+  var splashContent = document.querySelector('#splashContent')
 
   animatableSplash.addEventListener('start', function (event) {
     event.detail.style.display = 'flex'
@@ -13,6 +14,7 @@
     animatableSplash.addEventListener('finish', ({ detail }) => {
       detail.style.display = 'none'
       worker.postMessage('splashEnd')
+      splashContent.remove()
     })
     animatableSplash.animation = 'zoomOut'
   }
