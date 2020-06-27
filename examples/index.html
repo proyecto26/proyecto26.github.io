@@ -45,11 +45,6 @@
   <body>
     <ion-app>
       <ion-page class="page-home">
-        <ion-content id="splashContent" no-bounce class="content">
-          <animatable-component id="animatableSplash" animation="slide-in-top" direction="reverse" delay="200" duration="1000" fill="both" composite="accumulate">
-            <div class="wall"></div>
-          </animatable-component>
-        </ion-content>
         <ion-content id="homeContent" class="content">
           <ion-toolbar class="header">
             <a href="https://github.com/proyecto26">
@@ -86,6 +81,9 @@
               <img alt="Proyecto 26" src="/img/v1-a.svg" slot="secondary" />
             </a>
           </ion-toolbar>
+          <animatable-component id="animatableSplash" direction="reverse" delay="200" duration="1000" fill="both" composite="accumulate">
+            <div class="wall"></div>
+          </animatable-component>
         </ion-content>
       </ion-page>
     </ion-app>
