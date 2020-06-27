@@ -1,6 +1,12 @@
-(async ({ worker, delay }) => {
+(async ({ worker, delay, sessionStorage }) => {
   var animatableSplash = document.querySelector('#animatableSplash')
   var splashContent = document.querySelector('#splashContent')
+
+  var onSplashEnd = function () {
+    sessionStorage.setItem('splashLoaded', true)
+    worker.postMessage('splashEnd')
+    splashContent.remove()
+  }
 
   animatableSplash.addEventListener('start', function (event) {
     event.detail.style.display = 'flex'
@@ -13,8 +19,7 @@
     await delay(1400)
     animatableSplash.addEventListener('finish', ({ detail }) => {
       detail.style.display = 'none'
-      worker.postMessage('splashEnd')
-      splashContent.remove()
+      onSplashEnd()
     })
     animatableSplash.animation = 'zoomOut'
   }

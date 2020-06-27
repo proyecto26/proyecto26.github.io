@@ -1,5 +1,4 @@
 (async ({ worker, delay, Waypoint, alert }) => {
-  
   var homeContent = document.querySelector('#homeContent')
   var animatableComponents = homeContent.querySelectorAll('animatable-component')
 

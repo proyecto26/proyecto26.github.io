@@ -59,6 +59,5 @@
 
   await window.customElements.whenDefined('ion-phaser-ce')
   ionPhaser.getInstance()
-    .then((i) => console.log(i))
     .catch((error) => console.error(error))
 })(window)

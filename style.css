@@ -16,12 +16,6 @@
   object-position: left;
 }
 
-ion-phaser-ce {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-
 .logo {
   display: none;
   justify-content: space-around;
@@ -37,30 +31,6 @@ ion-phaser-ce {
 #homeContent {
   display: none;
   padding: 3rem;
-}
-
-ion-title {
-  font-size: 2rem;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  letter-spacing: -.03em;
-  line-height: 1.1;
-  font-family: Eina, system-ui, sans-serif;;
-}
-
-ion-title.ios {
-  font-size: 1.2rem;
-  margin-top: 0;
-}
-
-ion-card {
-  box-shadow : 0 2px 5px rgba(0, 0, 0, 0.49), 0 3px 8px rgba(0, 0, 0, 0.40) !important;
-}
-
-ion-card img {
-  width: 100%;
-  max-height: 300px !important;
-  object-fit: contain;
 }
 
 .header img {
@@ -89,6 +59,40 @@ ion-card img {
   max-height: 500px;
 }
 
+.projects {
+  opacity: 0;
+}
+
+ion-phaser-ce {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+ion-title {
+  font-size: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  letter-spacing: -.03em;
+  line-height: 1.1;
+  font-family: Eina, system-ui, sans-serif;;
+}
+
+ion-title.ios {
+  font-size: 1.2rem;
+  margin-top: 0;
+}
+
+ion-card {
+  box-shadow : 0 2px 5px rgba(0, 0, 0, 0.49), 0 3px 8px rgba(0, 0, 0, 0.40) !important;
+}
+
+ion-card img {
+  width: 100%;
+  max-height: 300px !important;
+  object-fit: contain;
+}
+
 ion-col p {
   font-family: Computer Modern, Garamond, Georgia, serif;
   line-height: 1.4;
@@ -97,6 +101,15 @@ ion-col p {
   max-width: 500px;
 }
 
-.projects {
-  opacity: 0;
+ion-fab {
+  --overflow: visible;
+}
+
+ion-fab-button {
+  --background: transparent;
+  --box-shadow: none;
+  --border-radius: none;
+  font-size: 3rem;
+  padding: 0px;
+  margin: 10px;
 }

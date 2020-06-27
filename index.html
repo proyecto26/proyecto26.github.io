@@ -161,7 +161,7 @@
                     </ion-card-header>
                     <ion-card-content>
                       <img src="img/projects/ninja-dev.svg" />
-                      <ion-button href="https://github.com/proyecto26/NinjaDev" fill="outline" slot="end">Open</ion-button>
+                      <ion-button href="https://proyecto26.com/games/ninjadev" fill="outline" slot="end">Open</ion-button>
                     </ion-card-content>
                   </ion-card>
                 </animatable-component>
@@ -203,15 +203,30 @@
               <img alt="Proyecto 26" src="img/v1-a.svg" slot="secondary" />
             </a>
           </ion-toolbar>
+          <ion-fab vertical="top" horizontal="end" slot="fixed">
+            <animatable-component iterations="3" animation="swing" easing="ease-in" duration="1000" delay="2600">
+              <ion-fab-button href="./games">🎮</ion-fab-button>
+            </animatable-component>
+          </ion-fab>
         </ion-content>
       </ion-page>
     </ion-app>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/noframework.waypoints.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/ionicons.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-134081814-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-134081814-1');
+    </script>
+
     <script type="javascript/worker" src="scripts/worker.js"></script>
     <script type="text/javascript" src="scripts/index.js"></script>
     <script type="text/javascript" src="scripts/dragon.js"></script>
-    <script type="text/javascript" src="scripts/splash.js"></script>
     <script type="text/javascript" src="scripts/home.js"></script>
+    <script type="text/javascript" src="scripts/splash.js"></script>
   </body>
 </html>
