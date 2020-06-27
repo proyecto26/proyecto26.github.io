@@ -1,10 +1,9 @@
 (async ({ worker, delay, Waypoint, alert }) => {
-  var splashContent = document.querySelector('#splashContent')
+  
   var homeContent = document.querySelector('#homeContent')
   var animatableComponents = homeContent.querySelectorAll('animatable-component')
 
   function initialize () {
-    splashContent.remove()
     homeContent.style.display = 'block'
     var innerScroll = homeContent.shadowRoot.querySelector('.inner-scroll')
 
