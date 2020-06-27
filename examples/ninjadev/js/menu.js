@@ -69,7 +69,7 @@ var menuState = {
 		for (var i = 0; i < 20; i++) {
 			points.push(new Phaser.Point(i * length, 0));
 		}
-		this.dragon = this.game.add.rope(this.game.world.centerX - dragonCache.width / 2, 100, 'dragon', null, points);
+		this.dragon = this.game.add.rope(100, 100, 'dragon', null, points);
 		this.dragon.pivot.set(0.5);
 		this.dragon.scale.set(0.3);
 		this.dragon.updateAnimation = function() {
