@@ -12,7 +12,7 @@
   function detectWokerEvent (e) {
     if (e.data === 'logoStart') {
       animatableSplash.keyFrames = [
-        { offset: 0, transform: 'translateY(0)', opacity: 0 },
+        { offset: 0, transform: 'translateY(0)', opacity: 1 },
         { offset: 1, transform: 'translateY(-100vh)', opacity: 1 }
       ]
       animatableSplash.autoPlay = true
