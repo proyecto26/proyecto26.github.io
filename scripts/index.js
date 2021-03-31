@@ -5,7 +5,10 @@
   if ('serviceWorker' in navigator) {
     // Use the window load event to keep the page load performant
     window.addEventListener('load', function () {
-      navigator.serviceWorker.register('/service-worker.js')
+      navigator.serviceWorker
+        .register('/service-worker.js')
+        .then(res => console.log("service worker registered"))
+        .catch(err => console.log("service worker not registered", err))
     })
     
     if ('Notification' in window) {
