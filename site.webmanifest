@@ -1,6 +1,7 @@
 {
     "name": "Proyecto 26",
     "short_name": "Proyecto 26",
+    "start_url": "index.html",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
