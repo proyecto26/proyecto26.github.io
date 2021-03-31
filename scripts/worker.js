@@ -1,4 +1,4 @@
-self.addEventListener('message', e => {
+self.addEventListener('message', function (e) {
   switch (e.data) {
     case 'bootEnd':
       self.postMessage('logoStart')
