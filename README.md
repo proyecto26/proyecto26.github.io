@@ -2,8 +2,8 @@
 The Proyecto26 github homepage.
 
 ## Supporting 🍻
-I believe in Unicorns 🦄
-Support [me](http://www.paypal.me/jdnichollsc/2), if you do too.
+We believe in Unicorns 🦄
+Support [us](http://www.paypal.me/jdnichollsc/2), if you do too.
 
 Donate **Ethereum**, **ADA**, **BNB**, **SHIBA**, **USDT**, **DOGE**:
 
