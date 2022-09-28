@@ -4,13 +4,13 @@
     "start_url": "index.html",
     "icons": [
         {
-            "src": "dog-img_144x144.png",
+            "src": "logo_144x144.png",
             "sizes": "144x144",
             "type": "image/png",
             "purpose": "maskable any"
         },
         {
-            "src": "dog-img_512x512.png",
+            "src": "logo_512x512.png",
             "sizes": "512x512",
             "type": "image/png",
             "purpose": "maskable any"
