@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:bio.link)",
+      "WebFetch(domain:github.com)",
+      "Bash(wc:*)"
+    ]
+  }
+}
