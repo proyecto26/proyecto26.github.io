@@ -1,0 +1,115 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import GameCard from '../../components/GameCard.astro';
+import Button from '../../components/Button.astro';
+
+const featuredGame = {
+  title: 'NinjaDev',
+  description: 'A side-scrolling platformer that showcases basic game development techniques. Jump, run, and slash your way through challenging levels filled with enemies and obstacles. Built with Phaser to demonstrate common game mechanics.',
+  image: '/img/projects/ninja-dev.svg',
+  tags: ['Phaser', '2D Platformer', 'Action'],
+  href: '/games/ninjadev',
+  featured: true,
+};
+
+const games = [
+  {
+    title: 'Ninja',
+    description: 'Classic ninja action game with smooth controls and engaging gameplay.',
+    image: '/img/ninja.gif',
+    tags: ['Phaser', 'Action'],
+    href: '/games/ninja',
+  },
+  {
+    title: 'Zombies',
+    description: 'Survive waves of zombies in this thrilling survival game.',
+    image: '/games/img/zombies.png',
+    tags: ['Phaser', 'Survival'],
+    href: '/games/zombies',
+  },
+  {
+    title: 'Debug Game',
+    description: 'A debugging playground for testing game mechanics.',
+    tags: ['Phaser', 'Debug'],
+    href: '/games/debug',
+  },
+];
+---
+
+<BaseLayout title="Games - Proyecto 26" description="Play our collection of games built with Phaser and other game engines">
+  <Header currentPage="games" />
+
+  <main class="pt-[72px]">
+    <!-- Hero Section -->
+    <section class="py-16 md:py-24 bg-bg-primary">
+      <div class="container">
+        <div class="text-center mb-16">
+          <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-text-primary mb-6" data-animate="fade-up">
+            Play Our Games
+          </h1>
+          <p class="text-xl text-text-secondary max-w-2xl mx-auto" data-animate="fade-up" data-delay="100">
+            Interactive experiences built with Phaser, Unity, and other game engines
+          </p>
+        </div>
+
+        <!-- Featured Game -->
+        <div class="mb-16" data-animate="fade-up" data-delay="200">
+          <p class="text-xs font-semibold text-accent-coral uppercase tracking-widest mb-6">
+            Featured Game
+          </p>
+          <GameCard {...featuredGame} />
+        </div>
+
+        <!-- More Games -->
+        <div>
+          <p class="text-xs font-semibold text-text-muted uppercase tracking-widest mb-6">
+            More Games
+          </p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {games.map((game, index) => (
+              <div data-animate="fade-up" data-delay={300 + index * 100}>
+                <GameCard {...game} />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Back Button -->
+        <div class="text-center mt-16" data-animate="fade-up" data-delay="600">
+          <Button href="/" variant="secondary">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i>
+            Back to Home
+          </Button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.querySelectorAll('[data-animate="fade-up"]').forEach((el) => {
+    const delay = parseInt(el.getAttribute('data-delay') || '0') / 1000;
+
+    gsap.from(el, {
+      scrollTrigger: {
+        trigger: el,
+        start: 'top 85%',
+        toggleActions: 'play none none none',
+      },
+      y: 30,
+      opacity: 0,
+      duration: 0.6,
+      delay,
+      ease: 'power2.out',
+    });
+  });
+</script>

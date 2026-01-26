@@ -1,0 +1,171 @@
+---
+// Dragon Easter Egg - triggered by clicking the logo 3 times
+---
+
+<div id="dragon-container" class="dragon-container fixed inset-0 pointer-events-none z-dragon hidden">
+  <img
+    id="dragon-sprite"
+    src="/img/dragon.png"
+    alt="Dragon"
+    class="dragon-sprite absolute w-32 h-32 md:w-48 md:h-48 object-contain"
+    style="filter: drop-shadow(0 0 20px rgba(242, 56, 90, 0.5));"
+  />
+</div>
+
+<audio id="dragon-sound" preload="auto">
+  <source src="/audio/dragon.ogg" type="audio/ogg" />
+  <source src="/audio/dragon.mp3" type="audio/mpeg" />
+</audio>
+
+<script>
+  import { gsap } from 'gsap';
+
+  // Dragon Easter Egg functionality
+  class DragonEasterEgg {
+    private container: HTMLElement | null;
+    private sprite: HTMLElement | null;
+    private audio: HTMLAudioElement | null;
+    private clickCount: number = 0;
+    private clickTimeout: ReturnType<typeof setTimeout> | null = null;
+    private isAnimating: boolean = false;
+
+    constructor() {
+      this.container = document.getElementById('dragon-container');
+      this.sprite = document.getElementById('dragon-sprite');
+      this.audio = document.getElementById('dragon-sound') as HTMLAudioElement;
+
+      this.init();
+    }
+
+    private init() {
+      // Listen for logo clicks
+      const logoTrigger = document.querySelector('[data-dragon-trigger]');
+      if (logoTrigger) {
+        logoTrigger.addEventListener('click', (e) => this.handleLogoClick(e));
+      }
+    }
+
+    private handleLogoClick(e: Event) {
+      if (this.isAnimating) return;
+
+      this.clickCount++;
+
+      // Reset click count after 2 seconds of no clicks
+      if (this.clickTimeout) {
+        clearTimeout(this.clickTimeout);
+      }
+      this.clickTimeout = setTimeout(() => {
+        this.clickCount = 0;
+      }, 2000);
+
+      // Trigger dragon on 3 clicks
+      if (this.clickCount >= 3) {
+        e.preventDefault();
+        this.clickCount = 0;
+        this.triggerDragon();
+      }
+    }
+
+    private triggerDragon() {
+      if (!this.container || !this.sprite || this.isAnimating) return;
+
+      this.isAnimating = true;
+      this.container.classList.remove('hidden');
+
+      // Play sound
+      if (this.audio) {
+        this.audio.currentTime = 0;
+        this.audio.volume = 0.5;
+        this.audio.play().catch(() => {
+          // Audio play failed, likely due to autoplay policy
+        });
+      }
+
+      // Random start position (left or right)
+      const startFromLeft = Math.random() > 0.5;
+      const viewportWidth = window.innerWidth;
+      const viewportHeight = window.innerHeight;
+
+      // Random vertical position
+      const startY = Math.random() * (viewportHeight * 0.6) + (viewportHeight * 0.1);
+      const endY = Math.random() * (viewportHeight * 0.6) + (viewportHeight * 0.1);
+
+      // Set initial position
+      const startX = startFromLeft ? -200 : viewportWidth + 200;
+      const endX = startFromLeft ? viewportWidth + 200 : -200;
+
+      // Flip sprite based on direction
+      this.sprite.style.transform = startFromLeft ? 'scaleX(1)' : 'scaleX(-1)';
+
+      // Animate the dragon flying across the screen
+      const tl = gsap.timeline({
+        onComplete: () => {
+          this.container?.classList.add('hidden');
+          this.isAnimating = false;
+        }
+      });
+
+      // Set initial position
+      gsap.set(this.sprite, {
+        x: startX,
+        y: startY,
+        scale: 0.5,
+        opacity: 0,
+      });
+
+      // Flying animation
+      tl.to(this.sprite, {
+        x: endX,
+        y: endY,
+        duration: 4,
+        ease: 'power1.inOut',
+      }, 0);
+
+      // Scale and opacity animation
+      tl.to(this.sprite, {
+        scale: 1.2,
+        opacity: 1,
+        duration: 0.5,
+        ease: 'power2.out',
+      }, 0);
+
+      tl.to(this.sprite, {
+        scale: 0.5,
+        opacity: 0,
+        duration: 0.5,
+        ease: 'power2.in',
+      }, 3.5);
+
+      // Add floating motion
+      tl.to(this.sprite, {
+        y: startY + 50,
+        duration: 0.5,
+        yoyo: true,
+        repeat: 7,
+        ease: 'sine.inOut',
+      }, 0);
+
+      // Add subtle rotation
+      tl.to(this.sprite, {
+        rotation: startFromLeft ? 10 : -10,
+        duration: 0.8,
+        yoyo: true,
+        repeat: 4,
+        ease: 'sine.inOut',
+      }, 0);
+    }
+  }
+
+  // Initialize dragon easter egg
+  new DragonEasterEgg();
+</script>
+
+<style>
+  .dragon-container {
+    z-index: 9999;
+  }
+
+  .dragon-sprite {
+    will-change: transform;
+  }
+</style>

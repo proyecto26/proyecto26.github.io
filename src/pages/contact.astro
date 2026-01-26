@@ -1,0 +1,255 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Button from '../components/Button.astro';
+
+const contactMethods = [
+  {
+    title: 'GitHub',
+    description: 'Open an issue or start a discussion',
+    icon: 'github',
+    href: 'https://github.com/proyecto26',
+    color: 'coral',
+  },
+  {
+    title: 'X',
+    description: 'Follow for updates and news',
+    icon: 'twitter',
+    href: 'https://x.com/proyecto_26',
+    color: 'teal',
+  },
+  {
+    title: 'LinkedIn',
+    description: 'Connect professionally',
+    icon: 'linkedin',
+    href: 'https://www.linkedin.com/company/proyecto26',
+    color: 'blue',
+  },
+  {
+    title: 'YouTube',
+    description: 'Watch tutorials and demos',
+    icon: 'youtube',
+    href: 'https://youtube.com/@proyecto26',
+    color: 'orange',
+  },
+];
+
+const supportLinks = [
+  { name: 'Patreon', icon: 'heart', color: '#FF424D', href: 'https://patreon.com/proyecto26' },
+  { name: 'Ko-fi', icon: 'coffee', color: '#f2385a', href: 'https://ko-fi.com/proyecto26' },
+  { name: 'Open Collective', icon: 'users', color: '#7FADF2', href: 'https://opencollective.com/proyecto26' },
+  { name: 'Liberapay', icon: 'dollar-sign', color: '#f6c915', href: 'https://liberapay.com/proyecto26' },
+];
+---
+
+<BaseLayout title="Contact - Proyecto 26" description="Get in touch with Proyecto 26. We'd love to hear from you!">
+  <Header currentPage="contact" />
+
+  <main class="pt-[72px]">
+    <!-- Hero Section -->
+    <section class="py-16 md:py-24 bg-bg-primary">
+      <div class="container">
+        <div class="text-center mb-16">
+          <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-text-primary mb-6" data-animate="fade-up">
+            Get In Touch
+          </h1>
+          <p class="text-xl text-text-secondary max-w-2xl mx-auto" data-animate="fade-up" data-delay="100">
+            Have a question, feedback, or want to collaborate? We'd love to hear from you!
+          </p>
+        </div>
+
+        <!-- Contact Methods -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+          {contactMethods.map((method, index) => (
+            <a
+              href={method.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group bg-bg-card border border-border-default rounded-2xl p-6 text-center transition-all duration-300 hover:border-border-accent hover:-translate-y-1"
+              data-animate="fade-up"
+              data-delay={index * 100}
+            >
+              <div class={`w-14 h-14 mx-auto mb-4 rounded-xl bg-bg-hover flex items-center justify-center transition-transform duration-300 group-hover:scale-110`}>
+                <i data-lucide={method.icon} class={`w-7 h-7 text-accent-${method.color}`}></i>
+              </div>
+              <h3 class="text-lg font-semibold text-text-primary mb-2">{method.title}</h3>
+              <p class="text-text-muted text-sm">{method.description}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Community Section -->
+    <section class="py-16 bg-bg-secondary">
+      <div class="container">
+        <div class="max-w-3xl mx-auto">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-text-primary mb-4" data-animate="fade-up">
+              Join Our Community
+            </h2>
+            <p class="text-text-secondary" data-animate="fade-up" data-delay="100">
+              Connect with developers from around the world who use and contribute to our projects.
+            </p>
+          </div>
+
+          <div class="bg-bg-card border border-border-default rounded-3xl p-8 md:p-12" data-animate="fade-up" data-delay="200">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <!-- GitHub Discussions -->
+              <div>
+                <div class="w-12 h-12 rounded-xl bg-bg-hover flex items-center justify-center mb-4">
+                  <i data-lucide="message-circle" class="w-6 h-6 text-accent-coral"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-text-primary mb-2">GitHub Discussions</h3>
+                <p class="text-text-secondary mb-4">
+                  Ask questions, share ideas, and connect with other developers using our projects.
+                </p>
+                <Button href="https://github.com/proyecto26/sponsors/discussions" variant="secondary" size="sm" external>
+                  Join Discussion
+                </Button>
+              </div>
+
+              <!-- Open Issues -->
+              <div>
+                <div class="w-12 h-12 rounded-xl bg-bg-hover flex items-center justify-center mb-4">
+                  <i data-lucide="bug" class="w-6 h-6 text-accent-teal"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-text-primary mb-2">Report Issues</h3>
+                <p class="text-text-secondary mb-4">
+                  Found a bug or have a feature request? Open an issue and help us improve.
+                </p>
+                <Button href="https://github.com/proyecto26" variant="secondary" size="sm" external>
+                  View Repositories
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Support Section -->
+    <section class="py-16 bg-bg-primary">
+      <div class="container">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold text-text-primary mb-4" data-animate="fade-up">
+            Support Our Work
+          </h2>
+          <p class="text-text-secondary max-w-2xl mx-auto" data-animate="fade-up" data-delay="100">
+            Help us continue building open source tools that developers around the world rely on.
+          </p>
+        </div>
+
+        <!-- Donation Platforms -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto mb-12">
+          {supportLinks.map((link, index) => (
+            <a
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group bg-bg-card border border-border-default rounded-2xl p-6 text-center transition-all duration-300 hover:border-border-accent hover:-translate-y-1"
+              data-animate="fade-up"
+              data-delay={index * 100}
+            >
+              <div
+                class="w-12 h-12 mx-auto mb-4 rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
+                style={`background-color: ${link.color}20;`}
+              >
+                <i data-lucide={link.icon} class="w-6 h-6" style={`color: ${link.color};`}></i>
+              </div>
+              <h3 class="font-semibold text-text-primary mb-1">{link.name}</h3>
+              <p class="text-xs text-text-muted">Support us</p>
+            </a>
+          ))}
+        </div>
+
+        <!-- GitHub CTA -->
+        <div class="max-w-2xl mx-auto" data-animate="fade-up" data-delay="400">
+          <div class="bg-bg-card border-2 border-accent-coral rounded-3xl p-8 md:p-12 text-center">
+            <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-stars-gold/20 flex items-center justify-center">
+              <i data-lucide="star" class="w-8 h-8 text-stars-gold"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-text-primary mb-3">
+              Star us on GitHub
+            </h3>
+            <p class="text-text-secondary mb-6">
+              The easiest way to support us is by starring our repositories. It helps others discover our projects!
+            </p>
+            <Button href="https://github.com/proyecto26" variant="primary" external>
+              <i data-lucide="star" class="w-4 h-4"></i>
+              Star Our Projects
+            </Button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-16 bg-bg-secondary">
+      <div class="container">
+        <div class="max-w-3xl mx-auto">
+          <h2 class="text-3xl font-bold text-text-primary text-center mb-12" data-animate="fade-up">
+            Frequently Asked Questions
+          </h2>
+
+          <div class="space-y-4">
+            <div class="bg-bg-card border border-border-default rounded-2xl p-6" data-animate="fade-up" data-delay="100">
+              <h3 class="text-lg font-semibold text-text-primary mb-2">How can I contribute to your projects?</h3>
+              <p class="text-text-secondary">
+                We welcome contributions of all kinds! Check out the CONTRIBUTING.md file in each repository for guidelines. You can help with code, documentation, bug reports, or feature suggestions.
+              </p>
+            </div>
+
+            <div class="bg-bg-card border border-border-default rounded-2xl p-6" data-animate="fade-up" data-delay="200">
+              <h3 class="text-lg font-semibold text-text-primary mb-2">Do you offer consulting or custom development?</h3>
+              <p class="text-text-secondary">
+                Yes! We're available for consulting on React Native, Unity, web development, and game development projects. Reach out through LinkedIn or email for inquiries.
+              </p>
+            </div>
+
+            <div class="bg-bg-card border border-border-default rounded-2xl p-6" data-animate="fade-up" data-delay="300">
+              <h3 class="text-lg font-semibold text-text-primary mb-2">Are your projects free to use?</h3>
+              <p class="text-text-secondary">
+                Absolutely! All our projects are open source under MIT or similar permissive licenses. You can use them freely in personal and commercial projects.
+              </p>
+            </div>
+
+            <div class="bg-bg-card border border-border-default rounded-2xl p-6" data-animate="fade-up" data-delay="400">
+              <h3 class="text-lg font-semibold text-text-primary mb-2">How do I report a security vulnerability?</h3>
+              <p class="text-text-secondary">
+                For security issues, please email us directly instead of opening a public issue. We take security seriously and will respond promptly to any reports.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.querySelectorAll('[data-animate="fade-up"]').forEach((el) => {
+    const delay = parseInt(el.getAttribute('data-delay') || '0') / 1000;
+
+    gsap.from(el, {
+      scrollTrigger: {
+        trigger: el,
+        start: 'top 85%',
+        toggleActions: 'play none none none',
+      },
+      y: 30,
+      opacity: 0,
+      duration: 0.6,
+      delay,
+      ease: 'power2.out',
+    });
+  });
+</script>

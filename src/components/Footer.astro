@@ -1,0 +1,136 @@
+---
+const currentYear = new Date().getFullYear();
+
+const projectLinks = [
+  { href: 'https://github.com/proyecto26/react-native-inappbrowser', label: 'InAppBrowser' },
+  { href: 'https://github.com/proyecto26/RestClient', label: 'RestClient' },
+  { href: 'https://proyecto26.github.io/animatable-component', label: 'Animatable' },
+  { href: 'https://github.com/proyecto26/ion-phaser', label: 'IonPhaser' },
+];
+
+const resourceLinks = [
+  { href: 'https://github.com/proyecto26/sponsors', label: 'Sponsors' },
+  { href: 'https://github.com/proyecto26/community/discussions', label: 'Community' },
+];
+
+const connectLinks = [
+  { href: 'https://github.com/proyecto26', label: 'GitHub' },
+  { href: 'https://www.youtube.com/@proyecto26', label: 'YouTube' },
+  { href: 'https://www.facebook.com/proyecto26', label: 'Facebook' },
+  { href: 'mailto:jdnichollsc@gmail.com', label: 'Contact' },
+];
+
+const socialLinks = [
+  { href: 'https://github.com/proyecto26', icon: 'github', label: 'GitHub' },
+  { href: 'https://www.youtube.com/@proyecto26', icon: 'youtube', label: 'YouTube' },
+  { href: 'https://www.facebook.com/proyecto26', icon: 'facebook', label: 'Facebook' },
+  { href: 'https://linkedin.com/in/jdnichollsc', icon: 'linkedin', label: 'LinkedIn' },
+  { href: 'https://x.com/jdnichollsc', icon: 'twitter', label: 'Twitter' },
+];
+---
+
+<footer class="bg-bg-secondary border-t border-border-default">
+  <div class="container py-16">
+    <!-- Top Section -->
+    <div class="flex flex-col lg:flex-row justify-between gap-12 mb-12">
+      <!-- Logo & Tagline -->
+      <div class="max-w-sm">
+        <a href="/" class="flex items-center gap-3 mb-4">
+          <img src="/img/pro26.png" alt="Proyecto 26" class="w-8 h-8 rounded-md" />
+          <span class="text-lg font-bold text-text-primary">Proyecto 26</span>
+        </a>
+        <p class="text-text-secondary text-base">
+          Changing the world with small contributions.
+        </p>
+      </div>
+
+      <!-- Link Columns -->
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-8 lg:gap-16">
+        <!-- Projects -->
+        <div>
+          <h3 class="text-xs font-semibold uppercase tracking-wider text-text-muted mb-4">
+            Projects
+          </h3>
+          <ul class="space-y-3">
+            {projectLinks.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-text-secondary hover:text-text-primary transition-colors duration-200"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Resources -->
+        <div>
+          <h3 class="text-xs font-semibold uppercase tracking-wider text-text-muted mb-4">
+            Resources
+          </h3>
+          <ul class="space-y-3">
+            {resourceLinks.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-text-secondary hover:text-text-primary transition-colors duration-200"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Connect -->
+        <div>
+          <h3 class="text-xs font-semibold uppercase tracking-wider text-text-muted mb-4">
+            Connect
+          </h3>
+          <ul class="space-y-3">
+            {connectLinks.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  target={link.href.startsWith('mailto') ? undefined : '_blank'}
+                  rel={link.href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
+                  class="text-text-secondary hover:text-text-primary transition-colors duration-200"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Section -->
+    <div class="pt-8 border-t border-border-default flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-text-muted text-sm">
+        &copy; {currentYear} Proyecto 26. Made with love in Colombia.
+      </p>
+
+      <!-- Social Icons -->
+      <div class="flex items-center gap-4">
+        {socialLinks.map((link) => (
+          <a
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-10 h-10 rounded-full flex items-center justify-center text-text-muted hover:text-accent-teal hover:bg-bg-hover transition-all duration-200"
+            aria-label={link.label}
+          >
+            <i data-lucide={link.icon} class="w-5 h-5"></i>
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</footer>

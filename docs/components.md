@@ -435,7 +435,7 @@ Displays service/capability areas.
 │  │              │   Juan David Nicholls              │
 │  │    Photo     │   Founder & Lead Developer         │
 │  │              │                                    │
-│  └──────────────┘   Developer with 8+ years of       │
+│  └──────────────┘   Developer with 14 years of       │
 │                     experience building interactive  │
 │                     experiences across web, mobile,  │
 │                     and game development.            │

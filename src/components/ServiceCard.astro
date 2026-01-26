@@ -1,0 +1,36 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  icon: string;
+  color?: 'coral' | 'teal' | 'orange';
+  technologies: string[];
+}
+
+const { title, description, icon, color = 'coral', technologies } = Astro.props;
+
+const colors = {
+  coral: 'text-accent-coral',
+  teal: 'text-accent-teal',
+  orange: 'text-accent-orange',
+};
+---
+
+<div class="service-card group bg-bg-card border border-border-default rounded-2xl p-8 text-center transition-all duration-300 hover:border-border-accent hover:-translate-y-1">
+  <!-- Icon -->
+  <div class="mb-6 inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-bg-hover transition-transform duration-300 group-hover:scale-110">
+    <i data-lucide={icon} class={`w-8 h-8 ${colors[color]}`}></i>
+  </div>
+
+  <!-- Title -->
+  <h3 class="text-xl font-semibold text-text-primary mb-3">
+    {title}
+  </h3>
+
+  <!-- Technologies -->
+  <div class="space-y-1">
+    {technologies.map((tech) => (
+      <p class="text-text-secondary text-sm">{tech}</p>
+    ))}
+  </div>
+</div>

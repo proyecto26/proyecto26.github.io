@@ -1,0 +1,417 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import GameCard from '../components/GameCard.astro';
+import Button from '../components/Button.astro';
+
+const projects = [
+  {
+    title: 'react-native-inappbrowser',
+    subtitle: 'React Native',
+    description: 'InAppBrowser for React Native with support for Chrome Custom Tabs and Safari Services.',
+    iconColor: 'coral' as const,
+    tags: ['React Native', 'iOS', 'Android'],
+    stars: 1423,
+    forks: 234,
+    href: 'https://github.com/proyecto26/react-native-inappbrowser',
+    githubUrl: 'https://github.com/proyecto26/react-native-inappbrowser',
+  },
+  {
+    title: 'RestClient',
+    subtitle: 'Unity',
+    description: 'Promise-based REST and HTTP client for Unity game development.',
+    iconColor: 'teal' as const,
+    tags: ['Unity', 'C#'],
+    stars: 1312,
+    forks: 189,
+    href: 'https://github.com/proyecto26/RestClient',
+    githubUrl: 'https://github.com/proyecto26/RestClient',
+  },
+  {
+    title: 'Animatable Component',
+    subtitle: 'Web Component',
+    description: 'Web component for creating reusable animations using the Web Animations API.',
+    iconColor: 'orange' as const,
+    tags: ['TypeScript', 'Web Components'],
+    stars: 258,
+    forks: 42,
+    href: 'https://proyecto26.github.io/animatable-component',
+    githubUrl: 'https://github.com/proyecto26/animatable-component',
+  },
+  {
+    title: 'IonPhaser',
+    subtitle: 'Phaser + Ionic',
+    description: 'Web component to integrate Phaser game framework with Ionic and other frameworks.',
+    iconColor: 'blue' as const,
+    tags: ['Phaser', 'Ionic'],
+    stars: 252,
+    forks: 38,
+    href: 'https://github.com/proyecto26/ion-phaser',
+    githubUrl: 'https://github.com/proyecto26/ion-phaser',
+  },
+  {
+    title: 'Awesome Unity',
+    subtitle: 'Curated List',
+    description: 'A curated list of awesome Unity games, resources, and tutorials for game developers.',
+    iconColor: 'coral' as const,
+    tags: ['Unity', 'Resources'],
+    stars: 1300,
+    forks: 86,
+    href: 'https://github.com/proyecto26/awesome-unity',
+    githubUrl: 'https://github.com/proyecto26/awesome-unity',
+  },
+  {
+    title: 'Awesome JSGames',
+    subtitle: 'Curated List',
+    description: 'A curated list of awesome JavaScript Games built with HTML5 and game engines.',
+    iconColor: 'teal' as const,
+    tags: ['JavaScript', 'HTML5'],
+    stars: 892,
+    forks: 112,
+    href: 'https://github.com/proyecto26/awesome-jsgames',
+    githubUrl: 'https://github.com/proyecto26/awesome-jsgames',
+  },
+];
+
+const services = [
+  {
+    title: 'Mobile Development',
+    icon: 'smartphone',
+    color: 'coral' as const,
+    technologies: ['React Native', 'NativeScript', 'Ionic'],
+  },
+  {
+    title: 'Web Components',
+    icon: 'globe',
+    color: 'teal' as const,
+    technologies: ['Stencil', 'Web Animations API', 'TypeScript'],
+  },
+  {
+    title: 'Game Development',
+    icon: 'gamepad-2',
+    color: 'orange' as const,
+    technologies: ['Phaser', 'Unity', 'C#'],
+  },
+];
+
+const games = [
+  {
+    title: 'NinjaDev',
+    description: 'A side-scrolling platformer that showcases advanced game development techniques. Jump, run, and slash your way through challenging levels.',
+    tags: ['Phaser', '2D Platformer', 'Action'],
+    href: '/games/ninjadev',
+    featured: true,
+  },
+  {
+    title: 'The Crypto Purge',
+    description: 'Action-packed crypto-themed game adventure.',
+    tags: ['Phaser', 'Web3', 'WebSockets'],
+    href: 'https://devpost.com/software/the-crypto-purge-jamg3s',
+  },
+  {
+    title: 'PokéDex GO',
+    description: 'Community of Pokemon masters, hybrid mobile app created to showcase real-time interactions with Firebase.',
+    tags: ['Cordova/Ionic', 'Firebase'],
+    href: 'https://github.com/proyecto26/PokeDex-GO',
+  },
+];
+
+const supportLinks = [
+  { name: 'Patreon', icon: 'heart', color: '#FF424D', href: 'https://patreon.com/proyecto26' },
+  { name: 'Ko-fi', icon: 'coffee', color: '#f2385a', href: 'https://ko-fi.com/proyecto26' },
+  { name: 'Open Collective', icon: 'users', color: '#7FADF2', href: 'https://opencollective.com/proyecto26' },
+  { name: 'Liberapay', icon: 'dollar-sign', color: '#f6c915', href: 'https://liberapay.com/proyecto26' },
+];
+---
+
+<BaseLayout title="Proyecto 26 - Changing the world with small contributions">
+  <Header currentPage="home" />
+
+  <main>
+    <!-- Hero Section -->
+    <Hero />
+
+    <!-- Projects Section -->
+    <section id="projects" class="section bg-bg-primary">
+      <div class="container">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold text-text-primary mb-4" data-animate="fade-up">
+            Open Source Tools Developers Love
+          </h2>
+          <p class="text-lg text-text-secondary max-w-2xl mx-auto" data-animate="fade-up" data-delay="100">
+            Building the future of web, mobile, and game development
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          {projects.map((project, index) => (
+            <div data-animate="fade-up" data-delay={index * 100}>
+              <ProjectCard {...project} />
+            </div>
+          ))}
+        </div>
+
+        <div class="text-center" data-animate="fade-up" data-delay="600">
+          <Button href="https://github.com/proyecto26" variant="secondary" external>
+            View All Projects
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </Button>
+        </div>
+      </div>
+    </section>
+
+    <!-- What We Build Section -->
+    <section class="section bg-bg-secondary">
+      <div class="container">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold text-text-primary mb-4" data-animate="fade-up">
+            What We Build
+          </h2>
+          <p class="text-lg text-text-secondary" data-animate="fade-up" data-delay="100">
+            Specialized tools and libraries across three core domains
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {services.map((service, index) => (
+            <div data-animate="fade-up" data-delay={index * 100}>
+              <ServiceCard {...service} description="" />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Games Section -->
+    <section class="section bg-bg-primary">
+      <div class="container">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold text-text-primary mb-4" data-animate="fade-up">
+            Play Our Games
+          </h2>
+          <p class="text-lg text-text-secondary" data-animate="fade-up" data-delay="100">
+            Interactive experiences built with Phaser and other game engines
+          </p>
+        </div>
+
+        <!-- Featured Game -->
+        <div class="mb-12" data-animate="fade-up" data-delay="200">
+          <p class="text-xs font-semibold text-accent-coral uppercase tracking-widest mb-4">Featured Game</p>
+          <GameCard {...games[0]} />
+        </div>
+
+        <!-- More Games -->
+        <div class="mb-4">
+          <p class="text-xs font-semibold text-text-muted uppercase tracking-widest mb-4">More Games</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {games.slice(1).map((game, index) => (
+            <div data-animate="fade-up" data-delay={300 + index * 100}>
+              <GameCard {...game} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- About / Founder Section -->
+    <section id="about" class="section bg-bg-secondary">
+      <div class="container">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold text-text-primary mb-4" data-animate="fade-up">
+            Meet the Founder
+          </h2>
+        </div>
+
+        <div class="max-w-4xl mx-auto" data-animate="fade-up" data-delay="200">
+          <div class="bg-bg-card border border-border-default rounded-3xl p-8 md:p-12">
+            <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+              <!-- Photo -->
+              <div class="flex-shrink-0">
+                <div class="w-48 h-48 rounded-full overflow-hidden ring-4 ring-accent-coral/30">
+                  <img
+                    src="/img/jdnichollsc.jpg"
+                    alt="Juan David Nicholls"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+
+              <!-- Info -->
+              <div class="text-center md:text-left">
+                <h3 class="text-3xl font-bold text-text-primary mb-2">
+                  Juan David Nicholls
+                </h3>
+                <p class="text-accent-coral font-medium mb-4">
+                  Founder & Lead Developer
+                </p>
+                <p class="text-text-secondary mb-6">
+                  Full-Stack Developer and Open Source Contributor with over 14 years of expertise in web, mobile, game, blockchain and cloud development. Skilled in building scalable architectures, seamless user experiences and driving innovation through Open Source. Passionate about sharing knowledge as a speaker and mentor.
+                </p>
+
+                <!-- Location -->
+                <div class="flex items-center justify-center md:justify-start gap-2 text-text-muted mb-6">
+                  <i data-lucide="map-pin" class="w-4 h-4"></i>
+                  <span>Based in Colombia</span>
+                </div>
+
+                <!-- Social Links -->
+                <div class="flex items-center justify-center md:justify-start gap-3">
+                  <a
+                    href="https://linkedin.com/in/jdnichollsc"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="w-10 h-10 rounded-lg bg-bg-hover flex items-center justify-center text-text-secondary hover:text-text-primary hover:bg-bg-tertiary transition-all duration-200"
+                  >
+                    <i data-lucide="linkedin" class="w-5 h-5"></i>
+                  </a>
+                  <a
+                    href="https://github.com/jdnichollsc"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="w-10 h-10 rounded-lg bg-bg-hover flex items-center justify-center text-text-secondary hover:text-text-primary hover:bg-bg-tertiary transition-all duration-200"
+                  >
+                    <i data-lucide="github" class="w-5 h-5"></i>
+                  </a>
+                  <a
+                    href="https://x.com/jdnichollsc"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="w-10 h-10 rounded-lg bg-bg-hover flex items-center justify-center text-text-secondary hover:text-text-primary hover:bg-bg-tertiary transition-all duration-200"
+                  >
+                    <i data-lucide="twitter" class="w-5 h-5"></i>
+                  </a>
+                  <a
+                    href="https://youtube.com/@proyecto26"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="w-10 h-10 rounded-lg bg-bg-hover flex items-center justify-center text-text-secondary hover:text-text-primary hover:bg-bg-tertiary transition-all duration-200"
+                  >
+                    <i data-lucide="youtube" class="w-5 h-5"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Support Section -->
+    <section id="contact" class="section bg-bg-primary">
+      <div class="container">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold text-text-primary mb-4" data-animate="fade-up">
+            Support Our Mission
+          </h2>
+          <p class="text-lg text-text-secondary" data-animate="fade-up" data-delay="100">
+            Help us continue building open source tools for developers worldwide
+          </p>
+        </div>
+
+        <!-- Donation Platforms -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+          {supportLinks.map((link, index) => (
+            <a
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group bg-bg-card border border-border-default rounded-2xl p-6 text-center transition-all duration-300 hover:border-border-accent hover:-translate-y-1"
+              data-animate="fade-up"
+              data-delay={index * 100}
+            >
+              <div
+                class="w-12 h-12 mx-auto mb-4 rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
+                style={`background-color: ${link.color}20;`}
+              >
+                <i data-lucide={link.icon} class="w-6 h-6" style={`color: ${link.color};`}></i>
+              </div>
+              <h3 class="font-semibold text-text-primary mb-1">{link.name}</h3>
+              <p class="text-xs text-text-muted">Support us</p>
+            </a>
+          ))}
+        </div>
+
+        <!-- GitHub CTA -->
+        <div class="bg-bg-card border-2 border-accent-coral rounded-3xl p-8 md:p-12 text-center" data-animate="fade-up" data-delay="400">
+          <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-stars-gold/20 flex items-center justify-center">
+            <i data-lucide="star" class="w-8 h-8 text-stars-gold"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-text-primary mb-3">
+            Star us on GitHub
+          </h3>
+          <p class="text-text-secondary mb-6">
+            Support the project by starring our repositories
+          </p>
+          <Button href="https://github.com/proyecto26" variant="primary" external>
+            <i data-lucide="star" class="w-4 h-4"></i>
+            View Repositories
+          </Button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<script>
+  // Initialize animations when GSAP is loaded
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Fade up animation for elements with data-animate="fade-up"
+  document.querySelectorAll('[data-animate="fade-up"]').forEach((el) => {
+    const delay = parseInt(el.getAttribute('data-delay') || '0') / 1000;
+
+    gsap.from(el, {
+      scrollTrigger: {
+        trigger: el,
+        start: 'top 85%',
+        toggleActions: 'play none none none',
+      },
+      y: 30,
+      opacity: 0,
+      duration: 0.6,
+      delay,
+      ease: 'power2.out',
+    });
+  });
+
+  // Custom cursor
+  const cursorDot = document.querySelector('.cursor-dot');
+  const cursorOutline = document.querySelector('.cursor-outline');
+
+  if (cursorDot && cursorOutline && window.matchMedia('(hover: hover)').matches) {
+    window.addEventListener('mousemove', (e) => {
+      gsap.to(cursorDot, {
+        x: e.clientX,
+        y: e.clientY,
+        duration: 0.1,
+      });
+      gsap.to(cursorOutline, {
+        x: e.clientX,
+        y: e.clientY,
+        duration: 0.3,
+      });
+    });
+
+    // Expand cursor on interactive elements
+    document.querySelectorAll('a, button, [data-cursor]').forEach((el) => {
+      el.addEventListener('mouseenter', () => {
+        gsap.to(cursorOutline, { scale: 2, opacity: 1, duration: 0.3 });
+        gsap.to(cursorDot, { scale: 0.5, duration: 0.3 });
+      });
+      el.addEventListener('mouseleave', () => {
+        gsap.to(cursorOutline, { scale: 1, opacity: 0.5, duration: 0.3 });
+        gsap.to(cursorDot, { scale: 1, duration: 0.3 });
+      });
+    });
+  }
+</script>

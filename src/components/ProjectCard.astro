@@ -1,0 +1,131 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+  description: string;
+  icon?: string;
+  iconColor?: 'coral' | 'teal' | 'orange' | 'blue';
+  tags: string[];
+  stars?: number;
+  forks?: number;
+  href: string;
+  githubUrl?: string;
+}
+
+const {
+  title,
+  subtitle,
+  description,
+  icon,
+  iconColor = 'coral',
+  tags,
+  stars,
+  forks,
+  href,
+  githubUrl,
+} = Astro.props;
+
+const iconColors = {
+  coral: 'bg-accent-coral',
+  teal: 'bg-accent-teal',
+  orange: 'bg-accent-orange',
+  blue: 'bg-accent-blue',
+};
+
+const formatNumber = (num: number) => {
+  if (num >= 1000) {
+    return (num / 1000).toFixed(1).replace(/\.0$/, '') + 'k';
+  }
+  return num.toString();
+};
+---
+
+<article
+  class="project-card group bg-bg-card border border-border-default rounded-2xl p-6 transition-all duration-300 hover:border-border-accent hover:shadow-glow-card hover:-translate-y-1"
+  data-tilt
+  data-tilt-max="5"
+  data-tilt-speed="400"
+  data-tilt-glare
+  data-tilt-max-glare="0.1"
+>
+  <!-- Header -->
+  <div class="flex items-center gap-3 mb-4">
+    <div class={`w-12 h-12 ${iconColors[iconColor]} rounded-xl flex items-center justify-center flex-shrink-0`}>
+      {icon ? (
+        <img src={icon} alt="" class="w-8 h-8 object-contain" />
+      ) : (
+        <span class="text-white font-bold text-lg">{title.charAt(0)}</span>
+      )}
+    </div>
+    <div class="min-w-0">
+      <h3 class="text-lg font-semibold text-text-primary truncate">{title}</h3>
+      {subtitle && (
+        <p class="text-sm text-text-muted">{subtitle}</p>
+      )}
+    </div>
+  </div>
+
+  <!-- Description -->
+  <p class="text-text-secondary text-sm mb-4 line-clamp-2">
+    {description}
+  </p>
+
+  <!-- Tags -->
+  <div class="flex flex-wrap gap-2 mb-4">
+    {tags.slice(0, 3).map((tag) => (
+      <span class="px-3 py-1 text-xs font-medium text-text-muted bg-bg-hover rounded-full">
+        {tag}
+      </span>
+    ))}
+  </div>
+
+  <!-- Stats -->
+  {(stars !== undefined || forks !== undefined) && (
+    <div class="flex items-center gap-4 mb-4">
+      {stars !== undefined && (
+        <div class="flex items-center gap-1.5">
+          <span class="text-base">⭐</span>
+          <span class="text-sm font-semibold text-stars-gold">{formatNumber(stars)}</span>
+        </div>
+      )}
+      {forks !== undefined && (
+        <div class="flex items-center gap-1.5">
+          <span class="text-base">🍴</span>
+          <span class="text-sm text-forks-blue">{formatNumber(forks)}</span>
+        </div>
+      )}
+    </div>
+  )}
+
+  <!-- Actions -->
+  <div class="flex items-center gap-3">
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center gap-2 px-4 py-2 bg-accent-coral text-white text-sm font-semibold rounded-lg hover:brightness-110 transition-all duration-200"
+    >
+      View Project
+    </a>
+    {githubUrl && href !== githubUrl && (
+      <a
+        href={githubUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 px-4 py-2 bg-transparent border border-border-default text-text-secondary text-sm rounded-lg hover:bg-bg-hover hover:text-text-primary transition-all duration-200"
+      >
+        <i data-lucide="github" class="w-4 h-4"></i>
+        GitHub
+      </a>
+    )}
+  </div>
+</article>
+
+<style>
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>

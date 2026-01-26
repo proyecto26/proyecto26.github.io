@@ -82,8 +82,7 @@ npx astro add typescript
   "type": "module",
   "version": "2.0.0",
   "description": "Proyecto 26 - Changing the world with small contributions",
-  "author": "Juan David Nicholls <nicholls@proyecto26.com>",
-  "license": "MIT",
+  "author": "Juan David Nicholls <jdnichollsc@gmail.com>",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",

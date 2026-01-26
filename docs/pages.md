@@ -107,8 +107,8 @@ The homepage is the main showcase of Proyecto 26's identity, projects, and capab
 
 #### Background
 
-- Ambient gradient: Radial gradient from coral (top) fading to transparent
-- Floating shapes: 3-5 abstract shapes with parallax
+- Background: Retro style image (`p26-retro.jpg`) with gradient overlay
+- Floating shapes: 3-5 abstract shapes with parallax (overlay)
 - Optional: Particle effect (subtle, performance-conscious)
 
 #### Animations
@@ -192,7 +192,7 @@ const projects = [
     name: 'RestClient',
     displayName: 'RestClient for Unity',
     description: 'Promise-based REST and HTTP client for Unity game development.',
-    repo: 'nicholls/RestClient',
+    repo: 'proyecto26/RestClient',
     tags: ['Unity', 'C#'],
     icon: '/img/projects/restclient.png',
     demoUrl: null,
@@ -201,10 +201,10 @@ const projects = [
     name: 'animatable-component',
     displayName: 'Animatable Component',
     description: 'Web component for creating reusable animations using the Web Animations API.',
-    repo: 'nicholls/animatable-component',
+    repo: 'proyecto26/animatable-component',
     tags: ['TypeScript', 'Web Components'],
     icon: '/img/projects/animatable.png',
-    demoUrl: 'https://nicholls.github.io/animatable-component/',
+    demoUrl: 'https://proyecto26.github.io/animatable-component/',
   },
   {
     name: 'ion-phaser',
@@ -213,13 +213,13 @@ const projects = [
     repo: 'proyecto26/ion-phaser',
     tags: ['Phaser', 'Ionic', 'Web Components'],
     icon: '/img/projects/ionphaser.png',
-    demoUrl: 'https://nicholls.github.io/ion-phaser/',
+    demoUrl: 'https://proyecto26.github.io/ion-phaser/',
   },
   {
     name: 'nativescript-inappbrowser',
     displayName: 'InAppBrowser for NativeScript',
     description: 'InAppBrowser plugin for NativeScript applications.',
-    repo: 'nicholls/nativescript-inappbrowser',
+    repo: 'proyecto26/nativescript-inappbrowser',
     tags: ['NativeScript', 'iOS', 'Android'],
     icon: '/img/projects/inappbrowser-nativescript.png',
     demoUrl: null,
@@ -348,7 +348,7 @@ Display one game prominently with a preview (GIF or video loop).
 │       │    [Photo]    │    ──────────────────                           │
 │       │               │    Founder & Lead Developer                     │
 │       │               │                                                 │
-│       └───────────────┘    Developer with 8+ years of experience        │
+│       └───────────────┘    Developer with 13+ years of experience       │
 │                            building interactive experiences across       │
 │                            web, mobile, and game development.           │
 │                                                                          │
@@ -369,14 +369,14 @@ Display one game prominently with a preview (GIF or video loop).
 const founder = {
   name: 'Juan David Nicholls',
   role: 'Founder & Lead Developer',
-  bio: 'Developer with 8+ years of experience building interactive experiences across web, mobile, and game development. Passionate about open source and changing the world with small contributions.',
+  bio: 'Full-Stack Developer and Open Source Contributor with over 14 years of expertise in web, mobile, game, blockchain and cloud development. Skilled in building scalable architectures, seamless user experiences and driving innovation through Open Source. Passionate about sharing knowledge as a speaker and mentor.',
   location: 'Colombia',
   image: '/img/jdnichollsc.jpg',
   social: {
-    linkedin: 'https://www.linkedin.com/in/nicholls/',
-    github: 'https://github.com/nicholls',
-    twitter: 'https://twitter.com/nicholls',
-    stackoverflow: 'https://stackoverflow.com/users/nicholls',
+    linkedin: 'https://www.linkedin.com/in/jdnichollsc/',
+    github: 'https://github.com/jdnichollsc',
+    twitter: 'https://x.com/jdnichollsc',
+    stackoverflow: 'https://stackoverflow.com/users/jdnichollsc',
   },
 };
 ```

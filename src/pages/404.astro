@@ -1,0 +1,70 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Button from '../components/Button.astro';
+---
+
+<BaseLayout title="404 - Page Not Found | Proyecto 26" description="The page you're looking for doesn't exist">
+  <Header />
+
+  <main class="pt-[72px]">
+    <section class="min-h-[calc(100vh-72px-200px)] flex items-center justify-center bg-bg-primary">
+      <div class="container">
+        <div class="text-center">
+          <!-- 404 Number -->
+          <div class="mb-8" data-animate="fade-up">
+            <span class="text-8xl md:text-9xl font-black gradient-text">404</span>
+          </div>
+
+          <!-- Message -->
+          <h1 class="text-3xl md:text-4xl font-bold text-text-primary mb-4" data-animate="fade-up" data-delay="100">
+            Page Not Found
+          </h1>
+          <p class="text-text-secondary text-lg mb-8 max-w-md mx-auto" data-animate="fade-up" data-delay="200">
+            The page you're looking for doesn't exist or has been moved.
+          </p>
+
+          <!-- Actions -->
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-4" data-animate="fade-up" data-delay="300">
+            <Button href="/" variant="primary">
+              <i data-lucide="home" class="w-4 h-4"></i>
+              Back to Home
+            </Button>
+            <Button href="/games" variant="secondary">
+              <i data-lucide="gamepad-2" class="w-4 h-4"></i>
+              Play Games
+            </Button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .gradient-text {
+    background: linear-gradient(135deg, var(--color-accent-coral), var(--color-accent-teal));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+</style>
+
+<script>
+  import { gsap } from 'gsap';
+
+  document.querySelectorAll('[data-animate="fade-up"]').forEach((el) => {
+    const delay = parseInt(el.getAttribute('data-delay') || '0') / 1000;
+
+    gsap.from(el, {
+      y: 30,
+      opacity: 0,
+      duration: 0.6,
+      delay,
+      ease: 'power2.out',
+    });
+  });
+</script>
