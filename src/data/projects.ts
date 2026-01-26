@@ -61,8 +61,8 @@ const projectDefinitions: Record<string, Omit<Project, 'stars' | 'forks'>[]> = {
       description: 'A real-world event-driven Full-Stack TypeScript template designed for production-ready distributed applications.',
       iconColor: 'coral',
       tags: ['React', 'NestJS', 'Temporal'],
-      href: 'https://github.com/proyecto26/MyAPI',
-      githubUrl: 'https://github.com/proyecto26/MyAPI',
+      href: 'https://github.com/proyecto26/projectx',
+      githubUrl: 'https://github.com/proyecto26/projectx',
     },
   ],
   mobile: [
