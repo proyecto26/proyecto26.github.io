@@ -1,9 +1,15 @@
 ---
+import { getOrgTotalStars, formatStars } from '../utils/github';
+
 interface Props {
   currentPage?: string;
 }
 
 const { currentPage = 'home' } = Astro.props;
+
+// Fetch total stars for the organization at build time
+const totalStars = await getOrgTotalStars('proyecto26');
+const starsDisplay = totalStars > 0 ? formatStars(totalStars) : '4.5k'; // Fallback
 
 const navLinks = [
   { href: '/projects', label: 'Projects', id: 'projects' },
@@ -58,7 +64,7 @@ const navLinks = [
         class="hidden sm:flex items-center gap-2 px-4 py-2 rounded-lg bg-bg-hover border border-border-default text-text-secondary hover:text-text-primary hover:border-accent-coral transition-all duration-200"
       >
         <i data-lucide="github" class="w-4 h-4"></i>
-        <span class="text-sm font-medium">4.5k</span>
+        <span class="text-sm font-medium">{starsDisplay}</span>
       </a>
 
       <!-- Mobile Menu Button -->

@@ -7,75 +7,10 @@ import ProjectCard from '../components/ProjectCard.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 import GameCard from '../components/GameCard.astro';
 import Button from '../components/Button.astro';
+import { getFeaturedProjects } from '../data/projects';
 
-const projects = [
-  {
-    title: 'react-native-inappbrowser',
-    subtitle: 'React Native',
-    description: 'InAppBrowser for React Native with support for Chrome Custom Tabs and Safari Services.',
-    iconColor: 'coral' as const,
-    tags: ['React Native', 'iOS', 'Android'],
-    stars: 1423,
-    forks: 234,
-    href: 'https://github.com/proyecto26/react-native-inappbrowser',
-    githubUrl: 'https://github.com/proyecto26/react-native-inappbrowser',
-  },
-  {
-    title: 'RestClient',
-    subtitle: 'Unity',
-    description: 'Promise-based REST and HTTP client for Unity game development.',
-    iconColor: 'teal' as const,
-    tags: ['Unity', 'C#'],
-    stars: 1312,
-    forks: 189,
-    href: 'https://github.com/proyecto26/RestClient',
-    githubUrl: 'https://github.com/proyecto26/RestClient',
-  },
-  {
-    title: 'Animatable Component',
-    subtitle: 'Web Component',
-    description: 'Web component for creating reusable animations using the Web Animations API.',
-    iconColor: 'orange' as const,
-    tags: ['TypeScript', 'Web Components'],
-    stars: 258,
-    forks: 42,
-    href: 'https://proyecto26.github.io/animatable-component',
-    githubUrl: 'https://github.com/proyecto26/animatable-component',
-  },
-  {
-    title: 'IonPhaser',
-    subtitle: 'Phaser + Ionic',
-    description: 'Web component to integrate Phaser game framework with Ionic and other frameworks.',
-    iconColor: 'blue' as const,
-    tags: ['Phaser', 'Ionic'],
-    stars: 252,
-    forks: 38,
-    href: 'https://github.com/proyecto26/ion-phaser',
-    githubUrl: 'https://github.com/proyecto26/ion-phaser',
-  },
-  {
-    title: 'Awesome Unity',
-    subtitle: 'Curated List',
-    description: 'A curated list of awesome Unity games, resources, and tutorials for game developers.',
-    iconColor: 'coral' as const,
-    tags: ['Unity', 'Resources'],
-    stars: 1300,
-    forks: 86,
-    href: 'https://github.com/proyecto26/awesome-unity',
-    githubUrl: 'https://github.com/proyecto26/awesome-unity',
-  },
-  {
-    title: 'Awesome JSGames',
-    subtitle: 'Curated List',
-    description: 'A curated list of awesome JavaScript Games built with HTML5 and game engines.',
-    iconColor: 'teal' as const,
-    tags: ['JavaScript', 'HTML5'],
-    stars: 892,
-    forks: 112,
-    href: 'https://github.com/proyecto26/awesome-jsgames',
-    githubUrl: 'https://github.com/proyecto26/awesome-jsgames',
-  },
-];
+// Fetch featured projects with GitHub stats at build time
+const projects = await getFeaturedProjects(6);
 
 const services = [
   {
