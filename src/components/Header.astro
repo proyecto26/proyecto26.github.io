@@ -1,0 +1,164 @@
+---
+interface Props {
+  currentPage?: string;
+}
+
+const { currentPage = 'home' } = Astro.props;
+
+const navLinks = [
+  { href: '/projects', label: 'Projects', id: 'projects' },
+  { href: '/games', label: 'Games', id: 'games' },
+  { href: '/about', label: 'About', id: 'about' },
+  { href: '/contact', label: 'Contact', id: 'contact' },
+];
+---
+
+<header class="header fixed top-0 left-0 right-0 z-header h-[72px] bg-bg-primary/80 backdrop-blur-custom border-b border-border-subtle transition-all duration-300">
+  <div class="container h-full flex items-center justify-between">
+    <!-- Logo -->
+    <a href="/" class="logo-link flex items-center gap-3 group">
+      <img src="/img/pro26.png" alt="Proyecto 26" class="w-10 h-10 rounded-lg transition-all duration-300 group-hover:shadow-glow-coral group-hover:scale-105" />
+      <span class="text-lg font-bold text-text-primary hidden sm:block">Proyecto 26</span>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav class="hidden md:flex items-center gap-8">
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          class:list={[
+            'nav-link text-sm font-medium transition-colors duration-200 relative',
+            currentPage === link.id
+              ? 'text-accent-coral'
+              : 'text-text-secondary hover:text-text-primary'
+          ]}
+        >
+          {link.label}
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent-coral transition-all duration-300 group-hover:w-full"></span>
+        </a>
+      ))}
+    </nav>
+
+    <!-- Actions -->
+    <div class="flex items-center gap-3">
+      <!-- Theme Toggle -->
+      <button
+        data-dragon-trigger
+        class="w-10 h-10 rounded-full bg-bg-hover flex items-center justify-center text-text-secondary hover:text-text-primary hover:bg-bg-tertiary transition-all duration-200"
+        aria-label="Toggle theme"
+      >
+        <i class="w-5 h-5">🐉</i>
+      </button>
+
+      <!-- GitHub Link -->
+      <a
+        href="https://github.com/proyecto26"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hidden sm:flex items-center gap-2 px-4 py-2 rounded-lg bg-bg-hover border border-border-default text-text-secondary hover:text-text-primary hover:border-accent-coral transition-all duration-200"
+      >
+        <i data-lucide="github" class="w-4 h-4"></i>
+        <span class="text-sm font-medium">4.5k</span>
+      </a>
+
+      <!-- Mobile Menu Button -->
+      <button
+        id="mobile-menu-btn"
+        class="md:hidden w-10 h-10 rounded-lg bg-bg-hover flex items-center justify-center text-text-secondary"
+        aria-label="Open menu"
+        aria-expanded="false"
+      >
+        <i data-lucide="menu" class="w-5 h-5 menu-icon"></i>
+        <i data-lucide="x" class="w-5 h-5 close-icon hidden"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Navigation Drawer -->
+  <div
+    id="mobile-menu"
+    class="md:hidden fixed inset-0 top-[72px] bg-black transform translate-x-full transition-transform duration-300 ease-smooth z-modal"
+  >
+    <nav class="flex flex-col p-6 gap-2">
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          class="mobile-nav-link py-4 px-4 text-lg font-medium text-white hover:text-accent-coral hover:bg-bg-hover rounded-lg transition-colors duration-200"
+        >
+          {link.label}
+        </a>
+      ))}
+      <hr class="border-border-default my-4" />
+      <a
+        href="https://github.com/proyecto26"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex items-center gap-3 py-4 px-4 text-lg font-medium text-white hover:text-accent-coral rounded-lg transition-colors duration-200"
+      >
+        <i data-lucide="github" class="w-5 h-5"></i>
+        GitHub
+        <i data-lucide="arrow-right" class="w-4 h-4 ml-auto"></i>
+      </a>
+    </nav>
+  </div>
+</header>
+
+<!-- Mobile menu overlay -->
+<div id="mobile-overlay" class="md:hidden fixed inset-0 bg-black/90 opacity-0 pointer-events-none transition-opacity duration-300 z-overlay"></div>
+
+<script>
+  // Mobile menu toggle
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const mobileOverlay = document.getElementById('mobile-overlay');
+  const menuIcon = mobileMenuBtn?.querySelector('.menu-icon');
+  const closeIcon = mobileMenuBtn?.querySelector('.close-icon');
+
+  let isMenuOpen = false;
+
+  function toggleMenu() {
+    isMenuOpen = !isMenuOpen;
+
+    if (isMenuOpen) {
+      mobileMenu?.classList.remove('translate-x-full');
+      mobileOverlay?.classList.remove('opacity-0', 'pointer-events-none');
+      menuIcon?.classList.add('hidden');
+      closeIcon?.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    } else {
+      mobileMenu?.classList.add('translate-x-full');
+      mobileOverlay?.classList.add('opacity-0', 'pointer-events-none');
+      menuIcon?.classList.remove('hidden');
+      closeIcon?.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    mobileMenuBtn?.setAttribute('aria-expanded', String(isMenuOpen));
+  }
+
+  mobileMenuBtn?.addEventListener('click', toggleMenu);
+  mobileOverlay?.addEventListener('click', toggleMenu);
+
+  // Close menu on navigation link click
+  document.querySelectorAll('.mobile-nav-link').forEach((link) => {
+    link.addEventListener('click', () => {
+      if (isMenuOpen) toggleMenu();
+    });
+  });
+
+  // Header scroll behavior
+  const header = document.querySelector('.header');
+  let lastScroll = 0;
+
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.scrollY;
+
+    if (currentScroll > 100) {
+      header?.classList.add('bg-bg-primary/95');
+    } else {
+      header?.classList.remove('bg-bg-primary/95');
+    }
+
+    lastScroll = currentScroll;
+  });
+</script>

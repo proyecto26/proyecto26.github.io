@@ -1,0 +1,85 @@
+---
+import Button from './Button.astro';
+
+const stats = [
+  { value: '4,500+', label: 'GitHub Stars' },
+  { value: '25+', label: 'Projects' },
+  { value: '100+', label: 'Contributors' },
+];
+---
+
+<section class="hero relative min-h-screen flex items-center pt-[72px] overflow-hidden">
+  <!-- Background image -->
+  <div class="absolute inset-0 bg-black">
+    <img src="/img/p26-retro.jpg" alt="Background" class="w-full h-full object-cover opacity-40 mix-blend-overlay" />
+    <div class="absolute inset-0 bg-gradient-to-b from-bg-primary/80 via-bg-primary/60 to-bg-secondary"></div>
+  </div>
+
+  <!-- Animated background elements (overlay) -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-accent-coral/10 rounded-full blur-3xl animate-pulse-slow"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent-teal/10 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 1s;"></div>
+  </div>
+
+  <div class="container relative z-10">
+    <div class="max-w-4xl mx-auto text-center">
+      <!-- Title -->
+      <h1 class="hero-title text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-text-primary mb-6 tracking-tight">
+        <span class="block" data-animate="split-text">PROYECTO 26</span>
+      </h1>
+
+      <!-- Tagline -->
+      <p class="hero-tagline text-xl sm:text-2xl md:text-3xl text-text-secondary mb-4" data-animate="fade-up" data-delay="200">
+        Changing the world with <span class="text-accent-coral font-semibold">small contributions</span>.
+      </p>
+
+      <!-- Description -->
+      <p class="hero-description text-base sm:text-lg text-text-muted max-w-2xl mx-auto mb-10" data-animate="fade-up" data-delay="400">
+        We build open source tools for Web, Mobile, and Game Development that developers around the world love.
+      </p>
+
+      <!-- CTAs -->
+      <div class="hero-ctas flex flex-col sm:flex-row items-center justify-center gap-4 mb-16" data-animate="fade-up" data-delay="600">
+        <Button href="#projects" variant="primary" size="lg">
+          Explore Projects
+        </Button>
+        <Button href="/games" variant="secondary" size="lg">
+          <i data-lucide="gamepad-2" class="w-5 h-5"></i>
+          Play Games
+        </Button>
+      </div>
+
+      <!-- Stats -->
+      <div class="hero-stats flex flex-wrap items-center justify-center gap-8 sm:gap-16" data-animate="fade-up" data-delay="800">
+        {stats.map((stat, index) => (
+          <div class="text-center" data-animate="counter" data-delay={800 + index * 100}>
+            <div class="text-3xl sm:text-4xl md:text-5xl font-extrabold gradient-text mb-1">
+              {stat.value}
+            </div>
+            <div class="text-sm text-text-muted uppercase tracking-wide">
+              {stat.label}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+    <i data-lucide="chevron-down" class="w-6 h-6 text-text-muted"></i>
+  </div>
+</section>
+
+<style>
+  .hero-title {
+    text-shadow: 0 4px 20px rgba(242, 56, 90, 0.2);
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, var(--color-accent-coral), var(--color-accent-teal));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+</style>

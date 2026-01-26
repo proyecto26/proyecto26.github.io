@@ -1,0 +1,92 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Button from '../../components/Button.astro';
+---
+
+<BaseLayout title="Debug Game - Proyecto 26 Games" description="A debugging playground for testing game mechanics">
+  <Header currentPage="games" />
+
+  <main class="pt-[72px]">
+    <section class="py-8 bg-bg-primary">
+      <div class="container">
+        <!-- Back link -->
+        <div class="mb-6">
+          <Button href="/games" variant="ghost" size="sm">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i>
+            Back to Games
+          </Button>
+        </div>
+
+        <!-- Game Title -->
+        <div class="text-center mb-8">
+          <h1 class="text-4xl md:text-5xl font-bold text-text-primary mb-4">
+            Debug Game
+          </h1>
+          <p class="text-text-secondary max-w-2xl mx-auto">
+            A debugging playground for testing game mechanics and development workflows.
+          </p>
+        </div>
+
+        <!-- Game Container -->
+        <div class="max-w-4xl mx-auto mb-8">
+          <div class="game-container relative bg-bg-card border border-border-default rounded-2xl overflow-hidden">
+            <div class="aspect-video">
+              <iframe
+                id="game-frame"
+                src="/games/debug-game/index.html"
+                class="w-full h-full border-0"
+                allow="autoplay; fullscreen"
+                title="Debug Game"
+              ></iframe>
+            </div>
+          </div>
+
+          <!-- Controls -->
+          <div class="flex flex-wrap items-center justify-center gap-4 mt-6">
+            <button
+              id="fullscreen-btn"
+              class="flex items-center gap-2 px-4 py-2 bg-bg-hover border border-border-default rounded-lg text-text-secondary hover:text-text-primary hover:border-accent-coral transition-all duration-200"
+            >
+              <i data-lucide="maximize" class="w-4 h-4"></i>
+              Fullscreen
+            </button>
+          </div>
+        </div>
+
+        <!-- Game Info -->
+        <div class="max-w-3xl mx-auto">
+          <div class="bg-bg-card border border-border-default rounded-2xl p-6">
+            <h3 class="text-lg font-semibold text-text-primary mb-4 flex items-center gap-2">
+              <i data-lucide="bug" class="w-5 h-5 text-accent-orange"></i>
+              About This Game
+            </h3>
+            <p class="text-text-secondary">
+              This is a development sandbox used for testing various game mechanics, physics, and rendering techniques with Phaser. It serves as a playground for experimenting with new features before implementing them in full games.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<script>
+  const fullscreenBtn = document.getElementById('fullscreen-btn');
+  const gameFrame = document.getElementById('game-frame');
+
+  fullscreenBtn?.addEventListener('click', () => {
+    if (gameFrame) {
+      if (gameFrame.requestFullscreen) {
+        gameFrame.requestFullscreen();
+      } else if ((gameFrame as any).webkitRequestFullscreen) {
+        (gameFrame as any).webkitRequestFullscreen();
+      } else if ((gameFrame as any).msRequestFullscreen) {
+        (gameFrame as any).msRequestFullscreen();
+      }
+    }
+  });
+</script>

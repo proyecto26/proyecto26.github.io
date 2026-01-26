@@ -1,0 +1,57 @@
+---
+interface Props {
+  variant?: 'primary' | 'secondary' | 'ghost';
+  size?: 'sm' | 'md' | 'lg';
+  href?: string;
+  external?: boolean;
+  class?: string;
+  disabled?: boolean;
+  type?: 'button' | 'submit' | 'reset';
+}
+
+const {
+  variant = 'primary',
+  size = 'md',
+  href,
+  external = false,
+  class: className = '',
+  disabled = false,
+  type = 'button',
+} = Astro.props;
+
+const baseStyles = 'inline-flex items-center justify-center gap-2 font-semibold rounded-xl transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-coral focus-visible:ring-offset-2 focus-visible:ring-offset-bg-primary disabled:opacity-50 disabled:cursor-not-allowed';
+
+const variants = {
+  primary: 'bg-accent-coral text-white hover:brightness-110 hover:shadow-glow-coral active:scale-[0.98]',
+  secondary: 'bg-transparent border border-border-default text-text-primary hover:bg-bg-hover hover:border-accent-teal',
+  ghost: 'bg-transparent text-text-secondary hover:text-text-primary hover:underline underline-offset-4',
+};
+
+const sizes = {
+  sm: 'px-4 py-2 text-sm',
+  md: 'px-6 py-3 text-base',
+  lg: 'px-8 py-4 text-lg',
+};
+
+const classes = [baseStyles, variants[variant], sizes[size], className].join(' ');
+
+const Tag = href ? 'a' : 'button';
+const externalProps = external ? { target: '_blank', rel: 'noopener noreferrer' } : {};
+---
+
+{href ? (
+  <a href={href} class={classes} {...externalProps}>
+    <slot />
+  </a>
+) : (
+  <button type={type} class={classes} disabled={disabled}>
+    <slot />
+  </button>
+)}
+
+<style>
+  /* Magnetic effect - handled by JS */
+  a, button {
+    will-change: transform;
+  }
+</style>

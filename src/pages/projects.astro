@@ -1,0 +1,278 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import Button from '../components/Button.astro';
+
+const featuredProjects = [
+  {
+    title: 'react-native-inappbrowser',
+    subtitle: 'React Native',
+    description: 'InAppBrowser for React Native with support for Chrome Custom Tabs, Safari Services, and SafariViewController. Provides authentication flow, deep linking, and web browser capabilities.',
+    iconColor: 'coral' as const,
+    tags: ['React Native', 'iOS', 'Android', 'Authentication'],
+    stars: 1423,
+    forks: 234,
+    href: 'https://github.com/proyecto26/react-native-inappbrowser',
+    githubUrl: 'https://github.com/proyecto26/react-native-inappbrowser',
+  },
+  {
+    title: 'RestClient',
+    subtitle: 'Unity',
+    description: 'Promise-based REST and HTTP client for Unity game development. Makes API calls simple and clean with async/await support and JSON serialization.',
+    iconColor: 'teal' as const,
+    tags: ['Unity', 'C#', 'REST API', 'Promises'],
+    stars: 1312,
+    forks: 189,
+    href: 'https://github.com/proyecto26/RestClient',
+    githubUrl: 'https://github.com/proyecto26/RestClient',
+  },
+];
+
+const webProjects = [
+  {
+    title: 'Animatable Component',
+    subtitle: 'Web Component',
+    description: 'Web component for creating reusable animations using the Web Animations API. Framework agnostic and easy to integrate.',
+    iconColor: 'orange' as const,
+    tags: ['Stencil', 'Web Components', 'WAAPI'],
+    stars: 258,
+    forks: 42,
+    href: 'https://proyecto26.github.io/animatable-component',
+    githubUrl: 'https://github.com/proyecto26/animatable-component',
+  },
+  {
+    title: 'IonPhaser',
+    subtitle: 'Phaser + Ionic',
+    description: 'Web component to integrate Phaser game framework with Ionic, Angular, React, Vue, and other frameworks.',
+    iconColor: 'blue' as const,
+    tags: ['Phaser', 'Ionic', 'Stencil'],
+    stars: 252,
+    forks: 38,
+    href: 'https://github.com/proyecto26/ion-phaser',
+  },
+  {
+    title: 'ProjectX',
+    subtitle: 'Full-Stack Template',
+    description: 'A real-world event-driven Full-Stack TypeScript template designed for production-ready distributed applications.',
+    iconColor: 'coral' as const,
+    tags: ['React', 'NestJS', 'Temporal'],
+    stars: 45,
+    forks: 8,
+    href: 'https://github.com/proyecto26/MyAPI',
+    githubUrl: 'https://github.com/proyecto26/MyAPI',
+  },
+];
+
+const mobileProjects = [
+  {
+    title: 'nativescript-inappbrowser',
+    subtitle: 'NativeScript',
+    description: 'InAppBrowser plugin for NativeScript with Chrome Custom Tabs and Safari Services support.',
+    iconColor: 'teal' as const,
+    tags: ['NativeScript', 'iOS', 'Android'],
+    stars: 89,
+    forks: 21,
+    href: 'https://github.com/proyecto26/nativescript-inappbrowser',
+    githubUrl: 'https://github.com/proyecto26/nativescript-inappbrowser',
+  },
+  {
+    title: 'PokeDex GO',
+    subtitle: 'NativeScript',
+    description: 'Pokemon collection app built with NativeScript showcasing mobile development best practices.',
+    iconColor: 'orange' as const,
+    tags: ['NativeScript', 'Mobile', 'Game'],
+    stars: 156,
+    forks: 34,
+    href: 'https://github.com/proyecto26/PokeDex-GO',
+    githubUrl: 'https://github.com/proyecto26/PokeDex-GO',
+  },
+];
+
+const curatedLists = [
+  {
+    title: 'Awesome Unity',
+    subtitle: 'Curated List',
+    description: 'A curated list of awesome Unity games, resources, tutorials, and open source projects for game developers.',
+    iconColor: 'coral' as const,
+    tags: ['Unity', 'Resources', 'Curated'],
+    stars: 1300,
+    forks: 86,
+    href: 'https://github.com/proyecto26/awesome-unity',
+    githubUrl: 'https://github.com/proyecto26/awesome-unity',
+  },
+  {
+    title: 'Awesome JSGames',
+    subtitle: 'Curated List',
+    description: 'A curated list of awesome JavaScript games built with HTML5, Canvas, WebGL, and game engines.',
+    iconColor: 'teal' as const,
+    tags: ['JavaScript', 'HTML5', 'Games'],
+    stars: 892,
+    forks: 112,
+    href: 'https://github.com/proyecto26/awesome-jsgames',
+    githubUrl: 'https://github.com/proyecto26/awesome-jsgames',
+  },
+];
+---
+
+<BaseLayout title="Projects - Proyecto 26" description="Explore our open source projects for web, mobile, and game development">
+  <Header currentPage="projects" />
+
+  <main class="pt-[72px]">
+    <!-- Hero Section -->
+    <section class="py-16 md:py-24 bg-bg-primary">
+      <div class="container">
+        <div class="text-center mb-16">
+          <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-text-primary mb-6" data-animate="fade-up">
+            Our Projects
+          </h1>
+          <p class="text-xl text-text-secondary max-w-2xl mx-auto" data-animate="fade-up" data-delay="100">
+            Open source tools that developers around the world love and use every day
+          </p>
+        </div>
+
+        <!-- Stats -->
+        <div class="flex flex-wrap justify-center gap-8 mb-16" data-animate="fade-up" data-delay="200">
+          <div class="text-center">
+            <div class="text-4xl font-bold gradient-text">4,500+</div>
+            <div class="text-text-muted text-sm uppercase tracking-wide">GitHub Stars</div>
+          </div>
+          <div class="text-center">
+            <div class="text-4xl font-bold gradient-text">25+</div>
+            <div class="text-text-muted text-sm uppercase tracking-wide">Projects</div>
+          </div>
+          <div class="text-center">
+            <div class="text-4xl font-bold gradient-text">100+</div>
+            <div class="text-text-muted text-sm uppercase tracking-wide">Contributors</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Projects -->
+    <section class="py-16 bg-bg-secondary">
+      <div class="container">
+        <div class="mb-8">
+          <p class="text-xs font-semibold text-accent-coral uppercase tracking-widest mb-2">Featured</p>
+          <h2 class="text-3xl font-bold text-text-primary" data-animate="fade-up">Most Popular</h2>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {featuredProjects.map((project, index) => (
+            <div data-animate="fade-up" data-delay={index * 100}>
+              <ProjectCard {...project} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Web Projects -->
+    <section class="py-16 bg-bg-primary">
+      <div class="container">
+        <div class="mb-8">
+          <p class="text-xs font-semibold text-accent-teal uppercase tracking-widest mb-2">Web Development</p>
+          <h2 class="text-3xl font-bold text-text-primary" data-animate="fade-up">Web Components & Templates</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {webProjects.map((project, index) => (
+            <div data-animate="fade-up" data-delay={index * 100}>
+              <ProjectCard {...project} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Mobile Projects -->
+    <section class="py-16 bg-bg-secondary">
+      <div class="container">
+        <div class="mb-8">
+          <p class="text-xs font-semibold text-accent-orange uppercase tracking-widest mb-2">Mobile Development</p>
+          <h2 class="text-3xl font-bold text-text-primary" data-animate="fade-up">Mobile Apps & Plugins</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {mobileProjects.map((project, index) => (
+            <div data-animate="fade-up" data-delay={index * 100}>
+              <ProjectCard {...project} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Curated Lists -->
+    <section class="py-16 bg-bg-primary">
+      <div class="container">
+        <div class="mb-8">
+          <p class="text-xs font-semibold text-text-muted uppercase tracking-widest mb-2">Resources</p>
+          <h2 class="text-3xl font-bold text-text-primary" data-animate="fade-up">Curated Lists</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {curatedLists.map((project, index) => (
+            <div data-animate="fade-up" data-delay={index * 100}>
+              <ProjectCard {...project} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-bg-secondary">
+      <div class="container">
+        <div class="max-w-2xl mx-auto text-center" data-animate="fade-up">
+          <h2 class="text-3xl font-bold text-text-primary mb-4">
+            Want to Contribute?
+          </h2>
+          <p class="text-text-secondary mb-8">
+            We welcome contributions from developers of all skill levels. Check out our repositories and start contributing today!
+          </p>
+          <Button href="https://github.com/proyecto26" variant="primary" external>
+            <i data-lucide="github" class="w-5 h-5"></i>
+            View All on GitHub
+          </Button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .gradient-text {
+    background: linear-gradient(135deg, var(--color-accent-coral), var(--color-accent-teal));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+</style>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.querySelectorAll('[data-animate="fade-up"]').forEach((el) => {
+    const delay = parseInt(el.getAttribute('data-delay') || '0') / 1000;
+
+    gsap.from(el, {
+      scrollTrigger: {
+        trigger: el,
+        start: 'top 85%',
+        toggleActions: 'play none none none',
+      },
+      y: 30,
+      opacity: 0,
+      duration: 0.6,
+      delay,
+      ease: 'power2.out',
+    });
+  });
+</script>

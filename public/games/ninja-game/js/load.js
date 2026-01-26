@@ -74,7 +74,7 @@ var loadState = {
     // LETRAS DE http://arcade.photonstorm.com/
     // Samurai Shodown 2 (SNK)
     this.game.load.image('title', 'assets/title.png')
-    this.game.load.image('logo', '../assets/nicholls.png')
+    this.game.load.image('logo', '../assets/logo.png')
     this.game.load.spritesheet('player', 'assets/player.png', 72, 72)
     this.game.load.image('shuriken', 'assets/shuriken.png')
     this.game.load.image('shurikenInput', 'assets/shurikenInput.jpg')

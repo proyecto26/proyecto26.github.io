@@ -1,0 +1,30 @@
+{
+  "name": "proyecto26-website",
+  "type": "module",
+  "version": "2.0.0",
+  "description": "Proyecto 26 - Changing the world with small contributions",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "deploy": "npm run build && gh-pages -d dist",
+    "deploy:preview": "npm run build && gh-pages -d dist -b gh-pages-preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.0.0",
+    "@astrojs/tailwind": "^5.1.0",
+    "astro": "^4.5.0",
+    "gsap": "^3.12.5",
+    "vanilla-tilt": "^1.8.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "autoprefixer": "^10.4.18",
+    "gh-pages": "^6.3.0",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.3.3"
+  }
+}

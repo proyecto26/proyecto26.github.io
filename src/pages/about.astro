@@ -1,0 +1,272 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Button from '../components/Button.astro';
+
+const skills = [
+  { category: 'Languages', items: ['TypeScript', 'JavaScript', 'Python', 'C#', 'Solidity', 'SQL (PostgreSQL)'] },
+  { category: 'Frontend Web & Mobile', items: ['React', 'RemixJS/React Router', 'Angular/NgRx', 'Redux Toolkit', 'React Query', 'React Native', 'Ionic', 'NativeScript', 'VueJS', 'PhaserJS/PixiJS', 'Unity'] },
+  { category: 'Backend', items: ['Node.js', 'ExpressJS', 'NestJS', 'Temporal', 'FastAPI', 'Django', 'ASP.NET MVC/WebAPI', 'MongoDB', 'Firebase', 'Redis', 'Microservices'] },
+  { category: 'Cloud & Tools', items: ['Azure', 'GCP', 'AWS', 'Docker', 'PostHog','Datadog', 'CI/CD'] },
+];
+
+const timeline = [
+  {
+    year: '2015',
+    title: 'Founded Proyecto 26',
+    description: 'Started the journey of building open source tools for developers.',
+  },
+  {
+    year: '2016',
+    title: 'Roxy Fileman for Node.js',
+    description: 'Roxy Fileman, upload and manage files with Node.js!',
+  },
+  {
+    year: '2017',
+    title: 'Unity RestClient',
+    description: 'Created a promise-based REST client that became essential for Unity developers.',
+  },
+  {
+    year: '2018',
+    title: 'Kinetic Scrolling Plugin for Phaser Framework',
+    description: 'Add smooth physics based scrolling to your games',
+  },
+  {
+    year: '2018',
+    title: 'MyBot',
+    description: '🧠 Create chatbots easily with Bot Framework! 🤖',
+  },
+  {
+    year: '2019',
+    title: 'InAppBrowser for React Native and NativeScript',
+    description: 'Released the most popular InAppBrowser library for React Native and NativeScript.',
+  },
+  {
+    year: '2020',
+    title: 'MercadoPago for React Native (Enterprise)',
+    description: 'A native bridge to use Mercado Pago Mobile Checkout with React Native (Android & iOS) by using Java and Objective-C.',
+  },
+  {
+    year: '2020',
+    title: 'Web Components Era',
+    description: 'Launched Animatable Component and IonPhaser for modern web animations and game development.',
+  },
+  {
+    year: '2020',
+    title: 'Record Audio Button (Enterprise)',
+    description: 'Web Component built with Stencil.js for Recording Audio from Web using Web RTC and Mobile using native plugins, with a swipe gesture using Ionic Animations inspired by WhatsApp.',
+  },
+  {
+    year: '2020',
+    title: 'useDictionary',
+    description: 'A React useReducer() hook to use dictionaries (keys and values) 🔑',
+  },
+  {
+    year: '2025',
+    title: 'ProjectX Template',
+    description: 'A real-world event-driven Full-Stack TypeScript template designed for production-ready Temporal workflows. Features a modern monorepo setup with React Router v7, NestJS, TailwindCSS v4, Docker, and AI-first tooling.',
+  },
+  {
+    year: '2026',
+    title: '4,500+ GitHub Stars',
+    description: 'Our projects reached thousands of developers worldwide.',
+  },
+];
+
+const socialLinks = [
+  { name: 'GitHub', icon: 'github', href: 'https://github.com/jdnichollsc' },
+  { name: 'LinkedIn', icon: 'linkedin', href: 'https://linkedin.com/in/jdnichollsc' },
+  { name: 'Twitter', icon: 'twitter', href: 'https://x.com/jdnichollsc' },
+  { name: 'YouTube', icon: 'youtube', href: 'https://youtube.com/@proyecto26' },
+];
+---
+
+<BaseLayout title="About - Proyecto 26" description="Learn about Juan David Nicholls and the mission behind Proyecto 26">
+  <Header currentPage="about" />
+
+  <main class="pt-[72px]">
+    <!-- Hero Section -->
+    <section class="py-16 md:py-24 bg-bg-primary">
+      <div class="container">
+        <div class="max-w-4xl mx-auto">
+          <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12 mb-16">
+            <!-- Photo -->
+            <div class="flex-shrink-0" data-animate="fade-up">
+              <div class="w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden ring-4 ring-accent-coral/30">
+                <img
+                  src="/img/jdnichollsc.jpg"
+                  alt="Juan David Nicholls"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+
+            <!-- Info -->
+            <div class="text-center md:text-left" data-animate="fade-up" data-delay="100">
+              <h1 class="text-4xl md:text-5xl font-bold text-text-primary mb-4">
+                Juan David Nicholls
+              </h1>
+              <p class="text-xl text-accent-coral font-medium mb-4">
+                Founder & Lead Developer
+              </p>
+              <p class="text-text-secondary text-lg mb-6">
+                Founder of Proyecto 26, Full-Stack Developer and Open Source Contributor with over 13 years of expertise in web, mobile, game, blockchain, and cloud development. Skilled in building scalable architectures, seamless user experiences, and driving innovation through Open Source. Passionate about sharing knowledge as a speaker and mentor.
+              </p>
+
+              <!-- Location -->
+              <div class="flex items-center justify-center md:justify-start gap-2 text-text-muted mb-6">
+                <i data-lucide="map-pin" class="w-5 h-5"></i>
+                <span>Based in Colombia</span>
+              </div>
+
+              <!-- Social Links -->
+              <div class="flex items-center justify-center md:justify-start gap-3">
+                {socialLinks.map((link) => (
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="w-10 h-10 rounded-lg bg-bg-hover flex items-center justify-center text-text-secondary hover:text-text-primary hover:bg-bg-tertiary transition-all duration-200"
+                    aria-label={link.name}
+                  >
+                    <i data-lucide={link.icon} class="w-5 h-5"></i>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="py-16 bg-bg-secondary">
+      <div class="container">
+        <div class="max-w-3xl mx-auto text-center">
+          <h2 class="text-3xl md:text-4xl font-bold text-text-primary mb-6" data-animate="fade-up">
+            Our Mission
+          </h2>
+          <p class="text-xl text-text-secondary mb-8" data-animate="fade-up" data-delay="100">
+            "Changing the world with small contributions"
+          </p>
+          <p class="text-text-muted" data-animate="fade-up" data-delay="200">
+            Proyecto 26 believes the world changes through small, consistent contributions. We create open source tools not just to empower developers, but because we grow by sharing — teaching others teaches us. Every line of code shared freely is a seed planted in the global community. One contribution at a time.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="py-16 bg-bg-primary">
+      <div class="container">
+        <h2 class="text-3xl md:text-4xl font-bold text-text-primary text-center mb-12" data-animate="fade-up">
+          Technical Expertise
+        </h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+          {skills.map((skill, index) => (
+            <div
+              class="bg-bg-card border border-border-default rounded-2xl p-6"
+              data-animate="fade-up"
+              data-delay={index * 100}
+            >
+              <h3 class="text-lg font-semibold text-accent-coral mb-4">{skill.category}</h3>
+              <ul class="space-y-2">
+                {skill.items.map((item) => (
+                  <li class="text-text-secondary text-sm flex items-center gap-2">
+                    <i data-lucide="check" class="w-4 h-4 text-accent-teal"></i>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="py-16 bg-bg-secondary">
+      <div class="container">
+        <h2 class="text-3xl md:text-4xl font-bold text-text-primary text-center mb-12" data-animate="fade-up">
+          Our Journey
+        </h2>
+
+        <div class="max-w-3xl mx-auto">
+          <div class="relative">
+            <!-- Timeline line -->
+            <div class="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-border-default md:-translate-x-1/2"></div>
+
+            {timeline.map((item, index) => (
+              <div
+                class={`relative flex items-start gap-6 mb-8 ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
+                data-animate="fade-up"
+                data-delay={index * 100}
+              >
+                <!-- Year dot -->
+                <div class="absolute left-4 md:left-1/2 w-3 h-3 bg-accent-coral rounded-full md:-translate-x-1/2 mt-2"></div>
+
+                <!-- Content -->
+                <div class={`ml-12 md:ml-0 md:w-1/2 ${index % 2 === 0 ? 'md:pr-12 md:text-right' : 'md:pl-12'}`}>
+                  <span class="text-accent-coral font-bold">{item.year}</span>
+                  <h3 class="text-xl font-semibold text-text-primary mt-1">{item.title}</h3>
+                  <p class="text-text-secondary mt-2">{item.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-bg-primary">
+      <div class="container">
+        <div class="max-w-2xl mx-auto text-center" data-animate="fade-up">
+          <h2 class="text-3xl font-bold text-text-primary mb-4">
+            Let's Build Together
+          </h2>
+          <p class="text-text-secondary mb-8">
+            Interested in collaborating or contributing to our projects?
+          </p>
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Button href="https://github.com/proyecto26" variant="primary" external>
+              <i data-lucide="github" class="w-5 h-5"></i>
+              View on GitHub
+            </Button>
+            <Button href="/contact" variant="secondary">
+              Get in Touch
+            </Button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.querySelectorAll('[data-animate="fade-up"]').forEach((el) => {
+    const delay = parseInt(el.getAttribute('data-delay') || '0') / 1000;
+
+    gsap.from(el, {
+      scrollTrigger: {
+        trigger: el,
+        start: 'top 85%',
+        toggleActions: 'play none none none',
+      },
+      y: 30,
+      opacity: 0,
+      duration: 0.6,
+      delay,
+      ease: 'power2.out',
+    });
+  });
+</script>

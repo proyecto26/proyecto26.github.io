@@ -1,0 +1,88 @@
+---
+// Ninja Animation - slides in from the right at the bottom of the page
+// Automatically plays after a delay when the page loads
+---
+
+<div id="ninja-container" class="ninja-container fixed bottom-0 left-0 right-0 pointer-events-none z-50">
+  <img
+    id="ninja-sprite"
+    src="/img/ninja-back.gif"
+    alt=""
+    class="ninja-sprite absolute bottom-4 w-24 h-24 md:w-32 md:h-32 object-contain"
+    aria-hidden="true"
+  />
+</div>
+
+<script>
+  import { gsap } from 'gsap';
+
+  class NinjaAnimation {
+    private container: HTMLElement | null;
+    private sprite: HTMLImageElement | null;
+    private hasPlayed: boolean = false;
+
+    constructor() {
+      this.container = document.getElementById('ninja-container');
+      this.sprite = document.getElementById('ninja-sprite') as HTMLImageElement;
+
+      this.init();
+    }
+
+    private init() {
+      // Auto-play after delay when page loads
+      setTimeout(() => {
+        this.playAnimation();
+      }, 2600);
+
+      // Also play when dragon animation triggers
+      window.addEventListener('dragon-triggered', () => {
+        this.hasPlayed = false; // Allow replay
+        this.playAnimation();
+      });
+    }
+
+    private playAnimation() {
+      if (!this.container || !this.sprite || this.hasPlayed) return;
+
+      this.hasPlayed = true;
+      const viewportWidth = window.innerWidth;
+      const spriteWidth = this.sprite.offsetWidth || 128;
+
+      // Start from right side, move to left and exit
+      gsap.set(this.sprite, {
+        x: viewportWidth + spriteWidth,
+        opacity: 1,
+      });
+
+      // Slide in from right to left
+      gsap.to(this.sprite, {
+        x: -spriteWidth * 2,
+        duration: 6,
+        ease: 'linear',
+        onComplete: () => {
+          // Hide after animation
+          gsap.set(this.sprite, { opacity: 0 });
+        }
+      });
+    }
+  }
+
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => new NinjaAnimation());
+  } else {
+    new NinjaAnimation();
+  }
+</script>
+
+<style>
+  .ninja-container {
+    overflow: hidden;
+    height: 150px;
+  }
+
+  .ninja-sprite {
+    opacity: 0;
+    will-change: transform;
+  }
+</style>
