@@ -9,11 +9,6 @@
   <ion-phaser-ce id="dragon-game"></ion-phaser-ce>
 </div>
 
-<audio id="dragon-sound" preload="auto">
-  <source src="/audio/dragon.ogg" type="audio/ogg" />
-  <source src="/audio/dragon.mp3" type="audio/mpeg" />
-</audio>
-
 <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/phaser-ce/2.13.3/phaser.min.js"></script>
 <script is:inline type="module" src="https://unpkg.com/@ion-phaser-ce/core@1.0.2/dist/ion-phaser-ce/ion-phaser-ce.esm.js"></script>
 <script is:inline nomodule src="https://unpkg.com/@ion-phaser-ce/core@1.0.2/dist/ion-phaser-ce/ion-phaser-ce.js"></script>
@@ -25,7 +20,6 @@
     var gameInstance = null;
     var isAnimating = false;
     var isInitialized = false;
-
     function createGameConfig() {
       return {
         width: '100%',
@@ -40,7 +34,7 @@
         state: {
           preload: function() {
             this.load.image('dragon', '/img/dragon.png');
-            this.load.audio('dragon', ['/audio/dragon.ogg', '/audio/dragon.mp3']);
+            this.load.audio('roar', ['/audio/dragon.ogg', '/audio/dragon.mp3']);
           },
           create: function() {
             var points = [];
@@ -54,15 +48,18 @@
 
             this.dragon = this.game.add.rope(
               -imgCache.width,
-              this.game.world.centerY,
+              this.game.scale.height / 2,
               'dragon',
               null,
               points
             );
 
+            // Create and play sound immediately
+            this.roarSound = this.game.add.audio('roar', 0.7);
+            this.roarSound.play();
+
             this.dragon.aditionalInfo = {
               count: 0,
-              roar: true,
               finished: false
             };
 
@@ -72,23 +69,19 @@
                 this.points[i].y = Math.sin(i * 0.3 + this.aditionalInfo.count) * 10;
               }
             };
-
-            this.dragonRoar = this.add.audio('dragon');
           },
           update: function() {
             if (!this.dragon) return;
 
+            // Use game.scale for actual viewport size (not world size)
+            var viewportWidth = this.game.scale.width;
+            var viewportHeight = this.game.scale.height;
+
             this.dragon.updateAnimation();
             this.dragon.x += 8;
-            this.dragon.y = this.game.world.centerY;
+            this.dragon.y = viewportHeight / 2;
 
-            if (this.dragon.aditionalInfo.roar &&
-                this.dragon.x > this.game.world.centerX - this.dragon.width) {
-              this.dragon.aditionalInfo.roar = false;
-              this.dragonRoar.play();
-            }
-
-            if (!this.dragon.aditionalInfo.finished && this.dragon.x > this.game.world.width) {
+            if (!this.dragon.aditionalInfo.finished && this.dragon.x > viewportWidth) {
               this.dragon.aditionalInfo.finished = true;
               hideOverlay();
             }

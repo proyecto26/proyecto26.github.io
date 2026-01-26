@@ -1,6 +1,6 @@
 # Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International Public License #
 
-**Copyright (c) 2021 Proyecto 26**
+**Copyright (c) 2026 Proyecto 26**
 
 (For a human-readable version of this license, see http://creativecommons.org/licenses/by-nc-nd/4.0/)
 
