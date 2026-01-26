@@ -4,116 +4,15 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import Button from '../components/Button.astro';
+import { getProjects } from '../data/projects';
+import { getOrgTotalStars, formatStars } from '../utils/github';
 
-const featuredProjects = [
-  {
-    title: 'react-native-inappbrowser',
-    subtitle: 'React Native',
-    description: 'InAppBrowser for React Native with support for Chrome Custom Tabs, Safari Services, and SafariViewController. Provides authentication flow, deep linking, and web browser capabilities.',
-    iconColor: 'coral' as const,
-    tags: ['React Native', 'iOS', 'Android', 'Authentication'],
-    stars: 1423,
-    forks: 234,
-    href: 'https://github.com/proyecto26/react-native-inappbrowser',
-    githubUrl: 'https://github.com/proyecto26/react-native-inappbrowser',
-  },
-  {
-    title: 'RestClient',
-    subtitle: 'Unity',
-    description: 'Promise-based REST and HTTP client for Unity game development. Makes API calls simple and clean with async/await support and JSON serialization.',
-    iconColor: 'teal' as const,
-    tags: ['Unity', 'C#', 'REST API', 'Promises'],
-    stars: 1312,
-    forks: 189,
-    href: 'https://github.com/proyecto26/RestClient',
-    githubUrl: 'https://github.com/proyecto26/RestClient',
-  },
-];
+// Fetch all project data with GitHub stats at build time
+const { featured: featuredProjects, web: webProjects, mobile: mobileProjects, curated: curatedLists } = await getProjects();
 
-const webProjects = [
-  {
-    title: 'Animatable Component',
-    subtitle: 'Web Component',
-    description: 'Web component for creating reusable animations using the Web Animations API. Framework agnostic and easy to integrate.',
-    iconColor: 'orange' as const,
-    tags: ['Stencil', 'Web Components', 'WAAPI'],
-    stars: 258,
-    forks: 42,
-    href: 'https://proyecto26.github.io/animatable-component',
-    githubUrl: 'https://github.com/proyecto26/animatable-component',
-  },
-  {
-    title: 'IonPhaser',
-    subtitle: 'Phaser + Ionic',
-    description: 'Web component to integrate Phaser game framework with Ionic, Angular, React, Vue, and other frameworks.',
-    iconColor: 'blue' as const,
-    tags: ['Phaser', 'Ionic', 'Stencil'],
-    stars: 252,
-    forks: 38,
-    href: 'https://github.com/proyecto26/ion-phaser',
-  },
-  {
-    title: 'ProjectX',
-    subtitle: 'Full-Stack Template',
-    description: 'A real-world event-driven Full-Stack TypeScript template designed for production-ready distributed applications.',
-    iconColor: 'coral' as const,
-    tags: ['React', 'NestJS', 'Temporal'],
-    stars: 45,
-    forks: 8,
-    href: 'https://github.com/proyecto26/MyAPI',
-    githubUrl: 'https://github.com/proyecto26/MyAPI',
-  },
-];
-
-const mobileProjects = [
-  {
-    title: 'nativescript-inappbrowser',
-    subtitle: 'NativeScript',
-    description: 'InAppBrowser plugin for NativeScript with Chrome Custom Tabs and Safari Services support.',
-    iconColor: 'teal' as const,
-    tags: ['NativeScript', 'iOS', 'Android'],
-    stars: 89,
-    forks: 21,
-    href: 'https://github.com/proyecto26/nativescript-inappbrowser',
-    githubUrl: 'https://github.com/proyecto26/nativescript-inappbrowser',
-  },
-  {
-    title: 'PokeDex GO',
-    subtitle: 'NativeScript',
-    description: 'Pokemon collection app built with NativeScript showcasing mobile development best practices.',
-    iconColor: 'orange' as const,
-    tags: ['NativeScript', 'Mobile', 'Game'],
-    stars: 156,
-    forks: 34,
-    href: 'https://github.com/proyecto26/PokeDex-GO',
-    githubUrl: 'https://github.com/proyecto26/PokeDex-GO',
-  },
-];
-
-const curatedLists = [
-  {
-    title: 'Awesome Unity',
-    subtitle: 'Curated List',
-    description: 'A curated list of awesome Unity games, resources, tutorials, and open source projects for game developers.',
-    iconColor: 'coral' as const,
-    tags: ['Unity', 'Resources', 'Curated'],
-    stars: 1300,
-    forks: 86,
-    href: 'https://github.com/proyecto26/awesome-unity',
-    githubUrl: 'https://github.com/proyecto26/awesome-unity',
-  },
-  {
-    title: 'Awesome JSGames',
-    subtitle: 'Curated List',
-    description: 'A curated list of awesome JavaScript games built with HTML5, Canvas, WebGL, and game engines.',
-    iconColor: 'teal' as const,
-    tags: ['JavaScript', 'HTML5', 'Games'],
-    stars: 892,
-    forks: 112,
-    href: 'https://github.com/proyecto26/awesome-jsgames',
-    githubUrl: 'https://github.com/proyecto26/awesome-jsgames',
-  },
-];
+// Get total org stars for the stats section
+const totalStars = await getOrgTotalStars('proyecto26');
+const starsDisplay = totalStars > 0 ? totalStars.toLocaleString() + '+' : '4,500+';
 ---
 
 <BaseLayout title="Projects - Proyecto 26" description="Explore our open source projects for web, mobile, and game development">
@@ -135,7 +34,7 @@ const curatedLists = [
         <!-- Stats -->
         <div class="flex flex-wrap justify-center gap-8 mb-16" data-animate="fade-up" data-delay="200">
           <div class="text-center">
-            <div class="text-4xl font-bold gradient-text">4,500+</div>
+            <div class="text-4xl font-bold gradient-text">{starsDisplay}</div>
             <div class="text-text-muted text-sm uppercase tracking-wide">GitHub Stars</div>
           </div>
           <div class="text-center">
