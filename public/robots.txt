@@ -1,0 +1,12 @@
+# Robots.txt for Proyecto 26
+# https://proyecto26.com
+
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://proyecto26.com/sitemap-index.xml
+
+# Disallow admin or private paths (if any)
+Disallow: /api/
+Disallow: /_astro/
