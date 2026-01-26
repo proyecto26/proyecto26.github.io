@@ -16,7 +16,7 @@ const navLinks = [
 <header class="header fixed top-0 left-0 right-0 z-header h-[72px] bg-bg-primary/80 backdrop-blur-custom border-b border-border-subtle transition-all duration-300">
   <div class="container h-full flex items-center justify-between">
     <!-- Logo -->
-    <a href="/" class="logo-link flex items-center gap-3 group" data-dragon-trigger>
+    <a href="/" class="logo-link flex items-center gap-3 group">
       <img src="/img/pro26.png" alt="Proyecto 26" class="w-10 h-10 rounded-lg transition-all duration-300 group-hover:shadow-glow-coral group-hover:scale-105" />
       <span class="text-lg font-bold text-text-primary hidden sm:block">Proyecto 26</span>
     </a>
@@ -43,11 +43,11 @@ const navLinks = [
     <div class="flex items-center gap-3">
       <!-- Theme Toggle -->
       <button
-        id="theme-toggle"
+        data-dragon-trigger
         class="w-10 h-10 rounded-full bg-bg-hover flex items-center justify-center text-text-secondary hover:text-text-primary hover:bg-bg-tertiary transition-all duration-200"
         aria-label="Toggle theme"
       >
-        <i data-lucide="sun" class="w-5 h-5"></i>
+        <i class="w-5 h-5">🐉</i>
       </button>
 
       <!-- GitHub Link -->
