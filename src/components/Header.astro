@@ -77,13 +77,13 @@ const navLinks = [
   <!-- Mobile Navigation Drawer -->
   <div
     id="mobile-menu"
-    class="md:hidden fixed inset-0 top-[72px] bg-bg-secondary transform translate-x-full transition-transform duration-300 ease-smooth z-modal"
+    class="md:hidden fixed inset-0 top-[72px] bg-black transform translate-x-full transition-transform duration-300 ease-smooth z-modal"
   >
     <nav class="flex flex-col p-6 gap-2">
       {navLinks.map((link) => (
         <a
           href={link.href}
-          class="mobile-nav-link py-4 px-4 text-lg font-medium text-text-secondary hover:text-text-primary hover:bg-bg-hover rounded-lg transition-colors duration-200"
+          class="mobile-nav-link py-4 px-4 text-lg font-medium text-white hover:text-accent-coral hover:bg-bg-hover rounded-lg transition-colors duration-200"
         >
           {link.label}
         </a>
@@ -93,7 +93,7 @@ const navLinks = [
         href="https://github.com/proyecto26"
         target="_blank"
         rel="noopener noreferrer"
-        class="flex items-center gap-3 py-4 px-4 text-lg font-medium text-text-secondary hover:text-accent-coral rounded-lg transition-colors duration-200"
+        class="flex items-center gap-3 py-4 px-4 text-lg font-medium text-white hover:text-accent-coral rounded-lg transition-colors duration-200"
       >
         <i data-lucide="github" class="w-5 h-5"></i>
         GitHub
@@ -104,7 +104,7 @@ const navLinks = [
 </header>
 
 <!-- Mobile menu overlay -->
-<div id="mobile-overlay" class="md:hidden fixed inset-0 bg-black/50 opacity-0 pointer-events-none transition-opacity duration-300 z-overlay"></div>
+<div id="mobile-overlay" class="md:hidden fixed inset-0 bg-black/90 opacity-0 pointer-events-none transition-opacity duration-300 z-overlay"></div>
 
 <script>
   // Mobile menu toggle

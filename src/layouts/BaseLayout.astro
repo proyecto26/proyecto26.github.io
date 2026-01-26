@@ -1,5 +1,6 @@
 ---
 import DragonEasterEgg from '../components/DragonEasterEgg.astro';
+import NinjaAnimation from '../components/NinjaAnimation.astro';
 
 interface Props {
   title?: string;
@@ -67,6 +68,9 @@ const fullImageUrl = image.startsWith('http') ? image : `${siteUrl}${image}`;
 
     <!-- Dragon Easter Egg -->
     <DragonEasterEgg />
+
+    <!-- Ninja Animation -->
+    <NinjaAnimation />
 
     <!-- Initialize Lucide icons -->
     <script>
