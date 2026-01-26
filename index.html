@@ -1,352 +1,214 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="Proyecto 26, Changing the world with small contributions 🧚" />
-    <title>Proyecto 26</title>
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Changing the world with small contributions"><title>Proyecto 26 - Changing the world with small contributions</title><!-- Favicons --><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#f2385a"><meta name="msapplication-TileColor" content="#0a0a0b"><meta name="theme-color" content="#0a0a0b"><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:site_name" content="Proyecto 26"><meta property="og:title" content="Proyecto 26 - Changing the world with small contributions"><meta property="og:url" content="https://proyecto26.com"><meta property="og:description" content="Changing the world with small contributions"><meta property="og:image" content="https://proyecto26.com/img/pro26.png"><!-- Twitter --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Proyecto 26 - Changing the world with small contributions"><meta name="twitter:description" content="Changing the world with small contributions"><meta name="twitter:site" content="@proyecto26"><meta name="twitter:creator" content="@jdnichollsc"><meta name="twitter:image" content="https://proyecto26.com/img/pro26.png"><!-- Preconnect to external resources --><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><!-- Lucide Icons --><script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script><link rel="stylesheet" href="/assets/about.Ch7k9UKk.css">
+<style>a[data-astro-cid-vnzlvqnm],button[data-astro-cid-vnzlvqnm]{will-change:transform}
+.line-clamp-2[data-astro-cid-mspuyifq]{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.hero-title[data-astro-cid-bbe6dxrz]{text-shadow:0 4px 20px rgba(242,56,90,.2)}.gradient-text[data-astro-cid-bbe6dxrz]{background:linear-gradient(135deg,var(--color-accent-coral),var(--color-accent-teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.line-clamp-2[data-astro-cid-lt7snxjp]{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+</style><script type="module" src="/assets/hoisted.CBpdqwFV.js"></script></head> <body class="bg-bg-primary text-text-primary antialiased"> <!-- Custom cursor (desktop only) --> <div class="cursor-dot hidden lg:block"></div> <div class="cursor-outline hidden lg:block"></div>  <header class="header fixed top-0 left-0 right-0 z-header h-[72px] bg-bg-primary/80 backdrop-blur-custom border-b border-border-subtle transition-all duration-300"> <div class="container h-full flex items-center justify-between"> <!-- Logo --> <a href="/" class="logo-link flex items-center gap-3 group"> <img src="/img/pro26.png" alt="Proyecto 26" class="w-10 h-10 rounded-lg transition-all duration-300 group-hover:shadow-glow-coral group-hover:scale-105"> <span class="text-lg font-bold text-text-primary hidden sm:block">Proyecto 26</span> </a> <!-- Desktop Navigation --> <nav class="hidden md:flex items-center gap-8"> <a href="/projects" class="nav-link text-sm font-medium transition-colors duration-200 relative text-text-secondary hover:text-text-primary"> Projects <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent-coral transition-all duration-300 group-hover:w-full"></span> </a><a href="/games" class="nav-link text-sm font-medium transition-colors duration-200 relative text-text-secondary hover:text-text-primary"> Games <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent-coral transition-all duration-300 group-hover:w-full"></span> </a><a href="/about" class="nav-link text-sm font-medium transition-colors duration-200 relative text-text-secondary hover:text-text-primary"> About <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent-coral transition-all duration-300 group-hover:w-full"></span> </a><a href="/contact" class="nav-link text-sm font-medium transition-colors duration-200 relative text-text-secondary hover:text-text-primary"> Contact <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent-coral transition-all duration-300 group-hover:w-full"></span> </a> </nav> <!-- Actions --> <div class="flex items-center gap-3"> <!-- Theme Toggle --> <button data-dragon-trigger class="w-10 h-10 rounded-full bg-bg-hover flex items-center justify-center text-text-secondary hover:text-text-primary hover:bg-bg-tertiary transition-all duration-200" aria-label="Toggle theme"> <i class="w-5 h-5">🐉</i> </button> <!-- GitHub Link --> <a href="https://github.com/proyecto26" target="_blank" rel="noopener noreferrer" class="hidden sm:flex items-center gap-2 px-4 py-2 rounded-lg bg-bg-hover border border-border-default text-text-secondary hover:text-text-primary hover:border-accent-coral transition-all duration-200"> <i data-lucide="github" class="w-4 h-4"></i> <span class="text-sm font-medium">4.5k</span> </a> <!-- Mobile Menu Button --> <button id="mobile-menu-btn" class="md:hidden w-10 h-10 rounded-lg bg-bg-hover flex items-center justify-center text-text-secondary" aria-label="Open menu" aria-expanded="false"> <i data-lucide="menu" class="w-5 h-5 menu-icon"></i> <i data-lucide="x" class="w-5 h-5 close-icon hidden"></i> </button> </div> </div> <!-- Mobile Navigation Drawer --> <div id="mobile-menu" class="md:hidden fixed inset-0 top-[72px] bg-black transform translate-x-full transition-transform duration-300 ease-smooth z-modal"> <nav class="flex flex-col p-6 gap-2"> <a href="/projects" class="mobile-nav-link py-4 px-4 text-lg font-medium text-white hover:text-accent-coral hover:bg-bg-hover rounded-lg transition-colors duration-200"> Projects </a><a href="/games" class="mobile-nav-link py-4 px-4 text-lg font-medium text-white hover:text-accent-coral hover:bg-bg-hover rounded-lg transition-colors duration-200"> Games </a><a href="/about" class="mobile-nav-link py-4 px-4 text-lg font-medium text-white hover:text-accent-coral hover:bg-bg-hover rounded-lg transition-colors duration-200"> About </a><a href="/contact" class="mobile-nav-link py-4 px-4 text-lg font-medium text-white hover:text-accent-coral hover:bg-bg-hover rounded-lg transition-colors duration-200"> Contact </a> <hr class="border-border-default my-4"> <a href="https://github.com/proyecto26" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 py-4 px-4 text-lg font-medium text-white hover:text-accent-coral rounded-lg transition-colors duration-200"> <i data-lucide="github" class="w-5 h-5"></i>
+GitHub
+<i data-lucide="arrow-right" class="w-4 h-4 ml-auto"></i> </a> </nav> </div> </header> <!-- Mobile menu overlay --> <div id="mobile-overlay" class="md:hidden fixed inset-0 bg-black/90 opacity-0 pointer-events-none transition-opacity duration-300 z-overlay"></div>  <main> <!-- Hero Section --> <section class="hero relative min-h-screen flex items-center pt-[72px] overflow-hidden" data-astro-cid-bbe6dxrz> <!-- Background image --> <div class="absolute inset-0 bg-black" data-astro-cid-bbe6dxrz> <img src="/img/p26-retro.jpg" alt="Background" class="w-full h-full object-cover opacity-40 mix-blend-overlay" data-astro-cid-bbe6dxrz> <div class="absolute inset-0 bg-gradient-to-b from-bg-primary/80 via-bg-primary/60 to-bg-secondary" data-astro-cid-bbe6dxrz></div> </div> <!-- Animated background elements (overlay) --> <div class="absolute inset-0 overflow-hidden pointer-events-none" data-astro-cid-bbe6dxrz> <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-accent-coral/10 rounded-full blur-3xl animate-pulse-slow" data-astro-cid-bbe6dxrz></div> <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent-teal/10 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 1s;" data-astro-cid-bbe6dxrz></div> </div> <div class="container relative z-10" data-astro-cid-bbe6dxrz> <div class="max-w-4xl mx-auto text-center" data-astro-cid-bbe6dxrz> <!-- Title --> <h1 class="hero-title text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-text-primary mb-6 tracking-tight" data-astro-cid-bbe6dxrz> <span class="block" data-animate="split-text" data-astro-cid-bbe6dxrz>PROYECTO 26</span> </h1> <!-- Tagline --> <p class="hero-tagline text-xl sm:text-2xl md:text-3xl text-text-secondary mb-4" data-animate="fade-up" data-delay="200" data-astro-cid-bbe6dxrz>
+Changing the world with <span class="text-accent-coral font-semibold" data-astro-cid-bbe6dxrz>small contributions</span>.
+</p> <!-- Description --> <p class="hero-description text-base sm:text-lg text-text-muted max-w-2xl mx-auto mb-10" data-animate="fade-up" data-delay="400" data-astro-cid-bbe6dxrz>
+We build open source tools for Web, Mobile, and Game Development that developers around the world love.
+</p> <!-- CTAs --> <div class="hero-ctas flex flex-col sm:flex-row items-center justify-center gap-4 mb-16" data-animate="fade-up" data-delay="600" data-astro-cid-bbe6dxrz> <a href="#projects" class="inline-flex items-center justify-center gap-2 font-semibold rounded-xl transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-coral focus-visible:ring-offset-2 focus-visible:ring-offset-bg-primary disabled:opacity-50 disabled:cursor-not-allowed bg-accent-coral text-white hover:brightness-110 hover:shadow-glow-coral active:scale-[0.98] px-8 py-4 text-lg " data-astro-cid-vnzlvqnm>
+Explore Projects
+</a> <a href="/games" class="inline-flex items-center justify-center gap-2 font-semibold rounded-xl transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-coral focus-visible:ring-offset-2 focus-visible:ring-offset-bg-primary disabled:opacity-50 disabled:cursor-not-allowed bg-transparent border border-border-default text-text-primary hover:bg-bg-hover hover:border-accent-teal px-8 py-4 text-lg " data-astro-cid-vnzlvqnm> <i data-lucide="gamepad-2" class="w-5 h-5" data-astro-cid-bbe6dxrz></i>
+Play Games
+</a> </div> <!-- Stats --> <div class="hero-stats flex flex-wrap items-center justify-center gap-8 sm:gap-16" data-animate="fade-up" data-delay="800" data-astro-cid-bbe6dxrz> <div class="text-center" data-animate="counter" data-delay="800" data-astro-cid-bbe6dxrz> <div class="text-3xl sm:text-4xl md:text-5xl font-extrabold gradient-text mb-1" data-astro-cid-bbe6dxrz> 4,500+ </div> <div class="text-sm text-text-muted uppercase tracking-wide" data-astro-cid-bbe6dxrz> GitHub Stars </div> </div><div class="text-center" data-animate="counter" data-delay="900" data-astro-cid-bbe6dxrz> <div class="text-3xl sm:text-4xl md:text-5xl font-extrabold gradient-text mb-1" data-astro-cid-bbe6dxrz> 25+ </div> <div class="text-sm text-text-muted uppercase tracking-wide" data-astro-cid-bbe6dxrz> Projects </div> </div><div class="text-center" data-animate="counter" data-delay="1000" data-astro-cid-bbe6dxrz> <div class="text-3xl sm:text-4xl md:text-5xl font-extrabold gradient-text mb-1" data-astro-cid-bbe6dxrz> 100+ </div> <div class="text-sm text-text-muted uppercase tracking-wide" data-astro-cid-bbe6dxrz> Contributors </div> </div> </div> </div> </div> <!-- Scroll indicator --> <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce" data-astro-cid-bbe6dxrz> <i data-lucide="chevron-down" class="w-6 h-6 text-text-muted" data-astro-cid-bbe6dxrz></i> </div> </section>  <!-- Projects Section --> <section id="projects" class="section bg-bg-primary"> <div class="container"> <div class="text-center mb-16"> <h2 class="text-4xl md:text-5xl font-bold text-text-primary mb-4" data-animate="fade-up">
+Open Source Tools Developers Love
+</h2> <p class="text-lg text-text-secondary max-w-2xl mx-auto" data-animate="fade-up" data-delay="100">
+Building the future of web, mobile, and game development
+</p> </div> <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12"> <div data-animate="fade-up" data-delay="0"> <article class="project-card group bg-bg-card border border-border-default rounded-2xl p-6 transition-all duration-300 hover:border-border-accent hover:shadow-glow-card hover:-translate-y-1" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.1" data-astro-cid-mspuyifq> <!-- Header --> <div class="flex items-center gap-3 mb-4" data-astro-cid-mspuyifq> <div class="w-12 h-12 bg-accent-coral rounded-xl flex items-center justify-center flex-shrink-0" data-astro-cid-mspuyifq> <span class="text-white font-bold text-lg" data-astro-cid-mspuyifq>r</span> </div> <div class="min-w-0" data-astro-cid-mspuyifq> <h3 class="text-lg font-semibold text-text-primary truncate" data-astro-cid-mspuyifq>react-native-inappbrowser</h3> <p class="text-sm text-text-muted" data-astro-cid-mspuyifq>React Native</p> </div> </div> <!-- Description --> <p class="text-text-secondary text-sm mb-4 line-clamp-2" data-astro-cid-mspuyifq> InAppBrowser for React Native with support for Chrome Custom Tabs and Safari Services. </p> <!-- Tags --> <div class="flex flex-wrap gap-2 mb-4" data-astro-cid-mspuyifq> <span class="px-3 py-1 text-xs font-medium text-text-muted bg-bg-hover rounded-full" data-astro-cid-mspuyifq> React Native </span><span class="px-3 py-1 text-xs font-medium text-text-muted bg-bg-hover rounded-full" data-astro-cid-mspuyifq> iOS </span><span class="px-3 py-1 text-xs font-medium text-text-muted bg-bg-hover rounded-full" data-astro-cid-mspuyifq> Android </span> </div> <!-- Stats --> <div class="flex items-center gap-4 mb-4" data-astro-cid-mspuyifq> <div class="flex items-center gap-1.5" data-astro-cid-mspuyifq> <span class="text-base" data-astro-cid-mspuyifq>⭐</span> <span class="text-sm font-semibold text-stars-gold" data-astro-cid-mspuyifq>1.4k</span> </div> <div class="flex items-center gap-1.5" data-astro-cid-mspuyifq> <span class="text-base" data-astro-cid-mspuyifq>🍴</span> <span class="text-sm text-forks-blue" data-astro-cid-mspuyifq>234</span> </div> </div> <!-- Actions --> <div class="flex items-center gap-3" data-astro-cid-mspuyifq> <a href="https://github.com/proyecto26/react-native-inappbrowser" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 bg-accent-coral text-white text-sm font-semibold rounded-lg hover:brightness-110 transition-all duration-200" data-astro-cid-mspuyifq>
+View Project
+</a>  </div> </article>  </div><div data-animate="fade-up" data-delay="100"> <article class="project-card group bg-bg-card border border-border-default rounded-2xl p-6 transition-all duration-300 hover:border-border-accent hover:shadow-glow-card hover:-translate-y-1" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.1" data-astro-cid-mspuyifq> <!-- Header --> <div class="flex items-center gap-3 mb-4" data-astro-cid-mspuyifq> <div class="w-12 h-12 bg-accent-teal rounded-xl flex items-center justify-center flex-shrink-0" data-astro-cid-mspuyifq> <span class="text-white font-bold text-lg" data-astro-cid-mspuyifq>R</span> </div> <div class="min-w-0" data-astro-cid-mspuyifq> <h3 class="text-lg font-semibold text-text-primary truncate" data-astro-cid-mspuyifq>RestClient</h3> <p class="text-sm text-text-muted" data-astro-cid-mspuyifq>Unity</p> </div> </div> <!-- Description --> <p class="text-text-secondary text-sm mb-4 line-clamp-2" data-astro-cid-mspuyifq> Promise-based REST and HTTP client for Unity game development. </p> <!-- Tags --> <div class="flex flex-wrap gap-2 mb-4" data-astro-cid-mspuyifq> <span class="px-3 py-1 text-xs font-medium text-text-muted bg-bg-hover rounded-full" data-astro-cid-mspuyifq> Unity </span><span class="px-3 py-1 text-xs font-medium text-text-muted bg-bg-hover rounded-full" data-astro-cid-mspuyifq> C# </span> </div> <!-- Stats --> <div class="flex items-center gap-4 mb-4" data-astro-cid-mspuyifq> <div class="flex items-center gap-1.5" data-astro-cid-mspuyifq> <span class="text-base" data-astro-cid-mspuyifq>⭐</span> <span class="text-sm font-semibold text-stars-gold" data-astro-cid-mspuyifq>1.3k</span> </div> <div class="flex items-center gap-1.5" data-astro-cid-mspuyifq> <span class="text-base" data-astro-cid-mspuyifq>🍴</span> <span class="text-sm text-forks-blue" data-astro-cid-mspuyifq>189</span> </div> </div> <!-- Actions --> <div class="flex items-center gap-3" data-astro-cid-mspuyifq> <a href="https://github.com/proyecto26/RestClient" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 bg-accent-coral text-white text-sm font-semibold rounded-lg hover:brightness-110 transition-all duration-200" data-astro-cid-mspuyifq>
+View Project
+</a>  </div> </article>  </div><div data-animate="fade-up" data-delay="200"> <article class="project-card group bg-bg-card border border-border-default rounded-2xl p-6 transition-all duration-300 hover:border-border-accent hover:shadow-glow-card hover:-translate-y-1" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.1" data-astro-cid-mspuyifq> <!-- Header --> <div class="flex items-center gap-3 mb-4" data-astro-cid-mspuyifq> <div class="w-12 h-12 bg-accent-orange rounded-xl flex items-center justify-center flex-shrink-0" data-astro-cid-mspuyifq> <span class="text-white font-bold text-lg" data-astro-cid-mspuyifq>A</span> </div> <div class="min-w-0" data-astro-cid-mspuyifq> <h3 class="text-lg font-semibold text-text-primary truncate" data-astro-cid-mspuyifq>Animatable Component</h3> <p class="text-sm text-text-muted" data-astro-cid-mspuyifq>Web Component</p> </div> </div> <!-- Description --> <p class="text-text-secondary text-sm mb-4 line-clamp-2" data-astro-cid-mspuyifq> Web component for creating reusable animations using the Web Animations API. </p> <!-- Tags --> <div class="flex flex-wrap gap-2 mb-4" data-astro-cid-mspuyifq> <span class="px-3 py-1 text-xs font-medium text-text-muted bg-bg-hover rounded-full" data-astro-cid-mspuyifq> TypeScript </span><span class="px-3 py-1 text-xs font-medium text-text-muted bg-bg-hover rounded-full" data-astro-cid-mspuyifq> Web Components </span> </div> <!-- Stats --> <div class="flex items-center gap-4 mb-4" data-astro-cid-mspuyifq> <div class="flex items-center gap-1.5" data-astro-cid-mspuyifq> <span class="text-base" data-astro-cid-mspuyifq>⭐</span> <span class="text-sm font-semibold text-stars-gold" data-astro-cid-mspuyifq>258</span> </div> <div class="flex items-center gap-1.5" data-astro-cid-mspuyifq> <span class="text-base" data-astro-cid-mspuyifq>🍴</span> <span class="text-sm text-forks-blue" data-astro-cid-mspuyifq>42</span> </div> </div> <!-- Actions --> <div class="flex items-center gap-3" data-astro-cid-mspuyifq> <a href="https://proyecto26.github.io/animatable-component" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 bg-accent-coral text-white text-sm font-semibold rounded-lg hover:brightness-110 transition-all duration-200" data-astro-cid-mspuyifq>
+View Project
+</a> <a href="https://github.com/proyecto26/animatable-component" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 bg-transparent border border-border-default text-text-secondary text-sm rounded-lg hover:bg-bg-hover hover:text-text-primary transition-all duration-200" data-astro-cid-mspuyifq> <i data-lucide="github" class="w-4 h-4" data-astro-cid-mspuyifq></i>
+GitHub
+</a> </div> </article>  </div><div data-animate="fade-up" data-delay="300"> <article class="project-card group bg-bg-card border border-border-default rounded-2xl p-6 transition-all duration-300 hover:border-border-accent hover:shadow-glow-card hover:-translate-y-1" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.1" data-astro-cid-mspuyifq> <!-- Header --> <div class="flex items-center gap-3 mb-4" data-astro-cid-mspuyifq> <div class="w-12 h-12 bg-accent-blue rounded-xl flex items-center justify-center flex-shrink-0" data-astro-cid-mspuyifq> <span class="text-white font-bold text-lg" data-astro-cid-mspuyifq>I</span> </div> <div class="min-w-0" data-astro-cid-mspuyifq> <h3 class="text-lg font-semibold text-text-primary truncate" data-astro-cid-mspuyifq>IonPhaser</h3> <p class="text-sm text-text-muted" data-astro-cid-mspuyifq>Phaser + Ionic</p> </div> </div> <!-- Description --> <p class="text-text-secondary text-sm mb-4 line-clamp-2" data-astro-cid-mspuyifq> Web component to integrate Phaser game framework with Ionic and other frameworks. </p> <!-- Tags --> <div class="flex flex-wrap gap-2 mb-4" data-astro-cid-mspuyifq> <span class="px-3 py-1 text-xs font-medium text-text-muted bg-bg-hover rounded-full" data-astro-cid-mspuyifq> Phaser </span><span class="px-3 py-1 text-xs font-medium text-text-muted bg-bg-hover rounded-full" data-astro-cid-mspuyifq> Ionic </span> </div> <!-- Stats --> <div class="flex items-center gap-4 mb-4" data-astro-cid-mspuyifq> <div class="flex items-center gap-1.5" data-astro-cid-mspuyifq> <span class="text-base" data-astro-cid-mspuyifq>⭐</span> <span class="text-sm font-semibold text-stars-gold" data-astro-cid-mspuyifq>252</span> </div> <div class="flex items-center gap-1.5" data-astro-cid-mspuyifq> <span class="text-base" data-astro-cid-mspuyifq>🍴</span> <span class="text-sm text-forks-blue" data-astro-cid-mspuyifq>38</span> </div> </div> <!-- Actions --> <div class="flex items-center gap-3" data-astro-cid-mspuyifq> <a href="https://github.com/proyecto26/ion-phaser" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 bg-accent-coral text-white text-sm font-semibold rounded-lg hover:brightness-110 transition-all duration-200" data-astro-cid-mspuyifq>
+View Project
+</a>  </div> </article>  </div><div data-animate="fade-up" data-delay="400"> <article class="project-card group bg-bg-card border border-border-default rounded-2xl p-6 transition-all duration-300 hover:border-border-accent hover:shadow-glow-card hover:-translate-y-1" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.1" data-astro-cid-mspuyifq> <!-- Header --> <div class="flex items-center gap-3 mb-4" data-astro-cid-mspuyifq> <div class="w-12 h-12 bg-accent-coral rounded-xl flex items-center justify-center flex-shrink-0" data-astro-cid-mspuyifq> <span class="text-white font-bold text-lg" data-astro-cid-mspuyifq>A</span> </div> <div class="min-w-0" data-astro-cid-mspuyifq> <h3 class="text-lg font-semibold text-text-primary truncate" data-astro-cid-mspuyifq>Awesome Unity</h3> <p class="text-sm text-text-muted" data-astro-cid-mspuyifq>Curated List</p> </div> </div> <!-- Description --> <p class="text-text-secondary text-sm mb-4 line-clamp-2" data-astro-cid-mspuyifq> A curated list of awesome Unity games, resources, and tutorials for game developers. </p> <!-- Tags --> <div class="flex flex-wrap gap-2 mb-4" data-astro-cid-mspuyifq> <span class="px-3 py-1 text-xs font-medium text-text-muted bg-bg-hover rounded-full" data-astro-cid-mspuyifq> Unity </span><span class="px-3 py-1 text-xs font-medium text-text-muted bg-bg-hover rounded-full" data-astro-cid-mspuyifq> Resources </span> </div> <!-- Stats --> <div class="flex items-center gap-4 mb-4" data-astro-cid-mspuyifq> <div class="flex items-center gap-1.5" data-astro-cid-mspuyifq> <span class="text-base" data-astro-cid-mspuyifq>⭐</span> <span class="text-sm font-semibold text-stars-gold" data-astro-cid-mspuyifq>1.3k</span> </div> <div class="flex items-center gap-1.5" data-astro-cid-mspuyifq> <span class="text-base" data-astro-cid-mspuyifq>🍴</span> <span class="text-sm text-forks-blue" data-astro-cid-mspuyifq>86</span> </div> </div> <!-- Actions --> <div class="flex items-center gap-3" data-astro-cid-mspuyifq> <a href="https://github.com/proyecto26/awesome-unity" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 bg-accent-coral text-white text-sm font-semibold rounded-lg hover:brightness-110 transition-all duration-200" data-astro-cid-mspuyifq>
+View Project
+</a>  </div> </article>  </div><div data-animate="fade-up" data-delay="500"> <article class="project-card group bg-bg-card border border-border-default rounded-2xl p-6 transition-all duration-300 hover:border-border-accent hover:shadow-glow-card hover:-translate-y-1" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.1" data-astro-cid-mspuyifq> <!-- Header --> <div class="flex items-center gap-3 mb-4" data-astro-cid-mspuyifq> <div class="w-12 h-12 bg-accent-teal rounded-xl flex items-center justify-center flex-shrink-0" data-astro-cid-mspuyifq> <span class="text-white font-bold text-lg" data-astro-cid-mspuyifq>A</span> </div> <div class="min-w-0" data-astro-cid-mspuyifq> <h3 class="text-lg font-semibold text-text-primary truncate" data-astro-cid-mspuyifq>Awesome JSGames</h3> <p class="text-sm text-text-muted" data-astro-cid-mspuyifq>Curated List</p> </div> </div> <!-- Description --> <p class="text-text-secondary text-sm mb-4 line-clamp-2" data-astro-cid-mspuyifq> A curated list of awesome JavaScript Games built with HTML5 and game engines. </p> <!-- Tags --> <div class="flex flex-wrap gap-2 mb-4" data-astro-cid-mspuyifq> <span class="px-3 py-1 text-xs font-medium text-text-muted bg-bg-hover rounded-full" data-astro-cid-mspuyifq> JavaScript </span><span class="px-3 py-1 text-xs font-medium text-text-muted bg-bg-hover rounded-full" data-astro-cid-mspuyifq> HTML5 </span> </div> <!-- Stats --> <div class="flex items-center gap-4 mb-4" data-astro-cid-mspuyifq> <div class="flex items-center gap-1.5" data-astro-cid-mspuyifq> <span class="text-base" data-astro-cid-mspuyifq>⭐</span> <span class="text-sm font-semibold text-stars-gold" data-astro-cid-mspuyifq>892</span> </div> <div class="flex items-center gap-1.5" data-astro-cid-mspuyifq> <span class="text-base" data-astro-cid-mspuyifq>🍴</span> <span class="text-sm text-forks-blue" data-astro-cid-mspuyifq>112</span> </div> </div> <!-- Actions --> <div class="flex items-center gap-3" data-astro-cid-mspuyifq> <a href="https://github.com/proyecto26/awesome-jsgames" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 bg-accent-coral text-white text-sm font-semibold rounded-lg hover:brightness-110 transition-all duration-200" data-astro-cid-mspuyifq>
+View Project
+</a>  </div> </article>  </div> </div> <div class="text-center" data-animate="fade-up" data-delay="600"> <a href="https://github.com/proyecto26" class="inline-flex items-center justify-center gap-2 font-semibold rounded-xl transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-coral focus-visible:ring-offset-2 focus-visible:ring-offset-bg-primary disabled:opacity-50 disabled:cursor-not-allowed bg-transparent border border-border-default text-text-primary hover:bg-bg-hover hover:border-accent-teal px-6 py-3 text-base " target="_blank" rel="noopener noreferrer" data-astro-cid-vnzlvqnm>
+View All Projects
+<i data-lucide="arrow-right" class="w-4 h-4"></i> </a> </div> </div> </section> <!-- What We Build Section --> <section class="section bg-bg-secondary"> <div class="container"> <div class="text-center mb-16"> <h2 class="text-4xl md:text-5xl font-bold text-text-primary mb-4" data-animate="fade-up">
+What We Build
+</h2> <p class="text-lg text-text-secondary" data-animate="fade-up" data-delay="100">
+Specialized tools and libraries across three core domains
+</p> </div> <div class="grid grid-cols-1 md:grid-cols-3 gap-6"> <div data-animate="fade-up" data-delay="0"> <div class="service-card group bg-bg-card border border-border-default rounded-2xl p-8 text-center transition-all duration-300 hover:border-border-accent hover:-translate-y-1"> <!-- Icon --> <div class="mb-6 inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-bg-hover transition-transform duration-300 group-hover:scale-110"> <i data-lucide="smartphone" class="w-8 h-8 text-accent-coral"></i> </div> <!-- Title --> <h3 class="text-xl font-semibold text-text-primary mb-3"> Mobile Development </h3> <!-- Technologies --> <div class="space-y-1"> <p class="text-text-secondary text-sm">React Native</p><p class="text-text-secondary text-sm">NativeScript</p><p class="text-text-secondary text-sm">Ionic</p> </div> </div> </div><div data-animate="fade-up" data-delay="100"> <div class="service-card group bg-bg-card border border-border-default rounded-2xl p-8 text-center transition-all duration-300 hover:border-border-accent hover:-translate-y-1"> <!-- Icon --> <div class="mb-6 inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-bg-hover transition-transform duration-300 group-hover:scale-110"> <i data-lucide="globe" class="w-8 h-8 text-accent-teal"></i> </div> <!-- Title --> <h3 class="text-xl font-semibold text-text-primary mb-3"> Web Components </h3> <!-- Technologies --> <div class="space-y-1"> <p class="text-text-secondary text-sm">Stencil</p><p class="text-text-secondary text-sm">Web Animations API</p><p class="text-text-secondary text-sm">TypeScript</p> </div> </div> </div><div data-animate="fade-up" data-delay="200"> <div class="service-card group bg-bg-card border border-border-default rounded-2xl p-8 text-center transition-all duration-300 hover:border-border-accent hover:-translate-y-1"> <!-- Icon --> <div class="mb-6 inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-bg-hover transition-transform duration-300 group-hover:scale-110"> <i data-lucide="gamepad-2" class="w-8 h-8 text-accent-orange"></i> </div> <!-- Title --> <h3 class="text-xl font-semibold text-text-primary mb-3"> Game Development </h3> <!-- Technologies --> <div class="space-y-1"> <p class="text-text-secondary text-sm">Phaser</p><p class="text-text-secondary text-sm">Unity</p><p class="text-text-secondary text-sm">C#</p> </div> </div> </div> </div> </div> </section> <!-- Games Section --> <section class="section bg-bg-primary"> <div class="container"> <div class="text-center mb-16"> <h2 class="text-4xl md:text-5xl font-bold text-text-primary mb-4" data-animate="fade-up">
+Play Our Games
+</h2> <p class="text-lg text-text-secondary" data-animate="fade-up" data-delay="100">
+Interactive experiences built with Phaser and other game engines
+</p> </div> <!-- Featured Game --> <div class="mb-12" data-animate="fade-up" data-delay="200"> <p class="text-xs font-semibold text-accent-coral uppercase tracking-widest mb-4">Featured Game</p> <article class="game-card-featured relative overflow-hidden rounded-3xl bg-bg-card border border-border-default" data-astro-cid-lt7snxjp><div class="flex flex-col lg:flex-row" data-astro-cid-lt7snxjp><!-- Preview --><div class="relative lg:w-1/2 aspect-video lg:aspect-auto bg-bg-hover overflow-hidden" data-astro-cid-lt7snxjp><div class="w-full h-full min-h-[300px] flex items-center justify-center bg-gradient-to-br from-bg-hover to-bg-tertiary" data-astro-cid-lt7snxjp><div class="text-6xl opacity-20" data-astro-cid-lt7snxjp>🎮</div></div><!-- Play overlay --><a href="/games/ninjadev" class="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 hover:opacity-100 transition-opacity duration-300" data-astro-cid-lt7snxjp><div class="w-20 h-20 bg-accent-coral rounded-full flex items-center justify-center shadow-glow-coral transition-transform duration-300 hover:scale-110" data-astro-cid-lt7snxjp><i data-lucide="play" class="w-8 h-8 text-white ml-1" data-astro-cid-lt7snxjp></i></div></a></div><!-- Info --><div class="lg:w-1/2 p-8 lg:p-12 flex flex-col justify-center" data-astro-cid-lt7snxjp><h3 class="text-3xl lg:text-4xl font-bold text-text-primary mb-4" data-astro-cid-lt7snxjp>NinjaDev</h3><p class="text-text-secondary text-lg mb-6" data-astro-cid-lt7snxjp>A side-scrolling platformer that showcases advanced game development techniques. Jump, run, and slash your way through challenging levels.</p><!-- Tags --><div class="flex flex-wrap gap-2 mb-8" data-astro-cid-lt7snxjp><span class="px-4 py-1.5 text-sm text-text-muted bg-bg-hover rounded-full" data-astro-cid-lt7snxjp>Phaser</span><span class="px-4 py-1.5 text-sm text-text-muted bg-bg-hover rounded-full" data-astro-cid-lt7snxjp>2D Platformer</span><span class="px-4 py-1.5 text-sm text-text-muted bg-bg-hover rounded-full" data-astro-cid-lt7snxjp>Action</span></div><!-- Actions --><div class="flex flex-wrap gap-4" data-astro-cid-lt7snxjp><a href="/games/ninjadev" class="inline-flex items-center gap-2 px-6 py-3 bg-accent-coral text-white font-semibold rounded-xl hover:brightness-110 transition-all duration-200" data-astro-cid-lt7snxjp><i data-lucide="play" class="w-5 h-5" data-astro-cid-lt7snxjp></i>
+Play Now
+</a><a href="/games/ninjadev" class="inline-flex items-center gap-2 px-6 py-3 bg-transparent border border-border-default text-text-secondary rounded-xl hover:bg-bg-hover hover:text-text-primary transition-all duration-200" data-astro-cid-lt7snxjp>
+Learn More
+</a></div></div></div></article> </div> <!-- More Games --> <div class="mb-4"> <p class="text-xs font-semibold text-text-muted uppercase tracking-widest mb-4">More Games</p> </div> <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"> <div data-animate="fade-up" data-delay="300"> <article class="game-card group bg-bg-card border border-border-default rounded-2xl overflow-hidden transition-all duration-300 hover:border-border-accent hover:-translate-y-1" data-astro-cid-lt7snxjp><!-- Preview --><div class="relative aspect-video bg-bg-hover overflow-hidden" data-astro-cid-lt7snxjp><div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-bg-hover to-bg-tertiary" data-astro-cid-lt7snxjp><div class="text-4xl opacity-20" data-astro-cid-lt7snxjp>🎮</div></div><!-- Play button overlay --><a href="https://devpost.com/software/the-crypto-purge-jamg3s" class="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300" data-astro-cid-lt7snxjp><div class="w-14 h-14 bg-accent-coral rounded-full flex items-center justify-center shadow-glow-coral" data-astro-cid-lt7snxjp><i data-lucide="play" class="w-6 h-6 text-white ml-0.5" data-astro-cid-lt7snxjp></i></div></a></div><!-- Info --><div class="p-5" data-astro-cid-lt7snxjp><h3 class="text-lg font-semibold text-text-primary mb-2" data-astro-cid-lt7snxjp>The Crypto Purge</h3><p class="text-text-secondary text-sm mb-3 line-clamp-2" data-astro-cid-lt7snxjp>Action-packed crypto-themed game adventure.</p><div class="flex flex-wrap gap-2" data-astro-cid-lt7snxjp><span class="px-2.5 py-1 text-xs text-text-muted bg-bg-hover rounded-lg" data-astro-cid-lt7snxjp>Phaser</span><span class="px-2.5 py-1 text-xs text-text-muted bg-bg-hover rounded-lg" data-astro-cid-lt7snxjp>Web3</span></div></div></article> </div><div data-animate="fade-up" data-delay="400"> <article class="game-card group bg-bg-card border border-border-default rounded-2xl overflow-hidden transition-all duration-300 hover:border-border-accent hover:-translate-y-1" data-astro-cid-lt7snxjp><!-- Preview --><div class="relative aspect-video bg-bg-hover overflow-hidden" data-astro-cid-lt7snxjp><div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-bg-hover to-bg-tertiary" data-astro-cid-lt7snxjp><div class="text-4xl opacity-20" data-astro-cid-lt7snxjp>🎮</div></div><!-- Play button overlay --><a href="https://github.com/proyecto26/PokeDex-GO" class="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300" data-astro-cid-lt7snxjp><div class="w-14 h-14 bg-accent-coral rounded-full flex items-center justify-center shadow-glow-coral" data-astro-cid-lt7snxjp><i data-lucide="play" class="w-6 h-6 text-white ml-0.5" data-astro-cid-lt7snxjp></i></div></a></div><!-- Info --><div class="p-5" data-astro-cid-lt7snxjp><h3 class="text-lg font-semibold text-text-primary mb-2" data-astro-cid-lt7snxjp>PokéDex GO</h3><p class="text-text-secondary text-sm mb-3 line-clamp-2" data-astro-cid-lt7snxjp>Community of Pokemon masters, hybrid mobile app created to showcase real-time interactions with Firebase.</p><div class="flex flex-wrap gap-2" data-astro-cid-lt7snxjp><span class="px-2.5 py-1 text-xs text-text-muted bg-bg-hover rounded-lg" data-astro-cid-lt7snxjp>Cordova/Ionic</span><span class="px-2.5 py-1 text-xs text-text-muted bg-bg-hover rounded-lg" data-astro-cid-lt7snxjp>Firebase</span></div></div></article> </div> </div> </div> </section> <!-- About / Founder Section --> <section id="about" class="section bg-bg-secondary"> <div class="container"> <div class="text-center mb-16"> <h2 class="text-4xl md:text-5xl font-bold text-text-primary mb-4" data-animate="fade-up">
+Meet the Founder
+</h2> </div> <div class="max-w-4xl mx-auto" data-animate="fade-up" data-delay="200"> <div class="bg-bg-card border border-border-default rounded-3xl p-8 md:p-12"> <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12"> <!-- Photo --> <div class="flex-shrink-0"> <div class="w-48 h-48 rounded-full overflow-hidden ring-4 ring-accent-coral/30"> <img src="/img/jdnichollsc.jpg" alt="Juan David Nicholls" class="w-full h-full object-cover"> </div> </div> <!-- Info --> <div class="text-center md:text-left"> <h3 class="text-3xl font-bold text-text-primary mb-2">
+Juan David Nicholls
+</h3> <p class="text-accent-coral font-medium mb-4">
+Founder & Lead Developer
+</p> <p class="text-text-secondary mb-6">
+Full-Stack Developer and Open Source Contributor with over 14 years of expertise in web, mobile, game, blockchain and cloud development. Skilled in building scalable architectures, seamless user experiences and driving innovation through Open Source. Passionate about sharing knowledge as a speaker and mentor.
+</p> <!-- Location --> <div class="flex items-center justify-center md:justify-start gap-2 text-text-muted mb-6"> <i data-lucide="map-pin" class="w-4 h-4"></i> <span>Based in Colombia</span> </div> <!-- Social Links --> <div class="flex items-center justify-center md:justify-start gap-3"> <a href="https://linkedin.com/in/jdnichollsc" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg bg-bg-hover flex items-center justify-center text-text-secondary hover:text-text-primary hover:bg-bg-tertiary transition-all duration-200"> <i data-lucide="linkedin" class="w-5 h-5"></i> </a> <a href="https://github.com/jdnichollsc" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg bg-bg-hover flex items-center justify-center text-text-secondary hover:text-text-primary hover:bg-bg-tertiary transition-all duration-200"> <i data-lucide="github" class="w-5 h-5"></i> </a> <a href="https://x.com/jdnichollsc" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg bg-bg-hover flex items-center justify-center text-text-secondary hover:text-text-primary hover:bg-bg-tertiary transition-all duration-200"> <i data-lucide="twitter" class="w-5 h-5"></i> </a> <a href="https://youtube.com/@proyecto26" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-lg bg-bg-hover flex items-center justify-center text-text-secondary hover:text-text-primary hover:bg-bg-tertiary transition-all duration-200"> <i data-lucide="youtube" class="w-5 h-5"></i> </a> </div> </div> </div> </div> </div> </div> </section> <!-- Support Section --> <section id="contact" class="section bg-bg-primary"> <div class="container"> <div class="text-center mb-16"> <h2 class="text-4xl md:text-5xl font-bold text-text-primary mb-4" data-animate="fade-up">
+Support Our Mission
+</h2> <p class="text-lg text-text-secondary" data-animate="fade-up" data-delay="100">
+Help us continue building open source tools for developers worldwide
+</p> </div> <!-- Donation Platforms --> <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12"> <a href="https://patreon.com/proyecto26" target="_blank" rel="noopener noreferrer" class="group bg-bg-card border border-border-default rounded-2xl p-6 text-center transition-all duration-300 hover:border-border-accent hover:-translate-y-1" data-animate="fade-up" data-delay="0"> <div class="w-12 h-12 mx-auto mb-4 rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110" style="background-color: #FF424D20;"> <i data-lucide="heart" class="w-6 h-6" style="color: #FF424D;"></i> </div> <h3 class="font-semibold text-text-primary mb-1">Patreon</h3> <p class="text-xs text-text-muted">Support us</p> </a><a href="https://ko-fi.com/proyecto26" target="_blank" rel="noopener noreferrer" class="group bg-bg-card border border-border-default rounded-2xl p-6 text-center transition-all duration-300 hover:border-border-accent hover:-translate-y-1" data-animate="fade-up" data-delay="100"> <div class="w-12 h-12 mx-auto mb-4 rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110" style="background-color: #f2385a20;"> <i data-lucide="coffee" class="w-6 h-6" style="color: #f2385a;"></i> </div> <h3 class="font-semibold text-text-primary mb-1">Ko-fi</h3> <p class="text-xs text-text-muted">Support us</p> </a><a href="https://opencollective.com/proyecto26" target="_blank" rel="noopener noreferrer" class="group bg-bg-card border border-border-default rounded-2xl p-6 text-center transition-all duration-300 hover:border-border-accent hover:-translate-y-1" data-animate="fade-up" data-delay="200"> <div class="w-12 h-12 mx-auto mb-4 rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110" style="background-color: #7FADF220;"> <i data-lucide="users" class="w-6 h-6" style="color: #7FADF2;"></i> </div> <h3 class="font-semibold text-text-primary mb-1">Open Collective</h3> <p class="text-xs text-text-muted">Support us</p> </a><a href="https://liberapay.com/proyecto26" target="_blank" rel="noopener noreferrer" class="group bg-bg-card border border-border-default rounded-2xl p-6 text-center transition-all duration-300 hover:border-border-accent hover:-translate-y-1" data-animate="fade-up" data-delay="300"> <div class="w-12 h-12 mx-auto mb-4 rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110" style="background-color: #f6c91520;"> <i data-lucide="dollar-sign" class="w-6 h-6" style="color: #f6c915;"></i> </div> <h3 class="font-semibold text-text-primary mb-1">Liberapay</h3> <p class="text-xs text-text-muted">Support us</p> </a> </div> <!-- GitHub CTA --> <div class="bg-bg-card border-2 border-accent-coral rounded-3xl p-8 md:p-12 text-center" data-animate="fade-up" data-delay="400"> <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-stars-gold/20 flex items-center justify-center"> <i data-lucide="star" class="w-8 h-8 text-stars-gold"></i> </div> <h3 class="text-2xl font-bold text-text-primary mb-3">
+Star us on GitHub
+</h3> <p class="text-text-secondary mb-6">
+Support the project by starring our repositories
+</p> <a href="https://github.com/proyecto26" class="inline-flex items-center justify-center gap-2 font-semibold rounded-xl transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-coral focus-visible:ring-offset-2 focus-visible:ring-offset-bg-primary disabled:opacity-50 disabled:cursor-not-allowed bg-accent-coral text-white hover:brightness-110 hover:shadow-glow-coral active:scale-[0.98] px-6 py-3 text-base " target="_blank" rel="noopener noreferrer" data-astro-cid-vnzlvqnm> <i data-lucide="star" class="w-4 h-4"></i>
+View Repositories
+</a> </div> </div> </section> </main> <footer class="bg-bg-secondary border-t border-border-default"> <div class="container py-16"> <!-- Top Section --> <div class="flex flex-col lg:flex-row justify-between gap-12 mb-12"> <!-- Logo & Tagline --> <div class="max-w-sm"> <a href="/" class="flex items-center gap-3 mb-4"> <img src="/img/pro26.png" alt="Proyecto 26" class="w-8 h-8 rounded-md"> <span class="text-lg font-bold text-text-primary">Proyecto 26</span> </a> <p class="text-text-secondary text-base">
+Changing the world with small contributions.
+</p> </div> <!-- Link Columns --> <div class="grid grid-cols-2 md:grid-cols-3 gap-8 lg:gap-16"> <!-- Projects --> <div> <h3 class="text-xs font-semibold uppercase tracking-wider text-text-muted mb-4">
+Projects
+</h3> <ul class="space-y-3"> <li> <a href="https://github.com/proyecto26/react-native-inappbrowser" target="_blank" rel="noopener noreferrer" class="text-text-secondary hover:text-text-primary transition-colors duration-200"> InAppBrowser </a> </li><li> <a href="https://github.com/proyecto26/RestClient" target="_blank" rel="noopener noreferrer" class="text-text-secondary hover:text-text-primary transition-colors duration-200"> RestClient </a> </li><li> <a href="https://proyecto26.github.io/animatable-component" target="_blank" rel="noopener noreferrer" class="text-text-secondary hover:text-text-primary transition-colors duration-200"> Animatable </a> </li><li> <a href="https://github.com/proyecto26/ion-phaser" target="_blank" rel="noopener noreferrer" class="text-text-secondary hover:text-text-primary transition-colors duration-200"> IonPhaser </a> </li> </ul> </div> <!-- Resources --> <div> <h3 class="text-xs font-semibold uppercase tracking-wider text-text-muted mb-4">
+Resources
+</h3> <ul class="space-y-3"> <li> <a href="https://github.com/proyecto26/sponsors" target="_blank" rel="noopener noreferrer" class="text-text-secondary hover:text-text-primary transition-colors duration-200"> Sponsors </a> </li><li> <a href="https://github.com/proyecto26/community/discussions" target="_blank" rel="noopener noreferrer" class="text-text-secondary hover:text-text-primary transition-colors duration-200"> Community </a> </li> </ul> </div> <!-- Connect --> <div> <h3 class="text-xs font-semibold uppercase tracking-wider text-text-muted mb-4">
+Connect
+</h3> <ul class="space-y-3"> <li> <a href="https://github.com/proyecto26" target="_blank" rel="noopener noreferrer" class="text-text-secondary hover:text-text-primary transition-colors duration-200"> GitHub </a> </li><li> <a href="https://www.youtube.com/@proyecto26" target="_blank" rel="noopener noreferrer" class="text-text-secondary hover:text-text-primary transition-colors duration-200"> YouTube </a> </li><li> <a href="https://www.facebook.com/proyecto26" target="_blank" rel="noopener noreferrer" class="text-text-secondary hover:text-text-primary transition-colors duration-200"> Facebook </a> </li><li> <a href="mailto:jdnichollsc@gmail.com" class="text-text-secondary hover:text-text-primary transition-colors duration-200"> Contact </a> </li> </ul> </div> </div> </div> <!-- Bottom Section --> <div class="pt-8 border-t border-border-default flex flex-col sm:flex-row items-center justify-between gap-4"> <p class="text-text-muted text-sm">
+&copy; 2026 Proyecto 26. Made with love in Colombia.
+</p> <!-- Social Icons --> <div class="flex items-center gap-4"> <a href="https://github.com/proyecto26" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full flex items-center justify-center text-text-muted hover:text-accent-teal hover:bg-bg-hover transition-all duration-200" aria-label="GitHub"> <i data-lucide="github" class="w-5 h-5"></i> </a><a href="https://www.youtube.com/@proyecto26" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full flex items-center justify-center text-text-muted hover:text-accent-teal hover:bg-bg-hover transition-all duration-200" aria-label="YouTube"> <i data-lucide="youtube" class="w-5 h-5"></i> </a><a href="https://www.facebook.com/proyecto26" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full flex items-center justify-center text-text-muted hover:text-accent-teal hover:bg-bg-hover transition-all duration-200" aria-label="Facebook"> <i data-lucide="facebook" class="w-5 h-5"></i> </a><a href="https://linkedin.com/in/jdnichollsc" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full flex items-center justify-center text-text-muted hover:text-accent-teal hover:bg-bg-hover transition-all duration-200" aria-label="LinkedIn"> <i data-lucide="linkedin" class="w-5 h-5"></i> </a><a href="https://x.com/jdnichollsc" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full flex items-center justify-center text-text-muted hover:text-accent-teal hover:bg-bg-hover transition-all duration-200" aria-label="Twitter"> <i data-lucide="twitter" class="w-5 h-5"></i> </a> </div> </div> </div> </footer>  <!-- Dragon Easter Egg --> <!-- Fullscreen transparent overlay for dragon animation --><div id="dragon-overlay" class="dragon-overlay fixed inset-0 z-dragon hidden" aria-hidden="true" data-astro-cid-qx6yczhg> <ion-phaser-ce id="dragon-game" data-astro-cid-qx6yczhg></ion-phaser-ce> </div> <audio id="dragon-sound" preload="auto" data-astro-cid-qx6yczhg> <source src="/audio/dragon.ogg" type="audio/ogg" data-astro-cid-qx6yczhg> <source src="/audio/dragon.mp3" type="audio/mpeg" data-astro-cid-qx6yczhg> </audio> <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser-ce/2.13.3/phaser.min.js"></script> <script type="module" src="https://unpkg.com/@ion-phaser-ce/core@1.0.2/dist/ion-phaser-ce/ion-phaser-ce.esm.js"></script> <script nomodule src="https://unpkg.com/@ion-phaser-ce/core@1.0.2/dist/ion-phaser-ce/ion-phaser-ce.js"></script> <script>
+  (function() {
+    var overlay = document.getElementById('dragon-overlay');
+    var ionPhaser = document.getElementById('dragon-game');
+    var gameInstance = null;
+    var isAnimating = false;
+    var isInitialized = false;
 
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="theme-color" content="#ffffff">
+    function createGameConfig() {
+      return {
+        width: '100%',
+        height: '100%',
+        transparent: true,
+        renderer: Phaser.AUTO,
+        roundPixels: true,
+        alignH: true,
+        alignV: true,
+        scaleMode: Phaser.ScaleManager.RESIZE,
+        disableVisibilityChange: true,
+        state: {
+          preload: function() {
+            this.load.image('dragon', '/img/dragon.png');
+            this.load.audio('dragon', ['/audio/dragon.ogg', '/audio/dragon.mp3']);
+          },
+          create: function() {
+            var points = [];
+            var imgCache = this.game.cache.getFrame('dragon');
+            var totalPoints = 26;
+            var length = imgCache.width / totalPoints;
 
-    <!--  Essential META Tags -->
-    <meta property="og:site_name" content="Proyecto 26">
-    <meta property="og:title" content="Proyecto 26 - WebSite" />
-    <meta property="og:url" content="https://proyecto26.com" />
-    <meta property="og:description" content="Changing the world with small contributions 🧚" />
-    <meta property="og:image" content="https://raw.githubusercontent.com/proyecto26/website/master/img/logo.png" />
+            for (var i = 0; i < totalPoints; i++) {
+              points.push(new Phaser.Point(i * length, 0));
+            }
 
-    <!--  Non-Essential, But Recommended -->
-    <meta name="twitter:title" content="Proyecto 26 - WebSite">
-    <meta name="twitter:description" content="Changing the world with small contributions 🧚">
-    <meta name="twitter:card" value="Proyecto 26 is an initiative that seeks to solve problems with technology, using Open Source projects to find better ways to fix issues by connecting people, sharing the knowledge with others and changing the world with small contributions 🧚">
-    <meta name="twitter:site" content="@proyecto26">
-    <meta name="twitter:creator" content="@jdnichollsc">
+            this.dragon = this.game.add.rope(
+              -imgCache.width,
+              this.game.world.centerY,
+              'dragon',
+              null,
+              points
+            );
 
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="media.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/css/ionicons.min.css" />
+            this.dragon.aditionalInfo = {
+              count: 0,
+              roar: true,
+              finished: false
+            };
 
-    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
-    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" />
+            this.dragon.updateAnimation = function() {
+              this.aditionalInfo.count += 0.1;
+              for (var i = 0; i < this.points.length; i++) {
+                this.points[i].y = Math.sin(i * 0.3 + this.aditionalInfo.count) * 10;
+              }
+            };
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser-ce/2.13.3/phaser.min.js"></script>
+            this.dragonRoar = this.add.audio('dragon');
+          },
+          update: function() {
+            if (!this.dragon) return;
 
-    <script type="module" src="https://unpkg.com/@ion-phaser-ce/core@1.0.2/dist/ion-phaser-ce/ion-phaser-ce.esm.js"></script>
-    <script nomodule src="https://unpkg.com/@ion-phaser-ce/core@1.0.2/dist/ion-phaser-ce/ion-phaser-ce.js"></script>
+            this.dragon.updateAnimation();
+            this.dragon.x += 8;
+            this.dragon.y = this.game.world.centerY;
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.3.2/web-animations.min.js"></script>
-    <script type="module" src="https://unpkg.com/@proyecto26/animatable-component@1.1.8/dist/animatable-component/animatable-component.esm.js"></script>
-    <script nomodule src="https://unpkg.com/@proyecto26/animatable-component@1.1.8/dist/animatable-component/animatable-component.js"></script>
-  </head>
-  <body>
-    <ion-app>
-      <ion-page class="page-home">
-        <ion-content id="splashContent" no-bounce class="content">
-          <ion-phaser-ce id="dragon"></ion-phaser-ce>
-          <animatable-component id="animatableSplash" animation="zoomInDown" duration="800">
-            <img class="logo" src="img/logo.png" />
-          </animatable-component>
-          <animatable-component autoplay delay="2600" animation="slideInRight" duration="3000">
-            <img class="ninja" src="img/ninja-back.gif" />
-          </animatable-component>
-        </ion-content>
-        <ion-content id="homeContent" class="content">
-          <ion-toolbar class="header">
-            <a href="https://github.com/proyecto26">
-              <img alt="Proyecto 26" src="img/v3-01.svg" />
-            </a>
-          </ion-toolbar>
-          <ion-toolbar color="tertiary">
-            <ion-title>Open Source Projects</ion-title>
-          </ion-toolbar>
-          <ion-grid class="ion-margin">
-            <ion-row>
-              <ion-col size="12" size-md="6" size-lg="3">
-                <animatable-component duration="400" animation="pulse" class="projects">
-                  <ion-card>
-                    <ion-card-header>
-                      <ion-card-title>
-                        <strong>&#60;</strong>animatable <strong> &#8725; &#62;</strong>
-                      </ion-card-title>
-                    </ion-card-header>
-                    <ion-card-content>
-                      <img src="img/projects/animatable.png" />
-                      <ion-button href="https://proyecto26.github.io/animatable-component" target="_blank" fill="outline" slot="end">Open</ion-button>
-                    </ion-card-content>
-                  </ion-card>
-                </animatable-component>
-              </ion-col>
-              <ion-col size="12" size-md="6" size-lg="3">
-                <animatable-component duration="400" animation="pulse" class="projects">
-                  <ion-card>
-                    <ion-card-header>
-                      <ion-card-title>
-                        IonPhaser
-                      </ion-card-title>
-                    </ion-card-header>
-                    <ion-card-content>
-                      <img src="img/projects/ionphaser.png" />
-                      <ion-button href="https://github.com/proyecto26/ion-phaser" target="_blank" fill="outline" slot="end">Open</ion-button>
-                    </ion-card-content>
-                  </ion-card>
-                </animatable-component>
-              </ion-col>
-              <ion-col size="12" size-md="6" size-lg="3">
-                <animatable-component duration="400" animation="pulse" class="projects">
-                  <ion-card>
-                    <ion-card-header>
-                      <ion-card-title>
-                        InAppBrowser for React Native
-                      </ion-card-title>
-                    </ion-card-header>
-                    <ion-card-content>
-                      <img src="img/projects/inappbrowser-react-native.png" />
-                      <ion-button href="https://github.com/proyecto26/react-native-inappbrowser" target="_blank" fill="outline" slot="end">Open</ion-button>
-                    </ion-card-content>
-                  </ion-card>
-                </animatable-component>
-              </ion-col>
-              <ion-col size="12" size-md="6" size-lg="3">
-                <animatable-component duration="400" animation="pulse" class="projects">
-                  <ion-card>
-                    <ion-card-header>
-                      <ion-card-title>
-                        InAppBrowser for NativeScript
-                      </ion-card-title>
-                    </ion-card-header>
-                    <ion-card-content>
-                      <img src="img/projects/inappbrowser-nativescript.png" />
-                      <ion-button href="https://github.com/proyecto26/nativescript-inappbrowser" target="_blank" fill="outline" slot="end">Open</ion-button>
-                    </ion-card-content>
-                  </ion-card>
-                </animatable-component>
-              </ion-col>
-              <ion-col size="12" size-md="6" size-lg="3">
-                <animatable-component duration="400" animation="pulse" class="projects">
-                  <ion-card>
-                    <ion-card-header>
-                      <ion-card-title>
-                        RestClient for Unity
-                      </ion-card-title>
-                    </ion-card-header>
-                    <ion-card-content>
-                      <img src="img/projects/restclient.png" />
-                      <ion-button href="https://github.com/proyecto26/RestClient" target="_blank" fill="outline" slot="end">Open</ion-button>
-                    </ion-card-content>
-                  </ion-card>
-                </animatable-component>
-              </ion-col>
-              <ion-col size="12" size-md="6" size-lg="3">
-                <animatable-component duration="400" animation="pulse" class="projects">
-                  <ion-card>
-                    <ion-card-header>
-                      <ion-card-title>
-                        MyApp
-                      </ion-card-title>
-                    </ion-card-header>
-                    <ion-card-content>
-                      <img src="https://github.com/proyecto26/MyApp/raw/develop/img/myapp.png" />
-                      <ion-button href="https://github.com/proyecto26/MyApp" target="_blank" fill="outline" slot="end">Open</ion-button>
-                    </ion-card-content>
-                  </ion-card>
-                </animatable-component>
-              </ion-col>
-              <ion-col size="12" size-md="6" size-lg="3">
-                <animatable-component duration="400" animation="pulse" class="projects">
-                  <ion-card>
-                    <ion-card-header>
-                      <ion-card-title>
-                        MyAPI
-                      </ion-card-title>
-                    </ion-card-header>
-                    <ion-card-content>
-                      <img src="https://nestjs.com/img/logo_text.svg" />
-                      <ion-button href="https://github.com/proyecto26/MyAPI" target="_blank" fill="outline" slot="end">Open</ion-button>
-                    </ion-card-content>
-                  </ion-card>
-                </animatable-component>
-              </ion-col>
-              <ion-col size="12" size-md="6" size-lg="3">
-                <animatable-component duration="400" animation="pulse" class="projects">
-                  <ion-card>
-                    <ion-card-header>
-                      <ion-card-title>
-                        MyBot
-                      </ion-card-title>
-                    </ion-card-header>
-                    <ion-card-content>
-                      <img src="https://github.com/proyecto26/MyBot/raw/master/img/mybot.png" />
-                      <ion-button href="https://github.com/proyecto26/MyBot" target="_blank" fill="outline" slot="end">Open</ion-button>
-                    </ion-card-content>
-                  </ion-card>
-                </animatable-component>
-              </ion-col>
-              <ion-col size="12" size-md="6" size-lg="3">
-                <animatable-component duration="400" animation="pulse" class="projects">
-                  <ion-card>
-                    <ion-card-header>
-                      <ion-card-title>
-                        Kinetic Scrolling Plugin for Phaser Framework
-                      </ion-card-title>
-                    </ion-card-header>
-                    <ion-card-content>
-                      <img src="https://raw.githubusercontent.com/jdnichollsc/Phaser-Kinetic-Scrolling-Plugin/main/img/plugin.png" />
-                      <ion-button href="https://github.com/proyecto26/Phaser-Kinetic-Scrolling-Plugin" target="_blank" fill="outline" slot="end">Open</ion-button>
-                    </ion-card-content>
-                  </ion-card>
-                </animatable-component>
-              </ion-col>
-              <ion-col size="12" size-md="6" size-lg="3">
-                <animatable-component duration="400" animation="pulse" class="projects">
-                  <ion-card>
-                    <ion-card-header>
-                      <ion-card-title>
-                        Roxy Fileman for Node.js
-                      </ion-card-title>
-                    </ion-card-header>
-                    <ion-card-content>
-                      <img src="https://github.com/proyecto26/Roxy-Fileman-for-Node.js/raw/master/public/screen.png" />
-                      <ion-button href="https://github.com/proyecto26/Roxy-Fileman-for-Node.js" target="_blank" fill="outline" slot="end">Open</ion-button>
-                    </ion-card-content>
-                  </ion-card>
-                </animatable-component>
-              </ion-col>
-              <ion-col size="12" size-md="6" size-lg="3">
-                <animatable-component duration="400" animation="pulse" class="projects">
-                  <ion-card>
-                    <ion-card-header>
-                      <ion-card-title>
-                        PokéDex GO - Community
-                      </ion-card-title>
-                    </ion-card-header>
-                    <ion-card-content>
-                      <img src="https://github.com/proyecto26/PokeDex-GO/raw/master/resources/screenshots/home.png" />
-                      <ion-button href="https://github.com/proyecto26/PokeDex-GO" target="_blank" fill="outline" slot="end">Open</ion-button>
-                    </ion-card-content>
-                  </ion-card>
-                </animatable-component>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-          <ion-toolbar color="secondary">
-            <ion-title>Other Projects</ion-title>
-          </ion-toolbar>
-          <ion-grid class="ion-margin ion-padding">
-            <ion-row>
-              <ion-col size="12" size-md="6" size-lg="3">
-                <animatable-component duration="400" animation="pulse" class="projects">
-                  <ion-card>
-                    <ion-card-header>
-                      <ion-card-title>
-                        NinjaDev (Commercial)
-                      </ion-card-title>
-                    </ion-card-header>
-                    <ion-card-content>
-                      <img src="img/projects/ninja-dev.svg" />
-                      <ion-button href="https://proyecto26.com/games/ninjadev" target="_blank" fill="outline" slot="end">Open</ion-button>
-                    </ion-card-content>
-                  </ion-card>
-                </animatable-component>
-              </ion-col>
-              <ion-col size="12" size-md="6" size-lg="3">
-                <animatable-component duration="400" animation="pulse" class="projects">
-                  <ion-card>
-                    <ion-card-header>
-                      <ion-card-title>
-                        Record Audio Button (Enterprise)
-                      </ion-card-title>
-                    </ion-card-header>
-                    <ion-card-content>
-                      <img src="https://github.com/proyecto26/record-audio-button-enterprise/raw/master/img/demo-angular.png?raw=true" />
-                      <ion-button href="https://github.com/proyecto26/record-audio-button-enterprise" target="_blank" fill="outline" slot="end">Open</ion-button>
-                    </ion-card-content>
-                  </ion-card>
-                </animatable-component>
-              </ion-col>
-              <ion-col size="12" size-md="6" size-lg="3">
-                <animatable-component duration="400" animation="pulse" class="projects">
-                  <ion-card>
-                    <ion-card-header>
-                      <ion-card-title>
-                        MercadoPago for React Native (Enterprise)
-                      </ion-card-title>
-                    </ion-card-header>
-                    <ion-card-content>
-                      <img src="https://github.com/proyecto26/react-native-mercado-pago-enterprise/raw/master/img/home.png?raw=true" />
-                      <ion-button href="https://github.com/proyecto26/react-native-mercado-pago-enterprise" target="_blank" fill="outline" slot="end">Open</ion-button>
-                    </ion-card-content>
-                  </ion-card>
-                </animatable-component>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-          <ion-toolbar color="danger">
-            <ion-title>Team</ion-title>
-          </ion-toolbar>
-          <ion-grid class="ion-margin ion-padding resume">
-            <ion-row>
-              <ion-col>
-                <animatable-component delay="400" duration="2000" animation="jello">
-                  <ion-list>
-                    <ion-item color="medium">
-                      <ion-label>
-                        Juan D. Nicholls (Founder)
-                      </ion-label>
-                    </ion-item>
-                    <img class="team" src="img/jdnichollsc.jpg" />
-                  </ion-list>
-                </animatable-component>
-              </ion-col>
-              <ion-col>
-                <p>
-                  Developer with a background in web and mobile development, having 8+ years of practice and leadership building interactive experiences.
-                </p>
-                <ion-button href="https://stackoverflow.com/cv/jdnichollsc" shape="round" fill="outline">
-                  DOWNLOAD RESUME
-                </ion-button>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-          <ion-toolbar class="footer" color="dark">
-            <h3 class="ion-padding">
-              © Proyecto 26
-            </h3>
-            <a href="https://github.com/proyecto26" style="position:absolute;right: 0;bottom: 0;">
-              <img alt="Proyecto 26" src="img/v1-a.svg" slot="secondary" />
-            </a>
-          </ion-toolbar>
-          <ion-fab vertical="top" horizontal="end" slot="fixed">
-            <animatable-component iterations="3" animation="swing" easing="ease-in" duration="1000" delay="2600">
-              <ion-fab-button href="./games">🎮</ion-fab-button>
-            </animatable-component>
-          </ion-fab>
-        </ion-content>
-      </ion-page>
-    </ion-app>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/noframework.waypoints.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/ionicons.js"></script>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-134081814-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+            if (this.dragon.aditionalInfo.roar &&
+                this.dragon.x > this.game.world.centerX - this.dragon.width) {
+              this.dragon.aditionalInfo.roar = false;
+              this.dragonRoar.play();
+            }
 
-      gtag('config', 'UA-134081814-1');
-    </script>
+            if (!this.dragon.aditionalInfo.finished && this.dragon.x > this.game.world.width) {
+              this.dragon.aditionalInfo.finished = true;
+              hideOverlay();
+            }
+          }
+        }
+      };
+    }
 
-    <script type="javascript/worker" src="scripts/worker.js"></script>
-    <script type="text/javascript" src="scripts/index.js"></script>
-    <script type="text/javascript" src="scripts/dragon.js"></script>
-    <script type="text/javascript" src="scripts/home.js"></script>
-    <script type="text/javascript" src="scripts/splash.js"></script>
-  </body>
-</html>
+    function hideOverlay() {
+      overlay.classList.add('hidden');
+      overlay.setAttribute('aria-hidden', 'true');
+      // Pause the game instead of destroying it
+      if (gameInstance) {
+        gameInstance.paused = true;
+      }
+      isAnimating = false;
+    }
+
+    function triggerDragon() {
+      if (isAnimating || typeof Phaser === 'undefined') return;
+
+      isAnimating = true;
+      overlay.classList.remove('hidden');
+      overlay.setAttribute('aria-hidden', 'false');
+
+      // Trigger ninja animation too
+      window.dispatchEvent(new CustomEvent('dragon-triggered'));
+
+      if (isInitialized && gameInstance) {
+        // Resume and restart the state
+        gameInstance.paused = false;
+        gameInstance.state.restart(true, false);
+      } else {
+        // First time: initialize the game
+        customElements.whenDefined('ion-phaser-ce').then(function() {
+          ionPhaser.game = createGameConfig();
+          ionPhaser.getInstance().then(function(game) {
+            gameInstance = game;
+            isInitialized = true;
+          }).catch(function(error) {
+            console.error('Dragon game error:', error);
+            hideOverlay();
+          });
+        });
+      }
+    }
+
+    // Listen for logo clicks
+    function init() {
+      var logoTrigger = document.querySelector('[data-dragon-trigger]');
+      if (logoTrigger) {
+        logoTrigger.addEventListener('click', function(e) {
+          if (!isAnimating) {
+            e.preventDefault();
+            triggerDragon();
+          }
+        });
+      }
+    }
+
+    // Initialize when ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  })();
+</script>  <!-- Ninja Animation --> <div id="ninja-container" class="ninja-container fixed bottom-0 left-0 right-0 pointer-events-none z-50" data-astro-cid-uegq76ih> <img id="ninja-sprite" src="/img/ninja-back.gif" alt="" class="ninja-sprite absolute bottom-4 w-24 h-24 md:w-32 md:h-32 object-contain" aria-hidden="true" data-astro-cid-uegq76ih> </div>   <!-- Initialize Lucide icons -->   </body> </html>  

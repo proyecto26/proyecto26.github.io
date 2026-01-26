@@ -1,61 +1,165 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8" />
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-		<meta name="viewport" content="user-scalable=0, initial-scale=1, minimum-scale=1, maximum-scale=1, width=device-width, minimal-ui=1">
-		<title>Zombies Game</title>
-		<link rel="stylesheet" type="text/css" href="css/style.css">
-		<style>
-			body{
-                margin: 0px;
-                overflow: hidden;
-                text-align:center;
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta name="description" content="Survive waves of zombies in this thrilling survival game"><title>Zombies - Proyecto 26 Games</title><!-- Favicons --><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#f2385a"><meta name="msapplication-TileColor" content="#0a0a0b"><meta name="theme-color" content="#0a0a0b"><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:site_name" content="Proyecto 26"><meta property="og:title" content="Zombies - Proyecto 26 Games"><meta property="og:url" content="https://proyecto26.com"><meta property="og:description" content="Survive waves of zombies in this thrilling survival game"><meta property="og:image" content="https://proyecto26.com/img/pro26.png"><!-- Twitter --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Zombies - Proyecto 26 Games"><meta name="twitter:description" content="Survive waves of zombies in this thrilling survival game"><meta name="twitter:site" content="@proyecto26"><meta name="twitter:creator" content="@jdnichollsc"><meta name="twitter:image" content="https://proyecto26.com/img/pro26.png"><!-- Preconnect to external resources --><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><!-- Lucide Icons --><script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script><link rel="stylesheet" href="/assets/about.Ch7k9UKk.css">
+<style>a[data-astro-cid-vnzlvqnm],button[data-astro-cid-vnzlvqnm]{will-change:transform}
+</style><script type="module" src="/assets/hoisted.4TCNplhy.js"></script></head> <body class="bg-bg-primary text-text-primary antialiased"> <!-- Custom cursor (desktop only) --> <div class="cursor-dot hidden lg:block"></div> <div class="cursor-outline hidden lg:block"></div>  <header class="header fixed top-0 left-0 right-0 z-header h-[72px] bg-bg-primary/80 backdrop-blur-custom border-b border-border-subtle transition-all duration-300"> <div class="container h-full flex items-center justify-between"> <!-- Logo --> <a href="/" class="logo-link flex items-center gap-3 group"> <img src="/img/pro26.png" alt="Proyecto 26" class="w-10 h-10 rounded-lg transition-all duration-300 group-hover:shadow-glow-coral group-hover:scale-105"> <span class="text-lg font-bold text-text-primary hidden sm:block">Proyecto 26</span> </a> <!-- Desktop Navigation --> <nav class="hidden md:flex items-center gap-8"> <a href="/projects" class="nav-link text-sm font-medium transition-colors duration-200 relative text-text-secondary hover:text-text-primary"> Projects <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent-coral transition-all duration-300 group-hover:w-full"></span> </a><a href="/games" class="nav-link text-sm font-medium transition-colors duration-200 relative text-accent-coral"> Games <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent-coral transition-all duration-300 group-hover:w-full"></span> </a><a href="/about" class="nav-link text-sm font-medium transition-colors duration-200 relative text-text-secondary hover:text-text-primary"> About <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent-coral transition-all duration-300 group-hover:w-full"></span> </a><a href="/contact" class="nav-link text-sm font-medium transition-colors duration-200 relative text-text-secondary hover:text-text-primary"> Contact <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent-coral transition-all duration-300 group-hover:w-full"></span> </a> </nav> <!-- Actions --> <div class="flex items-center gap-3"> <!-- Theme Toggle --> <button data-dragon-trigger class="w-10 h-10 rounded-full bg-bg-hover flex items-center justify-center text-text-secondary hover:text-text-primary hover:bg-bg-tertiary transition-all duration-200" aria-label="Toggle theme"> <i class="w-5 h-5">🐉</i> </button> <!-- GitHub Link --> <a href="https://github.com/proyecto26" target="_blank" rel="noopener noreferrer" class="hidden sm:flex items-center gap-2 px-4 py-2 rounded-lg bg-bg-hover border border-border-default text-text-secondary hover:text-text-primary hover:border-accent-coral transition-all duration-200"> <i data-lucide="github" class="w-4 h-4"></i> <span class="text-sm font-medium">4.5k</span> </a> <!-- Mobile Menu Button --> <button id="mobile-menu-btn" class="md:hidden w-10 h-10 rounded-lg bg-bg-hover flex items-center justify-center text-text-secondary" aria-label="Open menu" aria-expanded="false"> <i data-lucide="menu" class="w-5 h-5 menu-icon"></i> <i data-lucide="x" class="w-5 h-5 close-icon hidden"></i> </button> </div> </div> <!-- Mobile Navigation Drawer --> <div id="mobile-menu" class="md:hidden fixed inset-0 top-[72px] bg-black transform translate-x-full transition-transform duration-300 ease-smooth z-modal"> <nav class="flex flex-col p-6 gap-2"> <a href="/projects" class="mobile-nav-link py-4 px-4 text-lg font-medium text-white hover:text-accent-coral hover:bg-bg-hover rounded-lg transition-colors duration-200"> Projects </a><a href="/games" class="mobile-nav-link py-4 px-4 text-lg font-medium text-white hover:text-accent-coral hover:bg-bg-hover rounded-lg transition-colors duration-200"> Games </a><a href="/about" class="mobile-nav-link py-4 px-4 text-lg font-medium text-white hover:text-accent-coral hover:bg-bg-hover rounded-lg transition-colors duration-200"> About </a><a href="/contact" class="mobile-nav-link py-4 px-4 text-lg font-medium text-white hover:text-accent-coral hover:bg-bg-hover rounded-lg transition-colors duration-200"> Contact </a> <hr class="border-border-default my-4"> <a href="https://github.com/proyecto26" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 py-4 px-4 text-lg font-medium text-white hover:text-accent-coral rounded-lg transition-colors duration-200"> <i data-lucide="github" class="w-5 h-5"></i>
+GitHub
+<i data-lucide="arrow-right" class="w-4 h-4 ml-auto"></i> </a> </nav> </div> </header> <!-- Mobile menu overlay --> <div id="mobile-overlay" class="md:hidden fixed inset-0 bg-black/90 opacity-0 pointer-events-none transition-opacity duration-300 z-overlay"></div>  <main class="pt-[72px]"> <section class="py-8 bg-bg-primary"> <div class="container"> <!-- Back link --> <div class="mb-6"> <a href="/games" class="inline-flex items-center justify-center gap-2 font-semibold rounded-xl transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-coral focus-visible:ring-offset-2 focus-visible:ring-offset-bg-primary disabled:opacity-50 disabled:cursor-not-allowed bg-transparent text-text-secondary hover:text-text-primary hover:underline underline-offset-4 px-4 py-2 text-sm " data-astro-cid-vnzlvqnm> <i data-lucide="arrow-left" class="w-4 h-4"></i>
+Back to Games
+</a> </div> <!-- Game Title --> <div class="text-center mb-8"> <h1 class="text-4xl md:text-5xl font-bold text-text-primary mb-4">
+Zombies
+</h1> <p class="text-text-secondary max-w-2xl mx-auto">
+Survive waves of zombies in this thrilling top-down survival shooter. How long can you last?
+</p> </div> <!-- Game Container --> <div class="max-w-4xl mx-auto mb-8"> <div class="game-container relative bg-bg-card border border-border-default rounded-2xl overflow-hidden"> <div class="aspect-video"> <iframe id="game-frame" src="/games/zombies/index.html" class="w-full h-full border-0" allow="autoplay; fullscreen" title="Zombies Game"></iframe> </div> </div> <!-- Controls --> <div class="flex flex-wrap items-center justify-center gap-4 mt-6"> <button id="fullscreen-btn" class="flex items-center gap-2 px-4 py-2 bg-bg-hover border border-border-default rounded-lg text-text-secondary hover:text-text-primary hover:border-accent-coral transition-all duration-200"> <i data-lucide="maximize" class="w-4 h-4"></i>
+Fullscreen
+</button> </div> </div> <!-- Game Info --> <div class="max-w-3xl mx-auto"> <div class="grid grid-cols-1 md:grid-cols-2 gap-6"> <div class="bg-bg-card border border-border-default rounded-2xl p-6"> <h3 class="text-lg font-semibold text-text-primary mb-4 flex items-center gap-2"> <i data-lucide="gamepad-2" class="w-5 h-5 text-accent-coral"></i>
+Controls
+</h3> <ul class="space-y-2 text-text-secondary"> <li class="flex items-center gap-2"> <span class="px-2 py-1 bg-bg-hover rounded text-xs font-mono">WASD</span> <span>Move</span> </li> <li class="flex items-center gap-2"> <span class="px-2 py-1 bg-bg-hover rounded text-xs font-mono">Mouse</span> <span>Aim</span> </li> <li class="flex items-center gap-2"> <span class="px-2 py-1 bg-bg-hover rounded text-xs font-mono">Click</span> <span>Shoot</span> </li> </ul> </div> <div class="bg-bg-card border border-border-default rounded-2xl p-6"> <h3 class="text-lg font-semibold text-text-primary mb-4 flex items-center gap-2"> <i data-lucide="code-2" class="w-5 h-5 text-accent-teal"></i>
+Tech Stack
+</h3> <div class="flex flex-wrap gap-2"> <span class="px-3 py-1 bg-bg-hover rounded-full text-sm text-text-muted">Phaser</span> <span class="px-3 py-1 bg-bg-hover rounded-full text-sm text-text-muted">JavaScript</span> <span class="px-3 py-1 bg-bg-hover rounded-full text-sm text-text-muted">Virtual Joystick</span> </div> </div> </div> </div> </div> </section> </main> <footer class="bg-bg-secondary border-t border-border-default"> <div class="container py-16"> <!-- Top Section --> <div class="flex flex-col lg:flex-row justify-between gap-12 mb-12"> <!-- Logo & Tagline --> <div class="max-w-sm"> <a href="/" class="flex items-center gap-3 mb-4"> <img src="/img/pro26.png" alt="Proyecto 26" class="w-8 h-8 rounded-md"> <span class="text-lg font-bold text-text-primary">Proyecto 26</span> </a> <p class="text-text-secondary text-base">
+Changing the world with small contributions.
+</p> </div> <!-- Link Columns --> <div class="grid grid-cols-2 md:grid-cols-3 gap-8 lg:gap-16"> <!-- Projects --> <div> <h3 class="text-xs font-semibold uppercase tracking-wider text-text-muted mb-4">
+Projects
+</h3> <ul class="space-y-3"> <li> <a href="https://github.com/proyecto26/react-native-inappbrowser" target="_blank" rel="noopener noreferrer" class="text-text-secondary hover:text-text-primary transition-colors duration-200"> InAppBrowser </a> </li><li> <a href="https://github.com/proyecto26/RestClient" target="_blank" rel="noopener noreferrer" class="text-text-secondary hover:text-text-primary transition-colors duration-200"> RestClient </a> </li><li> <a href="https://proyecto26.github.io/animatable-component" target="_blank" rel="noopener noreferrer" class="text-text-secondary hover:text-text-primary transition-colors duration-200"> Animatable </a> </li><li> <a href="https://github.com/proyecto26/ion-phaser" target="_blank" rel="noopener noreferrer" class="text-text-secondary hover:text-text-primary transition-colors duration-200"> IonPhaser </a> </li> </ul> </div> <!-- Resources --> <div> <h3 class="text-xs font-semibold uppercase tracking-wider text-text-muted mb-4">
+Resources
+</h3> <ul class="space-y-3"> <li> <a href="https://github.com/proyecto26/sponsors" target="_blank" rel="noopener noreferrer" class="text-text-secondary hover:text-text-primary transition-colors duration-200"> Sponsors </a> </li><li> <a href="https://github.com/proyecto26/community/discussions" target="_blank" rel="noopener noreferrer" class="text-text-secondary hover:text-text-primary transition-colors duration-200"> Community </a> </li> </ul> </div> <!-- Connect --> <div> <h3 class="text-xs font-semibold uppercase tracking-wider text-text-muted mb-4">
+Connect
+</h3> <ul class="space-y-3"> <li> <a href="https://github.com/proyecto26" target="_blank" rel="noopener noreferrer" class="text-text-secondary hover:text-text-primary transition-colors duration-200"> GitHub </a> </li><li> <a href="https://www.youtube.com/@proyecto26" target="_blank" rel="noopener noreferrer" class="text-text-secondary hover:text-text-primary transition-colors duration-200"> YouTube </a> </li><li> <a href="https://www.facebook.com/proyecto26" target="_blank" rel="noopener noreferrer" class="text-text-secondary hover:text-text-primary transition-colors duration-200"> Facebook </a> </li><li> <a href="mailto:jdnichollsc@gmail.com" class="text-text-secondary hover:text-text-primary transition-colors duration-200"> Contact </a> </li> </ul> </div> </div> </div> <!-- Bottom Section --> <div class="pt-8 border-t border-border-default flex flex-col sm:flex-row items-center justify-between gap-4"> <p class="text-text-muted text-sm">
+&copy; 2026 Proyecto 26. Made with love in Colombia.
+</p> <!-- Social Icons --> <div class="flex items-center gap-4"> <a href="https://github.com/proyecto26" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full flex items-center justify-center text-text-muted hover:text-accent-teal hover:bg-bg-hover transition-all duration-200" aria-label="GitHub"> <i data-lucide="github" class="w-5 h-5"></i> </a><a href="https://www.youtube.com/@proyecto26" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full flex items-center justify-center text-text-muted hover:text-accent-teal hover:bg-bg-hover transition-all duration-200" aria-label="YouTube"> <i data-lucide="youtube" class="w-5 h-5"></i> </a><a href="https://www.facebook.com/proyecto26" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full flex items-center justify-center text-text-muted hover:text-accent-teal hover:bg-bg-hover transition-all duration-200" aria-label="Facebook"> <i data-lucide="facebook" class="w-5 h-5"></i> </a><a href="https://linkedin.com/in/jdnichollsc" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full flex items-center justify-center text-text-muted hover:text-accent-teal hover:bg-bg-hover transition-all duration-200" aria-label="LinkedIn"> <i data-lucide="linkedin" class="w-5 h-5"></i> </a><a href="https://x.com/jdnichollsc" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full flex items-center justify-center text-text-muted hover:text-accent-teal hover:bg-bg-hover transition-all duration-200" aria-label="Twitter"> <i data-lucide="twitter" class="w-5 h-5"></i> </a> </div> </div> </div> </footer>  <!-- Dragon Easter Egg --> <!-- Fullscreen transparent overlay for dragon animation --><div id="dragon-overlay" class="dragon-overlay fixed inset-0 z-dragon hidden" aria-hidden="true" data-astro-cid-qx6yczhg> <ion-phaser-ce id="dragon-game" data-astro-cid-qx6yczhg></ion-phaser-ce> </div> <audio id="dragon-sound" preload="auto" data-astro-cid-qx6yczhg> <source src="/audio/dragon.ogg" type="audio/ogg" data-astro-cid-qx6yczhg> <source src="/audio/dragon.mp3" type="audio/mpeg" data-astro-cid-qx6yczhg> </audio> <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser-ce/2.13.3/phaser.min.js"></script> <script type="module" src="https://unpkg.com/@ion-phaser-ce/core@1.0.2/dist/ion-phaser-ce/ion-phaser-ce.esm.js"></script> <script nomodule src="https://unpkg.com/@ion-phaser-ce/core@1.0.2/dist/ion-phaser-ce/ion-phaser-ce.js"></script> <script>
+  (function() {
+    var overlay = document.getElementById('dragon-overlay');
+    var ionPhaser = document.getElementById('dragon-game');
+    var gameInstance = null;
+    var isAnimating = false;
+    var isInitialized = false;
+
+    function createGameConfig() {
+      return {
+        width: '100%',
+        height: '100%',
+        transparent: true,
+        renderer: Phaser.AUTO,
+        roundPixels: true,
+        alignH: true,
+        alignV: true,
+        scaleMode: Phaser.ScaleManager.RESIZE,
+        disableVisibilityChange: true,
+        state: {
+          preload: function() {
+            this.load.image('dragon', '/img/dragon.png');
+            this.load.audio('dragon', ['/audio/dragon.ogg', '/audio/dragon.mp3']);
+          },
+          create: function() {
+            var points = [];
+            var imgCache = this.game.cache.getFrame('dragon');
+            var totalPoints = 26;
+            var length = imgCache.width / totalPoints;
+
+            for (var i = 0; i < totalPoints; i++) {
+              points.push(new Phaser.Point(i * length, 0));
             }
-            #rotate{
-                display:none;
-                width: 100%;
-                height: 100%;
-                position: absolute;
+
+            this.dragon = this.game.add.rope(
+              -imgCache.width,
+              this.game.world.centerY,
+              'dragon',
+              null,
+              points
+            );
+
+            this.dragon.aditionalInfo = {
+              count: 0,
+              roar: true,
+              finished: false
+            };
+
+            this.dragon.updateAnimation = function() {
+              this.aditionalInfo.count += 0.1;
+              for (var i = 0; i < this.points.length; i++) {
+                this.points[i].y = Math.sin(i * 0.3 + this.aditionalInfo.count) * 10;
+              }
+            };
+
+            this.dragonRoar = this.add.audio('dragon');
+          },
+          update: function() {
+            if (!this.dragon) return;
+
+            this.dragon.updateAnimation();
+            this.dragon.x += 8;
+            this.dragon.y = this.game.world.centerY;
+
+            if (this.dragon.aditionalInfo.roar &&
+                this.dragon.x > this.game.world.centerX - this.dragon.width) {
+              this.dragon.aditionalInfo.roar = false;
+              this.dragonRoar.play();
             }
-            .helper {
-                display: inline-block;
-                height: 100%;
-                vertical-align: middle;
+
+            if (!this.dragon.aditionalInfo.finished && this.dragon.x > this.game.world.width) {
+              this.dragon.aditionalInfo.finished = true;
+              hideOverlay();
             }
-            #rotate img{
-                vertical-align: middle;
-            }
-            #game{
-                width: 100%;
-                height: 100%;
-                position: absolute;
-            }
-		</style>
-	</head>
-	<body>
-		<div id="rotate">
-			<span class="helper"></span>
-			<img alt="rotar pantalla" src="assets/rotate.png" />
-		</div>
-		<div id="game"></div>
-		<script src="js/boot.js"></script>
-		<script src="js/load.js"></script>
-		<script src="js/menu.js"></script>
-		<script src="js/play.js"></script>
-		<script src="lib/phaser.min.js"></script>
-		<script src="lib/phaser-virtual-joystick.min.js"></script>
-		<script src="lib/phaser-state-transition-plugin.min.js"></script>
-		<script src="js/eye.js"></script>
-		<script src="lib/HUDManager.js"></script>
-		<script type="text/javascript">
-	        var game = new Phaser.Game(1280, 800, Phaser.CANVAS, 'game');
-	        game.state.add('boot', bootState);
-	        game.state.add('load', loadState);
-			game.state.add('menu', menuState);
-	        game.state.add('play', playState);
-	        game.state.start('boot');
-		</script>
-	</body>
-</html>
+          }
+        }
+      };
+    }
+
+    function hideOverlay() {
+      overlay.classList.add('hidden');
+      overlay.setAttribute('aria-hidden', 'true');
+      // Pause the game instead of destroying it
+      if (gameInstance) {
+        gameInstance.paused = true;
+      }
+      isAnimating = false;
+    }
+
+    function triggerDragon() {
+      if (isAnimating || typeof Phaser === 'undefined') return;
+
+      isAnimating = true;
+      overlay.classList.remove('hidden');
+      overlay.setAttribute('aria-hidden', 'false');
+
+      // Trigger ninja animation too
+      window.dispatchEvent(new CustomEvent('dragon-triggered'));
+
+      if (isInitialized && gameInstance) {
+        // Resume and restart the state
+        gameInstance.paused = false;
+        gameInstance.state.restart(true, false);
+      } else {
+        // First time: initialize the game
+        customElements.whenDefined('ion-phaser-ce').then(function() {
+          ionPhaser.game = createGameConfig();
+          ionPhaser.getInstance().then(function(game) {
+            gameInstance = game;
+            isInitialized = true;
+          }).catch(function(error) {
+            console.error('Dragon game error:', error);
+            hideOverlay();
+          });
+        });
+      }
+    }
+
+    // Listen for logo clicks
+    function init() {
+      var logoTrigger = document.querySelector('[data-dragon-trigger]');
+      if (logoTrigger) {
+        logoTrigger.addEventListener('click', function(e) {
+          if (!isAnimating) {
+            e.preventDefault();
+            triggerDragon();
+          }
+        });
+      }
+    }
+
+    // Initialize when ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  })();
+</script>  <!-- Ninja Animation --> <div id="ninja-container" class="ninja-container fixed bottom-0 left-0 right-0 pointer-events-none z-50" data-astro-cid-uegq76ih> <img id="ninja-sprite" src="/img/ninja-back.gif" alt="" class="ninja-sprite absolute bottom-4 w-24 h-24 md:w-32 md:h-32 object-contain" aria-hidden="true" data-astro-cid-uegq76ih> </div>   <!-- Initialize Lucide icons -->   </body> </html>  

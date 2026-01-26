@@ -1,0 +1,1 @@
+import"./NinjaAnimation.astro_astro_type_script_index_0_lang.-SfZb3M_.js";const l=document.getElementById("fullscreen-btn"),e=document.getElementById("game-frame");l?.addEventListener("click",()=>{e&&(e.requestFullscreen?e.requestFullscreen():e.webkitRequestFullscreen?e.webkitRequestFullscreen():e.msRequestFullscreen&&e.msRequestFullscreen())});
