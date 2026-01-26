@@ -76,6 +76,41 @@ const fullImageUrl = image.startsWith('http') ? image : `${siteUrl}${image}`;
         }
       });
     </script>
+
+    <script>
+      import { gsap } from 'gsap';
+
+      // Custom cursor
+      const cursorDot = document.querySelector('.cursor-dot');
+      const cursorOutline = document.querySelector('.cursor-outline');
+
+      if (cursorDot && cursorOutline && window.matchMedia('(hover: hover)').matches) {
+        window.addEventListener('mousemove', (e) => {
+          gsap.to(cursorDot, {
+            x: e.clientX,
+            y: e.clientY,
+            duration: 0.1,
+          });
+          gsap.to(cursorOutline, {
+            x: e.clientX,
+            y: e.clientY,
+            duration: 0.3,
+          });
+        });
+
+        // Expand cursor on interactive elements
+        document.querySelectorAll('a, button, [data-cursor]').forEach((el) => {
+          el.addEventListener('mouseenter', () => {
+            gsap.to(cursorOutline, { scale: 2, opacity: 1, duration: 0.3 });
+            gsap.to(cursorDot, { scale: 0.5, duration: 0.3 });
+          });
+          el.addEventListener('mouseleave', () => {
+            gsap.to(cursorOutline, { scale: 1, opacity: 0.5, duration: 0.3 });
+            gsap.to(cursorDot, { scale: 1, duration: 0.3 });
+          });
+        });
+      }
+    </script>
   </body>
 </html>
 
