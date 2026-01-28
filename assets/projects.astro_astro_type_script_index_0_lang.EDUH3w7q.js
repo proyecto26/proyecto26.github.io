@@ -1,0 +1,1 @@
+import{g as r}from"./index.CB87Sc6I.js";import{S as o}from"./ScrollTrigger.Cv03IO65.js";r.registerPlugin(o);document.querySelectorAll('[data-animate="fade-up"]').forEach(t=>{const e=parseInt(t.getAttribute("data-delay")||"0")/1e3;r.from(t,{scrollTrigger:{trigger:t,start:"top 85%",toggleActions:"play none none none"},y:30,opacity:0,duration:.6,delay:e,ease:"power2.out"})});

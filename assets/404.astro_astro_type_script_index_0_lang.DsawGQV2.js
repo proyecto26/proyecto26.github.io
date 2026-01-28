@@ -1,0 +1,1 @@
+import{g as e}from"./index.CB87Sc6I.js";document.querySelectorAll('[data-animate="fade-up"]').forEach(a=>{const t=parseInt(a.getAttribute("data-delay")||"0")/1e3;e.from(a,{y:30,opacity:0,duration:.6,delay:t,ease:"power2.out"})});

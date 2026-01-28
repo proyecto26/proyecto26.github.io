@@ -1,1 +1,0 @@
-import{g as e}from"./NinjaAnimation.astro_astro_type_script_index_0_lang.-SfZb3M_.js";document.querySelectorAll('[data-animate="fade-up"]').forEach(a=>{const t=parseInt(a.getAttribute("data-delay")||"0")/1e3;e.from(a,{y:30,opacity:0,duration:.6,delay:t,ease:"power2.out"})});
