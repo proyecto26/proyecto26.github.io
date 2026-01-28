@@ -1,0 +1,117 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Button from '../../components/Button.astro';
+---
+
+<BaseLayout title="Flappy Fly - Proyecto 26 Games" description="A fun Flappy Bird clone built with Phaser">
+  <Header currentPage="games" />
+
+  <main class="pt-[72px] flex-1">
+    <section class="py-8 bg-bg-primary">
+      <div class="container">
+        <!-- Back link -->
+        <div class="mb-6">
+          <Button href="/games" variant="ghost" size="sm">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i>
+            Back to Games
+          </Button>
+        </div>
+
+        <!-- Game Title -->
+        <div class="text-center mb-8">
+          <h1 class="text-4xl md:text-5xl font-bold text-text-primary mb-4">
+            Flappy Fly
+          </h1>
+          <p class="text-text-secondary max-w-2xl mx-auto">
+            A fun Flappy Bird clone. Tap or click to fly and navigate through the pipes without crashing!
+          </p>
+        </div>
+
+        <!-- Game Container -->
+        <div class="max-w-sm mx-auto mb-8">
+          <div class="game-container relative bg-bg-card border border-border-default rounded-2xl overflow-hidden">
+            <div class="aspect-[9/16]">
+              <iframe
+                id="game-frame"
+                src="/games/flappy-bird-game/index.html"
+                class="w-full h-full border-0"
+                allow="autoplay; fullscreen"
+                title="Flappy Fly Game"
+              ></iframe>
+            </div>
+          </div>
+
+          <!-- Controls -->
+          <div class="flex flex-wrap items-center justify-center gap-4 mt-6">
+            <button
+              id="fullscreen-btn"
+              class="flex items-center gap-2 px-4 py-2 bg-bg-hover border border-border-default rounded-lg text-text-secondary hover:text-text-primary hover:border-accent-coral transition-all duration-200"
+            >
+              <i data-lucide="maximize" class="w-4 h-4"></i>
+              Fullscreen
+            </button>
+          </div>
+        </div>
+
+        <!-- Game Info -->
+        <div class="max-w-3xl mx-auto">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-bg-card border border-border-default rounded-2xl p-6">
+              <h3 class="text-lg font-semibold text-text-primary mb-4 flex items-center gap-2">
+                <i data-lucide="gamepad-2" class="w-5 h-5 text-accent-coral"></i>
+                Controls
+              </h3>
+              <ul class="space-y-2 text-text-secondary">
+                <li class="flex items-center gap-2">
+                  <span class="px-2 py-1 bg-bg-hover rounded text-xs font-mono">Click</span>
+                  <span>Flap wings</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="px-2 py-1 bg-bg-hover rounded text-xs font-mono">Tap</span>
+                  <span>Flap wings (mobile)</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="px-2 py-1 bg-bg-hover rounded text-xs font-mono">Space</span>
+                  <span>Restart after game over</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="bg-bg-card border border-border-default rounded-2xl p-6">
+              <h3 class="text-lg font-semibold text-text-primary mb-4 flex items-center gap-2">
+                <i data-lucide="code-2" class="w-5 h-5 text-accent-teal"></i>
+                Tech Stack
+              </h3>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-3 py-1 bg-bg-hover rounded-full text-sm text-text-muted">Phaser CE</span>
+                <span class="px-3 py-1 bg-bg-hover rounded-full text-sm text-text-muted">JavaScript</span>
+                <span class="px-3 py-1 bg-bg-hover rounded-full text-sm text-text-muted">HTML5 Canvas</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<script>
+  const fullscreenBtn = document.getElementById('fullscreen-btn');
+  const gameFrame = document.getElementById('game-frame');
+
+  fullscreenBtn?.addEventListener('click', () => {
+    if (gameFrame) {
+      if (gameFrame.requestFullscreen) {
+        gameFrame.requestFullscreen();
+      } else if ((gameFrame as any).webkitRequestFullscreen) {
+        (gameFrame as any).webkitRequestFullscreen();
+      } else if ((gameFrame as any).msRequestFullscreen) {
+        (gameFrame as any).msRequestFullscreen();
+      }
+    }
+  });
+</script>
