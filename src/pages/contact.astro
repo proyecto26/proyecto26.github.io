@@ -41,10 +41,44 @@ const supportLinks = [
   { name: 'Open Collective', icon: 'users', color: '#7FADF2', href: 'https://opencollective.com/proyecto26' },
   { name: 'Liberapay', icon: 'dollar-sign', color: '#f6c915', href: 'https://liberapay.com/proyecto26' },
 ];
+
+const faqs = [
+  {
+    question: 'How can I contribute to your projects?',
+    answer: 'We welcome contributions of all kinds! Check out the CONTRIBUTING.md file in each repository for guidelines. You can help with code, documentation, bug reports, or feature suggestions.',
+  },
+  {
+    question: 'Do you offer consulting or custom development?',
+    answer: 'Yes! We\'re available for consulting on React Native, Unity, web development, and game development projects. Reach out through LinkedIn or email for inquiries.',
+  },
+  {
+    question: 'Are your projects free to use?',
+    answer: 'Our source code and open source projects are licensed under MIT or similar permissive licenses — you can use them freely in personal and commercial projects. However, media assets (images, game artwork, audio) on our website are licensed under CC BY-NC-ND 4.0, which allows non-commercial use with attribution.',
+  },
+  {
+    question: 'How do I report a security vulnerability?',
+    answer: 'For security issues, please email us directly instead of opening a public issue. We take security seriously and will respond promptly to any reports.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((faq) => ({
+    '@type': 'Question',
+    name: faq.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: faq.answer,
+    },
+  })),
+};
 ---
 
 <BaseLayout title="Contact - Proyecto 26" description="Get in touch with Proyecto 26. We'd love to hear from you!">
   <Header currentPage="contact" />
+
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 
   <main id="main-content" class="pt-[72px]">
     <!-- Hero Section -->
@@ -194,33 +228,17 @@ const supportLinks = [
           </h2>
 
           <div class="space-y-4">
-            <div class="bg-bg-card border border-border-default rounded-2xl p-6" data-animate="fade-up" data-delay="100">
-              <h3 class="text-lg font-semibold text-text-primary mb-2">How can I contribute to your projects?</h3>
-              <p class="text-text-secondary">
-                We welcome contributions of all kinds! Check out the CONTRIBUTING.md file in each repository for guidelines. You can help with code, documentation, bug reports, or feature suggestions.
-              </p>
-            </div>
-
-            <div class="bg-bg-card border border-border-default rounded-2xl p-6" data-animate="fade-up" data-delay="200">
-              <h3 class="text-lg font-semibold text-text-primary mb-2">Do you offer consulting or custom development?</h3>
-              <p class="text-text-secondary">
-                Yes! We're available for consulting on React Native, Unity, web development, and game development projects. Reach out through LinkedIn or email for inquiries.
-              </p>
-            </div>
-
-            <div class="bg-bg-card border border-border-default rounded-2xl p-6" data-animate="fade-up" data-delay="300">
-              <h3 class="text-lg font-semibold text-text-primary mb-2">Are your projects free to use?</h3>
-              <p class="text-text-secondary">
-                Our source code and open source projects are licensed under MIT or similar permissive licenses — you can use them freely in personal and commercial projects. However, media assets (images, game artwork, audio) on our website are licensed under CC BY-NC-ND 4.0, which allows non-commercial use with attribution. See our <a href="/terms" class="text-accent-coral hover:underline">Terms & Conditions</a> for details.
-              </p>
-            </div>
-
-            <div class="bg-bg-card border border-border-default rounded-2xl p-6" data-animate="fade-up" data-delay="400">
-              <h3 class="text-lg font-semibold text-text-primary mb-2">How do I report a security vulnerability?</h3>
-              <p class="text-text-secondary">
-                For security issues, please email us directly instead of opening a public issue. We take security seriously and will respond promptly to any reports.
-              </p>
-            </div>
+            {faqs.map((faq, index) => (
+              <div class="bg-bg-card border border-border-default rounded-2xl p-6" data-animate="fade-up" data-delay={(index + 1) * 100}>
+                <h3 class="text-lg font-semibold text-text-primary mb-2">{faq.question}</h3>
+                <p class="text-text-secondary">
+                  {faq.answer}
+                  {faq.question.includes('free to use') && (
+                    <> See our <a href="/terms" class="text-accent-coral hover:underline">Terms & Conditions</a> for details.</>
+                  )}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </div>

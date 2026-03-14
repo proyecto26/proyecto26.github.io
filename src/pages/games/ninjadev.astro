@@ -3,10 +3,33 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import Button from '../../components/Button.astro';
+const gameSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'VideoGame',
+  name: 'NinjaDev',
+  description: 'A side-scrolling platformer built with Phaser. Jump, run, and slash your way through challenging levels!',
+  url: 'https://proyecto26.com/games/ninjadev',
+  image: 'https://proyecto26.com/games/img/ninja.png',
+  genre: '2D Platformer',
+  gamePlatform: 'Web Browser',
+  applicationCategory: 'Game',
+  operatingSystem: 'Any',
+  author: {
+    '@type': 'Organization',
+    name: 'Proyecto 26',
+    url: 'https://proyecto26.com',
+  },
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD',
+  },
+};
 ---
 
-<BaseLayout title="NinjaDev - Proyecto 26 Games" description="A side-scrolling platformer that showcases advanced game development techniques">
+<BaseLayout title="NinjaDev - Proyecto 26 Games" description="A side-scrolling platformer that showcases advanced game development techniques" image="/games/img/ninja.png">
   <Header currentPage="games" />
+  <script type="application/ld+json" set:html={JSON.stringify(gameSchema)} />
 
   <main id="main-content" class="pt-[72px]">
     <section class="py-8 bg-bg-primary">

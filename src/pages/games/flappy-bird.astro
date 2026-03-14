@@ -3,10 +3,32 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import Button from '../../components/Button.astro';
+const gameSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'VideoGame',
+  name: 'Flappy Fly',
+  description: 'A fun Flappy Bird clone. Tap or click to fly and navigate through the pipes without crashing!',
+  url: 'https://proyecto26.com/games/flappy-bird',
+  genre: 'Arcade',
+  gamePlatform: 'Web Browser',
+  applicationCategory: 'Game',
+  operatingSystem: 'Any',
+  author: {
+    '@type': 'Organization',
+    name: 'Proyecto 26',
+    url: 'https://proyecto26.com',
+  },
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD',
+  },
+};
 ---
 
-<BaseLayout title="Flappy Fly - Proyecto 26 Games" description="A fun Flappy Bird clone built with Phaser">
+<BaseLayout title="Flappy Fly - Proyecto 26 Games" description="A fun Flappy Bird clone built with Phaser" image="/img/p26-retro.jpg">
   <Header currentPage="games" />
+  <script type="application/ld+json" set:html={JSON.stringify(gameSchema)} />
 
   <main id="main-content" class="pt-[72px] flex-1">
     <section class="py-8 bg-bg-primary">

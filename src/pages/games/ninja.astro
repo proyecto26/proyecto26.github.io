@@ -3,10 +3,33 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import Button from '../../components/Button.astro';
+const gameSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'VideoGame',
+  name: 'Ninja',
+  description: 'Classic ninja action game with smooth controls and engaging gameplay.',
+  url: 'https://proyecto26.com/games/ninja',
+  image: 'https://proyecto26.com/games/img/ninja.png',
+  genre: 'Action',
+  gamePlatform: 'Web Browser',
+  applicationCategory: 'Game',
+  operatingSystem: 'Any',
+  author: {
+    '@type': 'Organization',
+    name: 'Proyecto 26',
+    url: 'https://proyecto26.com',
+  },
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD',
+  },
+};
 ---
 
-<BaseLayout title="Ninja - Proyecto 26 Games" description="Classic ninja action game with smooth controls and engaging gameplay">
+<BaseLayout title="Ninja - Proyecto 26 Games" description="Classic ninja action game with smooth controls and engaging gameplay" image="/games/img/ninja.png">
   <Header currentPage="games" />
+  <script type="application/ld+json" set:html={JSON.stringify(gameSchema)} />
 
   <main id="main-content" class="pt-[72px]">
     <section class="py-8 bg-bg-primary">
