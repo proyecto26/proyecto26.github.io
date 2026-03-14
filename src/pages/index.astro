@@ -62,6 +62,46 @@ const games = [
   },
 ];
 
+const sponsorTiers = [
+  {
+    name: 'Beer',
+    price: '$2',
+    period: '/mo',
+    icon: 'coffee',
+    color: 'coral',
+    description: 'Buy us a beer while we fix the world.',
+    benefits: ['Sponsor badge', 'Our eternal gratitude'],
+  },
+  {
+    name: 'Unicorns',
+    price: '$10',
+    period: '/mo',
+    icon: 'sparkles',
+    color: 'teal',
+    description: 'Become a community contributor.',
+    benefits: ['Sponsor badge', 'Bug prioritization', 'Name in projects'],
+  },
+  {
+    name: 'Heroes',
+    price: '$26',
+    period: '/mo',
+    icon: 'shield',
+    color: 'orange',
+    featured: true,
+    description: 'Join us to change the world together.',
+    benefits: ['1-on-1 meetings', 'Exclusive content', 'Priority support', 'All previous benefits'],
+  },
+  {
+    name: 'Enterprise',
+    price: '$50',
+    period: '/mo',
+    icon: 'building-2',
+    color: 'blue',
+    description: 'Professional support for your projects.',
+    benefits: ['Hourly consulting', 'Custom examples', 'Live chat support', 'All previous benefits'],
+  },
+];
+
 const supportLinks = [
   { name: 'Patreon', icon: 'heart', color: '#FF424D', href: 'https://patreon.com/proyecto26' },
   { name: 'Ko-fi', icon: 'coffee', color: '#f2385a', href: 'https://ko-fi.com/proyecto26' },
@@ -290,56 +330,98 @@ const supportLinks = [
       </section>
     )}
 
-    <!-- Support Section -->
-    <section id="contact" class="section bg-bg-primary">
+    <!-- Sponsor Tiers Section -->
+    <section id="contact" class="section bg-bg-secondary">
       <div class="container">
         <div class="text-center mb-16">
           <h2 class="text-4xl md:text-5xl font-bold text-text-primary mb-4" data-animate="fade-up">
-            Support Our Mission
+            Become a Sponsor
           </h2>
-          <p class="text-lg text-text-secondary" data-animate="fade-up" data-delay="100">
-            Help us continue building open source tools for developers worldwide
+          <p class="text-lg text-text-secondary max-w-2xl mx-auto" data-animate="fade-up" data-delay="100">
+            Help us continue building open source tools for developers worldwide. Every contribution makes a difference.
           </p>
         </div>
 
-        <!-- Donation Platforms -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-          {supportLinks.map((link, index) => (
-            <a
-              href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="group bg-bg-card border border-border-default rounded-2xl p-6 text-center transition-all duration-300 hover:border-border-accent hover:-translate-y-1"
+        <!-- Sponsor Tiers -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+          {sponsorTiers.map((tier, index) => (
+            <div
+              class:list={[
+                'relative bg-bg-card rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1',
+                tier.featured
+                  ? 'border-2 border-accent-coral shadow-glow-card'
+                  : 'border border-border-default hover:border-border-accent'
+              ]}
               data-animate="fade-up"
               data-delay={index * 100}
             >
-              <div
-                class="w-12 h-12 mx-auto mb-4 rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
-                style={`background-color: ${link.color}20;`}
-              >
-                <i data-lucide={link.icon} class="w-6 h-6" style={`color: ${link.color};`}></i>
+              {tier.featured && (
+                <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-accent-coral text-white text-xs font-bold rounded-full">
+                  Popular
+                </div>
+              )}
+
+              <div class={`w-12 h-12 mb-4 rounded-xl bg-bg-hover flex items-center justify-center`}>
+                <i data-lucide={tier.icon} class={`w-6 h-6 text-accent-${tier.color}`}></i>
               </div>
-              <h3 class="font-semibold text-text-primary mb-1">{link.name}</h3>
-              <p class="text-xs text-text-muted">Support us</p>
-            </a>
+
+              <h3 class="text-lg font-semibold text-text-primary mb-1">{tier.name}</h3>
+              <div class="flex items-baseline gap-1 mb-3">
+                <span class="text-3xl font-bold text-text-primary">{tier.price}</span>
+                <span class="text-text-muted text-sm">{tier.period}</span>
+              </div>
+              <p class="text-text-secondary text-sm mb-4">{tier.description}</p>
+
+              <ul class="space-y-2 mb-6">
+                {tier.benefits.map((benefit) => (
+                  <li class="flex items-start gap-2 text-sm text-text-secondary">
+                    <i data-lucide="check" class="w-4 h-4 text-accent-teal mt-0.5 flex-shrink-0"></i>
+                    {benefit}
+                  </li>
+                ))}
+              </ul>
+
+              <Button
+                href="https://github.com/sponsors/proyecto26"
+                variant={tier.featured ? 'primary' : 'secondary'}
+                size="sm"
+                external
+              >
+                Sponsor
+              </Button>
+            </div>
           ))}
         </div>
 
-        <!-- GitHub CTA -->
-        <div class="bg-bg-card border-2 border-accent-coral rounded-3xl p-8 md:p-12 text-center" data-animate="fade-up" data-delay="400">
-          <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-stars-gold/20 flex items-center justify-center">
-            <i data-lucide="star" class="w-8 h-8 text-stars-gold"></i>
-          </div>
-          <h3 class="text-2xl font-bold text-text-primary mb-3">
-            Star us on GitHub
-          </h3>
-          <p class="text-text-secondary mb-6">
-            Support the project by starring our repositories
+        <!-- More ways to support -->
+        <div class="max-w-3xl mx-auto">
+          <p class="text-center text-text-muted text-sm mb-6" data-animate="fade-up" data-delay="400">
+            Also available on
           </p>
-          <Button href="https://github.com/proyecto26" variant="primary" external>
-            <i data-lucide="star" class="w-4 h-4"></i>
-            View Repositories
-          </Button>
+          <div class="flex flex-wrap items-center justify-center gap-4" data-animate="fade-up" data-delay="500">
+            {supportLinks.map((link) => (
+              <a
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-2 px-4 py-2 bg-bg-card border border-border-default rounded-lg text-text-secondary hover:text-text-primary hover:border-border-accent transition-all duration-200"
+              >
+                <i data-lucide={link.icon} class="w-4 h-4" style={`color: ${link.color};`}></i>
+                <span class="text-sm font-medium">{link.name}</span>
+              </a>
+            ))}
+          </div>
+
+          <!-- GitHub Stars CTA -->
+          <div class="text-center mt-12" data-animate="fade-up" data-delay="600">
+            <p class="text-text-secondary mb-4">
+              Not ready to sponsor? Star our repos — it helps others discover our projects!
+            </p>
+            <Button href="https://github.com/proyecto26" variant="secondary" external>
+              <i data-lucide="star" class="w-4 h-4"></i>
+              Star on GitHub
+            </Button>
+          </div>
         </div>
       </div>
     </section>
