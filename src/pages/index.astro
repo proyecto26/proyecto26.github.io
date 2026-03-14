@@ -19,18 +19,21 @@ const contributors = await getOrgContributors('proyecto26', 12);
 const services = [
   {
     title: 'Mobile Development',
+    description: 'Cross-platform libraries for native mobile experiences.',
     icon: 'smartphone',
     color: 'coral' as const,
     technologies: ['React Native', 'NativeScript', 'Ionic'],
   },
   {
     title: 'Web Components',
+    description: 'Framework-agnostic components for modern web apps.',
     icon: 'globe',
     color: 'teal' as const,
     technologies: ['Stencil', 'Web Animations API', 'TypeScript'],
   },
   {
     title: 'Game Development',
+    description: 'Tools and plugins for building browser and Unity games.',
     icon: 'gamepad-2',
     color: 'orange' as const,
     technologies: ['Phaser', 'Unity', 'C#'],
@@ -118,7 +121,7 @@ const supportLinks = [
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           {services.map((service, index) => (
             <div data-animate="fade-up" data-delay={index * 100}>
-              <ServiceCard {...service} description="" />
+              <ServiceCard {...service} />
             </div>
           ))}
         </div>

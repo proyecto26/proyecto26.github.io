@@ -54,6 +54,24 @@ const webSiteSchema = {
   url: siteUrl,
   description,
 };
+
+// Build breadcrumb schema for sub-pages
+const pathSegments = currentPath.split('/').filter(Boolean);
+const breadcrumbItems = pathSegments.map((segment, index) => ({
+  '@type': 'ListItem',
+  position: index + 2,
+  name: segment.charAt(0).toUpperCase() + segment.slice(1).replace(/-/g, ' '),
+  item: `${siteUrl}/${pathSegments.slice(0, index + 1).join('/')}`,
+}));
+
+const breadcrumbSchema = !isHomePage && pathSegments.length > 0 ? {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },
+    ...breadcrumbItems,
+  ],
+} : null;
 ---
 
 <!DOCTYPE html>
@@ -119,6 +137,9 @@ const webSiteSchema = {
     {isHomePage && (
       <script type="application/ld+json" set:html={JSON.stringify(webSiteSchema)} />
     )}
+    {breadcrumbSchema && (
+      <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    )}
   </head>
   <body class="bg-bg-primary text-text-primary antialiased">
     <!-- Skip to content link -->
@@ -138,6 +159,15 @@ const webSiteSchema = {
     <!-- Ninja Animation -->
     <NinjaAnimation />
 
+    <!-- Back to top button -->
+    <button
+      id="back-to-top"
+      class="fixed bottom-6 right-6 z-[100] w-12 h-12 rounded-full bg-accent-coral text-white flex items-center justify-center shadow-lg opacity-0 pointer-events-none transition-all duration-300 hover:brightness-110 hover:scale-110"
+      aria-label="Back to top"
+    >
+      <i data-lucide="chevron-up" class="w-5 h-5"></i>
+    </button>
+
     <!-- Cookie Consent -->
     <CookieConsent />
 
@@ -156,6 +186,25 @@ const webSiteSchema = {
           });
         }
       });
+    </script>
+
+    <script>
+      // Back to top button
+      const backToTop = document.getElementById('back-to-top');
+      if (backToTop) {
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > 500) {
+            backToTop.classList.remove('opacity-0', 'pointer-events-none');
+            backToTop.classList.add('opacity-100');
+          } else {
+            backToTop.classList.add('opacity-0', 'pointer-events-none');
+            backToTop.classList.remove('opacity-100');
+          }
+        });
+        backToTop.addEventListener('click', () => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }
     </script>
 
     <script>
