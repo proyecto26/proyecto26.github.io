@@ -1,0 +1,125 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const lastUpdated = 'March 2026';
+
+const sections = [
+  {
+    title: '1. Information We Collect',
+    content: "We may collect information that you voluntarily provide when interacting with our projects, such as your name, email address, and GitHub username when you submit issues, pull requests, or contribute to discussions. We also automatically collect certain technical information when you visit our website, including your IP address, browser type, operating system, referring URLs, and pages viewed. We do not collect sensitive personal information such as financial data, health records, or government-issued identification numbers.",
+  },
+  {
+    title: '2. How We Use Information',
+    content: "The information we collect is used to improve and maintain our open source projects, respond to your inquiries and support requests, send project-related updates and announcements, analyze website usage patterns to improve user experience, and comply with legal obligations. We do not sell, trade, or otherwise transfer your personal information to third parties for marketing purposes. Any data shared with service providers is strictly for the purpose of operating our website and projects.",
+  },
+  {
+    title: '3. Cookies and Tracking Technologies',
+    content: "Our website may use cookies and similar tracking technologies to enhance your browsing experience. Cookies are small data files stored on your device that help us understand how you interact with our website. We use essential cookies for website functionality and analytics cookies (such as Google Analytics) to understand usage patterns. Preference cookies may be used to remember your settings. You may disable cookies in your browser settings, but this may affect website functionality.",
+  },
+  {
+    title: '4. Third-Party Services',
+    content: "Our projects and website may integrate with or link to third-party services including GitHub for code hosting and collaboration, npm and other package registries for distribution, Google Analytics for website usage data, content delivery networks for performance optimization, and social media platforms (YouTube, Facebook, LinkedIn, X). Each of these services has its own privacy policy governing data collection and use. When you interact with our GitHub repositories (starring, forking, opening issues), GitHub's privacy policy applies to that data. We encourage you to review the privacy policies of any third-party services you interact with through our projects.",
+  },
+  {
+    title: '5. Data Security',
+    content: "We implement reasonable security measures to protect your personal information from unauthorized access, alteration, disclosure, or destruction. However, no method of transmission over the Internet or electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your personal information, we cannot guarantee its absolute security. Our open source repositories are publicly accessible by design, so please be mindful of the information you share in issues, pull requests, and discussions.",
+  },
+  {
+    title: '6. International Data Transfers',
+    content: "Proyecto 26 is based in Colombia and our website serves a global audience. Your personal data may be transferred to and processed in countries other than your country of residence, including countries that may not provide the same level of data protection. By using our website and services, you consent to the transfer of your data to Colombia and other jurisdictions where our service providers operate. We take reasonable steps to ensure that your data is treated securely and in accordance with this Privacy Policy regardless of where it is processed.",
+  },
+  {
+    title: "7. Children's Privacy",
+    content: "Our website features interactive games and content that may be accessed by users of all ages. We do not knowingly collect personal information from children under the age of 13 (or the applicable age of digital consent in your jurisdiction). If you are a parent or guardian and believe that your child has provided us with personal information, please contact us so we can take appropriate action. Our games do not require registration or the submission of personal data to play.",
+  },
+  {
+    title: '8. Your Rights',
+    content: "Depending on your jurisdiction, you may have certain rights regarding your personal data. Under Colombian law (Law 1581 of 2012 — Habeas Data), you have the right to know, update, rectify, and delete your personal data. For EU/EEA users, the GDPR provides rights including access, rectification, erasure, restriction of processing, data portability, and objection. For California residents, the CCPA provides rights to know, delete, and opt out of the sale of personal information. To exercise any of these rights, please contact us through our GitHub organization or the contact methods listed on our website.",
+  },
+  {
+    title: '9. Data Retention',
+    content: "We retain personal data only for as long as necessary to fulfill the purposes for which it was collected, including satisfying legal, accounting, or reporting requirements. Data collected through GitHub interactions is retained according to GitHub's data retention policies. Website analytics data is retained in aggregated, anonymized form. When personal data is no longer needed, we securely delete or anonymize it.",
+  },
+  {
+    title: '10. Changes to This Policy',
+    content: "We may update this Privacy Policy from time to time to reflect changes in our practices or for other operational, legal, or regulatory reasons. We will notify you of any material changes by posting the new Privacy Policy on this page and updating the 'Last updated' date. We encourage you to review this Privacy Policy periodically to stay informed about how we are protecting your information.",
+  },
+  {
+    title: '11. Contact Us',
+    content: "If you have any questions about this Privacy Policy or our data practices, you can reach us through our GitHub organization at github.com/proyecto26, by opening an issue on the relevant project repository, or through the contact information available on our website. We are committed to resolving any concerns you may have about your privacy and our data handling practices.",
+  },
+];
+---
+
+<BaseLayout title="Privacy Policy - Proyecto 26" description="Learn how Proyecto 26 collects, uses, and protects your personal information">
+  <Header />
+
+  <main class="pt-[72px]">
+    <!-- Hero Section -->
+    <section class="py-16 md:py-20 bg-bg-primary">
+      <div class="container">
+        <div class="text-center">
+          <h1 class="text-4xl md:text-5xl font-bold text-text-primary mb-4" data-animate="fade-up">
+            Privacy Policy
+          </h1>
+          <p class="text-text-muted text-base" data-animate="fade-up" data-delay="100">
+            Last updated: {lastUpdated}
+          </p>
+          <div class="w-20 h-[3px] bg-accent-coral rounded-full mx-auto mt-4"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Content Section -->
+    <section class="py-12 bg-bg-primary">
+      <div class="container">
+        <div class="max-w-3xl mx-auto space-y-12">
+          <!-- Intro -->
+          <p class="text-text-muted text-base leading-relaxed" data-animate="fade-up">
+            At Proyecto 26, we are committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you visit our website and use our open source projects. We encourage you to read this policy carefully to understand our practices regarding your personal data.
+          </p>
+
+          <!-- Sections -->
+          {sections.map((section, index) => (
+            <div data-animate="fade-up" data-delay={index * 50}>
+              <h2 class="text-2xl font-bold text-text-primary mb-4">
+                {section.title}
+              </h2>
+              <p class="text-text-muted text-base leading-relaxed">
+                {section.content}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.querySelectorAll('[data-animate="fade-up"]').forEach((el) => {
+    const delay = parseInt(el.getAttribute('data-delay') || '0') / 1000;
+
+    gsap.from(el, {
+      scrollTrigger: {
+        trigger: el,
+        start: 'top 85%',
+        toggleActions: 'play none none none',
+      },
+      y: 30,
+      opacity: 0,
+      duration: 0.6,
+      delay,
+      ease: 'power2.out',
+    });
+  });
+</script>

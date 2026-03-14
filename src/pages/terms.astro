@@ -1,0 +1,129 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const lastUpdated = 'March 2026';
+
+const sections = [
+  {
+    title: '1. Introduction',
+    content: "Welcome to Proyecto 26. These Terms & Conditions govern your use of our website (proyecto26.com) and our open source software projects hosted on GitHub. By using our services, you agree to comply with and be bound by these terms. If you disagree with any part of these terms, please do not use our website or projects. Please note that different materials are subject to different licenses: our source code is distributed under permissive open source licenses, while our media assets (images, audio, game artwork, and other creative content) are protected under a separate Creative Commons license. See Sections 3 and 4 below for details.",
+  },
+  {
+    title: '2. Definitions',
+    content: "\"Source Code\" refers to the software code, configuration files, and technical documentation in our GitHub repositories and this website's codebase. \"Media Assets\" refers to images, illustrations, audio files, game artwork and sprites (including NinjaDev assets), logos, brand materials, and other creative content published on this website or included in our repositories. \"Projects\" refers to the open source software libraries, tools, and applications maintained by Proyecto 26. \"Website\" refers to proyecto26.com and all its subdomains.",
+  },
+  {
+    title: '3. Source Code License (MIT)',
+    content: "Our open source projects and the website's source code are distributed under the MIT License (or similar permissive licenses as specified in each repository). This means you are free to use, copy, modify, merge, publish, distribute, sublicense, and sell copies of the source code, subject to including the original copyright notice and license text. The specific license for each project can be found in its respective repository. These open source licenses govern your use of the source code, and in the event of any conflict between these Terms and the applicable open source license, the open source license shall control for that portion of the materials. Nothing in these Terms restricts rights granted under an applicable open source license. This permissive licensing applies exclusively to source code and does not extend to media assets, trademarks, or brand materials.",
+  },
+  {
+    title: '4. Media Assets License (CC BY-NC-ND 4.0)',
+    content: "The media assets on this website — including images, audio, game artwork, sprites, illustrations, and other creative content — are licensed under the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License (CC BY-NC-ND 4.0). This means you may share and redistribute these assets in any medium or format under the following conditions: you must give appropriate credit to Proyecto 26, provide a link to the license, and indicate if changes were made; you may not use the assets for commercial purposes; and you may not distribute modified or adapted versions of these assets. For the full license text, see our LICENSE.md file or visit creativecommons.org/licenses/by-nc-nd/4.0/.",
+  },
+  {
+    title: '5. Trademarks and Branding',
+    content: "The Proyecto 26 name, logo, and brand identity are proprietary and are not covered by either the MIT License or the CC BY-NC-ND 4.0 License. The right to use our open source software does not include the right to use our project names, logos, or brand materials. You may not use our trademarks, logos, or brand elements in a manner that suggests endorsement, affiliation, or sponsorship without prior written consent. Nominative fair use is permitted solely to identify Proyecto 26 as the source of the software (e.g., linking to our projects or crediting contributions in documentation).",
+  },
+  {
+    title: '6. Contributions',
+    content: "We welcome contributions to our open source projects. By submitting a pull request, issue, or other contribution to any Proyecto 26 repository, you agree that your contribution will be licensed under the same license as the project you are contributing to (typically MIT). You represent that you have the right to grant this license and that your contribution does not infringe any third-party rights. Contributors retain copyright to their individual contributions.",
+  },
+  {
+    title: '7. Disclaimer of Warranties',
+    content: "The materials on Proyecto 26's website and repositories are provided on an 'as is' basis. Proyecto 26 makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights. Proyecto 26 does not warrant or make any representations concerning the accuracy, likely results, or reliability of the use of the materials on its website or otherwise relating to such materials or on any sites linked to this site.",
+  },
+  {
+    title: '8. Limitation of Liability',
+    content: "In no event shall Proyecto 26 or its contributors be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on Proyecto 26's website or open source projects, even if Proyecto 26 or an authorized representative has been notified orally or in writing of the possibility of such damage. Because some jurisdictions do not allow limitations on implied warranties, or limitations of liability for consequential or incidental damages, these limitations may not apply to you.",
+  },
+  {
+    title: '9. Accuracy of Materials',
+    content: "The materials appearing on Proyecto 26's website and in our repositories could include technical, typographical, or photographic errors. Proyecto 26 does not warrant that any of the materials on its website or repositories are accurate, complete, or current. Proyecto 26 may make changes to the materials contained on its website or in its projects at any time without notice. However, Proyecto 26 does not make any commitment to update the materials.",
+  },
+  {
+    title: '10. Third-Party Links and Services',
+    content: "Proyecto 26 has not reviewed all of the sites linked to its website and is not responsible for the contents of any such linked site. The inclusion of any link does not imply endorsement by Proyecto 26 of the site. Use of any such linked website is at the user's own risk. This includes links to third-party services, package registries (npm, NuGet, etc.), and external documentation referenced in our projects. Our website and projects may include or reference third-party content governed by its own licenses; we are not responsible for third-party licensing terms.",
+  },
+  {
+    title: '11. Modifications to Terms',
+    content: "Proyecto 26 may revise these terms of service for its website and open source projects at any time without notice. By using this website and our projects, you are agreeing to be bound by the then current version of these terms of service. We encourage you to periodically review these terms to stay informed of any changes. Continued use of the website after changes are posted constitutes acceptance of the modified terms.",
+  },
+  {
+    title: '12. Governing Law',
+    content: "These terms and conditions are governed by and construed in accordance with the laws of Colombia, and you irrevocably submit to the exclusive jurisdiction of the courts in that location. Any disputes arising from the use of our open source projects shall first be attempted to be resolved through the project's GitHub issue tracker before pursuing legal remedies.",
+  },
+];
+---
+
+<BaseLayout title="Terms & Conditions - Proyecto 26" description="Terms and conditions for using Proyecto 26's website and open source projects">
+  <Header />
+
+  <main class="pt-[72px]">
+    <!-- Hero Section -->
+    <section class="py-16 md:py-20 bg-bg-primary">
+      <div class="container">
+        <div class="text-center">
+          <h1 class="text-4xl md:text-5xl font-bold text-text-primary mb-4" data-animate="fade-up">
+            Terms & Conditions
+          </h1>
+          <p class="text-text-muted text-base" data-animate="fade-up" data-delay="100">
+            Last updated: {lastUpdated}
+          </p>
+          <div class="w-20 h-[3px] bg-accent-coral rounded-full mx-auto mt-4"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Content Section -->
+    <section class="py-12 bg-bg-primary">
+      <div class="container">
+        <div class="max-w-3xl mx-auto space-y-12">
+          <!-- Intro -->
+          <p class="text-text-muted text-base leading-relaxed" data-animate="fade-up">
+            These terms and conditions outline the rules and regulations for the use of Proyecto 26's open source projects and website. By accessing this website and using our projects, we assume you accept these terms and conditions. Do not continue to use Proyecto 26 if you do not agree to all of the terms and conditions stated on this page. Our organization maintains a dual-licensing model: open source code under MIT and media assets under CC BY-NC-ND 4.0.
+          </p>
+
+          <!-- Sections -->
+          {sections.map((section, index) => (
+            <div data-animate="fade-up" data-delay={index * 50}>
+              <h2 class="text-2xl font-bold text-text-primary mb-4">
+                {section.title}
+              </h2>
+              <p class="text-text-muted text-base leading-relaxed">
+                {section.content}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.querySelectorAll('[data-animate="fade-up"]').forEach((el) => {
+    const delay = parseInt(el.getAttribute('data-delay') || '0') / 1000;
+
+    gsap.from(el, {
+      scrollTrigger: {
+        trigger: el,
+        start: 'top 85%',
+        toggleActions: 'play none none none',
+      },
+      y: 30,
+      opacity: 0,
+      duration: 0.6,
+      delay,
+      ease: 'power2.out',
+    });
+  });
+</script>

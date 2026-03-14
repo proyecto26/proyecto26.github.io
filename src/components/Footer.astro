@@ -12,9 +12,12 @@ const resourceLinks = [
   { href: 'https://github.com/proyecto26/sponsors', label: 'Sponsors' },
   { href: 'https://github.com/proyecto26/community/discussions', label: 'Community' },
   { href: 'https://github.com/proyecto26/proyecto26.github.io', label: 'Website Source' },
+  { href: '/terms', label: 'Terms & Conditions', internal: true },
+  { href: '/privacy', label: 'Privacy Policy', internal: true },
 ];
 
 const connectLinks = [
+  { href: 'https://bio.link/proyecto26', label: 'Bio' },
   { href: 'https://github.com/proyecto26', label: 'GitHub' },
   { href: 'https://www.youtube.com/@proyecto26', label: 'YouTube' },
   { href: 'https://www.facebook.com/proyecto26', label: 'Facebook' },
@@ -22,6 +25,7 @@ const connectLinks = [
 ];
 
 const socialLinks = [
+  { href: 'https://bio.link/proyecto26', icon: 'link', label: 'Bio' },
   { href: 'https://github.com/proyecto26', icon: 'github', label: 'GitHub' },
   { href: 'https://www.youtube.com/@proyecto26', icon: 'youtube', label: 'YouTube' },
   { href: 'https://www.facebook.com/proyecto26', icon: 'facebook', label: 'Facebook' },
@@ -78,8 +82,8 @@ const socialLinks = [
               <li>
                 <a
                   href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  target={link.internal ? undefined : '_blank'}
+                  rel={link.internal ? undefined : 'noopener noreferrer'}
                   class="text-text-secondary hover:text-text-primary transition-colors duration-200"
                 >
                   {link.label}

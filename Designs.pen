@@ -1,6 +1,249 @@
 {
-  "version": "2.6",
+  "version": "2.8",
   "children": [
+    {
+      "type": "frame",
+      "id": "UTc1x",
+      "x": 0,
+      "y": 72,
+      "width": 1280,
+      "height": 700,
+      "fill": "$bg-primary",
+      "layout": "vertical",
+      "gap": 32,
+      "padding": [
+        120,
+        64,
+        80,
+        64
+      ],
+      "alignItems": "center",
+      "children": [
+        {
+          "type": "frame",
+          "id": "cSyt2",
+          "name": "Hero Content",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 24,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "xkxvY",
+              "name": "Hero Title",
+              "fill": "$text-primary",
+              "content": "PROYECTO 26",
+              "textAlign": "center",
+              "fontFamily": "Inter",
+              "fontSize": 72,
+              "fontWeight": "900"
+            },
+            {
+              "type": "text",
+              "id": "3kP3B",
+              "name": "Hero Tagline",
+              "fill": "$text-primary",
+              "content": "Changing the world with small contributions.",
+              "textAlign": "center",
+              "fontFamily": "Inter",
+              "fontSize": 32,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "vHXes",
+              "name": "Hero Description",
+              "fill": "$text-secondary",
+              "textGrowth": "fixed-width",
+              "width": 700,
+              "content": "We build open source tools for Web, Mobile, and Game Development that developers around the world love.",
+              "textAlign": "center",
+              "fontFamily": "Inter",
+              "fontSize": 20,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "KXt3S",
+          "name": "Hero CTAs",
+          "gap": 16,
+          "children": [
+            {
+              "type": "frame",
+              "id": "YOwib",
+              "name": "ctaPrimary",
+              "fill": "$accent-coral",
+              "cornerRadius": 12,
+              "gap": 8,
+              "padding": [
+                16,
+                32
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "EVoUS",
+                  "name": "ctaPrimaryText",
+                  "fill": "#ffffff",
+                  "content": "Explore Projects",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "zvOeT",
+              "name": "ctaSecondary",
+              "fill": "transparent",
+              "cornerRadius": 12,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "$border-default"
+              },
+              "gap": 8,
+              "padding": [
+                16,
+                32
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "vfLuD",
+                  "name": "ctaSecondaryText",
+                  "fill": "$text-primary",
+                  "content": "Play Games",
+                  "fontFamily": "Inter",
+                  "fontSize": 16,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "icon_font",
+                  "id": "TZeEw",
+                  "name": "ctaSecondaryIcon",
+                  "width": 20,
+                  "height": 20,
+                  "iconFontName": "gamepad-2",
+                  "iconFontFamily": "lucide",
+                  "fill": "$text-primary"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "LX1jQ",
+          "name": "Hero Stats",
+          "gap": 64,
+          "padding": [
+            32,
+            0,
+            0,
+            0
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "m8gIn",
+              "name": "stat1",
+              "layout": "vertical",
+              "gap": 4,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "OFwMW",
+                  "name": "stat1Value",
+                  "fill": "$text-primary",
+                  "content": "4,500+",
+                  "fontFamily": "Inter",
+                  "fontSize": 40,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "RDvRD",
+                  "name": "stat1Label",
+                  "fill": "$text-muted",
+                  "content": "GitHub Stars",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "uE0sg",
+              "name": "stat2",
+              "layout": "vertical",
+              "gap": 4,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "f98qB",
+                  "name": "stat2Value",
+                  "fill": "$text-primary",
+                  "content": "25+",
+                  "fontFamily": "Inter",
+                  "fontSize": 40,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "NTYII",
+                  "name": "stat2Label",
+                  "fill": "$text-muted",
+                  "content": "Projects",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "8qZO0",
+              "name": "stat3",
+              "layout": "vertical",
+              "gap": 4,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "fiMCd",
+                  "name": "stat3Value",
+                  "fill": "$text-primary",
+                  "content": "100+",
+                  "fontFamily": "Inter",
+                  "fontSize": 40,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "PCyHY",
+                  "name": "stat3Label",
+                  "fill": "$text-muted",
+                  "content": "Contributors",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
     {
       "type": "frame",
       "id": "9sisl",
@@ -44,7 +287,8 @@
               "content": "Building the future of web, mobile, and game development",
               "textAlign": "center",
               "fontFamily": "Inter",
-              "fontSize": 20
+              "fontSize": 20,
+              "fontWeight": "normal"
             }
           ]
         },
@@ -127,7 +371,8 @@
                           "fill": "$text-secondary",
                           "content": "for React Native",
                           "fontFamily": "Inter",
-                          "fontSize": 14
+                          "fontSize": 14,
+                          "fontWeight": "normal"
                         }
                       ]
                     }
@@ -142,7 +387,8 @@
                   "width": "fill_container",
                   "content": "InAppBrowser for React Native with support for Chrome Custom Tabs and Safari Services.",
                   "fontFamily": "Inter",
-                  "fontSize": 14
+                  "fontSize": 14,
+                  "fontWeight": "normal"
                 },
                 {
                   "type": "frame",
@@ -436,7 +682,8 @@
                           "fill": "$text-secondary",
                           "content": "for Unity",
                           "fontFamily": "Inter",
-                          "fontSize": 14
+                          "fontSize": 14,
+                          "fontWeight": "normal"
                         }
                       ]
                     }
@@ -451,7 +698,8 @@
                   "width": "fill_container",
                   "content": "Promise-based REST and HTTP client for Unity game development.",
                   "fontFamily": "Inter",
-                  "fontSize": 14
+                  "fontSize": 14,
+                  "fontWeight": "normal"
                 },
                 {
                   "type": "frame",
@@ -722,7 +970,8 @@
                           "fill": "$text-secondary",
                           "content": "Component",
                           "fontFamily": "Inter",
-                          "fontSize": 14
+                          "fontSize": 14,
+                          "fontWeight": "normal"
                         }
                       ]
                     }
@@ -737,7 +986,8 @@
                   "width": "fill_container",
                   "content": "Web component for creating reusable animations using the Web Animations API.",
                   "fontFamily": "Inter",
-                  "fontSize": 14
+                  "fontSize": 14,
+                  "fontWeight": "normal"
                 },
                 {
                   "type": "frame",
@@ -1017,7 +1267,8 @@
                           "fill": "$text-secondary",
                           "content": "Phaser + Ionic",
                           "fontFamily": "Inter",
-                          "fontSize": 14
+                          "fontSize": 14,
+                          "fontWeight": "normal"
                         }
                       ]
                     }
@@ -1032,7 +1283,8 @@
                   "width": "fill_container",
                   "content": "Web component to integrate Phaser game framework with Ionic and other frameworks.",
                   "fontFamily": "Inter",
-                  "fontSize": 14
+                  "fontSize": 14,
+                  "fontWeight": "normal"
                 },
                 {
                   "type": "frame",
@@ -1303,7 +1555,8 @@
                           "fill": "$text-secondary",
                           "content": "Curated List",
                           "fontFamily": "Inter",
-                          "fontSize": 14
+                          "fontSize": 14,
+                          "fontWeight": "normal"
                         }
                       ]
                     }
@@ -1318,7 +1571,8 @@
                   "width": "fill_container",
                   "content": "A curated list of awesome Unity games, resources, and tutorials for game developers.",
                   "fontFamily": "Inter",
-                  "fontSize": 14
+                  "fontSize": 14,
+                  "fontWeight": "normal"
                 },
                 {
                   "type": "frame",
@@ -1589,7 +1843,8 @@
                           "fill": "$text-secondary",
                           "content": "Curated List",
                           "fontFamily": "Inter",
-                          "fontSize": 14
+                          "fontSize": 14,
+                          "fontWeight": "normal"
                         }
                       ]
                     }
@@ -1604,7 +1859,8 @@
                   "width": "fill_container",
                   "content": "A curated list of awesome JavaScript Games built with HTML5 and game engines.",
                   "fontFamily": "Inter",
-                  "fontSize": 14
+                  "fontSize": 14,
+                  "fontWeight": "normal"
                 },
                 {
                   "type": "frame",
@@ -3484,249 +3740,6 @@
     },
     {
       "type": "frame",
-      "id": "UTc1x",
-      "x": 0,
-      "y": 72,
-      "name": "Hero Section",
-      "width": 1280,
-      "height": 700,
-      "fill": "$bg-primary",
-      "layout": "vertical",
-      "gap": 32,
-      "padding": [
-        120,
-        64,
-        80,
-        64
-      ],
-      "alignItems": "center",
-      "children": [
-        {
-          "type": "frame",
-          "id": "cSyt2",
-          "name": "Hero Content",
-          "width": "fill_container",
-          "layout": "vertical",
-          "gap": 24,
-          "alignItems": "center",
-          "children": [
-            {
-              "type": "text",
-              "id": "xkxvY",
-              "name": "Hero Title",
-              "fill": "$text-primary",
-              "content": "PROYECTO 26",
-              "textAlign": "center",
-              "fontFamily": "Inter",
-              "fontSize": 72,
-              "fontWeight": "900"
-            },
-            {
-              "type": "text",
-              "id": "3kP3B",
-              "name": "Hero Tagline",
-              "fill": "$text-primary",
-              "content": "Changing the world with small contributions.",
-              "textAlign": "center",
-              "fontFamily": "Inter",
-              "fontSize": 32,
-              "fontWeight": "600"
-            },
-            {
-              "type": "text",
-              "id": "vHXes",
-              "name": "Hero Description",
-              "fill": "$text-secondary",
-              "textGrowth": "fixed-width",
-              "width": 700,
-              "content": "We build open source tools for Web, Mobile, and Game Development that developers around the world love.",
-              "textAlign": "center",
-              "fontFamily": "Inter",
-              "fontSize": 20
-            }
-          ]
-        },
-        {
-          "type": "frame",
-          "id": "KXt3S",
-          "name": "Hero CTAs",
-          "gap": 16,
-          "children": [
-            {
-              "type": "frame",
-              "id": "YOwib",
-              "name": "ctaPrimary",
-              "fill": "$accent-coral",
-              "cornerRadius": 12,
-              "gap": 8,
-              "padding": [
-                16,
-                32
-              ],
-              "alignItems": "center",
-              "children": [
-                {
-                  "type": "text",
-                  "id": "EVoUS",
-                  "name": "ctaPrimaryText",
-                  "fill": "#ffffff",
-                  "content": "Explore Projects",
-                  "fontFamily": "Inter",
-                  "fontSize": 16,
-                  "fontWeight": "600"
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "zvOeT",
-              "name": "ctaSecondary",
-              "fill": "transparent",
-              "cornerRadius": 12,
-              "stroke": {
-                "align": "inside",
-                "thickness": 1,
-                "fill": "$border-default"
-              },
-              "gap": 8,
-              "padding": [
-                16,
-                32
-              ],
-              "alignItems": "center",
-              "children": [
-                {
-                  "type": "text",
-                  "id": "vfLuD",
-                  "name": "ctaSecondaryText",
-                  "fill": "$text-primary",
-                  "content": "Play Games",
-                  "fontFamily": "Inter",
-                  "fontSize": 16,
-                  "fontWeight": "600"
-                },
-                {
-                  "type": "icon_font",
-                  "id": "TZeEw",
-                  "name": "ctaSecondaryIcon",
-                  "width": 20,
-                  "height": 20,
-                  "iconFontName": "gamepad-2",
-                  "iconFontFamily": "lucide",
-                  "fill": "$text-primary"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "frame",
-          "id": "LX1jQ",
-          "name": "Hero Stats",
-          "gap": 64,
-          "padding": [
-            32,
-            0,
-            0,
-            0
-          ],
-          "children": [
-            {
-              "type": "frame",
-              "id": "m8gIn",
-              "name": "stat1",
-              "layout": "vertical",
-              "gap": 4,
-              "alignItems": "center",
-              "children": [
-                {
-                  "type": "text",
-                  "id": "OFwMW",
-                  "name": "stat1Value",
-                  "fill": "$text-primary",
-                  "content": "4,500+",
-                  "fontFamily": "Inter",
-                  "fontSize": 40,
-                  "fontWeight": "700"
-                },
-                {
-                  "type": "text",
-                  "id": "RDvRD",
-                  "name": "stat1Label",
-                  "fill": "$text-muted",
-                  "content": "GitHub Stars",
-                  "fontFamily": "Inter",
-                  "fontSize": 14,
-                  "fontWeight": "500"
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "uE0sg",
-              "name": "stat2",
-              "layout": "vertical",
-              "gap": 4,
-              "alignItems": "center",
-              "children": [
-                {
-                  "type": "text",
-                  "id": "f98qB",
-                  "name": "stat2Value",
-                  "fill": "$text-primary",
-                  "content": "25+",
-                  "fontFamily": "Inter",
-                  "fontSize": 40,
-                  "fontWeight": "700"
-                },
-                {
-                  "type": "text",
-                  "id": "NTYII",
-                  "name": "stat2Label",
-                  "fill": "$text-muted",
-                  "content": "Projects",
-                  "fontFamily": "Inter",
-                  "fontSize": 14,
-                  "fontWeight": "500"
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "8qZO0",
-              "name": "stat3",
-              "layout": "vertical",
-              "gap": 4,
-              "alignItems": "center",
-              "children": [
-                {
-                  "type": "text",
-                  "id": "fiMCd",
-                  "name": "stat3Value",
-                  "fill": "$text-primary",
-                  "content": "100+",
-                  "fontFamily": "Inter",
-                  "fontSize": 40,
-                  "fontWeight": "700"
-                },
-                {
-                  "type": "text",
-                  "id": "PCyHY",
-                  "name": "stat3Label",
-                  "fill": "$text-muted",
-                  "content": "Contributors",
-                  "fontFamily": "Inter",
-                  "fontSize": 14,
-                  "fontWeight": "500"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "frame",
       "id": "yKP8D",
       "x": 0,
       "y": 0,
@@ -3939,7 +3952,8 @@
               "content": "Specialized tools and libraries across three core domains",
               "textAlign": "center",
               "fontFamily": "Inter",
-              "fontSize": 20
+              "fontSize": 20,
+              "fontWeight": "normal"
             }
           ]
         },
@@ -4017,7 +4031,8 @@
                       "fill": "$text-secondary",
                       "content": "React Native",
                       "fontFamily": "Inter",
-                      "fontSize": 14
+                      "fontSize": 14,
+                      "fontWeight": "normal"
                     },
                     {
                       "type": "text",
@@ -4026,7 +4041,8 @@
                       "fill": "$text-secondary",
                       "content": "NativeScript",
                       "fontFamily": "Inter",
-                      "fontSize": 14
+                      "fontSize": 14,
+                      "fontWeight": "normal"
                     },
                     {
                       "type": "text",
@@ -4035,7 +4051,8 @@
                       "fill": "$text-secondary",
                       "content": "Ionic",
                       "fontFamily": "Inter",
-                      "fontSize": 14
+                      "fontSize": 14,
+                      "fontWeight": "normal"
                     }
                   ]
                 }
@@ -4108,7 +4125,8 @@
                       "fill": "$text-secondary",
                       "content": "Stencil",
                       "fontFamily": "Inter",
-                      "fontSize": 14
+                      "fontSize": 14,
+                      "fontWeight": "normal"
                     },
                     {
                       "type": "text",
@@ -4117,7 +4135,8 @@
                       "fill": "$text-secondary",
                       "content": "Web Animations API",
                       "fontFamily": "Inter",
-                      "fontSize": 14
+                      "fontSize": 14,
+                      "fontWeight": "normal"
                     },
                     {
                       "type": "text",
@@ -4126,7 +4145,8 @@
                       "fill": "$text-secondary",
                       "content": "TypeScript",
                       "fontFamily": "Inter",
-                      "fontSize": 14
+                      "fontSize": 14,
+                      "fontWeight": "normal"
                     }
                   ]
                 }
@@ -4199,7 +4219,8 @@
                       "fill": "$text-secondary",
                       "content": "Phaser",
                       "fontFamily": "Inter",
-                      "fontSize": 14
+                      "fontSize": 14,
+                      "fontWeight": "normal"
                     },
                     {
                       "type": "text",
@@ -4208,7 +4229,8 @@
                       "fill": "$text-secondary",
                       "content": "Unity",
                       "fontFamily": "Inter",
-                      "fontSize": 14
+                      "fontSize": 14,
+                      "fontWeight": "normal"
                     },
                     {
                       "type": "text",
@@ -4217,7 +4239,8 @@
                       "fill": "$text-secondary",
                       "content": "C#",
                       "fontFamily": "Inter",
-                      "fontSize": 14
+                      "fontSize": 14,
+                      "fontWeight": "normal"
                     }
                   ]
                 }
@@ -4341,7 +4364,8 @@
                   "width": "fill_container",
                   "content": "Developer with 8+ years of experience building interactive experiences across web, mobile, and game development. Passionate about open source and changing the world with small contributions.",
                   "fontFamily": "Inter",
-                  "fontSize": 16
+                  "fontSize": 16,
+                  "fontWeight": "normal"
                 },
                 {
                   "type": "frame",
@@ -4367,7 +4391,8 @@
                       "fill": "$text-muted",
                       "content": "Based in Colombia",
                       "fontFamily": "Inter",
-                      "fontSize": 14
+                      "fontSize": 14,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -4530,7 +4555,8 @@
               "content": "Help us continue building open source tools for developers worldwide",
               "textAlign": "center",
               "fontFamily": "Inter",
-              "fontSize": 20
+              "fontSize": 20,
+              "fontWeight": "normal"
             }
           ]
         },
@@ -4600,7 +4626,8 @@
                   "content": "Monthly support",
                   "textAlign": "center",
                   "fontFamily": "Inter",
-                  "fontSize": 14
+                  "fontSize": 14,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -4663,7 +4690,8 @@
                   "content": "Buy us a coffee",
                   "textAlign": "center",
                   "fontFamily": "Inter",
-                  "fontSize": 14
+                  "fontSize": 14,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -4726,7 +4754,8 @@
                   "content": "Transparent funding",
                   "textAlign": "center",
                   "fontFamily": "Inter",
-                  "fontSize": 14
+                  "fontSize": 14,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -4789,7 +4818,8 @@
                   "content": "Recurring donations",
                   "textAlign": "center",
                   "fontFamily": "Inter",
-                  "fontSize": 14
+                  "fontSize": 14,
+                  "fontWeight": "normal"
                 }
               ]
             }
@@ -4841,7 +4871,8 @@
               "content": "Support the project by starring our repositories",
               "textAlign": "center",
               "fontFamily": "Inter",
-              "fontSize": 16
+              "fontSize": 16,
+              "fontWeight": "normal"
             },
             {
               "type": "frame",
@@ -4951,7 +4982,8 @@
                   "fill": "$text-secondary",
                   "content": "Changing the world with small contributions.",
                   "fontFamily": "Inter",
-                  "fontSize": 14
+                  "fontSize": 14,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -4986,7 +5018,8 @@
                       "fill": "$text-secondary",
                       "content": "InAppBrowser",
                       "fontFamily": "Inter",
-                      "fontSize": 14
+                      "fontSize": 14,
+                      "fontWeight": "normal"
                     },
                     {
                       "type": "text",
@@ -4995,7 +5028,8 @@
                       "fill": "$text-secondary",
                       "content": "RestClient",
                       "fontFamily": "Inter",
-                      "fontSize": 14
+                      "fontSize": 14,
+                      "fontWeight": "normal"
                     },
                     {
                       "type": "text",
@@ -5004,7 +5038,8 @@
                       "fill": "$text-secondary",
                       "content": "Animatable",
                       "fontFamily": "Inter",
-                      "fontSize": 14
+                      "fontSize": 14,
+                      "fontWeight": "normal"
                     },
                     {
                       "type": "text",
@@ -5013,7 +5048,8 @@
                       "fill": "$text-secondary",
                       "content": "IonPhaser",
                       "fontFamily": "Inter",
-                      "fontSize": 14
+                      "fontSize": 14,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -5042,7 +5078,8 @@
                       "fill": "$text-secondary",
                       "content": "Documentation",
                       "fontFamily": "Inter",
-                      "fontSize": 14
+                      "fontSize": 14,
+                      "fontWeight": "normal"
                     },
                     {
                       "type": "text",
@@ -5051,7 +5088,8 @@
                       "fill": "$text-secondary",
                       "content": "Changelog",
                       "fontFamily": "Inter",
-                      "fontSize": 14
+                      "fontSize": 14,
+                      "fontWeight": "normal"
                     },
                     {
                       "type": "text",
@@ -5060,7 +5098,8 @@
                       "fill": "$text-secondary",
                       "content": "License",
                       "fontFamily": "Inter",
-                      "fontSize": 14
+                      "fontSize": 14,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -5089,7 +5128,8 @@
                       "fill": "$text-secondary",
                       "content": "GitHub",
                       "fontFamily": "Inter",
-                      "fontSize": 14
+                      "fontSize": 14,
+                      "fontWeight": "normal"
                     },
                     {
                       "type": "text",
@@ -5098,7 +5138,8 @@
                       "fill": "$text-secondary",
                       "content": "YouTube",
                       "fontFamily": "Inter",
-                      "fontSize": 14
+                      "fontSize": 14,
+                      "fontWeight": "normal"
                     },
                     {
                       "type": "text",
@@ -5107,7 +5148,8 @@
                       "fill": "$text-secondary",
                       "content": "Facebook",
                       "fontFamily": "Inter",
-                      "fontSize": 14
+                      "fontSize": 14,
+                      "fontWeight": "normal"
                     },
                     {
                       "type": "text",
@@ -5116,7 +5158,8 @@
                       "fill": "$text-secondary",
                       "content": "Contact",
                       "fontFamily": "Inter",
-                      "fontSize": 14
+                      "fontSize": 14,
+                      "fontWeight": "normal"
                     }
                   ]
                 }
@@ -5152,7 +5195,8 @@
               "fill": "$text-muted",
               "content": "© 2025 Proyecto 26. Made with love in Colombia.",
               "fontFamily": "Inter",
-              "fontSize": 14
+              "fontSize": 14,
+              "fontWeight": "normal"
             },
             {
               "type": "frame",
