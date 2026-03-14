@@ -1,0 +1,92 @@
+---
+const GA_ID = 'G-4ND3N4W941';
+---
+
+<div
+  id="cookie-consent"
+  class="fixed bottom-0 left-0 right-0 z-[9999] translate-y-full transition-transform duration-300 ease-out"
+  role="dialog"
+  aria-label="Cookie consent"
+>
+  <div class="container py-4">
+    <div class="bg-bg-card border border-border-default rounded-2xl p-4 md:p-6 shadow-lg flex flex-col sm:flex-row items-start sm:items-center gap-4">
+      <p class="text-text-secondary text-sm flex-1">
+        We use cookies to analyze site usage and improve your experience. By accepting, you consent to our use of analytics cookies.
+        <a href="/privacy" class="text-accent-coral hover:underline ml-1">Privacy Policy</a>
+      </p>
+      <div class="flex items-center gap-3 flex-shrink-0">
+        <button
+          id="cookie-reject"
+          class="px-4 py-2 text-sm font-medium text-text-secondary bg-transparent border border-border-default rounded-lg hover:bg-bg-hover transition-colors duration-200"
+        >
+          Decline
+        </button>
+        <button
+          id="cookie-accept"
+          class="px-4 py-2 text-sm font-medium text-white bg-accent-coral rounded-lg hover:brightness-110 transition-all duration-200"
+        >
+          Accept
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script is:inline define:vars={{ GA_ID }}>
+  (function() {
+    var CONSENT_KEY = 'p26_cookie_consent';
+    var consent = localStorage.getItem(CONSENT_KEY);
+
+    function loadGA() {
+      if (document.getElementById('ga-script')) return;
+      var s = document.createElement('script');
+      s.id = 'ga-script';
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+      document.head.appendChild(s);
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { window.dataLayer.push(arguments); }
+      window.gtag = gtag;
+      gtag('js', new Date());
+      gtag('config', GA_ID);
+    }
+
+    function showBanner() {
+      var banner = document.getElementById('cookie-consent');
+      if (banner) {
+        requestAnimationFrame(function() {
+          banner.classList.remove('translate-y-full');
+        });
+      }
+    }
+
+    function hideBanner() {
+      var banner = document.getElementById('cookie-consent');
+      if (banner) {
+        banner.classList.add('translate-y-full');
+      }
+    }
+
+    if (consent === 'accepted') {
+      loadGA();
+    } else if (consent !== 'rejected') {
+      // No decision yet — show banner after a short delay
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() { setTimeout(showBanner, 1000); });
+      } else {
+        setTimeout(showBanner, 1000);
+      }
+    }
+
+    document.addEventListener('click', function(e) {
+      if (e.target && e.target.id === 'cookie-accept') {
+        localStorage.setItem(CONSENT_KEY, 'accepted');
+        hideBanner();
+        loadGA();
+      } else if (e.target && e.target.id === 'cookie-reject') {
+        localStorage.setItem(CONSENT_KEY, 'rejected');
+        hideBanner();
+      }
+    });
+  })();
+</script>

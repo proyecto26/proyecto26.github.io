@@ -20,6 +20,7 @@ const { title, description, image, tags, href, featured = false } = Astro.props;
           <img
             src={image}
             alt={title}
+            loading="lazy"
             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
         ) : (
@@ -30,6 +31,7 @@ const { title, description, image, tags, href, featured = false } = Astro.props;
         <!-- Play overlay -->
         <a
           href={href}
+          aria-label={`Play ${title}`}
           class="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 hover:opacity-100 transition-opacity duration-300"
         >
           <div class="w-20 h-20 bg-accent-coral rounded-full flex items-center justify-center shadow-glow-coral transition-transform duration-300 hover:scale-110">
@@ -83,6 +85,7 @@ const { title, description, image, tags, href, featured = false } = Astro.props;
         <img
           src={image}
           alt={title}
+          loading="lazy"
           class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
       ) : (
@@ -93,6 +96,7 @@ const { title, description, image, tags, href, featured = false } = Astro.props;
       <!-- Play button overlay -->
       <a
         href={href}
+        aria-label={`Play ${title}`}
         class="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
       >
         <div class="w-14 h-14 bg-accent-coral rounded-full flex items-center justify-center shadow-glow-coral">

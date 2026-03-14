@@ -23,15 +23,16 @@ const navLinks = [
   <div class="container h-full flex items-center justify-between">
     <!-- Logo -->
     <a href="/" class="logo-link flex items-center gap-3 group">
-      <img src="/img/pro26.png" alt="Proyecto 26" class="w-10 h-10 rounded-lg transition-all duration-300 group-hover:shadow-glow-coral group-hover:scale-105" />
+      <img src="/img/pro26.png" alt="Proyecto 26" width="40" height="40" loading="lazy" class="w-10 h-10 rounded-lg transition-all duration-300 group-hover:shadow-glow-coral group-hover:scale-105" />
       <span class="text-lg font-bold text-text-primary hidden sm:block">Proyecto 26</span>
     </a>
 
     <!-- Desktop Navigation -->
-    <nav class="hidden md:flex items-center gap-8">
+    <nav class="hidden md:flex items-center gap-8" aria-label="Main navigation">
       {navLinks.map((link) => (
         <a
           href={link.href}
+          aria-current={currentPage === link.id ? 'page' : undefined}
           class:list={[
             'nav-link text-sm font-medium transition-colors duration-200 relative',
             currentPage === link.id
@@ -47,11 +48,11 @@ const navLinks = [
 
     <!-- Actions -->
     <div class="flex items-center gap-3">
-      <!-- Theme Toggle -->
+      <!-- Dragon Easter Egg Trigger -->
       <button
         data-dragon-trigger
         class="w-10 h-10 rounded-full bg-bg-hover flex items-center justify-center text-text-secondary hover:text-text-primary hover:bg-bg-tertiary transition-all duration-200"
-        aria-label="Toggle theme"
+        aria-label="Summon the dragon"
       >
         <i class="w-5 h-5">🐉</i>
       </button>
@@ -85,7 +86,7 @@ const navLinks = [
     id="mobile-menu"
     class="md:hidden fixed inset-0 top-[72px] bg-black transform translate-x-full transition-transform duration-300 ease-smooth z-modal"
   >
-    <nav class="flex flex-col p-6 gap-2">
+    <nav class="flex flex-col p-6 gap-2" aria-label="Mobile navigation">
       {navLinks.map((link) => (
         <a
           href={link.href}
@@ -144,6 +145,14 @@ const navLinks = [
 
   mobileMenuBtn?.addEventListener('click', toggleMenu);
   mobileOverlay?.addEventListener('click', toggleMenu);
+
+  // Close menu on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && isMenuOpen) {
+      toggleMenu();
+      mobileMenuBtn?.focus();
+    }
+  });
 
   // Close menu on navigation link click
   document.querySelectorAll('.mobile-nav-link').forEach((link) => {

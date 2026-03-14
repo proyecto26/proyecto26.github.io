@@ -1,6 +1,7 @@
 ---
 import DragonEasterEgg from '../components/DragonEasterEgg.astro';
 import NinjaAnimation from '../components/NinjaAnimation.astro';
+import CookieConsent from '../components/CookieConsent.astro';
 
 interface Props {
   title?: string;
@@ -22,6 +23,37 @@ const siteUrl = 'https://proyecto26.com';
 const currentPath = Astro.url.pathname;
 const fullUrl = canonicalUrl || `${siteUrl}${currentPath}`;
 const fullImageUrl = image.startsWith('http') ? image : `${siteUrl}${image}`;
+const isHomePage = currentPath === '/' || currentPath === '';
+
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Proyecto 26',
+  url: siteUrl,
+  logo: `${siteUrl}/img/pro26.png`,
+  description: 'Open source tools for Web, Mobile, and Game Development.',
+  founder: {
+    '@type': 'Person',
+    name: 'Juan David Nicholls',
+    url: 'https://linkedin.com/in/jdnichollsc',
+  },
+  sameAs: [
+    'https://github.com/proyecto26',
+    'https://x.com/proyecto_26',
+    'https://www.youtube.com/@proyecto26',
+    'https://www.linkedin.com/company/proyecto26',
+    'https://www.facebook.com/proyecto26',
+    'https://bio.link/proyecto26',
+  ],
+};
+
+const webSiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Proyecto 26',
+  url: siteUrl,
+  description,
+};
 ---
 
 <!DOCTYPE html>
@@ -73,20 +105,27 @@ const fullImageUrl = image.startsWith('http') ? image : `${siteUrl}${image}`;
     <!-- Preconnect to external resources -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://unpkg.com" />
+
+    <!-- Fonts -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" /></noscript>
 
     <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+    <script src="https://unpkg.com/lucide@0.577.0/dist/umd/lucide.min.js" defer></script>
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4ND3N4W941"></script>
-    <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      gtag('js', new Date());
-      gtag('config', 'G-4ND3N4W941');
-    </script>
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+    {isHomePage && (
+      <script type="application/ld+json" set:html={JSON.stringify(webSiteSchema)} />
+    )}
   </head>
   <body class="bg-bg-primary text-text-primary antialiased">
+    <!-- Skip to content link -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[10000] focus:px-4 focus:py-2 focus:bg-accent-coral focus:text-white focus:rounded-lg focus:text-sm focus:font-medium">
+      Skip to content
+    </a>
+
     <!-- Custom cursor (desktop only) -->
     <div class="cursor-dot hidden lg:block"></div>
     <div class="cursor-outline hidden lg:block"></div>
@@ -99,11 +138,22 @@ const fullImageUrl = image.startsWith('http') ? image : `${siteUrl}${image}`;
     <!-- Ninja Animation -->
     <NinjaAnimation />
 
-    <!-- Initialize Lucide icons -->
+    <!-- Cookie Consent -->
+    <CookieConsent />
+
+    <!-- Initialize Lucide icons & reduced motion support -->
     <script>
       document.addEventListener('DOMContentLoaded', () => {
         if (window.lucide) {
           window.lucide.createIcons();
+        }
+
+        // Ensure animated elements are visible for users who prefer reduced motion
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          document.querySelectorAll('[data-animate]').forEach((el) => {
+            (el as HTMLElement).style.opacity = '1';
+            (el as HTMLElement).style.transform = 'none';
+          });
         }
       });
     </script>
