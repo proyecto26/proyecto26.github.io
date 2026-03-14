@@ -131,6 +131,87 @@ export async function getOrgTotalStars(org: string): Promise<number> {
   return totalStars;
 }
 
+interface GitHubContributor {
+  login: string;
+  avatar_url: string;
+  html_url: string;
+  contributions: number;
+}
+
+export interface Contributor {
+  username: string;
+  avatar: string;
+  url: string;
+  contributions: number;
+}
+
+/**
+ * Fetch top contributors for a GitHub organization
+ * Aggregates contributors across top repos
+ */
+export async function getOrgContributors(org: string, limit = 12): Promise<Contributor[]> {
+  const headers: HeadersInit = {
+    'Accept': 'application/vnd.github.v3+json',
+    'User-Agent': 'Proyecto26-Website',
+  };
+
+  const token = import.meta.env.GITHUB_TOKEN;
+  if (token) {
+    headers['Authorization'] = `Bearer ${token}`;
+  }
+
+  try {
+    // Fetch top repos by stars
+    const reposRes = await fetch(
+      `https://api.github.com/orgs/${org}/repos?sort=stars&per_page=10`,
+      { headers }
+    );
+
+    if (!reposRes.ok) return [];
+
+    const repos: Array<{ name: string }> = await reposRes.json();
+
+    // Fetch contributors from top repos in parallel
+    const contributorMap = new Map<string, Contributor>();
+
+    await Promise.all(
+      repos.slice(0, 5).map(async (repo) => {
+        try {
+          const res = await fetch(
+            `https://api.github.com/repos/${org}/${repo.name}/contributors?per_page=20`,
+            { headers }
+          );
+          if (!res.ok) return;
+          const contributors: GitHubContributor[] = await res.json();
+
+          for (const c of contributors) {
+            if (c.login.includes('[bot]')) continue;
+            const existing = contributorMap.get(c.login);
+            if (existing) {
+              existing.contributions += c.contributions;
+            } else {
+              contributorMap.set(c.login, {
+                username: c.login,
+                avatar: c.avatar_url,
+                url: c.html_url,
+                contributions: c.contributions,
+              });
+            }
+          }
+        } catch {
+          // Silently skip failed repos
+        }
+      })
+    );
+
+    return Array.from(contributorMap.values())
+      .sort((a, b) => b.contributions - a.contributions)
+      .slice(0, limit);
+  } catch {
+    return [];
+  }
+}
+
 /**
  * Format number with K suffix for thousands
  */

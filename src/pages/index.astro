@@ -8,9 +8,13 @@ import ServiceCard from '../components/ServiceCard.astro';
 import GameCard from '../components/GameCard.astro';
 import Button from '../components/Button.astro';
 import { getFeaturedProjects } from '../data/projects';
+import { getOrgContributors } from '../utils/github';
 
 // Fetch featured projects with GitHub stats at build time
 const projects = await getFeaturedProjects(6);
+
+// Fetch top contributors at build time
+const contributors = await getOrgContributors('proyecto26', 12);
 
 const services = [
   {
@@ -171,6 +175,9 @@ const supportLinks = [
                   <img
                     src="/img/jdnichollsc.jpg"
                     alt="Juan David Nicholls"
+                    width="192"
+                    height="192"
+                    loading="lazy"
                     class="w-full h-full object-cover"
                   />
                 </div>
@@ -235,6 +242,50 @@ const supportLinks = [
         </div>
       </div>
     </section>
+
+    <!-- Contributors Section -->
+    {contributors.length > 0 && (
+      <section class="py-16 bg-bg-primary">
+        <div class="container">
+          <div class="text-center mb-12">
+            <h2 class="text-4xl md:text-5xl font-bold text-text-primary mb-4" data-animate="fade-up">
+              Our Contributors
+            </h2>
+            <p class="text-lg text-text-secondary max-w-2xl mx-auto" data-animate="fade-up" data-delay="100">
+              Thanks to the developers who help build and improve our projects
+            </p>
+          </div>
+
+          <div class="flex flex-wrap items-center justify-center gap-4 max-w-3xl mx-auto mb-8" data-animate="fade-up" data-delay="200">
+            {contributors.map((contributor) => (
+              <a
+                href={contributor.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group relative"
+                title={`@${contributor.username} (${contributor.contributions} contributions)`}
+              >
+                <img
+                  src={`${contributor.avatar}&s=80`}
+                  alt={contributor.username}
+                  width="48"
+                  height="48"
+                  loading="lazy"
+                  class="w-12 h-12 rounded-full ring-2 ring-border-default transition-all duration-200 group-hover:ring-accent-coral group-hover:scale-110"
+                />
+              </a>
+            ))}
+          </div>
+
+          <div class="text-center" data-animate="fade-up" data-delay="300">
+            <Button href="https://github.com/proyecto26" variant="secondary" size="sm" external>
+              Become a Contributor
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </Button>
+          </div>
+        </div>
+      </section>
+    )}
 
     <!-- Support Section -->
     <section id="contact" class="section bg-bg-primary">
