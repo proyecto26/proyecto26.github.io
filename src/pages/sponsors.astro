@@ -6,7 +6,35 @@ import Button from '../components/Button.astro';
 import { getSponsorsGrouped, sponsorPlatforms } from '../data/sponsors';
 
 const sponsorTiers = await getSponsorsGrouped();
-const hasAnySponsor = sponsorTiers.some((t) => t.sponsors.length > 0);
+const totalSponsors = sponsorTiers.reduce((sum, t) => sum + t.sponsors.length, 0);
+
+// Avatar sizes by tier (higher tiers get bigger logos, like Vue/Nuxt/ESLint)
+const tierAvatarSizes: Record<string, { img: string; ring: string; w: number }> = {
+  'Enterprise Pro': { img: 'w-16 h-16', ring: 'ring-accent-coral', w: 64 },
+  'Enterprise': { img: 'w-14 h-14', ring: 'ring-accent-blue', w: 56 },
+  'Heroes': { img: 'w-12 h-12', ring: 'ring-accent-orange', w: 48 },
+  'Unicorns': { img: 'w-10 h-10', ring: 'ring-accent-teal', w: 40 },
+  'Backers': { img: 'w-8 h-8', ring: 'ring-border-default', w: 32 },
+};
+
+const faqs = [
+  {
+    q: 'Where does the money go?',
+    a: 'Sponsorship funds go directly toward development time, hosting costs, and maintaining our open source projects. We aim to be transparent about how funds are used.',
+  },
+  {
+    q: 'Can I sponsor as a company?',
+    a: 'Absolutely! Company sponsorships are a great way to support the tools your team relies on while getting visibility among our developer community. Higher tiers include consulting and custom development.',
+  },
+  {
+    q: 'Can I make a one-time donation?',
+    a: 'Yes! Open Collective, Ko-fi, Buy Me a Coffee, PayPal, and crypto all support one-time donations. GitHub Sponsors also offers one-time options.',
+  },
+  {
+    q: 'Do you offer invoices?',
+    a: 'Yes. Open Collective provides automatic invoices for all contributions. For GitHub Sponsors, contact us and we can arrange invoicing.',
+  },
+];
 ---
 
 <BaseLayout title="Sponsors - Proyecto 26" description="Support Proyecto 26's open source mission. See our sponsor tiers, current sponsors, and ways to contribute.">
@@ -21,23 +49,97 @@ const hasAnySponsor = sponsorTiers.some((t) => t.sponsors.length > 0);
             Become a Sponsor
           </h1>
           <p class="text-xl text-text-secondary mb-8" data-animate="fade-up" data-delay="100">
-            Proyecto 26 is an independent open source organization. Sponsorships help us dedicate more time to building tools developers love.
+            Proyecto 26 is free, open source software made possible by our sponsors and contributors. Sponsorships help us dedicate more time to building tools developers love.
           </p>
-          <div class="flex flex-wrap items-center justify-center gap-4" data-animate="fade-up" data-delay="200">
+
+          <!-- Dual-platform CTAs (Vue/ESLint pattern) -->
+          <div class="flex flex-wrap items-center justify-center gap-4 mb-12" data-animate="fade-up" data-delay="200">
             <Button href="https://github.com/sponsors/proyecto26" variant="primary" external>
               <i data-lucide="heart" class="w-4 h-4"></i>
               Sponsor on GitHub
             </Button>
             <Button href="https://opencollective.com/proyecto26" variant="secondary" external>
-              Open Collective
+              Donate on Open Collective
             </Button>
+          </div>
+
+          {/* Stats (ESLint pattern) */}
+          {totalSponsors > 0 && (
+            <div class="flex items-center justify-center gap-8 text-center" data-animate="fade-up" data-delay="300">
+              <div>
+                <div class="text-3xl font-bold gradient-text">{totalSponsors}</div>
+                <div class="text-sm text-text-muted">Sponsors</div>
+              </div>
+              <div class="w-px h-10 bg-border-default"></div>
+              <div>
+                <div class="text-3xl font-bold gradient-text">7+</div>
+                <div class="text-sm text-text-muted">Platforms</div>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Sponsor (Vue pattern: Business vs Individual) -->
+    <section class="py-16 bg-bg-secondary">
+      <div class="container">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <!-- Business -->
+          <div class="bg-bg-card border border-border-default rounded-2xl p-8" data-animate="fade-up">
+            <div class="w-12 h-12 rounded-xl bg-bg-hover flex items-center justify-center mb-4">
+              <i data-lucide="building-2" class="w-6 h-6 text-accent-coral"></i>
+            </div>
+            <h3 class="text-xl font-bold text-text-primary mb-3">Sponsoring as a Business</h3>
+            <p class="text-text-secondary text-sm mb-4">
+              Your team probably uses one of our open source projects. Sponsoring ensures continued development and gives you:
+            </p>
+            <ul class="space-y-2">
+              <li class="flex items-start gap-2 text-sm text-text-secondary">
+                <i data-lucide="check" class="w-4 h-4 text-accent-teal mt-0.5 flex-shrink-0"></i>
+                Priority bug fixes and feature requests
+              </li>
+              <li class="flex items-start gap-2 text-sm text-text-secondary">
+                <i data-lucide="check" class="w-4 h-4 text-accent-teal mt-0.5 flex-shrink-0"></i>
+                Direct consulting and support hours
+              </li>
+              <li class="flex items-start gap-2 text-sm text-text-secondary">
+                <i data-lucide="check" class="w-4 h-4 text-accent-teal mt-0.5 flex-shrink-0"></i>
+                Brand visibility among our developer community
+              </li>
+            </ul>
+          </div>
+
+          <!-- Individual -->
+          <div class="bg-bg-card border border-border-default rounded-2xl p-8" data-animate="fade-up" data-delay="100">
+            <div class="w-12 h-12 rounded-xl bg-bg-hover flex items-center justify-center mb-4">
+              <i data-lucide="heart" class="w-6 h-6 text-accent-teal"></i>
+            </div>
+            <h3 class="text-xl font-bold text-text-primary mb-3">Sponsoring as an Individual</h3>
+            <p class="text-text-secondary text-sm mb-4">
+              If our tools have made your work easier or helped you learn something new, consider sponsoring as a sign of appreciation — like buying us a coffee once in a while.
+            </p>
+            <ul class="space-y-2">
+              <li class="flex items-start gap-2 text-sm text-text-secondary">
+                <i data-lucide="check" class="w-4 h-4 text-accent-teal mt-0.5 flex-shrink-0"></i>
+                Exclusive 1-on-1 meetings and content
+              </li>
+              <li class="flex items-start gap-2 text-sm text-text-secondary">
+                <i data-lucide="check" class="w-4 h-4 text-accent-teal mt-0.5 flex-shrink-0"></i>
+                Your name credited in our projects
+              </li>
+              <li class="flex items-start gap-2 text-sm text-text-secondary">
+                <i data-lucide="check" class="w-4 h-4 text-accent-teal mt-0.5 flex-shrink-0"></i>
+                Support the open source you rely on
+              </li>
+            </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Sponsor Tiers -->
-    <section class="py-16 bg-bg-secondary">
+    <!-- Sponsor Tiers with scaled logos (Nuxt/ESLint pattern) -->
+    <section class="py-16 bg-bg-primary">
       <div class="container">
         <div class="text-center mb-12">
           <h2 class="text-3xl md:text-4xl font-bold text-text-primary mb-4" data-animate="fade-up">
@@ -48,92 +150,105 @@ const hasAnySponsor = sponsorTiers.some((t) => t.sponsors.length > 0);
           </p>
         </div>
 
-        <div class="space-y-12">
-          {sponsorTiers.map((tier, tierIndex) => (
-            <div data-animate="fade-up" data-delay={tierIndex * 100}>
-              <!-- Tier Header -->
-              <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-6">
-                <div class={`w-12 h-12 rounded-xl bg-bg-hover flex items-center justify-center flex-shrink-0`}>
-                  <i data-lucide={tier.icon} class={`w-6 h-6 text-accent-${tier.color}`}></i>
-                </div>
-                <div class="flex-1">
-                  <div class="flex items-center gap-3">
-                    <h3 class="text-2xl font-bold text-text-primary">{tier.name}</h3>
-                    <span class="text-lg font-semibold text-accent-coral">{tier.price}<span class="text-sm text-text-muted font-normal">{tier.period}</span></span>
-                    {tier.featured && (
-                      <span class="px-2 py-0.5 bg-accent-coral text-white text-xs font-bold rounded-full">Popular</span>
-                    )}
+        <div class="space-y-16 max-w-4xl mx-auto">
+          {sponsorTiers.map((tier, tierIndex) => {
+            const sizes = tierAvatarSizes[tier.name] || tierAvatarSizes['Backers'];
+            return (
+              <div data-animate="fade-up" data-delay={tierIndex * 80}>
+                {/* Tier Header */}
+                <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-6">
+                  <div class={`w-12 h-12 rounded-xl bg-bg-hover flex items-center justify-center flex-shrink-0`}>
+                    <i data-lucide={tier.icon} class={`w-6 h-6 text-accent-${tier.color}`}></i>
                   </div>
-                  <p class="text-text-secondary text-sm mt-1">{tier.description}</p>
-                </div>
-                <Button href="https://github.com/sponsors/proyecto26" variant={tier.featured ? 'primary' : 'secondary'} size="sm" external>
-                  Sponsor
-                </Button>
-              </div>
-
-              <!-- Benefits -->
-              <div class="bg-bg-card border border-border-default rounded-2xl p-6 mb-6">
-                <div class="flex flex-wrap gap-x-8 gap-y-2">
-                  {tier.benefits.map((benefit) => (
-                    <div class="flex items-center gap-2 text-sm text-text-secondary">
-                      <i data-lucide="check" class="w-4 h-4 text-accent-teal flex-shrink-0"></i>
-                      {benefit}
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <!-- Sponsors in this tier -->
-              {tier.sponsors.length > 0 ? (
-                <div class="flex flex-wrap items-center gap-4">
-                  {tier.sponsors.map((sponsor) => (
-                    <a
-                      href={sponsor.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="group flex items-center gap-3 px-4 py-3 bg-bg-card border border-border-default rounded-xl hover:border-border-accent transition-all duration-200"
-                      title={`${sponsor.name} — ${sponsor.platform}`}
-                    >
-                      {sponsor.image ? (
-                        <img
-                          src={sponsor.image}
-                          alt={sponsor.name}
-                          width="32"
-                          height="32"
-                          loading="lazy"
-                          class="w-8 h-8 rounded-full"
-                        />
-                      ) : (
-                        <div class="w-8 h-8 rounded-full bg-bg-hover flex items-center justify-center text-text-muted text-sm font-bold">
-                          {sponsor.name.charAt(0)}
-                        </div>
+                  <div class="flex-1">
+                    <div class="flex flex-wrap items-center gap-3">
+                      <h3 class="text-2xl font-bold text-text-primary">{tier.name}</h3>
+                      <span class="text-lg font-semibold text-accent-coral">{tier.price}<span class="text-sm text-text-muted font-normal">{tier.period}</span></span>
+                      {tier.featured && (
+                        <span class="px-2 py-0.5 bg-accent-coral text-white text-xs font-bold rounded-full">Popular</span>
                       )}
-                      <span class="text-sm font-medium text-text-primary group-hover:text-accent-coral transition-colors">{sponsor.name}</span>
-                    </a>
-                  ))}
+                    </div>
+                    <p class="text-text-secondary text-sm mt-1">{tier.description}</p>
+                  </div>
+                  <div class="flex gap-2">
+                    <Button href="https://github.com/sponsors/proyecto26" variant={tier.featured ? 'primary' : 'secondary'} size="sm" external>
+                      GitHub
+                    </Button>
+                    <Button href="https://opencollective.com/proyecto26" variant="secondary" size="sm" external>
+                      OC
+                    </Button>
+                  </div>
                 </div>
-              ) : (
-                <p class="text-text-muted text-sm italic">Be the first {tier.name} sponsor!</p>
-              )}
 
-              {tierIndex < sponsorTiers.length - 1 && (
-                <hr class="border-border-default mt-12" />
-              )}
-            </div>
-          ))}
+                {/* Benefits */}
+                <div class="bg-bg-card border border-border-default rounded-2xl p-6 mb-6">
+                  <div class="flex flex-wrap gap-x-8 gap-y-2">
+                    {tier.benefits.map((benefit) => (
+                      <div class="flex items-center gap-2 text-sm text-text-secondary">
+                        <i data-lucide="check" class="w-4 h-4 text-accent-teal flex-shrink-0"></i>
+                        {benefit}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Sponsors — logo size varies by tier */}
+                {tier.sponsors.length > 0 ? (
+                  <div class="flex flex-wrap items-center gap-4">
+                    {tier.sponsors.map((sponsor) => (
+                      <a
+                        href={sponsor.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="group flex items-center gap-3 px-4 py-3 bg-bg-card border border-border-default rounded-xl hover:border-border-accent transition-all duration-200"
+                        title={`${sponsor.name}${sponsor.totalDonated ? ` — $${sponsor.totalDonated} contributed` : ''}`}
+                      >
+                        {sponsor.image ? (
+                          <img
+                            src={sponsor.image}
+                            alt={sponsor.name}
+                            width={sizes.w}
+                            height={sizes.w}
+                            loading="lazy"
+                            class={`${sizes.img} rounded-full ring-2 ${sizes.ring}`}
+                          />
+                        ) : (
+                          <div class={`${sizes.img} rounded-full bg-bg-hover flex items-center justify-center text-text-muted font-bold ring-2 ${sizes.ring}`}>
+                            {sponsor.name.charAt(0)}
+                          </div>
+                        )}
+                        <span class="text-sm font-medium text-text-primary group-hover:text-accent-coral transition-colors">{sponsor.name}</span>
+                      </a>
+                    ))}
+                  </div>
+                ) : (
+                  <div class="flex items-center gap-3 text-text-muted text-sm">
+                    <div class={`${sizes.img} rounded-full border-2 border-dashed border-border-default flex items-center justify-center`}>
+                      <i data-lucide="plus" class="w-4 h-4"></i>
+                    </div>
+                    <span>Be the first {tier.name} sponsor</span>
+                  </div>
+                )}
+
+                {tierIndex < sponsorTiers.length - 1 && (
+                  <hr class="border-border-default mt-16" />
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
 
     <!-- All Platforms -->
-    <section class="py-16 bg-bg-primary">
+    <section class="py-16 bg-bg-secondary">
       <div class="container">
         <div class="text-center mb-12">
           <h2 class="text-3xl md:text-4xl font-bold text-text-primary mb-4" data-animate="fade-up">
             Ways to Sponsor
           </h2>
           <p class="text-text-secondary max-w-2xl mx-auto" data-animate="fade-up" data-delay="100">
-            Choose the platform that works best for you.
+            Choose the platform that works best for you. All platforms support both recurring and one-time contributions.
           </p>
         </div>
 
@@ -175,6 +290,26 @@ const hasAnySponsor = sponsorTiers.some((t) => t.sponsors.length > 0);
       </div>
     </section>
 
+    <!-- FAQ (ESLint pattern) -->
+    <section class="py-16 bg-bg-primary">
+      <div class="container">
+        <div class="max-w-3xl mx-auto">
+          <h2 class="text-3xl font-bold text-text-primary text-center mb-12" data-animate="fade-up">
+            Frequently Asked Questions
+          </h2>
+
+          <div class="space-y-4">
+            {faqs.map((faq, index) => (
+              <div class="bg-bg-card border border-border-default rounded-2xl p-6" data-animate="fade-up" data-delay={(index + 1) * 100}>
+                <h3 class="text-lg font-semibold text-text-primary mb-2">{faq.q}</h3>
+                <p class="text-text-secondary">{faq.a}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- CTA -->
     <section class="py-16 bg-bg-secondary">
       <div class="container">
@@ -183,7 +318,7 @@ const hasAnySponsor = sponsorTiers.some((t) => t.sponsors.length > 0);
             Not ready to sponsor?
           </h2>
           <p class="text-text-secondary mb-8">
-            You can still support us by starring our repositories, contributing code, or spreading the word.
+            You can still support us by starring our repositories, contributing code, or spreading the word. Every star helps others discover our projects.
           </p>
           <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button href="https://github.com/proyecto26" variant="primary" external>
@@ -201,6 +336,15 @@ const hasAnySponsor = sponsorTiers.some((t) => t.sponsors.length > 0);
 
   <Footer />
 </BaseLayout>
+
+<style>
+  .gradient-text {
+    background: linear-gradient(135deg, var(--color-accent-coral), var(--color-accent-teal));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+</style>
 
 <script>
   import { gsap } from 'gsap';
