@@ -9,12 +9,17 @@ import GameCard from '../components/GameCard.astro';
 import Button from '../components/Button.astro';
 import { getFeaturedProjects } from '../data/projects';
 import { getOrgContributors } from '../utils/github';
+import { getTierDefinitions, sponsorPlatforms } from '../data/sponsors';
 
 // Fetch featured projects with GitHub stats at build time
 const projects = await getFeaturedProjects(6);
 
 // Fetch top contributors at build time
 const contributors = await getOrgContributors('proyecto26', 12);
+
+// Get sponsor tier definitions (homepage shows a subset)
+const allTiers = getTierDefinitions();
+const homepageTiers = allTiers.filter((t) => ['Backers', 'Unicorns', 'Heroes', 'Enterprise'].includes(t.name));
 
 const services = [
   {
@@ -62,52 +67,7 @@ const games = [
   },
 ];
 
-const sponsorTiers = [
-  {
-    name: 'Beer',
-    price: '$2',
-    period: '/mo',
-    icon: 'coffee',
-    color: 'coral',
-    description: 'Buy us a beer while we fix the world.',
-    benefits: ['Sponsor badge', 'Our eternal gratitude'],
-  },
-  {
-    name: 'Unicorns',
-    price: '$10',
-    period: '/mo',
-    icon: 'sparkles',
-    color: 'teal',
-    description: 'Become a community contributor.',
-    benefits: ['Sponsor badge', 'Bug prioritization', 'Name in projects'],
-  },
-  {
-    name: 'Heroes',
-    price: '$26',
-    period: '/mo',
-    icon: 'shield',
-    color: 'orange',
-    featured: true,
-    description: 'Join us to change the world together.',
-    benefits: ['1-on-1 meetings', 'Exclusive content', 'Priority support', 'All previous benefits'],
-  },
-  {
-    name: 'Enterprise',
-    price: '$50',
-    period: '/mo',
-    icon: 'building-2',
-    color: 'blue',
-    description: 'Professional support for your projects.',
-    benefits: ['Hourly consulting', 'Custom examples', 'Live chat support', 'All previous benefits'],
-  },
-];
-
-const supportLinks = [
-  { name: 'Patreon', icon: 'heart', color: '#FF424D', href: 'https://patreon.com/proyecto26' },
-  { name: 'Ko-fi', icon: 'coffee', color: '#f2385a', href: 'https://ko-fi.com/proyecto26' },
-  { name: 'Open Collective', icon: 'users', color: '#7FADF2', href: 'https://opencollective.com/proyecto26' },
-  { name: 'Liberapay', icon: 'dollar-sign', color: '#f6c915', href: 'https://liberapay.com/proyecto26' },
-];
+const supportLinks = sponsorPlatforms.filter((p) => !p.primary).slice(0, 4);
 ---
 
 <BaseLayout title="Proyecto 26 - Changing the world with small contributions">
@@ -344,7 +304,7 @@ const supportLinks = [
 
         <!-- Sponsor Tiers -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-          {sponsorTiers.map((tier, index) => (
+          {homepageTiers.map((tier, index) => (
             <div
               class:list={[
                 'relative bg-bg-card rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1',
@@ -412,11 +372,12 @@ const supportLinks = [
             ))}
           </div>
 
-          <!-- GitHub Stars CTA -->
-          <div class="text-center mt-12" data-animate="fade-up" data-delay="600">
-            <p class="text-text-secondary mb-4">
-              Not ready to sponsor? Star our repos — it helps others discover our projects!
-            </p>
+          <!-- View All & Stars -->
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-12" data-animate="fade-up" data-delay="600">
+            <Button href="/sponsors" variant="primary">
+              View All Tiers & Sponsors
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </Button>
             <Button href="https://github.com/proyecto26" variant="secondary" external>
               <i data-lucide="star" class="w-4 h-4"></i>
               Star on GitHub

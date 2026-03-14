@@ -1,0 +1,227 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Button from '../components/Button.astro';
+import { getSponsorsGrouped, sponsorPlatforms } from '../data/sponsors';
+
+const sponsorTiers = await getSponsorsGrouped();
+const hasAnySponsor = sponsorTiers.some((t) => t.sponsors.length > 0);
+---
+
+<BaseLayout title="Sponsors - Proyecto 26" description="Support Proyecto 26's open source mission. See our sponsor tiers, current sponsors, and ways to contribute.">
+  <Header />
+
+  <main id="main-content" class="pt-[72px]">
+    <!-- Hero -->
+    <section class="py-16 md:py-24 bg-bg-primary">
+      <div class="container">
+        <div class="text-center max-w-3xl mx-auto">
+          <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-text-primary mb-6" data-animate="fade-up">
+            Become a Sponsor
+          </h1>
+          <p class="text-xl text-text-secondary mb-8" data-animate="fade-up" data-delay="100">
+            Proyecto 26 is an independent open source organization. Sponsorships help us dedicate more time to building tools developers love.
+          </p>
+          <div class="flex flex-wrap items-center justify-center gap-4" data-animate="fade-up" data-delay="200">
+            <Button href="https://github.com/sponsors/proyecto26" variant="primary" external>
+              <i data-lucide="heart" class="w-4 h-4"></i>
+              Sponsor on GitHub
+            </Button>
+            <Button href="https://opencollective.com/proyecto26" variant="secondary" external>
+              Open Collective
+            </Button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sponsor Tiers -->
+    <section class="py-16 bg-bg-secondary">
+      <div class="container">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold text-text-primary mb-4" data-animate="fade-up">
+            Sponsor Tiers
+          </h2>
+          <p class="text-text-secondary max-w-2xl mx-auto" data-animate="fade-up" data-delay="100">
+            Choose a tier that works for you. Every contribution counts.
+          </p>
+        </div>
+
+        <div class="space-y-12">
+          {sponsorTiers.map((tier, tierIndex) => (
+            <div data-animate="fade-up" data-delay={tierIndex * 100}>
+              <!-- Tier Header -->
+              <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-6">
+                <div class={`w-12 h-12 rounded-xl bg-bg-hover flex items-center justify-center flex-shrink-0`}>
+                  <i data-lucide={tier.icon} class={`w-6 h-6 text-accent-${tier.color}`}></i>
+                </div>
+                <div class="flex-1">
+                  <div class="flex items-center gap-3">
+                    <h3 class="text-2xl font-bold text-text-primary">{tier.name}</h3>
+                    <span class="text-lg font-semibold text-accent-coral">{tier.price}<span class="text-sm text-text-muted font-normal">{tier.period}</span></span>
+                    {tier.featured && (
+                      <span class="px-2 py-0.5 bg-accent-coral text-white text-xs font-bold rounded-full">Popular</span>
+                    )}
+                  </div>
+                  <p class="text-text-secondary text-sm mt-1">{tier.description}</p>
+                </div>
+                <Button href="https://github.com/sponsors/proyecto26" variant={tier.featured ? 'primary' : 'secondary'} size="sm" external>
+                  Sponsor
+                </Button>
+              </div>
+
+              <!-- Benefits -->
+              <div class="bg-bg-card border border-border-default rounded-2xl p-6 mb-6">
+                <div class="flex flex-wrap gap-x-8 gap-y-2">
+                  {tier.benefits.map((benefit) => (
+                    <div class="flex items-center gap-2 text-sm text-text-secondary">
+                      <i data-lucide="check" class="w-4 h-4 text-accent-teal flex-shrink-0"></i>
+                      {benefit}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <!-- Sponsors in this tier -->
+              {tier.sponsors.length > 0 ? (
+                <div class="flex flex-wrap items-center gap-4">
+                  {tier.sponsors.map((sponsor) => (
+                    <a
+                      href={sponsor.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="group flex items-center gap-3 px-4 py-3 bg-bg-card border border-border-default rounded-xl hover:border-border-accent transition-all duration-200"
+                      title={`${sponsor.name} — ${sponsor.platform}`}
+                    >
+                      {sponsor.image ? (
+                        <img
+                          src={sponsor.image}
+                          alt={sponsor.name}
+                          width="32"
+                          height="32"
+                          loading="lazy"
+                          class="w-8 h-8 rounded-full"
+                        />
+                      ) : (
+                        <div class="w-8 h-8 rounded-full bg-bg-hover flex items-center justify-center text-text-muted text-sm font-bold">
+                          {sponsor.name.charAt(0)}
+                        </div>
+                      )}
+                      <span class="text-sm font-medium text-text-primary group-hover:text-accent-coral transition-colors">{sponsor.name}</span>
+                    </a>
+                  ))}
+                </div>
+              ) : (
+                <p class="text-text-muted text-sm italic">Be the first {tier.name} sponsor!</p>
+              )}
+
+              {tierIndex < sponsorTiers.length - 1 && (
+                <hr class="border-border-default mt-12" />
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- All Platforms -->
+    <section class="py-16 bg-bg-primary">
+      <div class="container">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold text-text-primary mb-4" data-animate="fade-up">
+            Ways to Sponsor
+          </h2>
+          <p class="text-text-secondary max-w-2xl mx-auto" data-animate="fade-up" data-delay="100">
+            Choose the platform that works best for you.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
+          {sponsorPlatforms.map((platform, index) => (
+            <a
+              href={platform.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class:list={[
+                'group flex items-center gap-4 p-5 rounded-2xl border transition-all duration-300 hover:-translate-y-1',
+                platform.primary
+                  ? 'bg-bg-card border-accent-coral/30 hover:border-accent-coral'
+                  : 'bg-bg-card border-border-default hover:border-border-accent'
+              ]}
+              data-animate="fade-up"
+              data-delay={index * 50}
+            >
+              <div class="w-10 h-10 rounded-lg bg-bg-hover flex items-center justify-center flex-shrink-0">
+                <i data-lucide={platform.icon} class={`w-5 h-5 ${platform.primary ? 'text-text-primary' : 'text-text-secondary'}`} style={platform.color ? `color: ${platform.color}` : ''}></i>
+              </div>
+              <div>
+                <h3 class="font-semibold text-text-primary group-hover:text-accent-coral transition-colors">{platform.name}</h3>
+                {platform.primary && <p class="text-xs text-accent-coral">Recommended</p>}
+              </div>
+              <i data-lucide="arrow-right" class="w-4 h-4 text-text-muted ml-auto opacity-0 group-hover:opacity-100 transition-opacity"></i>
+            </a>
+          ))}
+        </div>
+
+        <!-- Crypto -->
+        <div class="max-w-4xl mx-auto mt-8">
+          <div class="bg-bg-card border border-border-default rounded-2xl p-6 text-center" data-animate="fade-up" data-delay="400">
+            <p class="text-text-secondary text-sm mb-2">We also accept cryptocurrency donations</p>
+            <code class="text-sm text-accent-teal bg-bg-hover px-3 py-1 rounded-lg">jdnichollsc.eth</code>
+            <p class="text-text-muted text-xs mt-2">ETH, ADA, BNB, SHIBA, USDT/USDC, DOGE</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-16 bg-bg-secondary">
+      <div class="container">
+        <div class="max-w-2xl mx-auto text-center" data-animate="fade-up">
+          <h2 class="text-3xl font-bold text-text-primary mb-4">
+            Not ready to sponsor?
+          </h2>
+          <p class="text-text-secondary mb-8">
+            You can still support us by starring our repositories, contributing code, or spreading the word.
+          </p>
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Button href="https://github.com/proyecto26" variant="primary" external>
+              <i data-lucide="star" class="w-4 h-4"></i>
+              Star on GitHub
+            </Button>
+            <Button href="/contact" variant="secondary">
+              Get in Touch
+            </Button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.querySelectorAll('[data-animate="fade-up"]').forEach((el) => {
+    const delay = parseInt(el.getAttribute('data-delay') || '0') / 1000;
+
+    gsap.from(el, {
+      scrollTrigger: {
+        trigger: el,
+        start: 'top 85%',
+        toggleActions: 'play none none none',
+      },
+      y: 30,
+      opacity: 0,
+      duration: 0.6,
+      delay,
+      ease: 'power2.out',
+    });
+  });
+</script>
