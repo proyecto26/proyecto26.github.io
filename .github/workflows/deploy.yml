@@ -50,6 +50,7 @@ jobs:
         working-directory: ${{ env.BUILD_PATH }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_SPONSORS_TOKEN: ${{ secrets.GH_SPONSORS_TOKEN }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

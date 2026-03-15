@@ -22,13 +22,146 @@ export interface SponsorTier {
 }
 
 /**
- * Manually curated sponsors from platforms that don't have public APIs
- * Add sponsors here as they come in from GitHub Sponsors, Patreon, etc.
+ * Manually curated sponsors from platforms without public APIs (Patreon, Ko-fi, etc.)
+ * Add sponsors here as they come in.
  */
 const manualSponsors: Sponsor[] = [
-  // Add sponsors manually here as needed, e.g.:
-  // { name: 'Company X', image: '/img/sponsors/company-x.png', url: 'https://companyx.com', tier: 'Heroes', platform: 'github' },
+  // { name: 'Company X', image: '/img/sponsors/company-x.png', url: 'https://companyx.com', tier: 'Heroes', platform: 'other' },
 ];
+
+/**
+ * GitHub Sponsors GraphQL API accounts to fetch from.
+ * Supports both org and personal sponsorship accounts.
+ */
+const GITHUB_SPONSORS_ACCOUNTS = ['proyecto26', 'jdnichollsc'];
+
+/**
+ * Fetch sponsors from GitHub Sponsors GraphQL API.
+ * Requires a PAT with `read:org` and `read:user` scopes,
+ * stored as GH_SPONSORS_TOKEN in repo secrets.
+ */
+async function fetchGitHubSponsors(): Promise<Sponsor[]> {
+  const token = import.meta.env.GH_SPONSORS_TOKEN;
+  if (!token) return [];
+
+  const allSponsors: Sponsor[] = [];
+
+  for (const account of GITHUB_SPONSORS_ACCOUNTS) {
+    try {
+      const query = `
+        query($login: String!) {
+          repositoryOwner(login: $login) {
+            ... on Organization {
+              sponsorshipsAsMaintainer(first: 100, activeOnly: false) {
+                nodes {
+                  isActive
+                  sponsorEntity {
+                    ... on User {
+                      login
+                      name
+                      avatarUrl
+                      url
+                    }
+                    ... on Organization {
+                      login
+                      name
+                      avatarUrl
+                      url
+                    }
+                  }
+                  tier {
+                    monthlyPriceInDollars
+                    name
+                    isOneTime
+                  }
+                }
+              }
+            }
+            ... on User {
+              sponsorshipsAsMaintainer(first: 100, activeOnly: false) {
+                nodes {
+                  isActive
+                  sponsorEntity {
+                    ... on User {
+                      login
+                      name
+                      avatarUrl
+                      url
+                    }
+                    ... on Organization {
+                      login
+                      name
+                      avatarUrl
+                      url
+                    }
+                  }
+                  tier {
+                    monthlyPriceInDollars
+                    name
+                    isOneTime
+                  }
+                }
+              }
+            }
+          }
+        }
+      `;
+
+      const res = await fetch('https://api.github.com/graphql', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+          'User-Agent': 'Proyecto26-Website',
+        },
+        body: JSON.stringify({ query, variables: { login: account } }),
+      });
+
+      if (!res.ok) {
+        console.warn(`GitHub Sponsors API error for ${account}: ${res.status}`);
+        continue;
+      }
+
+      const json = await res.json();
+      const owner = json.data?.repositoryOwner;
+      if (!owner) continue;
+
+      const nodes = owner.sponsorshipsAsMaintainer?.nodes || [];
+
+      for (const node of nodes) {
+        const entity = node.sponsorEntity;
+        if (!entity) continue;
+
+        const name = entity.name || entity.login;
+        // Skip if already added from another account
+        if (allSponsors.some((s) => s.name === name && s.platform === 'github')) continue;
+
+        allSponsors.push({
+          name,
+          image: entity.avatarUrl || undefined,
+          url: entity.url,
+          tier: mapGitHubSponsorTier(node.tier?.monthlyPriceInDollars || 0),
+          platform: 'github',
+        });
+      }
+    } catch (error) {
+      console.warn(`Failed to fetch GitHub Sponsors for ${account}:`, error);
+    }
+  }
+
+  return allSponsors;
+}
+
+/**
+ * Map GitHub Sponsors monthly price to our tier system
+ */
+function mapGitHubSponsorTier(monthlyPrice: number): string {
+  if (monthlyPrice >= 260) return 'Enterprise Pro';
+  if (monthlyPrice >= 50) return 'Enterprise';
+  if (monthlyPrice >= 26) return 'Heroes';
+  if (monthlyPrice >= 10) return 'Unicorns';
+  return 'Backers';
+}
 
 /**
  * Fetch backers from Open Collective public API
@@ -166,8 +299,26 @@ export function getTierDefinitions(): Omit<SponsorTier, 'sponsors'>[] {
  * Get all sponsors grouped by tier (fetched at build time)
  */
 export async function getSponsorsGrouped(): Promise<SponsorTier[]> {
-  const ocSponsors = await fetchOpenCollectiveSponsors();
-  const allSponsors = [...manualSponsors, ...ocSponsors];
+  const [ghSponsors, ocSponsors] = await Promise.all([
+    fetchGitHubSponsors(),
+    fetchOpenCollectiveSponsors(),
+  ]);
+
+  // Deduplicate: if a sponsor appears on both platforms, keep the one with higher tier
+  const sponsorMap = new Map<string, Sponsor>();
+  const tierRank: Record<string, number> = {
+    'Enterprise Pro': 5, 'Enterprise': 4, 'Heroes': 3, 'Unicorns': 2, 'Backers': 1,
+  };
+
+  for (const s of [...manualSponsors, ...ghSponsors, ...ocSponsors]) {
+    const key = s.name.toLowerCase();
+    const existing = sponsorMap.get(key);
+    if (!existing || (tierRank[s.tier] || 0) > (tierRank[existing.tier] || 0)) {
+      sponsorMap.set(key, s);
+    }
+  }
+
+  const allSponsors = Array.from(sponsorMap.values());
   const tiers = getTierDefinitions();
 
   return tiers.map((tier) => ({
