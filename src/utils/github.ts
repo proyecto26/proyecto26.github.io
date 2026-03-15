@@ -146,10 +146,28 @@ export interface Contributor {
 }
 
 /**
- * Fetch top contributors for a GitHub organization
- * Aggregates contributors across top repos
+ * Key repositories to fetch contributors from.
+ * Listed explicitly to avoid relying on the GitHub API's unreliable
+ * sort=stars parameter and to ensure all major projects are included.
  */
-export async function getOrgContributors(org: string, limit = 12): Promise<Contributor[]> {
+const KEY_REPOS = [
+  'react-native-inappbrowser',
+  'RestClient',
+  'awesome-jsgames',
+  'animatable-component',
+  'ion-phaser',
+  'awesome-unity',
+  'MyAPI',
+  'nativescript-inappbrowser',
+  'Phaser-Kinetic-Scrolling-Plugin',
+  'proyecto26.github.io',
+];
+
+/**
+ * Fetch top contributors for a GitHub organization
+ * Aggregates contributors across key repos
+ */
+export async function getOrgContributors(org: string, limit = 20): Promise<Contributor[]> {
   const headers: HeadersInit = {
     'Accept': 'application/vnd.github.v3+json',
     'User-Agent': 'Proyecto26-Website',
@@ -161,24 +179,13 @@ export async function getOrgContributors(org: string, limit = 12): Promise<Contr
   }
 
   try {
-    // Fetch top repos by stars
-    const reposRes = await fetch(
-      `https://api.github.com/orgs/${org}/repos?sort=stars&per_page=10`,
-      { headers }
-    );
-
-    if (!reposRes.ok) return [];
-
-    const repos: Array<{ name: string }> = await reposRes.json();
-
-    // Fetch contributors from top repos in parallel
     const contributorMap = new Map<string, Contributor>();
 
     await Promise.all(
-      repos.slice(0, 5).map(async (repo) => {
+      KEY_REPOS.map(async (repoName) => {
         try {
           const res = await fetch(
-            `https://api.github.com/repos/${org}/${repo.name}/contributors?per_page=20`,
+            `https://api.github.com/repos/${org}/${repoName}/contributors?per_page=30`,
             { headers }
           );
           if (!res.ok) return;
