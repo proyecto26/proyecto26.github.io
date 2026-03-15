@@ -1,4 +1,6 @@
 ---
+import '@fontsource-variable/inter';
+import '@fontsource-variable/jetbrains-mono';
 import DragonEasterEgg from '../components/DragonEasterEgg.astro';
 import NinjaAnimation from '../components/NinjaAnimation.astro';
 import CookieConsent from '../components/CookieConsent.astro';
@@ -121,17 +123,7 @@ const breadcrumbSchema = !isHomePage && pathSegments.length > 0 ? {
     <meta name="twitter:image:alt" content="Proyecto 26 - Open Source Organization" />
 
     <!-- Preconnect to external resources -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="dns-prefetch" href="https://unpkg.com" />
     <link rel="dns-prefetch" href="https://api.github.com" />
-
-    <!-- Fonts -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" /></noscript>
-
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@0.577.0/dist/umd/lucide.min.js" defer></script>
 
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
@@ -174,10 +166,10 @@ const breadcrumbSchema = !isHomePage && pathSegments.length > 0 ? {
 
     <!-- Initialize Lucide icons & reduced motion support -->
     <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        if (window.lucide) {
-          window.lucide.createIcons();
-        }
+      import { createIcons, icons } from 'lucide';
+
+      function initLucide() {
+        createIcons({ icons });
 
         // Ensure animated elements are visible for users who prefer reduced motion
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -186,7 +178,14 @@ const breadcrumbSchema = !isHomePage && pathSegments.length > 0 ? {
             (el as HTMLElement).style.transform = 'none';
           });
         }
-      });
+      }
+
+      // Handle both cases: DOM already loaded or still loading
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initLucide);
+      } else {
+        initLucide();
+      }
     </script>
 
     <script>

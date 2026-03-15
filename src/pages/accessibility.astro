@@ -1,0 +1,116 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const lastUpdated = 'March 2026';
+
+const sections = [
+  {
+    title: '1. Our Commitment',
+    content: "Proyecto 26 is committed to ensuring digital accessibility for all users, including people with disabilities. We strive to provide an inclusive experience that allows everyone to access and interact with our website and open source projects. Accessibility is not an afterthought for us — it is a core part of how we build and maintain our digital presence. We believe that the web should be open to everyone, and we continuously work to remove barriers that might prevent any user from fully engaging with our content and tools.",
+  },
+  {
+    title: '2. Standards',
+    content: "We aim to conform to the Web Content Accessibility Guidelines (WCAG) 2.1 at Level AA. These guidelines are developed by the World Wide Web Consortium (W3C) Web Accessibility Initiative (WAI) and provide a wide range of recommendations for making web content more accessible. Conformance with these guidelines helps make the web more user-friendly for all people, including those who rely on assistive technologies such as screen readers, magnifiers, and alternative input devices.",
+  },
+  {
+    title: '3. Accessibility Features',
+    content: "Our website includes the following accessibility features to support a wide range of users: a skip-to-content link that allows keyboard users to bypass repetitive navigation and jump directly to the main content; semantic HTML throughout the site, using proper heading hierarchy, landmarks, lists, and other structural elements to ensure content is logically organized for assistive technologies; ARIA labels and roles on interactive elements such as navigation menus, buttons, and icons to provide meaningful context to screen reader users; full keyboard navigation support, ensuring that all interactive elements can be accessed and operated without a mouse; reduced motion support that respects the user's prefers-reduced-motion operating system setting; color contrast ratios that meet or exceed WCAG 2.1 AA requirements for text and interactive elements; and a fully responsive design that adapts to different screen sizes, zoom levels, and orientations.",
+  },
+  {
+    title: '4. Known Limitations',
+    content: "While we strive for full accessibility, some areas of our website may have limitations that we are actively working to improve. Third-party content and embedded services (such as GitHub widgets, analytics tools, and external sponsor platforms) may not fully meet our accessibility standards, as they are governed by their respective providers. Some older game pages built with HTML5 Canvas may have limited screen reader support due to the visual nature of game rendering. We are committed to continually auditing our site and addressing any issues as they are identified. If you encounter a specific barrier, please let us know so we can prioritize a fix.",
+  },
+  {
+    title: '5. Feedback',
+    content: "We welcome your feedback on the accessibility of the Proyecto 26 website. If you encounter any accessibility barriers, have difficulty using any part of our site, or have suggestions for improvement, please contact us at jdnichollsc@gmail.com. When reporting an accessibility issue, it is helpful to include the page URL, a description of the problem, the assistive technology you are using (if applicable), and any steps to reproduce the issue. We aim to acknowledge accessibility reports within 5 business days and to provide a resolution or workaround within 30 days.",
+  },
+  {
+    title: '6. Enforcement',
+    content: "For users in the European Union, the European Accessibility Act (EAA / Directive 2019/882) establishes accessibility requirements for products and services, including websites and digital content. While Proyecto 26 is based in Colombia, we are committed to meeting the spirit of these requirements for all our users globally. EU users who believe their accessibility rights have been violated may contact the relevant national enforcement body in their member state. For Colombian users, accessibility complaints may be directed to the relevant consumer protection authorities. We are committed to working with users and regulatory bodies to ensure our digital properties are accessible to everyone.",
+  },
+];
+---
+
+<BaseLayout title="Accessibility Statement - Proyecto 26" description="Learn about Proyecto 26's commitment to digital accessibility, WCAG 2.1 conformance, and how to report accessibility issues">
+  <Header />
+
+  <main id="main-content" class="pt-[72px]">
+    <!-- Hero Section -->
+    <section class="py-16 md:py-20 bg-bg-primary">
+      <div class="container">
+        <div class="text-center">
+          <h1 class="text-4xl md:text-5xl font-bold text-text-primary mb-4" data-animate="fade-up">
+            Accessibility Statement
+          </h1>
+          <p class="text-text-muted text-base" data-animate="fade-up" data-delay="100">
+            Last updated: {lastUpdated}
+          </p>
+          <p class="text-text-muted/60 text-sm mt-2" data-animate="fade-up" data-delay="150">
+            <a href="https://github.com/proyecto26/website/commits/master/src/pages/accessibility.astro" target="_blank" rel="noopener noreferrer" class="underline hover:text-accent-teal transition-colors">View the change history of this document on GitHub</a>
+          </p>
+          <div class="w-20 h-[3px] bg-accent-coral rounded-full mx-auto mt-4"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Content Section -->
+    <section class="py-12 bg-bg-primary">
+      <div class="container">
+        <div class="max-w-3xl mx-auto space-y-12">
+          <!-- Intro -->
+          <p class="text-text-muted text-base leading-relaxed" data-animate="fade-up">
+            At Proyecto 26, we believe the web should be accessible to everyone. This Accessibility Statement outlines our efforts to ensure that our website and open source projects are usable by people of all abilities, and provides information on how to contact us if you encounter any barriers.
+          </p>
+
+          <!-- TL;DR Summary -->
+          <div class="bg-bg-card border border-accent-teal/30 rounded-2xl p-6" data-animate="fade-up">
+            <h2 class="text-lg font-semibold text-accent-teal mb-2">Summary</h2>
+            <p class="text-text-muted text-base leading-relaxed">
+              <strong class="text-text-primary">TL;DR:</strong> We target WCAG 2.1 Level AA conformance. Our site uses semantic HTML, keyboard navigation, skip links, ARIA labels, and respects reduced motion preferences. If you find an accessibility issue, email <a href="mailto:jdnichollsc@gmail.com" class="text-accent-teal hover:underline">jdnichollsc@gmail.com</a> and we will work to fix it.
+            </p>
+          </div>
+
+          <!-- Sections -->
+          {sections.map((section, index) => (
+            <div data-animate="fade-up" data-delay={index * 50}>
+              <h2 class="text-2xl font-bold text-text-primary mb-4">
+                {section.title}
+              </h2>
+              <p class="text-text-muted text-base leading-relaxed">
+                {section.content}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.querySelectorAll('[data-animate="fade-up"]').forEach((el) => {
+    const delay = parseInt(el.getAttribute('data-delay') || '0') / 1000;
+
+    gsap.from(el, {
+      scrollTrigger: {
+        trigger: el,
+        start: 'top 85%',
+        toggleActions: 'play none none none',
+      },
+      y: 30,
+      opacity: 0,
+      duration: 0.6,
+      delay,
+      ease: 'power2.out',
+    });
+  });
+</script>

@@ -20,7 +20,15 @@ const tierAvatarSizes: Record<string, { img: string; ring: string; w: number }> 
 const faqs = [
   {
     q: 'Where does the money go?',
-    a: 'Sponsorship funds go directly toward development time, hosting costs, and maintaining our open source projects. We aim to be transparent about how funds are used.',
+    a: '80% goes to development time (maintaining projects, fixing bugs, building features), 10% to hosting and infrastructure, and 10% to community events and outreach. See the breakdown above. For detailed transaction history, visit our Open Collective page.',
+  },
+  {
+    q: 'Are sponsorships tax-deductible?',
+    a: 'Tax deductibility depends on your jurisdiction. Contributions through Open Collective are made to the Open Source Collective, a 501(c)(6) fiscal host in the US. Consult your tax advisor for specifics.',
+  },
+  {
+    q: 'Do you offer annual billing?',
+    a: 'Yes. Contact us to arrange annual invoicing for Enterprise and Enterprise Pro tiers. Annual sponsors receive a 17% discount.',
   },
   {
     q: 'Can I sponsor as a company?',
@@ -34,6 +42,18 @@ const faqs = [
     q: 'Do you offer invoices?',
     a: 'Yes. Open Collective provides automatic invoices for all contributions. For GitHub Sponsors, contact us and we can arrange invoicing.',
   },
+  {
+    q: 'What if I want to cancel?',
+    a: 'Cancel anytime on any platform, no questions asked. We appreciate any support, however long.',
+  },
+  {
+    q: 'How many developers use your projects?',
+    a: 'Our projects have over 4,500 GitHub stars and are used by developers worldwide for mobile, web, and game development.',
+  },
+  {
+    q: 'Can I sponsor a specific project?',
+    a: 'Currently sponsorships support all Proyecto 26 projects. Contact us if you\'d like to discuss project-specific sponsorship.',
+  },
 ];
 ---
 
@@ -41,6 +61,50 @@ const faqs = [
   <Header />
 
   <main id="main-content" class="pt-[72px]">
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Proyecto 26",
+      "url": "https://proyecto26.com",
+      "logo": "https://proyecto26.com/img/pro26.png",
+      "description": "Open source tools for web, mobile, and game development. Changing the world with small contributions.",
+      "founder": {
+        "@type": "Person",
+        "name": "Juan David Nicholls",
+        "url": "https://github.com/jdnichollsc"
+      },
+      "funding": [
+        {
+          "@type": "MonetaryGrant",
+          "name": "GitHub Sponsors",
+          "url": "https://github.com/sponsors/proyecto26",
+          "funder": {
+            "@type": "Organization",
+            "name": "GitHub",
+            "url": "https://github.com"
+          }
+        },
+        {
+          "@type": "MonetaryGrant",
+          "name": "Open Collective",
+          "url": "https://opencollective.com/proyecto26",
+          "funder": {
+            "@type": "Organization",
+            "name": "Open Collective",
+            "url": "https://opencollective.com"
+          }
+        }
+      ],
+      "sameAs": [
+        "https://github.com/proyecto26",
+        "https://www.youtube.com/@proyecto26",
+        "https://www.facebook.com/proyecto26",
+        "https://x.com/jdnichollsc",
+        "https://linkedin.com/in/jdnichollsc"
+      ]
+    })} />
+
     <!-- Hero -->
     <section class="py-16 md:py-24 bg-bg-primary">
       <div class="container">
@@ -49,7 +113,7 @@ const faqs = [
             Become a Sponsor
           </h1>
           <p class="text-xl text-text-secondary mb-8" data-animate="fade-up" data-delay="100">
-            Proyecto 26 is free, open source software made possible by our sponsors and contributors. Sponsorships help us dedicate more time to building tools developers love.
+            Your sponsorship keeps 25+ open source projects alive &mdash; tools used by thousands of developers to build mobile apps, games, and web experiences. Help us ship faster, fix bugs sooner, and build what the community needs next.
           </p>
 
           <!-- Dual-platform CTAs (Vue/ESLint pattern) -->
@@ -63,20 +127,23 @@ const faqs = [
             </Button>
           </div>
 
-          {/* Stats (ESLint pattern) */}
-          {totalSponsors > 0 && (
-            <div class="flex items-center justify-center gap-8 text-center" data-animate="fade-up" data-delay="300">
-              <div>
-                <div class="text-3xl font-bold gradient-text">{totalSponsors}</div>
-                <div class="text-sm text-text-muted">Sponsors</div>
-              </div>
-              <div class="w-px h-10 bg-border-default"></div>
-              <div>
-                <div class="text-3xl font-bold gradient-text">7+</div>
-                <div class="text-sm text-text-muted">Platforms</div>
-              </div>
+          {/* Stats */}
+          <div class="flex items-center justify-center gap-8 text-center" data-animate="fade-up" data-delay="300">
+            <div>
+              <div class="text-3xl font-bold gradient-text">4,500+</div>
+              <div class="text-sm text-text-muted">GitHub Stars</div>
             </div>
-          )}
+            <div class="w-px h-10 bg-border-default"></div>
+            <div>
+              <div class="text-3xl font-bold gradient-text">25+</div>
+              <div class="text-sm text-text-muted">Active Projects</div>
+            </div>
+            <div class="w-px h-10 bg-border-default"></div>
+            <div>
+              <div class="text-3xl font-bold gradient-text">100+</div>
+              <div class="text-sm text-text-muted">Contributors</div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -135,11 +202,57 @@ const faqs = [
             </ul>
           </div>
         </div>
+
+        <!-- CTAs -->
+        <div class="flex flex-wrap items-center justify-center gap-4 mt-12" data-animate="fade-up" data-delay="200">
+          <Button href="#tiers" variant="secondary">
+            <i data-lucide="arrow-down" class="w-4 h-4"></i>
+            See Sponsor Tiers Below
+          </Button>
+          <Button href="https://github.com/sponsors/proyecto26" variant="primary" external>
+            <i data-lucide="heart" class="w-4 h-4"></i>
+            Start Sponsoring
+          </Button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Meet the Maintainer (M6) -->
+    <section class="py-16 bg-bg-primary">
+      <div class="container">
+        <div class="max-w-3xl mx-auto">
+          <div class="bg-bg-card border border-border-default rounded-3xl p-8 md:p-12" data-animate="fade-up">
+            <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+              <div class="flex-shrink-0">
+                <div class="w-36 h-36 rounded-full overflow-hidden ring-4 ring-accent-coral/30">
+                  <img
+                    src="/img/jdnichollsc.jpg"
+                    alt="Juan David Nicholls"
+                    width="144"
+                    height="144"
+                    loading="lazy"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+              <div class="text-center md:text-left">
+                <h2 class="text-2xl font-bold text-text-primary mb-2">Meet the Maintainer</h2>
+                <p class="text-text-secondary mb-6">
+                  "Hi, I'm Juan David Nicholls. I've been building open source tools since 2015 from Colombia. Your sponsorship lets me dedicate real time to maintaining and improving these projects instead of taking on unrelated contract work. Every dollar goes directly to development."
+                </p>
+                <Button href="https://github.com/sponsors/proyecto26" variant="primary" external>
+                  <i data-lucide="heart" class="w-4 h-4"></i>
+                  Sponsor J.D.'s Work
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- Sponsor Tiers with scaled logos (Nuxt/ESLint pattern) -->
-    <section class="py-16 bg-bg-primary">
+    <section id="tiers" class="py-16 bg-bg-primary">
       <div class="container">
         <div class="text-center mb-12">
           <h2 class="text-3xl md:text-4xl font-bold text-text-primary mb-4" data-animate="fade-up">
@@ -153,6 +266,7 @@ const faqs = [
         <div class="space-y-16 max-w-4xl mx-auto">
           {sponsorTiers.map((tier, tierIndex) => {
             const sizes = tierAvatarSizes[tier.name] || tierAvatarSizes['Backers'];
+            const isHighTier = tier.name === 'Enterprise' || tier.name === 'Enterprise Pro';
             return (
               <div data-animate="fade-up" data-delay={tierIndex * 80}>
                 {/* Tier Header */}
@@ -167,15 +281,24 @@ const faqs = [
                       {tier.featured && (
                         <span class="px-2 py-0.5 bg-accent-coral text-white text-xs font-bold rounded-full">Popular</span>
                       )}
+                      {tier.name === 'Enterprise Pro' && (
+                        <span class="text-xs px-2 py-0.5 bg-accent-orange/10 text-accent-orange rounded-full">Limited to 3 sponsors</span>
+                      )}
+                      {tier.name === 'Enterprise' && (
+                        <span class="text-xs px-2 py-0.5 bg-accent-orange/10 text-accent-orange rounded-full">Limited to 5 sponsors</span>
+                      )}
                     </div>
+                    {tier.audience && (
+                      <p class="text-text-muted text-xs mt-0.5">{tier.audience}</p>
+                    )}
                     <p class="text-text-secondary text-sm mt-1">{tier.description}</p>
                   </div>
-                  <div class="flex gap-2">
-                    <Button href="https://github.com/sponsors/proyecto26" variant={tier.featured ? 'primary' : 'secondary'} size="sm" external>
-                      GitHub
+                  <div class="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+                    <Button href="https://github.com/sponsors/proyecto26" variant={tier.featured ? 'primary' : 'secondary'} size="sm" class={tier.featured ? 'w-full sm:w-auto' : ''} external>
+                      {tier.featured ? 'Become a Hero' : 'Sponsor via GitHub'}
                     </Button>
                     <Button href="https://opencollective.com/proyecto26" variant="secondary" size="sm" external>
-                      OC
+                      Open Collective
                     </Button>
                   </div>
                 </div>
@@ -221,6 +344,14 @@ const faqs = [
                       </a>
                     ))}
                   </div>
+                ) : isHighTier ? (
+                  <div class="bg-bg-card border border-dashed border-border-default rounded-2xl p-6 text-center">
+                    <p class="text-text-secondary font-medium mb-3">Interested in {tier.name} sponsorship?</p>
+                    <Button href="/contact" variant="secondary" size="sm">
+                      <i data-lucide="mail" class="w-4 h-4"></i>
+                      Get in Touch
+                    </Button>
+                  </div>
                 ) : (
                   <div class="flex items-center gap-3 text-text-muted text-sm">
                     <div class={`${sizes.img} rounded-full border-2 border-dashed border-border-default flex items-center justify-center`}>
@@ -252,38 +383,78 @@ const faqs = [
           </p>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
-          {sponsorPlatforms.map((platform, index) => (
-            <a
-              href={platform.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              class:list={[
-                'group flex items-center gap-4 p-5 rounded-2xl border transition-all duration-300 hover:-translate-y-1',
-                platform.primary
-                  ? 'bg-bg-card border-accent-coral/30 hover:border-accent-coral'
-                  : 'bg-bg-card border-border-default hover:border-border-accent'
-              ]}
-              data-animate="fade-up"
-              data-delay={index * 50}
-            >
-              <div class="w-10 h-10 rounded-lg bg-bg-hover flex items-center justify-center flex-shrink-0">
-                <i data-lucide={platform.icon} class={`w-5 h-5 ${platform.primary ? 'text-text-primary' : 'text-text-secondary'}`} style={platform.color ? `color: ${platform.color}` : ''}></i>
-              </div>
-              <div>
-                <h3 class="font-semibold text-text-primary group-hover:text-accent-coral transition-colors">{platform.name}</h3>
-                {platform.primary && <p class="text-xs text-accent-coral">Recommended</p>}
-              </div>
-              <i data-lucide="arrow-right" class="w-4 h-4 text-text-muted ml-auto opacity-0 group-hover:opacity-100 transition-opacity"></i>
-            </a>
-          ))}
+        {/* Primary platforms — full-width cards */}
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-8">
+          <a
+            href="https://github.com/sponsors/proyecto26"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group flex items-center gap-5 p-6 rounded-2xl border-2 border-accent-coral/30 hover:border-accent-coral bg-bg-card transition-all duration-300 hover:-translate-y-1"
+            data-animate="fade-up"
+          >
+            <div class="w-14 h-14 rounded-xl bg-bg-hover flex items-center justify-center flex-shrink-0">
+              <i data-lucide="github" class="w-7 h-7 text-text-primary"></i>
+            </div>
+            <div class="flex-1">
+              <h3 class="text-lg font-bold text-text-primary group-hover:text-accent-coral transition-colors">GitHub Sponsors</h3>
+              <p class="text-sm text-text-secondary">Recommended. Supports monthly and one-time sponsorships directly through GitHub.</p>
+            </div>
+            <i data-lucide="arrow-right" class="w-5 h-5 text-text-muted opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0"></i>
+          </a>
+          <a
+            href="https://opencollective.com/proyecto26"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group flex items-center gap-5 p-6 rounded-2xl border border-border-default hover:border-border-accent bg-bg-card transition-all duration-300 hover:-translate-y-1"
+            data-animate="fade-up"
+            data-delay="50"
+          >
+            <div class="w-14 h-14 rounded-xl bg-bg-hover flex items-center justify-center flex-shrink-0">
+              <i data-lucide="users" class="w-7 h-7" style="color: #7FADF2"></i>
+            </div>
+            <div class="flex-1">
+              <h3 class="text-lg font-bold text-text-primary group-hover:text-accent-coral transition-colors">Open Collective</h3>
+              <p class="text-sm text-text-secondary">Transparent finances with automatic invoices. Great for companies and teams.</p>
+            </div>
+            <i data-lucide="arrow-right" class="w-5 h-5 text-text-muted opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0"></i>
+          </a>
+        </div>
+
+        {/* Other platforms — compact row */}
+        <div class="max-w-4xl mx-auto">
+          <p class="text-center text-text-muted text-xs uppercase tracking-widest mb-4" data-animate="fade-up" data-delay="100">Other platforms</p>
+          <div class="flex flex-wrap items-center justify-center gap-3" data-animate="fade-up" data-delay="150">
+            {sponsorPlatforms.filter((p) => !p.primary && p.name !== 'Open Collective').map((platform) => (
+              <a
+                href={platform.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group flex items-center gap-2 px-4 py-2.5 rounded-xl border border-border-default hover:border-border-accent bg-bg-card transition-all duration-200"
+              >
+                <i data-lucide={platform.icon} class="w-4 h-4 text-text-secondary" style={platform.color ? `color: ${platform.color}` : ''}></i>
+                <span class="text-sm font-medium text-text-primary group-hover:text-accent-coral transition-colors">{platform.name}</span>
+              </a>
+            ))}
+          </div>
+          <p class="text-text-muted text-xs text-center mt-4" data-animate="fade-up" data-delay="200">All platforms are managed by Juan David Nicholls, Proyecto 26 founder.</p>
         </div>
 
         <!-- Crypto -->
         <div class="max-w-4xl mx-auto mt-8">
           <div class="bg-bg-card border border-border-default rounded-2xl p-6 text-center" data-animate="fade-up" data-delay="400">
             <p class="text-text-secondary text-sm mb-2">We also accept cryptocurrency donations</p>
-            <code class="text-sm text-accent-teal bg-bg-hover px-3 py-1 rounded-lg">jdnichollsc.eth</code>
+            <div class="inline-flex items-center gap-2">
+              <code class="text-sm text-accent-teal bg-bg-hover px-3 py-1 rounded-lg" id="crypto-address">jdnichollsc.eth</code>
+              <button
+                type="button"
+                id="copy-crypto-btn"
+                class="p-1.5 rounded-lg bg-bg-hover hover:bg-bg-tertiary text-text-muted hover:text-text-primary transition-all duration-200"
+                title="Copy wallet address"
+              >
+                <i data-lucide="copy" class="w-4 h-4" id="copy-icon"></i>
+                <i data-lucide="check" class="w-4 h-4 hidden text-accent-teal" id="copied-icon"></i>
+              </button>
+            </div>
             <p class="text-text-muted text-xs mt-2">ETH, ADA, BNB, SHIBA, USDT/USDC, DOGE</p>
           </div>
         </div>
@@ -297,6 +468,30 @@ const faqs = [
           <h2 class="text-3xl font-bold text-text-primary text-center mb-12" data-animate="fade-up">
             Frequently Asked Questions
           </h2>
+
+          <!-- Funding Breakdown Visual -->
+          <div class="bg-bg-card border border-border-default rounded-2xl p-6 mb-8" data-animate="fade-up" data-delay="50">
+            <h3 class="text-lg font-semibold text-text-primary mb-4 text-center">How Funds Are Allocated</h3>
+            <div class="flex rounded-full overflow-hidden h-4 mb-4">
+              <div class="bg-accent-coral" style="width: 80%"></div>
+              <div class="bg-accent-teal" style="width: 10%"></div>
+              <div class="bg-accent-orange" style="width: 10%"></div>
+            </div>
+            <div class="flex justify-between text-sm">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-accent-coral inline-block flex-shrink-0"></span>
+                <span class="text-text-secondary">80% Development Time</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-accent-teal inline-block flex-shrink-0"></span>
+                <span class="text-text-secondary">10% Hosting & Infrastructure</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-accent-orange inline-block flex-shrink-0"></span>
+                <span class="text-text-secondary">10% Community & Events</span>
+              </div>
+            </div>
+          </div>
 
           <div class="space-y-4">
             {faqs.map((faq, index) => (
@@ -332,6 +527,16 @@ const faqs = [
         </div>
       </div>
     </section>
+    <!-- Sticky Sponsor Bar -->
+    <div id="sticky-sponsor-bar" class="fixed top-0 left-0 right-0 z-[90] bg-bg-secondary/95 backdrop-blur-sm border-b border-border-default transform -translate-y-full transition-transform duration-300">
+      <div class="container py-3 flex items-center justify-between">
+        <span class="text-sm font-medium text-text-primary">Support Proyecto 26's open source work</span>
+        <a href="https://github.com/sponsors/proyecto26" target="_blank" rel="noopener noreferrer" class="px-4 py-2 text-sm font-medium text-white bg-accent-coral rounded-lg hover:brightness-110 transition-all duration-200 flex items-center gap-2">
+          <i data-lucide="heart" class="w-4 h-4"></i>
+          Sponsor on GitHub
+        </a>
+      </div>
+    </div>
   </main>
 
   <Footer />
@@ -367,5 +572,49 @@ const faqs = [
       delay,
       ease: 'power2.out',
     });
+  });
+
+  // Sticky sponsor bar — show when hero section scrolls out of view
+  const stickyBar = document.getElementById('sticky-sponsor-bar');
+  const heroSection = document.querySelector('#main-content > section:first-of-type') as HTMLElement;
+
+  if (stickyBar && heroSection) {
+    ScrollTrigger.create({
+      trigger: heroSection,
+      start: 'bottom top',
+      onEnter: () => stickyBar.classList.remove('-translate-y-full'),
+      onLeaveBack: () => stickyBar.classList.add('-translate-y-full'),
+    });
+  }
+
+  // Copy crypto address to clipboard
+  const copyBtn = document.getElementById('copy-crypto-btn');
+  const copyIcon = document.getElementById('copy-icon');
+  const copiedIcon = document.getElementById('copied-icon');
+
+  copyBtn?.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText('jdnichollsc.eth');
+      copyIcon?.classList.add('hidden');
+      copiedIcon?.classList.remove('hidden');
+      setTimeout(() => {
+        copyIcon?.classList.remove('hidden');
+        copiedIcon?.classList.add('hidden');
+      }, 2000);
+    } catch {
+      // Fallback for older browsers
+      const textArea = document.createElement('textarea');
+      textArea.value = 'jdnichollsc.eth';
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textArea);
+      copyIcon?.classList.add('hidden');
+      copiedIcon?.classList.remove('hidden');
+      setTimeout(() => {
+        copyIcon?.classList.remove('hidden');
+        copiedIcon?.classList.add('hidden');
+      }, 2000);
+    }
   });
 </script>

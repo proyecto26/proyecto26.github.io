@@ -17,6 +17,7 @@ export interface SponsorTier {
   price: string;
   period: string;
   featured?: boolean;
+  audience?: string;
   sponsors: Sponsor[];
 }
 
@@ -85,11 +86,13 @@ export function getTierDefinitions(): Omit<SponsorTier, 'sponsors'>[] {
       color: 'coral',
       minAmount: 260,
       price: '$260+',
-      period: '/mo',
-      description: 'Custom plugin, bridge, or library created for your needs.',
+      period: '/mo (custom dev quoted separately)',
+      description: 'Custom plugins, bridges, or libraries built for your needs. Dedicated support channel.',
+      audience: 'For companies needing custom solutions',
       benefits: [
-        'Private plugin/bridge/library',
-        'Video tutorials & WIP updates',
+        'Custom plugin/bridge/library development',
+        'Video tutorials & work-in-progress updates',
+        'Priority issue fast-tracking',
         'All Enterprise benefits',
       ],
     },
@@ -99,12 +102,13 @@ export function getTierDefinitions(): Omit<SponsorTier, 'sponsors'>[] {
       color: 'blue',
       minAmount: 50,
       price: '$50',
-      period: '/mo',
-      description: 'Professional support for your projects.',
+      period: '/mo or $500/year (save 17%)',
+      description: 'Production support, custom examples, and consulting for teams that depend on our tools.',
+      audience: 'For teams using our tools in production',
       benefits: [
-        'Hourly consulting rate',
-        'Custom code examples',
-        'Live chat support',
+        '2h/mo consulting at sponsor rates',
+        'Direct chat access with same-day responses',
+        'Custom code examples & integration help',
         'All Heroes benefits',
       ],
     },
@@ -114,12 +118,13 @@ export function getTierDefinitions(): Omit<SponsorTier, 'sponsors'>[] {
       color: 'orange',
       minAmount: 26,
       price: '$26',
-      period: '/mo',
+      period: '/mo or $260/year (save 17%)',
       featured: true,
-      description: 'Join us to change the world together.',
+      description: 'Get direct access to J.D. Nicholls with monthly calls and exclusive dev content.',
+      audience: 'For developers who want to shape our roadmap',
       benefits: [
-        '1-on-1 meetings',
-        'Exclusive content & presentations',
+        'Monthly 30-min strategy call',
+        'Access to private dev streams & early previews',
         'Priority support',
         'All Unicorns benefits',
       ],
@@ -131,9 +136,10 @@ export function getTierDefinitions(): Omit<SponsorTier, 'sponsors'>[] {
       minAmount: 10,
       price: '$10',
       period: '/mo',
-      description: 'Become a community contributor.',
+      description: 'Get recognized in our projects and help decide which bugs we fix first.',
+      audience: 'For individual developers who use our tools',
       benefits: [
-        'Bug prioritization',
+        'Your bugs get fixed first',
         'Name credited in projects',
         'Sponsor badge',
       ],
@@ -145,10 +151,12 @@ export function getTierDefinitions(): Omit<SponsorTier, 'sponsors'>[] {
       minAmount: 0,
       price: '$2',
       period: '/mo',
-      description: 'Buy us a coffee while we fix the world.',
+      description: 'Support open source you use every day. Every contribution counts.',
+      audience: 'For anyone who wants to support open source',
       benefits: [
         'Sponsor badge',
-        'Our eternal gratitude',
+        'Your name on our sponsors wall',
+        'Monthly development update',
       ],
     },
   ];

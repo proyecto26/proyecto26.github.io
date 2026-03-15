@@ -15,6 +15,8 @@ const resourceLinks = [
   { href: 'https://github.com/proyecto26/.github/blob/main/CODE_OF_CONDUCT.md', label: 'Code of Conduct' },
   { href: '/terms', label: 'Terms & Conditions', internal: true },
   { href: '/privacy', label: 'Privacy Policy', internal: true },
+  { href: '/cookies', label: 'Cookie Policy', internal: true },
+  { href: '/accessibility', label: 'Accessibility', internal: true },
 ];
 
 const connectLinks = [
@@ -119,9 +121,20 @@ const socialLinks = [
 
     <!-- Bottom Section -->
     <div class="pt-8 border-t border-border-default flex flex-col sm:flex-row items-center justify-between gap-4">
-      <p class="text-text-muted text-sm">
-        &copy; {currentYear} Proyecto 26. Made with love in Colombia.
-      </p>
+      <div class="flex items-center gap-3">
+        <p class="text-text-muted text-sm">
+          &copy; {currentYear} Proyecto 26. Made with love in Colombia.
+        </p>
+        <span class="text-text-muted text-sm hidden sm:inline" aria-hidden="true">|</span>
+        <button
+          type="button"
+          id="cookie-settings-btn"
+          class="text-text-muted text-sm hover:text-accent-coral transition-colors duration-200 underline cursor-pointer bg-transparent border-none p-0"
+          onclick="if(window.p26RevokeConsent){window.p26RevokeConsent()}"
+        >
+          Cookie Settings
+        </button>
+      </div>
 
       <!-- Social Icons -->
       <div class="flex items-center gap-4">

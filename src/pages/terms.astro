@@ -20,7 +20,7 @@ const sections = [
   },
   {
     title: '4. Media Assets License (CC BY-NC-ND 4.0)',
-    content: "The media assets on this website — including images, audio, game artwork, sprites, illustrations, and other creative content — are licensed under the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License (CC BY-NC-ND 4.0). This means you may share and redistribute these assets in any medium or format under the following conditions: you must give appropriate credit to Proyecto 26, provide a link to the license, and indicate if changes were made; you may not use the assets for commercial purposes; and you may not distribute modified or adapted versions of these assets. For the full license text, see our LICENSE.md file or visit creativecommons.org/licenses/by-nc-nd/4.0/.",
+    content: "The media assets on this website — including images, photographs, illustrations, SVG icons, audio files, video files, game artwork and sprites (including NinjaDev assets), logos, brand materials, documentation screenshots, diagrams, CSS animations, and other creative content located in directories such as /public/img/, /src/assets/, and similar asset directories — are licensed under the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License (CC BY-NC-ND 4.0). Source code files (.js, .ts, .astro, .css, .html, and configuration files) are explicitly excluded from this license and are covered by the MIT License in Section 3. This means you may share and redistribute these assets in any medium or format under the following conditions: you must give appropriate credit to Proyecto 26, provide a link to the license, and indicate if changes were made; you may not use the assets for commercial purposes; and you may not distribute modified or adapted versions of these assets. For the full license text, see our LICENSE.md file or visit creativecommons.org/licenses/by-nc-nd/4.0/.",
   },
   {
     title: '5. Trademarks and Branding',
@@ -28,7 +28,7 @@ const sections = [
   },
   {
     title: '6. Contributions',
-    content: "We welcome contributions to our open source projects. By submitting a pull request, issue, or other contribution to any Proyecto 26 repository, you agree that your contribution will be licensed under the same license as the project you are contributing to (typically MIT). You represent that you have the right to grant this license and that your contribution does not infringe any third-party rights. Contributors retain copyright to their individual contributions.",
+    content: "We welcome contributions to our open source projects. By submitting a pull request, issue, or other contribution to any Proyecto 26 repository, you agree that your contribution will be licensed under the same license as the project you are contributing to (typically MIT). You represent that you have the right to grant this license and that your contribution does not infringe any third-party rights. Contributors retain copyright to their individual contributions. We use the Developer Certificate of Origin (DCO). By adding a 'Signed-off-by' line to your commits (using `git commit -s`), you certify that you have the right to submit the contribution under the project's license. See our CONTRIBUTING.md for details.",
   },
   {
     title: '7. Disclaimer of Warranties',
@@ -51,8 +51,20 @@ const sections = [
     content: "Proyecto 26 may revise these terms of service for its website and open source projects at any time without notice. By using this website and our projects, you are agreeing to be bound by the then current version of these terms of service. We encourage you to periodically review these terms to stay informed of any changes. Continued use of the website after changes are posted constitutes acceptance of the modified terms.",
   },
   {
-    title: '12. Governing Law',
-    content: "These terms and conditions are governed by and construed in accordance with the laws of Colombia, and you irrevocably submit to the exclusive jurisdiction of the courts in that location. Any disputes arising from the use of our open source projects shall first be attempted to be resolved through the project's GitHub issue tracker before pursuing legal remedies.",
+    title: '12. Indemnification',
+    content: "You agree to indemnify, defend, and hold harmless Proyecto 26, its contributors, maintainers, and affiliates from and against any and all claims, damages, obligations, losses, liabilities, costs, or debt and expenses (including reasonable attorney's fees) arising from: (a) your use of and access to the website and our open source projects; (b) your violation of any term of these Terms & Conditions; (c) your violation of any third-party right, including without limitation any intellectual property, privacy, or proprietary right; or (d) any claim that your contributions or use of our projects caused damage to a third party. This indemnification obligation will survive the termination of these Terms and your use of the website and projects.",
+  },
+  {
+    title: '13. Termination',
+    content: "We may terminate or suspend your access to our website and services immediately, without prior notice or liability, for any reason, including without limitation if you breach these Terms & Conditions. Upon termination, your right to use the website will immediately cease. However, the following sections shall survive termination: Section 3 (Source Code License), Section 4 (Media Assets License), Section 5 (Trademarks and Branding), Section 7 (Disclaimer of Warranties), Section 8 (Limitation of Liability), Section 12 (Indemnification), Section 15 (Governing Law), and any other provisions that by their nature should survive. Termination of access to the website does not affect any rights granted under applicable open source licenses for code you have already obtained, as those licenses are irrevocable (subject to their own terms).",
+  },
+  {
+    title: '14. Force Majeure',
+    content: "Proyecto 26 shall not be liable for any failure or delay in performing its obligations under these Terms where such failure or delay results from circumstances beyond its reasonable control, including but not limited to: acts of God, natural disasters, epidemics or pandemics, war, terrorism, riots, embargoes, acts of civil or military authorities, fire, floods, earthquakes, accidents, strikes or labor disputes, power or telecommunications failures, internet service provider failures, government actions or orders, cyberattacks, or any other force majeure event. During such events, Proyecto 26's obligations under these Terms will be suspended for the duration of the force majeure event. We will make reasonable efforts to notify users of any such event and its expected duration.",
+  },
+  {
+    title: '15. Governing Law',
+    content: "These terms and conditions are governed by and construed in accordance with the laws of Colombia, and you irrevocably submit to the exclusive jurisdiction of the courts in that location. Any disputes arising from the use of our open source projects shall first be attempted to be resolved through the project's GitHub issue tracker. If a dispute cannot be resolved informally, the parties agree to attempt mediation before pursuing litigation. Nothing in these Terms shall limit or exclude any rights you may have under mandatory consumer protection laws in your jurisdiction, including but not limited to the Colombian Consumer Protection Statute (Law 1480 of 2011) or equivalent laws in your country of residence, which may provide additional rights that cannot be waived by contract.",
   },
 ];
 ---
@@ -71,6 +83,9 @@ const sections = [
           <p class="text-text-muted text-base" data-animate="fade-up" data-delay="100">
             Last updated: {lastUpdated}
           </p>
+          <p class="text-text-muted/60 text-sm mt-2" data-animate="fade-up" data-delay="150">
+            <a href="https://github.com/proyecto26/website/commits/master/src/pages/terms.astro" target="_blank" rel="noopener noreferrer" class="underline hover:text-accent-teal transition-colors">View the change history of this document on GitHub</a>
+          </p>
           <div class="w-20 h-[3px] bg-accent-coral rounded-full mx-auto mt-4"></div>
         </div>
       </div>
@@ -84,6 +99,14 @@ const sections = [
           <p class="text-text-muted text-base leading-relaxed" data-animate="fade-up">
             These terms and conditions outline the rules and regulations for the use of Proyecto 26's open source projects and website. By accessing this website and using our projects, we assume you accept these terms and conditions. Do not continue to use Proyecto 26 if you do not agree to all of the terms and conditions stated on this page. Our organization maintains a dual-licensing model: open source code under MIT and media assets under CC BY-NC-ND 4.0.
           </p>
+
+          <!-- TL;DR Summary -->
+          <div class="bg-bg-card border border-accent-teal/30 rounded-2xl p-6" data-animate="fade-up">
+            <h2 class="text-lg font-semibold text-accent-teal mb-2">Summary</h2>
+            <p class="text-text-muted text-base leading-relaxed">
+              <strong class="text-text-primary">TL;DR:</strong> Our code is MIT licensed (use it freely). Our artwork and media are CC BY-NC-ND 4.0 (share with credit, but don't modify or sell). Our brand/logo is proprietary. Contributions are welcome under the same license.
+            </p>
+          </div>
 
           <!-- Sections -->
           {sections.map((section, index) => (

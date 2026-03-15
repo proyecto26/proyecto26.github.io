@@ -17,9 +17,11 @@ const projects = await getFeaturedProjects(6);
 // Fetch top contributors at build time
 const contributors = await getOrgContributors('proyecto26', 12);
 
-// Get sponsor tier definitions (homepage shows a subset)
+// Get sponsor tier definitions (homepage shows a subset, highest first for price anchoring)
 const allTiers = getTierDefinitions();
-const homepageTiers = allTiers.filter((t) => ['Backers', 'Unicorns', 'Heroes', 'Enterprise'].includes(t.name));
+const homepageTiers = allTiers
+  .filter((t) => ['Backers', 'Unicorns', 'Heroes', 'Enterprise', 'Enterprise Pro'].includes(t.name))
+  .sort((a, b) => b.minAmount - a.minAmount);
 
 const services = [
   {
@@ -70,7 +72,7 @@ const games = [
 const supportLinks = sponsorPlatforms.filter((p) => !p.primary).slice(0, 4);
 ---
 
-<BaseLayout title="Proyecto 26 - Changing the world with small contributions">
+<BaseLayout title="Proyecto 26 - Changing the world with small contributions" description="Open source tools for web, mobile, and game development. 4,500+ GitHub stars, 25+ projects, built by developers for developers.">
   <Header currentPage="home" />
 
   <main id="main-content">
@@ -303,7 +305,7 @@ const supportLinks = sponsorPlatforms.filter((p) => !p.primary).slice(0, 4);
         </div>
 
         <!-- Sponsor Tiers -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 mb-16">
           {homepageTiers.map((tier, index) => (
             <div
               class:list={[
@@ -326,6 +328,9 @@ const supportLinks = sponsorPlatforms.filter((p) => !p.primary).slice(0, 4);
               </div>
 
               <h3 class="text-lg font-semibold text-text-primary mb-1">{tier.name}</h3>
+              {tier.audience && (
+                <p class="text-text-muted text-xs mb-2">{tier.audience}</p>
+              )}
               <div class="flex items-baseline gap-1 mb-3">
                 <span class="text-3xl font-bold text-text-primary">{tier.price}</span>
                 <span class="text-text-muted text-sm">{tier.period}</span>
@@ -372,8 +377,13 @@ const supportLinks = sponsorPlatforms.filter((p) => !p.primary).slice(0, 4);
             ))}
           </div>
 
+          <!-- Value recap -->
+          <p class="text-center text-text-secondary text-sm max-w-xl mx-auto mt-12 mb-6" data-animate="fade-up" data-delay="550">
+            Over 4,500 developers already trust our tools. Your sponsorship &mdash; no matter how small &mdash; helps us reach more.
+          </p>
+
           <!-- View All & Stars -->
-          <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-12" data-animate="fade-up" data-delay="600">
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-4" data-animate="fade-up" data-delay="600">
             <Button href="/sponsors" variant="primary">
               View All Tiers & Sponsors
               <i data-lucide="arrow-right" class="w-4 h-4"></i>

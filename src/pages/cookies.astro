@@ -1,0 +1,116 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const lastUpdated = 'March 2026';
+
+const sections = [
+  {
+    title: '1. What Are Cookies',
+    content: "Cookies are small text files that are placed on your device (computer, tablet, or mobile) when you visit a website. They are widely used to make websites work more efficiently, provide a better browsing experience, and supply information to website owners. Cookies can be 'first-party' (set by the website you are visiting) or 'third-party' (set by a service used by the website, such as an analytics provider). They can also be 'session' cookies (deleted when you close your browser) or 'persistent' cookies (remain on your device for a set period or until you delete them).",
+  },
+  {
+    title: '2. Essential Cookies',
+    content: "Essential cookies are necessary for the basic functionality of our website. We use one essential cookie: p26_consent — a first-party, persistent cookie with a maximum age of 1 year. This cookie stores your cookie consent preference (i.e., whether you have accepted or declined optional cookies). Without this cookie, we would be unable to remember your consent choice and would need to ask you on every visit. Essential cookies cannot be disabled, as they are required for the website to function properly.",
+  },
+  {
+    title: '3. Analytics Cookies',
+    content: "We use Google Analytics 4 (measurement ID: G-4ND3N4W941) to understand how visitors interact with our website. Analytics cookies are only loaded after you provide explicit consent via our cookie banner. The analytics cookies we use are: (a) _ga — a third-party cookie set by Google Analytics, used to distinguish unique users by assigning a randomly generated number as a client identifier. It expires after 2 years. (b) _ga_<container_id> (e.g., _ga_G4ND3N4W941) — a third-party cookie set by Google Analytics 4, used to persist session state across page views. It expires after 2 years. (c) _gid — a third-party cookie set by Google Analytics, used to distinguish users. It expires after 24 hours. These cookies help us analyze traffic patterns, identify popular content, and improve the overall user experience. The data collected is aggregated and anonymous.",
+  },
+  {
+    title: '4. How to Manage Cookies',
+    content: "You have several options for managing cookies on our website: (a) Cookie Settings — click the 'Cookie Settings' link in our website footer at any time to revoke your consent and re-open the cookie banner, where you can update your preferences. (b) Cookie Banner — when you first visit our website, a cookie banner will appear allowing you to accept all cookies, decline optional cookies, or customize your preferences by category. (c) Browser Settings — most web browsers allow you to control cookies through their settings. You can typically find these options in your browser's 'Settings', 'Preferences', or 'Privacy' menu. You can block or delete cookies, although this may affect how the website functions. For specific instructions, consult your browser's help documentation.",
+  },
+  {
+    title: '5. Third-Party Cookies',
+    content: "The analytics cookies described in Section 3 are set by Google as part of the Google Analytics service. When you consent to analytics cookies, Google may collect and process data about your visit in accordance with its own privacy policy. Google's servers may be located outside your country of residence, including in the United States. We encourage you to review Google's Privacy Policy at https://policies.google.com/privacy to understand how Google handles data collected through Google Analytics. We do not use any other third-party cookies on our website.",
+  },
+  {
+    title: '6. Updates to This Policy',
+    content: "We may update this Cookie Policy from time to time to reflect changes in the cookies we use, changes in applicable law, or improvements to our website. When we make changes, we will update the 'Last updated' date at the top of this page. We encourage you to review this Cookie Policy periodically to stay informed about how we use cookies. Your continued use of our website after any changes to this policy constitutes your acknowledgment of the updated terms.",
+  },
+];
+---
+
+<BaseLayout title="Cookie Policy - Proyecto 26" description="Learn about the cookies used on the Proyecto 26 website, including what they do and how to manage them.">
+  <Header />
+
+  <main id="main-content" class="pt-[72px]">
+    <!-- Hero Section -->
+    <section class="py-16 md:py-20 bg-bg-primary">
+      <div class="container">
+        <div class="text-center">
+          <h1 class="text-4xl md:text-5xl font-bold text-text-primary mb-4" data-animate="fade-up">
+            Cookie Policy
+          </h1>
+          <p class="text-text-muted text-base" data-animate="fade-up" data-delay="100">
+            Last updated: {lastUpdated}
+          </p>
+          <p class="text-text-muted/60 text-sm mt-2" data-animate="fade-up" data-delay="150">
+            <a href="https://github.com/proyecto26/website/commits/master/src/pages/cookies.astro" target="_blank" rel="noopener noreferrer" class="underline hover:text-accent-teal transition-colors">View the change history of this document on GitHub</a>
+          </p>
+          <div class="w-20 h-[3px] bg-accent-coral rounded-full mx-auto mt-4"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Content Section -->
+    <section class="py-12 bg-bg-primary">
+      <div class="container">
+        <div class="max-w-3xl mx-auto space-y-12">
+          <!-- Intro -->
+          <p class="text-text-muted text-base leading-relaxed" data-animate="fade-up">
+            This Cookie Policy explains what cookies are used on the Proyecto 26 website, why we use them, and how you can manage your preferences. This policy should be read alongside our <a href="/privacy" class="text-accent-teal hover:underline">Privacy Policy</a>.
+          </p>
+
+          <!-- TL;DR Summary -->
+          <div class="bg-bg-card border border-accent-teal/30 rounded-2xl p-6" data-animate="fade-up">
+            <h2 class="text-lg font-semibold text-accent-teal mb-2">Summary</h2>
+            <p class="text-text-muted text-base leading-relaxed">
+              <strong class="text-text-primary">TL;DR:</strong> We use one essential cookie to remember your consent choice. Analytics cookies (Google Analytics) are only set if you accept. You can change your preference anytime via the <button type="button" class="text-accent-coral hover:underline bg-transparent border-none p-0 cursor-pointer text-base" onclick="if(window.p26RevokeConsent){window.p26RevokeConsent()}">Cookie Settings</button> link in our footer.
+            </p>
+          </div>
+
+          <!-- Sections -->
+          {sections.map((section, index) => (
+            <div data-animate="fade-up" data-delay={index * 50}>
+              <h2 class="text-2xl font-bold text-text-primary mb-4">
+                {section.title}
+              </h2>
+              <p class="text-text-muted text-base leading-relaxed">
+                {section.content}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.querySelectorAll('[data-animate="fade-up"]').forEach((el) => {
+    const delay = parseInt(el.getAttribute('data-delay') || '0') / 1000;
+
+    gsap.from(el, {
+      scrollTrigger: {
+        trigger: el,
+        start: 'top 85%',
+        toggleActions: 'play none none none',
+      },
+      y: 30,
+      opacity: 0,
+      duration: 0.6,
+      delay,
+      ease: 'power2.out',
+    });
+  });
+</script>

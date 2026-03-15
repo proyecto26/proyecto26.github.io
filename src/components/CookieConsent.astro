@@ -9,24 +9,83 @@ const GA_ID = 'G-4ND3N4W941';
   aria-label="Cookie consent"
 >
   <div class="container py-4">
-    <div class="bg-bg-card border border-border-default rounded-2xl p-4 md:p-6 shadow-lg flex flex-col sm:flex-row items-start sm:items-center gap-4">
-      <p class="text-text-secondary text-sm flex-1">
-        We use cookies to analyze site usage and improve your experience. By accepting, you consent to our use of analytics cookies.
-        <a href="/privacy" class="text-accent-coral hover:underline ml-1">Privacy Policy</a>
-      </p>
-      <div class="flex items-center gap-3 flex-shrink-0">
-        <button
-          id="cookie-reject"
-          class="px-4 py-2 text-sm font-medium text-text-secondary bg-transparent border border-border-default rounded-lg hover:bg-bg-hover transition-colors duration-200"
-        >
-          Decline
-        </button>
-        <button
-          id="cookie-accept"
-          class="px-4 py-2 text-sm font-medium text-white bg-accent-coral rounded-lg hover:brightness-110 transition-all duration-200"
-        >
-          Accept
-        </button>
+    <div class="bg-bg-card border border-border-default rounded-2xl p-4 md:p-6 shadow-lg">
+      <!-- Main banner row -->
+      <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+        <p class="text-text-secondary text-sm flex-1">
+          We use cookies to analyze site usage and improve your experience. By accepting, you consent to our use of analytics cookies.
+          <a href="/privacy" class="text-accent-coral hover:underline ml-1">Privacy Policy</a>
+          <span class="mx-1">&middot;</span>
+          <a href="/cookies" class="text-accent-coral hover:underline">Cookie Policy</a>
+        </p>
+        <div class="flex items-center gap-3 flex-shrink-0">
+          <button
+            id="cookie-reject"
+            class="px-4 py-2 text-sm font-medium text-text-secondary bg-transparent border border-border-default rounded-lg hover:bg-bg-hover transition-colors duration-200"
+          >
+            Decline All
+          </button>
+          <button
+            id="cookie-customize"
+            class="px-4 py-2 text-sm font-medium text-text-secondary bg-transparent border border-border-default rounded-lg hover:bg-bg-hover transition-colors duration-200"
+          >
+            Customize
+          </button>
+          <button
+            id="cookie-accept"
+            class="px-4 py-2 text-sm font-medium text-white bg-accent-coral rounded-lg hover:brightness-110 transition-all duration-200"
+          >
+            Accept All
+          </button>
+        </div>
+      </div>
+
+      <!-- Customize panel (hidden by default) -->
+      <div id="cookie-customize-panel" class="hidden mt-4 pt-4 border-t border-border-default">
+        <p class="text-text-secondary text-sm mb-4">Choose which categories of cookies you would like to allow:</p>
+        <div class="space-y-3">
+          <!-- Essential cookies (always on) -->
+          <div class="flex items-center justify-between bg-bg-primary border border-border-default rounded-lg p-3">
+            <div>
+              <p class="text-text-primary text-sm font-medium">Essential</p>
+              <p class="text-text-muted text-xs mt-0.5">Required for the website to function. Stores your consent preference (p26_consent cookie).</p>
+            </div>
+            <div class="flex items-center gap-2 flex-shrink-0">
+              <span class="text-text-muted text-xs">Always on</span>
+              <div class="w-10 h-5 bg-accent-teal/60 rounded-full relative cursor-not-allowed opacity-70" aria-label="Essential cookies are always enabled">
+                <div class="absolute right-0.5 top-0.5 w-4 h-4 bg-white rounded-full"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Analytics cookies (toggleable) -->
+          <div class="flex items-center justify-between bg-bg-primary border border-border-default rounded-lg p-3">
+            <div>
+              <p class="text-text-primary text-sm font-medium">Analytics</p>
+              <p class="text-text-muted text-xs mt-0.5">Google Analytics cookies (_ga, _ga_*, _gid) help us understand how visitors use the site.</p>
+            </div>
+            <button
+              id="cookie-toggle-analytics"
+              type="button"
+              role="switch"
+              aria-checked="false"
+              aria-label="Toggle analytics cookies"
+              class="w-10 h-5 bg-border-default rounded-full relative transition-colors duration-200 flex-shrink-0 cursor-pointer"
+            >
+              <span class="absolute left-0.5 top-0.5 w-4 h-4 bg-white rounded-full transition-transform duration-200"></span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Save preferences button -->
+        <div class="mt-4 flex justify-end">
+          <button
+            id="cookie-save-preferences"
+            class="px-4 py-2 text-sm font-medium text-white bg-accent-coral rounded-lg hover:brightness-110 transition-all duration-200"
+          >
+            Save Preferences
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -35,7 +94,53 @@ const GA_ID = 'G-4ND3N4W941';
 <script is:inline define:vars={{ GA_ID }}>
   (function() {
     var CONSENT_KEY = 'p26_cookie_consent';
-    var consent = localStorage.getItem(CONSENT_KEY);
+    var COOKIE_NAME = 'p26_consent';
+
+    function setConsentCookie(value) {
+      document.cookie = COOKIE_NAME + '=' + encodeURIComponent(value) + '; path=/; max-age=31536000; SameSite=Lax; Secure';
+    }
+
+    function getConsentCookie() {
+      var match = document.cookie.match(new RegExp('(?:^|; )' + COOKIE_NAME + '=([^;]*)'));
+      return match ? decodeURIComponent(match[1]) : null;
+    }
+
+    function deleteConsentCookie() {
+      document.cookie = COOKIE_NAME + '=; path=/; max-age=0; SameSite=Lax; Secure';
+    }
+
+    function getConsent() {
+      return getConsentCookie() || localStorage.getItem(CONSENT_KEY);
+    }
+
+    function saveConsent(value) {
+      setConsentCookie(value);
+      localStorage.setItem(CONSENT_KEY, value);
+    }
+
+    /**
+     * Parse consent value, handling backward compatibility.
+     * Old format: 'accepted' or 'rejected' (string)
+     * New format: JSON string like '{"essential":true,"analytics":true}'
+     */
+    function parseConsent(value) {
+      if (!value) return null;
+      if (value === 'accepted') return { essential: true, analytics: true };
+      if (value === 'rejected') return { essential: true, analytics: false };
+      try {
+        var parsed = JSON.parse(value);
+        return { essential: true, analytics: !!parsed.analytics };
+      } catch (e) {
+        return null;
+      }
+    }
+
+    function serializeConsent(prefs) {
+      return JSON.stringify({ essential: true, analytics: !!prefs.analytics });
+    }
+
+    var rawConsent = getConsent();
+    var consent = parseConsent(rawConsent);
 
     function loadGA() {
       if (document.getElementById('ga-script')) return;
@@ -54,6 +159,10 @@ const GA_ID = 'G-4ND3N4W941';
     function showBanner() {
       var banner = document.getElementById('cookie-consent');
       if (banner) {
+        // Reset customize panel state
+        var panel = document.getElementById('cookie-customize-panel');
+        if (panel) panel.classList.add('hidden');
+        resetAnalyticsToggle();
         requestAnimationFrame(function() {
           banner.classList.remove('translate-y-full');
         });
@@ -67,9 +176,85 @@ const GA_ID = 'G-4ND3N4W941';
       }
     }
 
-    if (consent === 'accepted') {
+    function deleteGACookies() {
+      var cookies = document.cookie.split(';');
+      for (var i = 0; i < cookies.length; i++) {
+        var name = cookies[i].split('=')[0].trim();
+        if (name === '_ga' || name === '_gid' || name.indexOf('_ga_') === 0) {
+          document.cookie = name + '=; path=/; max-age=0';
+          document.cookie = name + '=; path=/; max-age=0; domain=' + window.location.hostname;
+          document.cookie = name + '=; path=/; max-age=0; domain=.' + window.location.hostname;
+        }
+      }
+    }
+
+    function updateAnalyticsToggle(enabled) {
+      var toggle = document.getElementById('cookie-toggle-analytics');
+      if (!toggle) return;
+      var knob = toggle.querySelector('span');
+      if (enabled) {
+        toggle.setAttribute('aria-checked', 'true');
+        toggle.classList.remove('bg-border-default');
+        toggle.classList.add('bg-accent-teal');
+        if (knob) {
+          knob.classList.remove('left-0.5');
+          knob.classList.add('left-[22px]');
+        }
+      } else {
+        toggle.setAttribute('aria-checked', 'false');
+        toggle.classList.remove('bg-accent-teal');
+        toggle.classList.add('bg-border-default');
+        if (knob) {
+          knob.classList.remove('left-[22px]');
+          knob.classList.add('left-0.5');
+        }
+      }
+    }
+
+    function getAnalyticsToggleState() {
+      var toggle = document.getElementById('cookie-toggle-analytics');
+      return toggle ? toggle.getAttribute('aria-checked') === 'true' : false;
+    }
+
+    function resetAnalyticsToggle() {
+      updateAnalyticsToggle(false);
+    }
+
+    function revokeConsent() {
+      // Remove stored consent
+      localStorage.removeItem(CONSENT_KEY);
+      deleteConsentCookie();
+
+      // Delete GA cookies
+      deleteGACookies();
+
+      // Remove GA script element
+      var gaScript = document.getElementById('ga-script');
+      if (gaScript) {
+        gaScript.parentNode.removeChild(gaScript);
+      }
+
+      // Clear dataLayer
+      window.dataLayer = [];
+
+      // Show the consent banner with customize panel open
+      var banner = document.getElementById('cookie-consent');
+      if (banner) {
+        var panel = document.getElementById('cookie-customize-panel');
+        if (panel) panel.classList.remove('hidden');
+        resetAnalyticsToggle();
+        requestAnimationFrame(function() {
+          banner.classList.remove('translate-y-full');
+        });
+      }
+    }
+
+    // Expose globally so Footer can call it
+    window.p26RevokeConsent = revokeConsent;
+
+    if (consent && consent.analytics) {
       loadGA();
-    } else if (consent !== 'rejected') {
+    } else if (!consent) {
       // No decision yet — show banner after a short delay
       if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', function() { setTimeout(showBanner, 1000); });
@@ -79,13 +264,43 @@ const GA_ID = 'G-4ND3N4W941';
     }
 
     document.addEventListener('click', function(e) {
-      if (e.target && e.target.id === 'cookie-accept') {
-        localStorage.setItem(CONSENT_KEY, 'accepted');
+      if (!e.target) return;
+      var id = e.target.id;
+
+      if (id === 'cookie-accept') {
+        // Accept All
+        saveConsent(serializeConsent({ analytics: true }));
         hideBanner();
         loadGA();
-      } else if (e.target && e.target.id === 'cookie-reject') {
-        localStorage.setItem(CONSENT_KEY, 'rejected');
+      } else if (id === 'cookie-reject') {
+        // Decline All
+        saveConsent(serializeConsent({ analytics: false }));
         hideBanner();
+      } else if (id === 'cookie-customize') {
+        // Toggle customize panel
+        var panel = document.getElementById('cookie-customize-panel');
+        if (panel) {
+          panel.classList.toggle('hidden');
+        }
+      } else if (id === 'cookie-toggle-analytics' || (e.target.parentElement && e.target.parentElement.id === 'cookie-toggle-analytics')) {
+        // Toggle the analytics switch
+        var currentState = getAnalyticsToggleState();
+        updateAnalyticsToggle(!currentState);
+      } else if (id === 'cookie-save-preferences') {
+        // Save custom preferences
+        var analyticsEnabled = getAnalyticsToggleState();
+        saveConsent(serializeConsent({ analytics: analyticsEnabled }));
+        hideBanner();
+        if (analyticsEnabled) {
+          loadGA();
+        } else {
+          deleteGACookies();
+          var gaScript = document.getElementById('ga-script');
+          if (gaScript) {
+            gaScript.parentNode.removeChild(gaScript);
+          }
+          window.dataLayer = [];
+        }
       }
     });
   })();

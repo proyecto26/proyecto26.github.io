@@ -1,4 +1,4 @@
-/* Fonts are preloaded in BaseLayout.astro */
+/* Fonts are imported in BaseLayout.astro frontmatter for proper bundling */
 
 @tailwind base;
 @tailwind components;
@@ -34,8 +34,8 @@
   --color-forks: #60a5fa;
 
   /* Typography */
-  --font-primary: 'Inter', system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --font-primary: 'Inter Variable', 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono Variable', 'JetBrains Mono', monospace;
 
   /* Spacing */
   --container-max: 1280px;
