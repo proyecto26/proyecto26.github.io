@@ -46,10 +46,12 @@ async function fetchOpenCollectiveSponsors(): Promise<Sponsor[]> {
       profile: string;
       totalAmountDonated: number;
       isActive: boolean;
-    }> = await res.json();
+    }> | unknown = await res.json();
+
+    if (!Array.isArray(members)) return [];
 
     return members
-      .filter((m) => m.role === 'BACKER' && m.name !== 'Guest')
+      .filter((m) => m.role === 'BACKER' && m.isActive && m.name !== 'Guest')
       .map((m) => ({
         name: m.name,
         image: m.image || undefined,
@@ -63,11 +65,33 @@ async function fetchOpenCollectiveSponsors(): Promise<Sponsor[]> {
   }
 }
 
+const supportedTierNames = new Set(['Enterprise Pro', 'Enterprise', 'Heroes', 'Unicorns', 'Backers']);
+
+const tierAliases: Record<string, string> = {
+  'enterprise pro': 'Enterprise Pro',
+  enterprise: 'Enterprise',
+  heroes: 'Heroes',
+  unicorns: 'Unicorns',
+  backers: 'Backers',
+  backer: 'Backers',
+};
+
+function normalizeOpenCollectiveTier(tier: string | null): string | undefined {
+  if (!tier) return undefined;
+
+  const directMatch = tierAliases[tier.trim().toLowerCase()];
+  if (directMatch) return directMatch;
+
+  if (supportedTierNames.has(tier)) return tier;
+  return undefined;
+}
+
 /**
  * Map Open Collective tier name or donation amount to our tier system
  */
 function mapOpenCollectiveTier(tier: string | null, amount: number): string {
-  if (tier) return tier;
+  const normalizedTier = normalizeOpenCollectiveTier(tier);
+  if (normalizedTier) return normalizedTier;
   if (amount >= 260) return 'Enterprise Pro';
   if (amount >= 50) return 'Enterprise';
   if (amount >= 26) return 'Heroes';
