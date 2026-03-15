@@ -15,6 +15,7 @@ const navLinks = [
   { href: '/projects', label: 'Projects', id: 'projects' },
   { href: '/games', label: 'Games', id: 'games' },
   { href: '/about', label: 'About', id: 'about' },
+  { href: '/sponsors', label: 'Sponsors', id: 'sponsors', icon: 'heart' },
   { href: '/contact', label: 'Contact', id: 'contact' },
 ];
 ---
@@ -28,18 +29,19 @@ const navLinks = [
     </a>
 
     <!-- Desktop Navigation -->
-    <nav class="hidden md:flex items-center gap-8" aria-label="Main navigation">
+    <nav class="hidden md:flex items-center gap-6" aria-label="Main navigation">
       {navLinks.map((link) => (
         <a
           href={link.href}
           aria-current={currentPage === link.id ? 'page' : undefined}
           class:list={[
-            'nav-link text-sm font-medium transition-colors duration-200 relative',
+            'nav-link text-sm font-medium transition-colors duration-200 relative flex items-center gap-1.5',
             currentPage === link.id
               ? 'text-accent-coral'
               : 'text-text-secondary hover:text-text-primary'
           ]}
         >
+          {link.icon && <i data-lucide={link.icon} class="w-4 h-4 text-accent-coral"></i>}
           {link.label}
           <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent-coral transition-all duration-300 group-hover:w-full"></span>
         </a>
@@ -90,8 +92,9 @@ const navLinks = [
       {navLinks.map((link) => (
         <a
           href={link.href}
-          class="mobile-nav-link py-4 px-4 text-lg font-medium text-white hover:text-accent-coral hover:bg-bg-hover rounded-lg transition-colors duration-200"
+          class="mobile-nav-link py-4 px-4 text-lg font-medium text-white hover:text-accent-coral hover:bg-bg-hover rounded-lg transition-colors duration-200 flex items-center gap-2"
         >
+          {link.icon && <i data-lucide={link.icon} class="w-5 h-5 text-accent-coral"></i>}
           {link.label}
         </a>
       ))}

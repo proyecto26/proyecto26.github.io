@@ -156,11 +156,12 @@ async function fetchGitHubSponsors(): Promise<Sponsor[]> {
  * Map GitHub Sponsors monthly price to our tier system
  */
 function mapGitHubSponsorTier(monthlyPrice: number): string {
-  if (monthlyPrice >= 260) return 'Enterprise Pro';
-  if (monthlyPrice >= 50) return 'Enterprise';
-  if (monthlyPrice >= 26) return 'Heroes';
-  if (monthlyPrice >= 10) return 'Unicorns';
-  return 'Backers';
+  if (monthlyPrice >= 1500) return 'Platinum Partner';
+  if (monthlyPrice >= 500) return 'Gold Sponsor';
+  if (monthlyPrice >= 150) return 'Silver Sponsor';
+  if (monthlyPrice >= 50) return 'Bronze Sponsor';
+  if (monthlyPrice >= 14) return 'Supporter';
+  return 'Backer';
 }
 
 /**
@@ -201,11 +202,12 @@ async function fetchOpenCollectiveSponsors(): Promise<Sponsor[]> {
  */
 function mapOpenCollectiveTier(tier: string | null, amount: number): string {
   if (tier) return tier;
-  if (amount >= 260) return 'Enterprise Pro';
-  if (amount >= 50) return 'Enterprise';
-  if (amount >= 26) return 'Heroes';
-  if (amount >= 10) return 'Unicorns';
-  return 'Backers';
+  if (amount >= 1500) return 'Platinum Partner';
+  if (amount >= 500) return 'Gold Sponsor';
+  if (amount >= 150) return 'Silver Sponsor';
+  if (amount >= 50) return 'Bronze Sponsor';
+  if (amount >= 14) return 'Supporter';
+  return 'Backer';
 }
 
 /**
@@ -214,81 +216,101 @@ function mapOpenCollectiveTier(tier: string | null, amount: number): string {
 export function getTierDefinitions(): Omit<SponsorTier, 'sponsors'>[] {
   return [
     {
-      name: 'Enterprise Pro',
-      icon: 'rocket',
+      name: 'Platinum Partner',
+      icon: 'gem',
       color: 'coral',
-      minAmount: 260,
-      price: '$260+',
-      period: '/mo (custom dev quoted separately)',
-      description: 'Custom plugins, bridges, or libraries built for your needs. Dedicated support channel.',
-      audience: 'For companies needing custom solutions',
+      minAmount: 1500,
+      price: '$1,500',
+      period: '/mo',
+      description: 'Reach 6.6M+ developers/year with your logo on every README, homepage hero, and npm package. Unlock custom integrations and quarterly roadmap influence.',
+      audience: 'For organizations that depend on our ecosystem',
       benefits: [
-        'Custom plugin/bridge/library development',
-        'Video tutorials & work-in-progress updates',
-        'Priority issue fast-tracking',
-        'All Enterprise benefits',
+        'Logo on all project READMEs (6.6M+ npm impressions/year)',
+        'Logo in homepage hero section',
+        'Custom integrations & priority development',
+        '2h/mo consulting + same-day chat support',
+        'Quarterly roadmap input & co-marketing',
+        'All Gold benefits',
       ],
     },
     {
-      name: 'Enterprise',
-      icon: 'building-2',
+      name: 'Gold Sponsor',
+      icon: 'trophy',
+      color: 'orange',
+      minAmount: 500,
+      price: '$500',
+      period: '/mo',
+      description: 'Get homepage logo placement and 2h/mo consulting with J.D. Nicholls. $500/mo reaches more developers than most ad campaigns.',
+      audience: 'For teams that rely on our tools in production',
+      benefits: [
+        'Large logo on proyecto26.com homepage',
+        'Logo on key project READMEs',
+        '2h/mo consulting with J.D. Nicholls',
+        'Same-day chat support',
+        'All Silver benefits',
+      ],
+    },
+    {
+      name: 'Silver Sponsor',
+      icon: 'shield',
       color: 'blue',
+      minAmount: 150,
+      price: '$150',
+      period: '/mo',
+      featured: true,
+      description: 'Get your logo in front of 6.6M+ npm users/year. Unlock monthly strategy calls and priority bug fixes for your team.',
+      audience: 'For companies using our libraries',
+      benefits: [
+        'Logo on key project READMEs (~6.6M npm impressions/year)',
+        'Monthly 30-min strategy call',
+        'Priority bug fixes & feature requests',
+        'All Bronze benefits',
+      ],
+    },
+    {
+      name: 'Bronze Sponsor',
+      icon: 'award',
+      color: 'teal',
       minAmount: 50,
       price: '$50',
-      period: '/mo or $500/year (save 17%)',
-      description: 'Production support, custom examples, and consulting for teams that depend on our tools.',
-      audience: 'For teams using our tools in production',
+      period: '/mo',
+      description: 'Fund 1 hour of dedicated development for $50/mo. Get your company logo on proyecto26.com and priority issue triage.',
+      audience: 'For teams that want to give back',
       benefits: [
-        '2h/mo consulting at sponsor rates',
-        'Direct chat access with same-day responses',
-        'Custom code examples & integration help',
-        'All Heroes benefits',
+        'Small logo on proyecto26.com sponsors page',
+        'Priority issue triage',
+        'Name credited in projects',
+        'All Supporter benefits',
       ],
     },
     {
-      name: 'Heroes',
-      icon: 'shield',
-      color: 'orange',
-      minAmount: 26,
-      price: '$26',
-      period: '/mo or $260/year (save 17%)',
-      featured: true,
-      description: 'Get direct access to J.D. Nicholls with monthly calls and exclusive dev content.',
-      audience: 'For developers who want to shape our roadmap',
-      benefits: [
-        'Monthly 30-min strategy call',
-        'Access to private dev streams & early previews',
-        'Priority support',
-        'All Unicorns benefits',
-      ],
-    },
-    {
-      name: 'Unicorns',
+      name: 'Supporter',
       icon: 'sparkles',
       color: 'teal',
-      minAmount: 10,
-      price: '$10',
+      minAmount: 14,
+      price: '$14',
       period: '/mo',
-      description: 'Get recognized in our projects and help decide which bugs we fix first.',
+      description: 'Get your name in project READMEs seen by millions. $14/mo funds 15 minutes of focused development on the tools you use.',
       audience: 'For individual developers who use our tools',
       benefits: [
-        'Your bugs get fixed first',
-        'Name credited in projects',
-        'Sponsor badge',
+        'Name listed in project READMEs',
+        'Priority bug reports',
+        'Sponsor badge on GitHub',
+        'Monthly development update',
       ],
     },
     {
-      name: 'Backers',
+      name: 'Backer',
       icon: 'coffee',
       color: 'coral',
       minAmount: 0,
-      price: '$2',
+      price: '$5',
       period: '/mo',
-      description: 'Support open source you use every day. Every contribution counts.',
+      description: 'Keep the open source tools you rely on alive. $5/mo buys real development time — every dollar counts.',
       audience: 'For anyone who wants to support open source',
       benefits: [
-        'Sponsor badge',
-        'Your name on our sponsors wall',
+        'Sponsor badge on GitHub',
+        'Name on our sponsors wall',
         'Monthly development update',
       ],
     },
@@ -307,7 +329,7 @@ export async function getSponsorsGrouped(): Promise<SponsorTier[]> {
   // Deduplicate: if a sponsor appears on both platforms, keep the one with higher tier
   const sponsorMap = new Map<string, Sponsor>();
   const tierRank: Record<string, number> = {
-    'Enterprise Pro': 5, 'Enterprise': 4, 'Heroes': 3, 'Unicorns': 2, 'Backers': 1,
+    'Platinum Partner': 6, 'Gold Sponsor': 5, 'Silver Sponsor': 4, 'Bronze Sponsor': 3, 'Supporter': 2, 'Backer': 1,
   };
 
   for (const s of [...manualSponsors, ...ghSponsors, ...ocSponsors]) {

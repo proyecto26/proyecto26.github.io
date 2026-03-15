@@ -20,7 +20,6 @@ const contributors = await getOrgContributors('proyecto26', 20);
 // Get sponsor tier definitions (homepage shows a subset, highest first for price anchoring)
 const allTiers = getTierDefinitions();
 const homepageTiers = allTiers
-  .filter((t) => ['Backers', 'Unicorns', 'Heroes', 'Enterprise', 'Enterprise Pro'].includes(t.name))
   .sort((a, b) => b.minAmount - a.minAmount);
 
 const services = [
@@ -305,7 +304,7 @@ const supportLinks = sponsorPlatforms.filter((p) => !p.primary).slice(0, 4);
         </div>
 
         <!-- Sponsor Tiers -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 mb-16">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
           {homepageTiers.map((tier, index) => (
             <div
               class:list={[

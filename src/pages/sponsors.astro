@@ -10,11 +10,12 @@ const totalSponsors = sponsorTiers.reduce((sum, t) => sum + t.sponsors.length, 0
 
 // Avatar sizes by tier (higher tiers get bigger logos, like Vue/Nuxt/ESLint)
 const tierAvatarSizes: Record<string, { img: string; ring: string; w: number }> = {
-  'Enterprise Pro': { img: 'w-16 h-16', ring: 'ring-accent-coral', w: 64 },
-  'Enterprise': { img: 'w-14 h-14', ring: 'ring-accent-blue', w: 56 },
-  'Heroes': { img: 'w-12 h-12', ring: 'ring-accent-orange', w: 48 },
-  'Unicorns': { img: 'w-10 h-10', ring: 'ring-accent-teal', w: 40 },
-  'Backers': { img: 'w-8 h-8', ring: 'ring-border-default', w: 32 },
+  'Platinum Partner': { img: 'w-20 h-20', ring: 'ring-accent-coral', w: 80 },
+  'Gold Sponsor': { img: 'w-16 h-16', ring: 'ring-accent-orange', w: 64 },
+  'Silver Sponsor': { img: 'w-14 h-14', ring: 'ring-accent-blue', w: 56 },
+  'Bronze Sponsor': { img: 'w-12 h-12', ring: 'ring-accent-teal', w: 48 },
+  'Supporter': { img: 'w-10 h-10', ring: 'ring-accent-teal', w: 40 },
+  'Backer': { img: 'w-8 h-8', ring: 'ring-border-default', w: 32 },
 };
 
 const faqs = [
@@ -28,15 +29,15 @@ const faqs = [
   },
   {
     q: 'Do you offer annual billing?',
-    a: 'Yes. Contact us to arrange annual invoicing for Enterprise and Enterprise Pro tiers. Annual sponsors receive a 17% discount.',
+    a: 'Yes. Contact us to arrange annual invoicing for Gold and Platinum tiers. Annual sponsors save 17%.',
   },
   {
     q: 'Can I sponsor as a company?',
-    a: 'Absolutely! Company sponsorships are a great way to support the tools your team relies on while getting visibility among our developer community. Higher tiers include consulting and custom development.',
+    a: 'Absolutely! Company sponsorships are a great way to support the tools your team relies on. Bronze+ tiers include logo placement reaching 6.6M+ npm installs per year — all mobile developers actively building apps. Gold and Platinum include consulting hours.',
   },
   {
     q: 'Can I make a one-time donation?',
-    a: 'Yes! Open Collective, Ko-fi, Buy Me a Coffee, PayPal, and crypto all support one-time donations. GitHub Sponsors also offers one-time options.',
+    a: 'Yes! See our one-time contribution options above, starting at $5. You can also donate via Open Collective, Ko-fi, Buy Me a Coffee, PayPal, or crypto.',
   },
   {
     q: 'Do you offer invoices?',
@@ -48,7 +49,7 @@ const faqs = [
   },
   {
     q: 'How many developers use your projects?',
-    a: 'Our projects have over 4,500 GitHub stars and are used by developers worldwide for mobile, web, and game development.',
+    a: 'Our flagship package react-native-inappbrowser-reborn has 6.6M+ annual npm downloads. Across all projects we have 7,000+ GitHub stars, 100+ contributors, and an estimated 20,000-40,000 active developers depending on our tools.',
   },
   {
     q: 'Can I sponsor a specific project?',
@@ -58,7 +59,7 @@ const faqs = [
 ---
 
 <BaseLayout title="Sponsors - Proyecto 26" description="Support Proyecto 26's open source mission. See our sponsor tiers, current sponsors, and ways to contribute.">
-  <Header />
+  <Header currentPage="sponsors" />
 
   <main id="main-content" class="pt-[72px]">
     <!-- Schema.org Structured Data -->
@@ -128,17 +129,22 @@ const faqs = [
           </div>
 
           {/* Stats */}
-          <div class="flex items-center justify-center gap-8 text-center" data-animate="fade-up" data-delay="300">
+          <div class="flex flex-wrap items-center justify-center gap-6 md:gap-8 text-center" data-animate="fade-up" data-delay="300">
             <div>
-              <div class="text-3xl font-bold gradient-text">4,500+</div>
+              <div class="text-3xl font-bold gradient-text">6.6M+</div>
+              <div class="text-sm text-text-muted">npm Installs/Year</div>
+            </div>
+            <div class="w-px h-10 bg-border-default hidden sm:block"></div>
+            <div>
+              <div class="text-3xl font-bold gradient-text">7,000+</div>
               <div class="text-sm text-text-muted">GitHub Stars</div>
             </div>
-            <div class="w-px h-10 bg-border-default"></div>
+            <div class="w-px h-10 bg-border-default hidden sm:block"></div>
             <div>
               <div class="text-3xl font-bold gradient-text">25+</div>
               <div class="text-sm text-text-muted">Active Projects</div>
             </div>
-            <div class="w-px h-10 bg-border-default"></div>
+            <div class="w-px h-10 bg-border-default hidden sm:block"></div>
             <div>
               <div class="text-3xl font-bold gradient-text">100+</div>
               <div class="text-sm text-text-muted">Contributors</div>
@@ -266,7 +272,7 @@ const faqs = [
         <div class="space-y-16 max-w-4xl mx-auto">
           {sponsorTiers.map((tier, tierIndex) => {
             const sizes = tierAvatarSizes[tier.name] || tierAvatarSizes['Backers'];
-            const isHighTier = tier.name === 'Enterprise' || tier.name === 'Enterprise Pro';
+            const isHighTier = tier.name === 'Gold Sponsor' || tier.name === 'Platinum Partner';
             return (
               <div data-animate="fade-up" data-delay={tierIndex * 80}>
                 {/* Tier Header */}
@@ -281,11 +287,14 @@ const faqs = [
                       {tier.featured && (
                         <span class="px-2 py-0.5 bg-accent-coral text-white text-xs font-bold rounded-full">Popular</span>
                       )}
-                      {tier.name === 'Enterprise Pro' && (
-                        <span class="text-xs px-2 py-0.5 bg-accent-orange/10 text-accent-orange rounded-full">Limited to 3 sponsors</span>
+                      {tier.name === 'Platinum Partner' && (
+                        <span class="text-xs px-2 py-0.5 bg-accent-orange/10 text-accent-orange rounded-full">Limited availability</span>
                       )}
-                      {tier.name === 'Enterprise' && (
-                        <span class="text-xs px-2 py-0.5 bg-accent-orange/10 text-accent-orange rounded-full">Limited to 5 sponsors</span>
+                      {tier.name === 'Gold Sponsor' && (
+                        <span class="text-xs px-2 py-0.5 bg-accent-orange/10 text-accent-orange rounded-full">Limited availability</span>
+                      )}
+                      {tier.name === 'Silver Sponsor' && (
+                        <span class="text-xs px-2 py-0.5 bg-accent-orange/10 text-accent-orange rounded-full">Limited availability</span>
                       )}
                     </div>
                     {tier.audience && (
@@ -295,7 +304,7 @@ const faqs = [
                   </div>
                   <div class="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
                     <Button href="https://github.com/sponsors/proyecto26" variant={tier.featured ? 'primary' : 'secondary'} size="sm" class={tier.featured ? 'w-full sm:w-auto' : ''} external>
-                      {tier.featured ? 'Become a Hero' : 'Sponsor via GitHub'}
+                      {tier.featured ? 'Become a Silver Sponsor' : 'Sponsor via GitHub'}
                     </Button>
                     <Button href="https://opencollective.com/proyecto26" variant="secondary" size="sm" external>
                       Open Collective
@@ -367,6 +376,58 @@ const faqs = [
               </div>
             );
           })}
+        </div>
+      </div>
+    </section>
+
+    <!-- One-Time Contributions -->
+    <section class="py-16 bg-bg-secondary">
+      <div class="container">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold text-text-primary mb-4" data-animate="fade-up">
+            One-Time Contributions
+          </h2>
+          <p class="text-text-secondary max-w-2xl mx-auto" data-animate="fade-up" data-delay="100">
+            Not ready for a monthly commitment? Make a one-time contribution at any level.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-4xl mx-auto" data-animate="fade-up" data-delay="200">
+          <a href="https://github.com/sponsors/proyecto26" target="_blank" rel="noopener noreferrer"
+            class="group flex flex-col items-center p-6 bg-bg-card border border-border-default rounded-2xl hover:border-border-accent transition-all duration-200 hover:-translate-y-1">
+            <div class="w-12 h-12 rounded-xl bg-bg-hover flex items-center justify-center mb-3">
+              <i data-lucide="coffee" class="w-6 h-6 text-accent-teal"></i>
+            </div>
+            <span class="text-2xl font-bold text-text-primary mb-1">$5</span>
+            <span class="text-sm text-text-secondary text-center">Buy us a coffee</span>
+          </a>
+
+          <a href="https://github.com/sponsors/proyecto26" target="_blank" rel="noopener noreferrer"
+            class="group flex flex-col items-center p-6 bg-bg-card border border-border-default rounded-2xl hover:border-border-accent transition-all duration-200 hover:-translate-y-1">
+            <div class="w-12 h-12 rounded-xl bg-bg-hover flex items-center justify-center mb-3">
+              <i data-lucide="zap" class="w-6 h-6 text-accent-orange"></i>
+            </div>
+            <span class="text-2xl font-bold text-text-primary mb-1">$25</span>
+            <span class="text-sm text-text-secondary text-center">Support a feature</span>
+          </a>
+
+          <a href="https://github.com/sponsors/proyecto26" target="_blank" rel="noopener noreferrer"
+            class="group flex flex-col items-center p-6 bg-bg-card border border-border-default rounded-2xl hover:border-border-accent transition-all duration-200 hover:-translate-y-1">
+            <div class="w-12 h-12 rounded-xl bg-bg-hover flex items-center justify-center mb-3">
+              <i data-lucide="rocket" class="w-6 h-6 text-accent-coral"></i>
+            </div>
+            <span class="text-2xl font-bold text-text-primary mb-1">$100</span>
+            <span class="text-sm text-text-secondary text-center">Fund a sprint</span>
+          </a>
+
+          <a href="https://github.com/sponsors/proyecto26" target="_blank" rel="noopener noreferrer"
+            class="group flex flex-col items-center p-6 bg-bg-card border border-border-default rounded-2xl hover:border-border-accent transition-all duration-200 hover:-translate-y-1">
+            <div class="w-12 h-12 rounded-xl bg-bg-hover flex items-center justify-center mb-3">
+              <i data-lucide="message-circle" class="w-6 h-6 text-accent-blue"></i>
+            </div>
+            <span class="text-2xl font-bold text-text-primary mb-1">$500</span>
+            <span class="text-sm text-text-secondary text-center">1h consulting with J.D.</span>
+          </a>
         </div>
       </div>
     </section>
