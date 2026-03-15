@@ -392,41 +392,65 @@ const faqs = [
           </p>
         </div>
 
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-4xl mx-auto" data-animate="fade-up" data-delay="200">
+        <!-- Top row: Quick contributions -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto mb-6" data-animate="fade-up" data-delay="200">
           <a href="https://github.com/sponsors/proyecto26" target="_blank" rel="noopener noreferrer"
-            class="group flex flex-col items-center p-6 bg-bg-card border border-border-default rounded-2xl hover:border-border-accent transition-all duration-200 hover:-translate-y-1">
-            <div class="w-12 h-12 rounded-xl bg-bg-hover flex items-center justify-center mb-3">
-              <i data-lucide="coffee" class="w-6 h-6 text-accent-teal"></i>
-            </div>
-            <span class="text-2xl font-bold text-text-primary mb-1">$5</span>
-            <span class="text-sm text-text-secondary text-center">Buy us a coffee</span>
+            class="group flex flex-col items-center p-5 bg-bg-card border border-border-default rounded-2xl hover:border-border-accent transition-all duration-200 hover:-translate-y-1">
+            <i data-lucide="coffee" class="w-5 h-5 text-accent-teal mb-2"></i>
+            <span class="text-xl font-bold text-text-primary">$5</span>
+            <span class="text-xs text-text-secondary text-center">Buy us a coffee</span>
           </a>
-
           <a href="https://github.com/sponsors/proyecto26" target="_blank" rel="noopener noreferrer"
-            class="group flex flex-col items-center p-6 bg-bg-card border border-border-default rounded-2xl hover:border-border-accent transition-all duration-200 hover:-translate-y-1">
-            <div class="w-12 h-12 rounded-xl bg-bg-hover flex items-center justify-center mb-3">
-              <i data-lucide="zap" class="w-6 h-6 text-accent-orange"></i>
-            </div>
-            <span class="text-2xl font-bold text-text-primary mb-1">$25</span>
-            <span class="text-sm text-text-secondary text-center">Support a feature</span>
+            class="group flex flex-col items-center p-5 bg-bg-card border border-border-default rounded-2xl hover:border-border-accent transition-all duration-200 hover:-translate-y-1">
+            <i data-lucide="at-sign" class="w-5 h-5 text-accent-blue mb-2"></i>
+            <span class="text-xl font-bold text-text-primary">$10</span>
+            <span class="text-xs text-text-secondary text-center">X/Twitter shoutout</span>
           </a>
-
           <a href="https://github.com/sponsors/proyecto26" target="_blank" rel="noopener noreferrer"
-            class="group flex flex-col items-center p-6 bg-bg-card border border-border-default rounded-2xl hover:border-border-accent transition-all duration-200 hover:-translate-y-1">
-            <div class="w-12 h-12 rounded-xl bg-bg-hover flex items-center justify-center mb-3">
-              <i data-lucide="rocket" class="w-6 h-6 text-accent-coral"></i>
-            </div>
-            <span class="text-2xl font-bold text-text-primary mb-1">$100</span>
-            <span class="text-sm text-text-secondary text-center">Fund a sprint</span>
+            class="group flex flex-col items-center p-5 bg-bg-card border border-border-default rounded-2xl hover:border-border-accent transition-all duration-200 hover:-translate-y-1">
+            <i data-lucide="zap" class="w-5 h-5 text-accent-orange mb-2"></i>
+            <span class="text-xl font-bold text-text-primary">$25</span>
+            <span class="text-xs text-text-secondary text-center">Support a feature</span>
           </a>
-
           <a href="https://github.com/sponsors/proyecto26" target="_blank" rel="noopener noreferrer"
-            class="group flex flex-col items-center p-6 bg-bg-card border border-border-default rounded-2xl hover:border-border-accent transition-all duration-200 hover:-translate-y-1">
-            <div class="w-12 h-12 rounded-xl bg-bg-hover flex items-center justify-center mb-3">
-              <i data-lucide="message-circle" class="w-6 h-6 text-accent-blue"></i>
-            </div>
-            <span class="text-2xl font-bold text-text-primary mb-1">$500</span>
-            <span class="text-sm text-text-secondary text-center">1h consulting with J.D.</span>
+            class="group flex flex-col items-center p-5 bg-bg-card border border-border-default rounded-2xl hover:border-border-accent transition-all duration-200 hover:-translate-y-1">
+            <i data-lucide="file-text" class="w-5 h-5 text-accent-teal mb-2"></i>
+            <span class="text-xl font-bold text-text-primary">$50</span>
+            <span class="text-xs text-text-secondary text-center">Release notes mention</span>
+          </a>
+        </div>
+
+        <!-- Bottom row: Premium services -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 max-w-4xl mx-auto" data-animate="fade-up" data-delay="300">
+          <a href="https://github.com/sponsors/proyecto26" target="_blank" rel="noopener noreferrer"
+            class="group flex flex-col items-center p-5 bg-bg-card border border-border-default rounded-2xl hover:border-border-accent transition-all duration-200 hover:-translate-y-1">
+            <i data-lucide="rocket" class="w-5 h-5 text-accent-coral mb-2"></i>
+            <span class="text-xl font-bold text-text-primary">$100</span>
+            <span class="text-xs text-text-secondary text-center">Fund a sprint</span>
+          </a>
+          <a href="https://github.com/sponsors/proyecto26" target="_blank" rel="noopener noreferrer"
+            class="group flex flex-col items-center p-5 bg-bg-card border border-border-default rounded-2xl hover:border-border-accent transition-all duration-200 hover:-translate-y-1">
+            <i data-lucide="users" class="w-5 h-5 text-accent-blue mb-2"></i>
+            <span class="text-xl font-bold text-text-primary">$200</span>
+            <span class="text-xs text-text-secondary text-center">Pair-programming</span>
+          </a>
+          <a href="https://github.com/sponsors/proyecto26" target="_blank" rel="noopener noreferrer"
+            class="group flex flex-col items-center p-5 bg-bg-card border border-border-default rounded-2xl hover:border-border-accent transition-all duration-200 hover:-translate-y-1">
+            <i data-lucide="message-circle" class="w-5 h-5 text-accent-orange mb-2"></i>
+            <span class="text-xl font-bold text-text-primary">$500</span>
+            <span class="text-xs text-text-secondary text-center">1h consulting</span>
+          </a>
+          <a href="https://github.com/sponsors/proyecto26" target="_blank" rel="noopener noreferrer"
+            class="group flex flex-col items-center p-5 bg-bg-card border border-border-default rounded-2xl hover:border-border-accent transition-all duration-200 hover:-translate-y-1">
+            <i data-lucide="bug" class="w-5 h-5 text-accent-coral mb-2"></i>
+            <span class="text-xl font-bold text-text-primary">$1,000</span>
+            <span class="text-xs text-text-secondary text-center">Bug bounty</span>
+          </a>
+          <a href="https://github.com/sponsors/proyecto26" target="_blank" rel="noopener noreferrer"
+            class="group flex flex-col items-center p-5 bg-bg-card border border-border-default rounded-2xl hover:border-border-accent transition-all duration-200 hover:-translate-y-1 col-span-2 sm:col-span-1">
+            <i data-lucide="mic" class="w-5 h-5 text-accent-teal mb-2"></i>
+            <span class="text-xl font-bold text-text-primary">$2,000</span>
+            <span class="text-xs text-text-secondary text-center">Conference talk</span>
           </a>
         </div>
       </div>
