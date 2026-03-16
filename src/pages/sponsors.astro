@@ -55,6 +55,10 @@ const faqs = [
     q: 'Can I sponsor a specific project?',
     a: 'Currently sponsorships support all Proyecto 26 projects. Contact us if you\'d like to discuss project-specific sponsorship.',
   },
+  {
+    q: 'How do I request features or vote on priorities?',
+    a: 'Bronze+ sponsors can influence our roadmap by opening discussions in our GitHub Community. Visit github.com/proyecto26/community/discussions to submit feature requests, vote on priorities, or suggest projects to invest time in.',
+  },
 ];
 ---
 
@@ -170,7 +174,7 @@ const faqs = [
             <ul class="space-y-2">
               <li class="flex items-start gap-2 text-sm text-text-secondary">
                 <i data-lucide="check" class="w-4 h-4 text-accent-teal mt-0.5 flex-shrink-0"></i>
-                Priority bug fixes and feature requests
+                Priority bug fixes and feature requests via GitHub Discussions
               </li>
               <li class="flex items-start gap-2 text-sm text-text-secondary">
                 <i data-lucide="check" class="w-4 h-4 text-accent-teal mt-0.5 flex-shrink-0"></i>
@@ -178,7 +182,7 @@ const faqs = [
               </li>
               <li class="flex items-start gap-2 text-sm text-text-secondary">
                 <i data-lucide="check" class="w-4 h-4 text-accent-teal mt-0.5 flex-shrink-0"></i>
-                Brand visibility among our developer community
+                Brand visibility reaching 6.6M+ npm users/year
               </li>
             </ul>
           </div>
@@ -590,8 +594,66 @@ const faqs = [
       </div>
     </section>
 
-    <!-- CTA -->
+    <!-- How to Claim Your Benefits -->
     <section class="py-16 bg-bg-secondary">
+      <div class="container">
+        <div class="max-w-3xl mx-auto">
+          <h2 class="text-3xl font-bold text-text-primary text-center mb-12" data-animate="fade-up">
+            How to Claim Your Benefits
+          </h2>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Schedule a Call -->
+            <div class="bg-bg-card border border-border-default rounded-2xl p-6 text-center" data-animate="fade-up">
+              <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-bg-hover flex items-center justify-center">
+                <i data-lucide="calendar" class="w-6 h-6 text-accent-coral"></i>
+              </div>
+              <h3 class="text-lg font-semibold text-text-primary mb-2">Schedule Your Call</h3>
+              <p class="text-text-secondary text-sm mb-4">
+                Book your strategy call or consulting session with J.D. Nicholls.
+              </p>
+              <Button href="https://calendly.com/jdnichollsc" variant="primary" size="sm" external>
+                <i data-lucide="calendar" class="w-4 h-4"></i>
+                Book on Calendly
+              </Button>
+            </div>
+
+            <!-- Community Chat -->
+            <div class="bg-bg-card border border-border-default rounded-2xl p-6 text-center" data-animate="fade-up" data-delay="100">
+              <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-bg-hover flex items-center justify-center">
+                <i data-lucide="message-circle" class="w-6 h-6 text-accent-teal"></i>
+              </div>
+              <h3 class="text-lg font-semibold text-text-primary mb-2">Join Our Chat</h3>
+              <p class="text-text-secondary text-sm mb-4">
+                Connect with the team and other sponsors in our community chat.
+              </p>
+              <Button href="#" variant="secondary" size="sm" external>
+                <i data-lucide="message-circle" class="w-4 h-4"></i>
+                Join Discord
+              </Button>
+            </div>
+
+            <!-- Feature Requests -->
+            <div class="bg-bg-card border border-border-default rounded-2xl p-6 text-center" data-animate="fade-up" data-delay="200">
+              <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-bg-hover flex items-center justify-center">
+                <i data-lucide="lightbulb" class="w-6 h-6 text-accent-orange"></i>
+              </div>
+              <h3 class="text-lg font-semibold text-text-primary mb-2">Request Features</h3>
+              <p class="text-text-secondary text-sm mb-4">
+                Vote on priorities and request features through community discussions.
+              </p>
+              <Button href="https://github.com/proyecto26/community/discussions" variant="secondary" size="sm" external>
+                <i data-lucide="lightbulb" class="w-4 h-4"></i>
+                Open Discussions
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-16 bg-bg-primary">
       <div class="container">
         <div class="max-w-2xl mx-auto text-center" data-animate="fade-up">
           <h2 class="text-3xl font-bold text-text-primary mb-4">
@@ -608,6 +670,32 @@ const faqs = [
             <Button href="/contact" variant="secondary">
               Get in Touch
             </Button>
+          </div>
+
+          <!-- Development Updates -->
+          <div class="mt-10 pt-8 border-t border-border-default">
+            <p class="text-sm text-text-muted mb-4">Want to stay updated on our progress?</p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <a
+                href="https://github.com/proyecto26"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-2 text-sm text-text-secondary hover:text-text-primary transition-colors duration-200"
+              >
+                <i data-lucide="github" class="w-4 h-4"></i>
+                Follow our development updates on GitHub
+              </a>
+              <span class="hidden sm:inline text-text-muted">|</span>
+              <a
+                href="https://www.youtube.com/@proyecto26"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-2 text-sm text-text-secondary hover:text-text-primary transition-colors duration-200"
+              >
+                <i data-lucide="youtube" class="w-4 h-4"></i>
+                Subscribe to our YouTube channel for video updates
+              </a>
+            </div>
           </div>
         </div>
       </div>
