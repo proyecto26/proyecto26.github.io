@@ -314,6 +314,7 @@ export function getTierDefinitions(): Omit<SponsorTier, 'sponsors'>[] {
       description: 'Keep the open source tools you rely on alive. $5/mo buys real development time — every dollar counts.',
       audience: 'For anyone who wants to support open source',
       benefits: [
+        'Access to enterprise projects (MercadoPago RN, Record Audio Button)',
         'Sponsor badge on GitHub',
         'Name on our sponsors wall',
         'Monthly development update',
