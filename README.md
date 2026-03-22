@@ -25,6 +25,6 @@ The assets (images, audios, game scripts) of this project are licensed under the
 The website code, except for the games and images, is available under the [MIT License](./LICENSE.md).
 
 ## Happy coding 💯
-Made with ❤️
+Made with ❤️ by [Proyecto 26](https://proyecto26.com)
 
 <img width="150px" src="https://avatars0.githubusercontent.com/u/28855608?s=200&v=4" align="right">
