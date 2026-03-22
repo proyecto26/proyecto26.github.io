@@ -8,7 +8,7 @@ If you discover a security vulnerability in any Proyecto 26 project, please repo
 
 ### How to Report
 
-- **Email:** jdnichollsc@gmail.com
+- **Email:** security@proyecto26.com
 - **GitHub:** Use [GitHub's private vulnerability reporting](https://docs.github.com/en/code-security/security-advisories/guidance-on-reporting-and-writing-information-about-vulnerabilities/privately-reporting-a-security-vulnerability) on the affected repository
 
 ### What to Include
