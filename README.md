@@ -13,7 +13,12 @@ This Organization is open source. Sponsors help keep it maintained and growing.
 
 ## Contribution 🤝
 
-Proyecto 26 grows with the community. Ideas for new optimization domains, better confidence scoring, or additional templates? Please open a PR!
+When contributing to this repository, please first discuss the change you wish to make via issue,
+email, or any other method with the owners of this repository before making a change.
+ 
+Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated** ❤️.
+ 
+You can learn more about how you can contribute to this project in the [contribution guide](./CONTRIBUTING.md).
 
 ## License ⚖️
 The assets (images, audios, game scripts) of this project are licensed under the [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License](http://creativecommons.org/licenses/by-nc-nd/4.0/).
