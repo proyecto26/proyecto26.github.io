@@ -18,7 +18,7 @@ email, or any other method with the owners of this repository before making a ch
  
 Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated** ❤️.
  
-You can learn more about how you can contribute to this project in the [contribution guide](./CONTRIBUTING.md).
+You can learn more about how you can contribute to this project in the [contribution guide](https://github.com/proyecto26/.github/blob/master/CONTRIBUTING.md).
 
 ## License ⚖️
 The assets (images, audios, game scripts) of this project are licensed under the [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License](http://creativecommons.org/licenses/by-nc-nd/4.0/).
