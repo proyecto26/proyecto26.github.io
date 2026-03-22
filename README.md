@@ -1,18 +1,23 @@
 # Proyecto 26
 The Proyecto26 github homepage.
 
-## Supporting 🍻
-I believe in Unicorns 🦄
-Support [me](http://www.paypal.me/jdnichollsc/2), if you do too.
+## Star History 🌟
 
-Donate **Ethereum**, **ADA**, **BNB**, **SHIBA**, **USDT/USDC**, **DOGE**, etc:
+[![Star History Chart](https://api.star-history.com/svg?repos=proyecto26/proyecto26.github.io&type=Date)](https://star-history.com/#proyecto26/proyecto26.github.io&Date)
 
-> Wallet address: jdnichollsc.eth
+## Sponsors 💜
 
-Please let us know your contributions! 🙏
+This project is free and open source. Sponsors help keep it maintained and growing.
+
+[**Become a Sponsor**](https://github.com/sponsors/proyecto26) | [Sponsorship Program](https://proyecto26.com/sponsors/)
+
+## Contribution 🤝
+
+Proyecto 26 grows with the community. Ideas for new optimization domains, better confidence scoring, or additional templates? Please open a PR!
 
 ## License ⚖️
-The assets (images, audios, scripts) of this project are licensed under the [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License](http://creativecommons.org/licenses/by-nc-nd/4.0/)
+The assets (images, audios, game scripts) of this project are licensed under the [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License](http://creativecommons.org/licenses/by-nc-nd/4.0/).
+The website code, except for the games and images, is available under the [MIT License](./LICENSE.md).
 
 ## Happy coding 💯
 Made with ❤️
