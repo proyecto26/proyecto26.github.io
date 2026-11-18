@@ -1,4 +1,10 @@
 ---
+/**
+ * Project card with a proximity glow border.
+ * Must be rendered inside a `.glow-grid` container so the global pointer
+ * script in BaseLayout can feed it the pointer position.
+ * The whole card is one link (stretched ::after) with the GitHub link layered above it.
+ */
 interface Props {
   title: string;
   subtitle?: string;
@@ -10,6 +16,7 @@ interface Props {
   forks?: number;
   href: string;
   githubUrl?: string;
+  index?: number;
 }
 
 const {
@@ -23,109 +30,121 @@ const {
   forks,
   href,
   githubUrl,
+  index,
 } = Astro.props;
 
-const iconColors = {
+const glow = {
+  coral: ['#f2385a', '#f5a503'],
+  teal: ['#4ad9d9', '#36b1bf'],
+  orange: ['#f5a503', '#f2385a'],
+  blue: ['#36b1bf', '#4ad9d9'],
+}[iconColor];
+
+const dot = {
   coral: 'bg-accent-coral',
   teal: 'bg-accent-teal',
   orange: 'bg-accent-orange',
   blue: 'bg-accent-blue',
-};
+}[iconColor];
 
-const formatNumber = (num: number) => {
-  if (num >= 1000) {
-    return (num / 1000).toFixed(1).replace(/\.0$/, '') + 'k';
-  }
-  return num.toString();
-};
+const formatNumber = (num: number) =>
+  num >= 1000 ? (num / 1000).toFixed(1).replace(/\.0$/, '') + 'k' : num.toString();
 ---
 
 <article
-  class="project-card group bg-bg-card border border-border-default rounded-2xl p-6 transition-all duration-300 hover:border-border-accent hover:shadow-glow-card hover:-translate-y-1"
-  data-tilt
-  data-tilt-max="5"
-  data-tilt-speed="400"
-  data-tilt-glare
-  data-tilt-max-glare="0.1"
+  class="glow-card group flex flex-col h-full p-6 md:p-7"
+  style={`--glow-a:${glow[0]};--glow-b:${glow[1]}`}
 >
-  <!-- Header -->
-  <div class="flex items-center gap-3 mb-4">
-    <div class={`w-12 h-12 ${iconColors[iconColor]} rounded-xl flex items-center justify-center flex-shrink-0`}>
+  <header class="flex items-start justify-between gap-4 mb-8">
+    <div class="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.14em] text-text-muted">
       {icon ? (
-        <img src={icon} alt="" loading="lazy" class="w-8 h-8 object-contain" />
+        <img src={icon} alt="" loading="lazy" width="20" height="20" class="w-5 h-5 object-contain" />
       ) : (
-        <span class="text-white font-bold text-lg">{title.charAt(0)}</span>
+        <span class={`w-2 h-2 rounded-full ${dot}`} aria-hidden="true"></span>
       )}
+      {subtitle}
     </div>
-    <div class="min-w-0">
-      <h3 class="text-lg font-semibold text-text-primary truncate">{title}</h3>
-      {subtitle && (
-        <p class="text-sm text-text-muted">{subtitle}</p>
-      )}
-    </div>
-  </div>
+    {index !== undefined && (
+      <span class="font-mono text-xs text-text-muted tabular-nums" aria-hidden="true">
+        {String(index + 1).padStart(2, '0')}
+      </span>
+    )}
+  </header>
 
-  <!-- Description -->
-  <p class="text-text-secondary text-sm mb-4 line-clamp-2">
+  <h3 class="font-display text-2xl font-semibold tracking-tight text-text-primary mb-3 break-words">
+    <a href={href} target="_blank" rel="noopener noreferrer" class="card-link focus-visible:outline-none">
+      {title}
+    </a>
+  </h3>
+
+  <p class="text-text-secondary text-[0.9375rem] leading-relaxed mb-6 line-clamp-3">
     {description}
   </p>
 
-  <!-- Tags -->
-  <div class="flex flex-wrap gap-2 mb-4">
+  <ul class="flex flex-wrap gap-1.5 mb-6" aria-label="Technologies">
     {tags.slice(0, 3).map((tag) => (
-      <span class="px-3 py-1 text-xs font-medium text-text-muted bg-bg-hover rounded-full">
+      <li class="px-2.5 py-1 text-xs text-text-muted border border-border-default rounded-full">
         {tag}
-      </span>
+      </li>
     ))}
-  </div>
+  </ul>
 
-  <!-- Stats -->
-  {(stars !== undefined || forks !== undefined) && (
-    <div class="flex items-center gap-4 mb-4">
+  <footer class="mt-auto pt-5 border-t border-border-default flex items-center justify-between gap-4 text-sm">
+    <div class="flex items-center gap-4 font-mono text-text-muted tabular-nums">
       {stars !== undefined && (
-        <div class="flex items-center gap-1.5">
-          <span class="text-base">⭐</span>
-          <span class="text-sm font-semibold text-stars-gold">{formatNumber(stars)}</span>
-        </div>
+        <span class="flex items-center gap-1.5" title={`${stars} GitHub stars`}>
+          <i data-lucide="star" class="w-3.5 h-3.5 text-stars-gold" aria-hidden="true"></i>
+          <span class="sr-only">Stars:</span>{formatNumber(stars)}
+        </span>
       )}
       {forks !== undefined && (
-        <div class="flex items-center gap-1.5">
-          <span class="text-base">🍴</span>
-          <span class="text-sm text-forks-blue">{formatNumber(forks)}</span>
-        </div>
+        <span class="flex items-center gap-1.5" title={`${forks} forks`}>
+          <i data-lucide="git-fork" class="w-3.5 h-3.5" aria-hidden="true"></i>
+          <span class="sr-only">Forks:</span>{formatNumber(forks)}
+        </span>
       )}
     </div>
-  )}
 
-  <!-- Actions -->
-  <div class="flex items-center gap-3">
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      class="inline-flex items-center gap-2 px-4 py-2 bg-accent-coral text-white text-sm font-semibold rounded-lg hover:brightness-110 transition-all duration-200"
-    >
-      View Project
-    </a>
-    {githubUrl && href !== githubUrl && (
-      <a
-        href={githubUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-flex items-center gap-2 px-4 py-2 bg-transparent border border-border-default text-text-secondary text-sm rounded-lg hover:bg-bg-hover hover:text-text-primary transition-all duration-200"
-      >
-        <i data-lucide="github" class="w-4 h-4"></i>
-        GitHub
-      </a>
-    )}
-  </div>
+    <div class="relative z-[2] flex items-center gap-3">
+      {githubUrl && href !== githubUrl && (
+        <a
+          href={githubUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-text-muted hover:text-text-primary transition-colors"
+          aria-label={`${title} on GitHub`}
+        >
+          <i data-lucide="github" class="w-4 h-4" aria-hidden="true"></i>
+        </a>
+      )}
+      <i
+        data-lucide="arrow-up-right"
+        class="w-4 h-4 text-text-muted transition-[color,translate] duration-300 group-hover:text-text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+        aria-hidden="true"
+      ></i>
+    </div>
+  </footer>
 </article>
 
 <style>
-  .line-clamp-2 {
+  .line-clamp-3 {
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+  }
+
+  /* Stretch the title link across the card; focus ring drawn on the card */
+  .card-link::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    z-index: 1;
+  }
+
+  .glow-card:has(.card-link:focus-visible) {
+    outline: 2px solid var(--color-accent-coral);
+    outline-offset: 3px;
   }
 </style>

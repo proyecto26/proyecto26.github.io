@@ -7,20 +7,20 @@
 /* CSS Custom Properties for design system */
 :root {
   /* Colors - Background */
-  --color-bg-primary: #0a0a0b;
-  --color-bg-secondary: #131316;
-  --color-bg-card: #16161a;
-  --color-bg-hover: #1f1f24;
-  --color-bg-tertiary: #1c1c21;
+  --color-bg-primary: #0c0b0a;
+  --color-bg-secondary: #11100e;
+  --color-bg-card: #171513;
+  --color-bg-hover: #221f1b;
+  --color-bg-tertiary: #1c1916;
 
   /* Colors - Text */
-  --color-text-primary: #ffffff;
-  --color-text-secondary: #a1a1aa;
-  --color-text-muted: #71717a;
+  --color-text-primary: #f5f1ea;
+  --color-text-secondary: #bbb3a7;
+  --color-text-muted: #8d8579;
 
   /* Colors - Border */
-  --color-border-default: #2a2a2f;
-  --color-border-subtle: #1f1f24;
+  --color-border-default: #2b2723;
+  --color-border-subtle: #1f1c19;
   --color-border-accent: rgba(242, 56, 90, 0.3);
 
   /* Colors - Accent */
@@ -36,6 +36,12 @@
   /* Typography */
   --font-primary: 'Inter Variable', 'Inter', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono Variable', 'JetBrains Mono', monospace;
+  --font-display: 'Bricolage Grotesque Variable', 'Inter Variable', system-ui, sans-serif;
+
+  /* Fluid type scale (max <= 2.5x min so browser zoom can still reach 200%) */
+  --step-hero: clamp(2.75rem, 1.6rem + 5.2vw, 6.25rem);
+  --step-h2: clamp(2rem, 1.35rem + 2.8vw, 3.75rem);
+  --step-h3: clamp(1.375rem, 1.15rem + 1vw, 1.875rem);
 
   /* Spacing */
   --container-max: 1280px;
@@ -81,7 +87,7 @@
   }
 
   html {
-    scroll-behavior: smooth;
+    color-scheme: dark;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     height: 100%;
@@ -92,7 +98,7 @@
     background-color: var(--color-bg-primary);
     color: var(--color-text-primary);
     line-height: 1.6;
-    overflow-x: hidden;
+    overflow-x: clip;
     min-height: 100%;
     display: flex;
     flex-direction: column;
@@ -115,6 +121,16 @@
     font-weight: 700;
     line-height: 1.2;
     color: var(--color-text-primary);
+    text-wrap: balance;
+  }
+
+  h1, h2 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+
+  p {
+    text-wrap: pretty;
   }
 
   /* Links */
@@ -206,50 +222,254 @@
   }
 }
 
-/* Reduced motion */
+
+/* Smooth scrolling only when motion is welcome */
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+
+  /* Cross-document view transitions (progressive enhancement, MPA) */
+  @view-transition { navigation: auto; }
+}
+
+/* Tailwind keyframe utilities stay still for motion-sensitive users */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+  .animate-bounce, .animate-pulse, .animate-pulse-slow, .animate-float, .animate-glow, .animate-ping {
+    animation: none;
   }
 }
 
-/* Custom cursor styles (hidden on touch devices) */
+/* ------------------------------------------------------------------ */
+/* Editorial primitives                                                */
+/* ------------------------------------------------------------------ */
+@layer components {
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  .eyebrow::before {
+    content: '';
+    inline-size: 1.75rem;
+    block-size: 1px;
+    background: currentColor;
+    opacity: 0.6;
+  }
+
+  .display-xl {
+    font-family: var(--font-display);
+    font-size: var(--step-hero);
+    line-height: 0.95;
+    letter-spacing: -0.035em;
+    font-weight: 700;
+  }
+
+  .display-lg {
+    font-family: var(--font-display);
+    font-size: var(--step-h2);
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    font-weight: 650;
+  }
+
+  .hairline {
+    border-color: var(--color-border-default);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Scroll reveal: CSS scroll-driven animation, decorative only.        */
+/* Browsers without support simply show the content (progressive).    */
+/* ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: no-preference) {
+  @supports ((animation-timeline: view()) and (animation-range: entry)) {
+    @keyframes reveal-up {
+      from {
+        opacity: 0;
+        translate: 0 2rem;
+      }
+    }
+
+    [data-reveal] {
+      animation: reveal-up linear both;
+      animation-timeline: view();
+      /* --stagger (0, 1, 2…) shifts siblings in a grid so they arrive one after another */
+      animation-range: entry calc(var(--stagger, 0) * 10%) entry calc(60% + var(--stagger, 0) * 10%);
+    }
+
+    /* -------------------------------------------------------------- */
+    /* Parallax: layers drift at different speeds while in view.       */
+    /* --speed: px travelled across the element's view range; negative */
+    /* moves up faster than the page, positive lags behind.            */
+    /* Uses the individual `translate` property, so it composes with   */
+    /* hover `transform: scale()` utilities instead of replacing them. */
+    /* -------------------------------------------------------------- */
+    @keyframes parallax-y {
+      from { translate: 0 calc(var(--speed, 60px) * -1); }
+      to { translate: 0 var(--speed, 60px); }
+    }
+
+    [data-parallax] {
+      animation: parallax-y linear both;
+      animation-timeline: view();
+      animation-range: cover;
+    }
+
+    /* Image inside a clipped frame: oversized so the drift never shows edges */
+    [data-parallax-frame] {
+      overflow: clip;
+    }
+    /* Zoom 1.2 leaves 10% of spare image on each side; drift ±8% of the image's
+       own height so the frame never shows an edge, whatever its size. */
+    @keyframes parallax-frame {
+      from { translate: 0 -8%; }
+      to { translate: 0 8%; }
+    }
+    [data-parallax-frame] > img {
+      scale: 1.2;
+      animation: parallax-frame linear both;
+      animation-timeline: view();
+      animation-range: cover;
+    }
+
+    /* Hero: content lifts and fades as you scroll past, backdrop lags behind */
+    @keyframes hero-out {
+      to { opacity: 0.15; translate: 0 -6rem; scale: 0.97; }
+    }
+    @keyframes hero-art-drift {
+      to { translate: 0 22%; scale: 1.08; }
+    }
+    @keyframes hero-grid-drift {
+      to { translate: 0 10%; }
+    }
+    .hero {
+      view-timeline: --hero;
+    }
+    .hero [data-hero-content] {
+      animation: hero-out linear both;
+      animation-timeline: --hero;
+      animation-range: exit 0% exit 80%;
+    }
+    .hero .hero-art {
+      animation: hero-art-drift linear both;
+      animation-timeline: --hero;
+      animation-range: exit;
+    }
+    .hero .hero-grid {
+      animation: hero-grid-drift linear both;
+      animation-timeline: --hero;
+      animation-range: exit;
+    }
+
+    /* Reading progress bar tied to the page scroll */
+    @keyframes progress-grow {
+      from { scale: 0 1; }
+    }
+    .scroll-progress {
+      position: fixed;
+      inset: 0 0 auto;
+      height: 2px;
+      z-index: 60;
+      background: linear-gradient(to right, var(--color-accent-coral), #ffb35c);
+      transform-origin: 0 50%;
+      animation: progress-grow linear both;
+      animation-timeline: scroll(root block);
+    }
+  }
+}
+
+/* The progress bar only exists where it can animate */
+.scroll-progress { display: none; }
+@media (prefers-reduced-motion: no-preference) {
+  @supports ((animation-timeline: scroll()) and (animation-range: entry)) {
+    .scroll-progress { display: block; }
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Proximity glow cards                                                */
+/* The pointer position is written to --px/--py (relative to each     */
+/* card, even when outside it) so nearby cards light up their border. */
+/* ------------------------------------------------------------------ */
+@property --glow-size {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 0px;
+}
+
+.glow-grid {
+  --glow-size: 0px;
+}
+
 @media (hover: hover) and (pointer: fine) {
-  .cursor-dot,
-  .cursor-outline {
-    position: fixed;
-    top: 0;
-    left: 0;
-    pointer-events: none;
-    z-index: var(--z-cursor);
-    transform: translate(-50%, -50%);
-  }
-
-  .cursor-dot {
-    width: 8px;
-    height: 8px;
-    background: var(--color-accent-coral);
-    border-radius: 50%;
-  }
-
-  .cursor-outline {
-    width: 40px;
-    height: 40px;
-    border: 2px solid var(--color-accent-coral);
-    border-radius: 50%;
-    opacity: 0.5;
+  .glow-grid:hover,
+  .glow-grid[data-near] {
+    --glow-size: 18rem;
   }
 }
 
-/* Hide custom cursor on touch devices */
-@media (hover: none) {
-  .cursor-dot,
-  .cursor-outline {
-    display: none !important;
-  }
+.glow-card {
+  position: relative;
+  isolation: isolate;
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 0.025), transparent 40%),
+    var(--color-bg-card);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-2xl);
+  transition: border-color var(--duration-normal) var(--ease-smooth);
+}
+
+/* Border ring lit by a radial gradient centred on the pointer */
+.glow-card::before,
+.glow-card::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.glow-card::before {
+  padding: 1px;
+  background: radial-gradient(
+    var(--glow-size, 0px) circle at var(--px, -999px) var(--py, -999px),
+    var(--glow-a, var(--color-accent-coral)),
+    var(--glow-b, var(--color-accent-orange)) 35%,
+    transparent 70%
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask:
+    linear-gradient(#000 0 0) content-box exclude,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  z-index: 1;
+}
+
+/* Soft inner spotlight, only inside the hovered card */
+.glow-card::after {
+  background: radial-gradient(
+    calc(var(--glow-size, 0px) * 1.2) circle at var(--px, -999px) var(--py, -999px),
+    rgb(242 56 90 / 0.07),
+    transparent 60%
+  );
+  z-index: -1;
+}
+
+.glow-grid {
+  transition: --glow-size 0.35s var(--ease-smooth);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glow-grid { transition: none; }
+}
+
+.glow-card:focus-within {
+  border-color: var(--color-border-accent);
 }

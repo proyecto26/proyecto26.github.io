@@ -5,21 +5,21 @@ export default {
     extend: {
       colors: {
         // Background colors
-        'bg-primary': '#0a0a0b',
-        'bg-secondary': '#131316',
-        'bg-card': '#16161a',
-        'bg-hover': '#1f1f24',
-        'bg-tertiary': '#1c1c21',
+        'bg-primary': '#0c0b0a',
+        'bg-secondary': '#11100e',
+        'bg-card': '#171513',
+        'bg-hover': '#221f1b',
+        'bg-tertiary': '#1c1916',
 
         // Text colors
-        'text-primary': '#ffffff',
-        'text-secondary': '#a1a1aa',
-        'text-muted': '#71717a',
+        'text-primary': '#f5f1ea',
+        'text-secondary': '#bbb3a7',
+        'text-muted': '#8d8579',
 
         // Border colors
-        'border-default': '#2a2a2f',
-        'border-subtle': '#1f1f24',
-        'border-accent': 'rgba(242, 56, 90, 0.3)',
+        'border-default': '#2b2723',
+        'border-subtle': '#1f1c19',
+        'border-accent': 'rgba(242, 56, 90, 0.35)',
 
         // Accent colors
         'accent-coral': '#f2385a',
@@ -33,6 +33,7 @@ export default {
       },
       fontFamily: {
         sans: ['Inter Variable', 'Inter', 'system-ui', 'sans-serif'],
+        display: ['Bricolage Grotesque Variable', 'Inter Variable', 'system-ui', 'sans-serif'],
         mono: ['JetBrains Mono Variable', 'JetBrains Mono', 'monospace'],
       },
       fontSize: {

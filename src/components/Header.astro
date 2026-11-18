@@ -12,6 +12,7 @@ const totalStars = await getOrgTotalStars('proyecto26');
 const starsDisplay = totalStars > 0 ? formatStars(totalStars) : '4.5k'; // Fallback
 
 const navLinks = [
+  { href: '/#ai-lab', label: 'AI Lab', id: 'ai' },
   { href: '/projects', label: 'Projects', id: 'projects' },
   { href: '/games', label: 'Games', id: 'games' },
   { href: '/about', label: 'About', id: 'about' },
@@ -20,30 +21,29 @@ const navLinks = [
 ];
 ---
 
-<header class="header fixed top-0 left-0 right-0 z-header h-[72px] bg-bg-primary/80 backdrop-blur-custom border-b border-border-subtle transition-all duration-300">
+<header class="header fixed top-0 left-0 right-0 z-header h-[72px] border-b border-transparent transition-[background-color,border-color] duration-300 data-[scrolled]:bg-bg-primary/85 data-[scrolled]:backdrop-blur-custom data-[scrolled]:border-border-subtle">
   <div class="container h-full flex items-center justify-between">
     <!-- Logo -->
     <a href="/" class="logo-link flex items-center gap-3 group">
       <img src="/img/pro26.png" alt="Proyecto 26" width="40" height="40" loading="lazy" class="w-10 h-10 rounded-lg transition-all duration-300 group-hover:shadow-glow-coral group-hover:scale-105" />
-      <span class="text-lg font-bold text-text-primary hidden sm:block">Proyecto 26</span>
+      <span class="font-display text-lg font-semibold tracking-tight text-text-primary hidden sm:block">Proyecto 26</span>
     </a>
 
     <!-- Desktop Navigation -->
-    <nav class="hidden md:flex items-center gap-6" aria-label="Main navigation">
+    <nav class="hidden md:flex items-center gap-1 p-1 rounded-full border border-border-default bg-bg-card/70 backdrop-blur-custom" aria-label="Main navigation">
       {navLinks.map((link) => (
         <a
           href={link.href}
           aria-current={currentPage === link.id ? 'page' : undefined}
           class:list={[
-            'nav-link text-sm font-medium transition-colors duration-200 relative flex items-center gap-1.5',
+            'nav-link text-sm font-medium transition-colors duration-200 relative flex items-center gap-1.5 px-4 py-1.5 rounded-full',
             currentPage === link.id
-              ? 'text-accent-coral'
-              : 'text-text-secondary hover:text-text-primary'
+              ? 'bg-bg-hover text-text-primary'
+              : 'text-text-secondary hover:text-text-primary hover:bg-bg-hover/60'
           ]}
         >
           {link.icon && <i data-lucide={link.icon} class="w-4 h-4 text-accent-coral"></i>}
           {link.label}
-          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent-coral transition-all duration-300 group-hover:w-full"></span>
         </a>
       ))}
     </nav>
@@ -171,12 +171,9 @@ const navLinks = [
   window.addEventListener('scroll', () => {
     const currentScroll = window.scrollY;
 
-    if (currentScroll > 100) {
-      header?.classList.add('bg-bg-primary/95');
-    } else {
-      header?.classList.remove('bg-bg-primary/95');
-    }
+    header?.toggleAttribute('data-scrolled', currentScroll > 24);
 
     lastScroll = currentScroll;
   });
+  header?.toggleAttribute('data-scrolled', window.scrollY > 24);
 </script>

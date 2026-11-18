@@ -15,7 +15,7 @@ const { title, description, image, tags, href, featured = false } = Astro.props;
   <article class="game-card-featured relative overflow-hidden rounded-3xl bg-bg-card border border-border-default">
     <div class="flex flex-col lg:flex-row">
       <!-- Preview -->
-      <div class="relative lg:w-1/2 aspect-video lg:aspect-auto bg-bg-hover overflow-hidden">
+      <div class="relative lg:w-1/2 aspect-video lg:aspect-auto bg-bg-hover overflow-hidden" data-parallax-frame>
         {image ? (
           <img
             src={image}
@@ -80,7 +80,7 @@ const { title, description, image, tags, href, featured = false } = Astro.props;
 ) : (
   <article class="game-card group bg-bg-card border border-border-default rounded-2xl overflow-hidden transition-all duration-300 hover:border-border-accent hover:-translate-y-1">
     <!-- Preview -->
-    <div class="relative aspect-video bg-bg-hover overflow-hidden">
+    <div class="relative aspect-video bg-bg-hover overflow-hidden" data-parallax-frame>
       {image ? (
         <img
           src={image}

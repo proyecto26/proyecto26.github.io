@@ -1,0 +1,269 @@
+---
+/**
+ * Apple-style sticky product showcase for the AI plugins.
+ * Desktop: steps scroll on the left while a pinned "device" on the right swaps panels.
+ * Mobile: each step renders its own terminal inline (no pinning).
+ * Active step is tracked with IntersectionObserver (widely available).
+ */
+import Terminal from './Terminal.astro';
+import type { AIProject } from '../data/projects';
+
+interface Props {
+  projects: AIProject[];
+}
+
+const { projects } = Astro.props;
+
+const accent = {
+  coral: 'var(--color-accent-coral)',
+  teal: 'var(--color-accent-teal)',
+  orange: 'var(--color-accent-orange)',
+  blue: 'var(--color-accent-blue)',
+};
+
+const fmt = (n?: number) => (n === undefined ? '' : n >= 1000 ? `${(n / 1000).toFixed(1)}k` : `${n}`);
+---
+
+<div class="showcase grid lg:grid-cols-12 gap-10 lg:gap-16" data-showcase>
+  <!-- Steps -->
+  <ol class="lg:col-span-5 relative min-w-0">
+    {projects.map((p, i) => (
+      <li
+        class="showcase-step py-10 lg:py-0 lg:min-h-[64vh] lg:flex lg:flex-col lg:justify-center border-t border-border-default lg:border-0"
+        data-step={i}
+        style={`--accent:${accent[p.iconColor]}`}
+      >
+        <p class="font-mono text-xs uppercase tracking-[0.14em] text-text-muted mb-5 flex items-center gap-3">
+          <span class="step-index tabular-nums">{String(i + 1).padStart(2, '0')}</span>
+          <span class="w-6 h-px bg-border-default" aria-hidden="true"></span>
+          {p.subtitle}
+          {p.stars ? (
+            <span class="ml-auto flex items-center gap-1 normal-case tracking-normal">
+              <i data-lucide="star" class="w-3.5 h-3.5 text-stars-gold" aria-hidden="true"></i>
+              <span class="sr-only">Stars:</span>{fmt(p.stars)}
+            </span>
+          ) : null}
+        </p>
+
+        <h3 class="step-title font-display text-3xl md:text-4xl font-semibold tracking-tight text-text-primary mb-3">
+          {p.title}
+        </h3>
+        <p class="font-display text-xl text-text-secondary mb-5 leading-snug">{p.tagline}</p>
+        <p class="text-text-muted mb-7 max-w-[52ch]">{p.description}</p>
+
+        <!-- Install command -->
+        <div class="flex items-stretch max-w-full mb-6 rounded-lg border border-border-default bg-bg-card font-mono text-[0.8125rem] overflow-hidden">
+          <code class="px-4 py-2.5 text-text-secondary overflow-x-auto whitespace-nowrap scrollbar-hide">
+            <span class="text-text-muted select-none" aria-hidden="true">$ </span>{p.install}
+          </code>
+          <button
+            type="button"
+            class="copy-btn shrink-0 px-3 border-l border-border-default text-text-muted hover:text-text-primary hover:bg-bg-hover transition-colors"
+            data-copy={p.install}
+            aria-label={`Copy install command for ${p.title}`}
+          >
+            <i data-lucide="copy" class="w-4 h-4" aria-hidden="true"></i>
+          </button>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">
+          <a href={p.githubUrl} target="_blank" rel="noopener noreferrer" class="link-arrow">
+            <i data-lucide="github" class="w-4 h-4" aria-hidden="true"></i> Source
+          </a>
+          {p.homepage && (
+            <a href={p.homepage} target="_blank" rel="noopener noreferrer" class="link-arrow">
+              Docs &amp; demo <i data-lucide="arrow-up-right" class="w-4 h-4" aria-hidden="true"></i>
+            </a>
+          )}
+        </div>
+
+        <!-- Inline device for small screens -->
+        <div class="mt-8 lg:hidden" data-panel data-inline-panel>
+          <Terminal title={p.title} demo={p.demo} video={p.video} />
+        </div>
+      </li>
+    ))}
+  </ol>
+
+  <!-- Pinned device (desktop) -->
+  <div class="hidden lg:block lg:col-span-7 min-w-0" aria-hidden="true">
+    <div class="sticky top-[calc(50vh-15rem)]">
+      <div class="device relative">
+        <div class="device-glow" aria-hidden="true"></div>
+        {projects.map((p, i) => (
+          <div class="device-panel" data-panel={i} data-active={i === 0 ? '' : undefined}>
+            <Terminal title={`${p.title} — ${p.subtitle}`} demo={p.demo} video={p.video} />
+          </div>
+        ))}
+      </div>
+
+      <!-- Progress rail -->
+      <div class="mt-8 flex items-center gap-2">
+        {projects.map((_, i) => (
+          <span class="rail-tick" data-tick={i} data-active={i === 0 ? '' : undefined}></span>
+        ))}
+        <span class="ml-4 font-mono text-xs text-text-muted tabular-nums">
+          <span data-counter>01</span> / {String(projects.length).padStart(2, '0')}
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Live region for copy feedback -->
+<p class="sr-only" aria-live="polite" data-copy-status></p>
+
+<style>
+  .device {
+    display: grid;
+  }
+
+  /* All panels share one grid cell so they cross-fade in place */
+  .device-panel {
+    grid-area: 1 / 1;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s var(--ease-smooth), visibility 0s linear 0.5s;
+  }
+
+  .device-panel[data-active] {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s var(--ease-smooth), visibility 0s;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .device-panel {
+      translate: 0 1rem;
+      transition: opacity 0.5s var(--ease-smooth), translate 0.6s var(--ease-smooth), visibility 0s linear 0.5s;
+    }
+    .device-panel[data-active] {
+      translate: 0 0;
+      transition: opacity 0.5s var(--ease-smooth), translate 0.6s var(--ease-smooth), visibility 0s;
+    }
+  }
+
+  .device-glow {
+    position: absolute;
+    inset: -20% -10%;
+    background: radial-gradient(closest-side, var(--device-accent, rgb(242 56 90 / 0.18)), transparent);
+    filter: blur(40px);
+    opacity: 0.5;
+    transition: background 0.6s;
+    z-index: -1;
+  }
+
+  .rail-tick {
+    inline-size: 1.5rem;
+    block-size: 2px;
+    border-radius: 2px;
+    background: var(--color-border-default);
+    transition: background-color 0.3s, inline-size 0.3s;
+  }
+
+  .rail-tick[data-active] {
+    inline-size: 3rem;
+    background: var(--color-accent-coral);
+  }
+
+  /* Desktop: dim inactive steps so focus follows scroll */
+  @media (min-width: 1024px) {
+    .showcase-step {
+      opacity: 0.35;
+      transition: opacity 0.4s var(--ease-smooth);
+    }
+    .showcase-step[data-active],
+    .showcase-step:focus-within {
+      opacity: 1;
+    }
+  }
+
+  .showcase-step[data-active] .step-index {
+    color: var(--accent);
+  }
+
+  .link-arrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--color-text-primary);
+    text-decoration: underline;
+    text-decoration-color: var(--color-border-default);
+    text-underline-offset: 0.35em;
+    transition: text-decoration-color 0.2s;
+  }
+
+  .link-arrow:hover {
+    text-decoration-color: var(--accent, var(--color-accent-coral));
+  }
+</style>
+
+<script>
+  const root = document.querySelector<HTMLElement>('[data-showcase]');
+
+  if (root) {
+    const steps = Array.from(root.querySelectorAll<HTMLElement>('[data-step]'));
+    const panels = Array.from(root.querySelectorAll<HTMLElement>('.device-panel'));
+    const ticks = Array.from(root.querySelectorAll<HTMLElement>('[data-tick]'));
+    const counter = root.querySelector<HTMLElement>('[data-counter]');
+    const device = root.querySelector<HTMLElement>('.device');
+
+    const activate = (index: number) => {
+      const set = (els: HTMLElement[]) => els.forEach((el, i) => el.toggleAttribute('data-active', i === index));
+      set(steps);
+      set(panels);
+      set(ticks);
+      if (counter) counter.textContent = String(index + 1).padStart(2, '0');
+      const accent = getComputedStyle(steps[index]).getPropertyValue('--accent');
+      device?.style.setProperty('--device-accent', `color-mix(in srgb, ${accent} 22%, transparent)`);
+
+      // Only the visible panel's video should play
+      panels.forEach((p, i) => {
+        const v = p.querySelector('video');
+        if (!v) return;
+        i === index ? v.play().catch(() => {}) : v.pause();
+      });
+    };
+
+    // A step is "active" when it crosses the vertical middle band of the viewport
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) activate(Number((entry.target as HTMLElement).dataset.step));
+        }
+      },
+      { rootMargin: '-45% 0px -45% 0px' }
+    );
+    steps.forEach((s) => io.observe(s));
+    activate(0);
+
+    // Inline (mobile) terminals: animate lines when they scroll into view
+    const io2 = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.toggleAttribute('data-active', true);
+            io2.unobserve(entry.target);
+          }
+        }
+      },
+      { threshold: 0.4 }
+    );
+    root.querySelectorAll<HTMLElement>('[data-inline-panel]').forEach((t) => io2.observe(t));
+  }
+
+  // Copy-to-clipboard for install commands
+  const status = document.querySelector<HTMLElement>('[data-copy-status]');
+  document.querySelectorAll<HTMLButtonElement>('[data-copy]').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(btn.dataset.copy ?? '');
+        if (status) status.textContent = 'Install command copied to clipboard';
+        btn.classList.add('text-accent-teal');
+        setTimeout(() => btn.classList.remove('text-accent-teal'), 1500);
+      } catch {
+        if (status) status.textContent = 'Copy failed, select the command manually';
+      }
+    });
+  });
+</script>

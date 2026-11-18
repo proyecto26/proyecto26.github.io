@@ -4,15 +4,19 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Hero from '../components/Hero.astro';
 import ProjectCard from '../components/ProjectCard.astro';
-import ServiceCard from '../components/ServiceCard.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import AIShowcase from '../components/AIShowcase.astro';
 import GameCard from '../components/GameCard.astro';
 import Button from '../components/Button.astro';
-import { getFeaturedProjects } from '../data/projects';
-import { getOrgContributors } from '../utils/github';
+import { getFeaturedProjects, getAIProjects } from '../data/projects';
+import { getOrgContributors, getOrgTotalStars } from '../utils/github';
 import { getSponsorsGrouped, sponsorPlatforms } from '../data/sponsors';
 
 // Fetch featured projects with GitHub stats at build time
-const projects = await getFeaturedProjects(6);
+const projects = await getFeaturedProjects(9);
+const aiProjects = await getAIProjects();
+const totalStars = await getOrgTotalStars('proyecto26');
+const starsDisplay = totalStars > 0 ? `${totalStars.toLocaleString('en-US')}+` : '4,500+';
 
 // Fetch top contributors at build time
 const contributors = await getOrgContributors('proyecto26', 20);
@@ -26,30 +30,6 @@ const homepageTiers = sponsorTiers
 const featuredSponsors = sponsorTiers
   .filter((t) => t.name === 'Gold Sponsor' || t.name === 'Platinum Partner')
   .flatMap((t) => t.sponsors);
-
-const services = [
-  {
-    title: 'Mobile Development',
-    description: 'Cross-platform libraries for native mobile experiences.',
-    icon: 'smartphone',
-    color: 'coral' as const,
-    technologies: ['React Native', 'NativeScript', 'Ionic'],
-  },
-  {
-    title: 'Web Components',
-    description: 'Framework-agnostic components for modern web apps.',
-    icon: 'globe',
-    color: 'teal' as const,
-    technologies: ['Stencil', 'Web Animations API', 'TypeScript'],
-  },
-  {
-    title: 'Game Development',
-    description: 'Tools and plugins for building browser and Unity games.',
-    icon: 'gamepad-2',
-    color: 'orange' as const,
-    technologies: ['Phaser', 'Unity', 'C#'],
-  },
-];
 
 const games = [
   {
@@ -76,89 +56,79 @@ const games = [
 const supportLinks = sponsorPlatforms.filter((p) => !p.primary).slice(0, 4);
 ---
 
-<BaseLayout title="Proyecto 26 - Changing the world with small contributions" description="Open source tools for web, mobile, and game development. 4,500+ GitHub stars, 25+ projects, built by developers for developers.">
+<BaseLayout title="Proyecto 26 - Changing the world with small contributions" description="Open source tools for web, mobile, games and AI agents. Claude Code plugins, Unity and React Native libraries, and browser games, built in the open since 2014.">
   <Header currentPage="home" />
 
   <main id="main-content">
-    <!-- Hero Section -->
-    <Hero />
+    <Hero stars={starsDisplay} aiCount={aiProjects.length} />
 
-    <!-- Projects Section -->
-    <section id="projects" class="section bg-bg-primary">
+    <!-- 01 · AI Lab -->
+    <section id="ai-lab" class="section relative scroll-mt-16" aria-labelledby="ai-lab-title">
       <div class="container">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl md:text-5xl font-bold text-text-primary mb-4" data-animate="fade-up">
-            Open Source Tools Developers Love
-          </h2>
-          <p class="text-lg text-text-secondary max-w-2xl mx-auto" data-animate="fade-up" data-delay="100">
-            Building the future of web, mobile, and game development
-          </p>
-        </div>
+        <SectionHeader
+          id="ai-lab-title"
+          index="01"
+          eyebrow="AI Lab"
+          title="Agents that <em class='not-italic text-accent-coral'>ship</em>, not demos."
+          lede="Plugins and skills for Claude Code, Codex, OpenClaw and friends. Each one is open source, installs with one command and runs on your machine."
+        >
+          <a href="/projects#ai" class="inline-flex items-center gap-2 text-sm text-text-secondary hover:text-text-primary transition-colors">
+            All AI projects <i data-lucide="arrow-right" class="w-4 h-4" aria-hidden="true"></i>
+          </a>
+        </SectionHeader>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          {projects.map((project, index) => (
-            <div data-animate="fade-up" data-delay={index * 100}>
-              <ProjectCard {...project} />
-            </div>
-          ))}
-        </div>
+        <AIShowcase projects={aiProjects} />
+      </div>
+    </section>
 
-        <div class="text-center" data-animate="fade-up" data-delay="600">
-          <Button href="https://github.com/proyecto26" variant="secondary" external>
-            View All Projects
-            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+    <!-- 02 · Open source tools -->
+    <section id="projects" class="section bg-bg-secondary border-y border-border-subtle" aria-labelledby="projects-title">
+      <div class="container">
+        <SectionHeader
+          id="projects-title"
+          index="02"
+          eyebrow="Open source"
+          title="Tools developers have trusted for a decade."
+          lede="In-app browsers for React Native and NativeScript, a promise-based REST client for Unity, web components and curated lists with thousands of stars."
+        >
+          <Button href="/projects" variant="secondary">
+            Browse all projects
+            <i data-lucide="arrow-right" class="w-4 h-4" aria-hidden="true"></i>
           </Button>
-        </div>
-      </div>
-    </section>
+        </SectionHeader>
 
-    <!-- What We Build Section -->
-    <section class="section bg-bg-secondary">
-      <div class="container">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl md:text-5xl font-bold text-text-primary mb-4" data-animate="fade-up">
-            What We Build
-          </h2>
-          <p class="text-lg text-text-secondary" data-animate="fade-up" data-delay="100">
-            Specialized tools and libraries across three core domains
-          </p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {services.map((service, index) => (
-            <div data-animate="fade-up" data-delay={index * 100}>
-              <ServiceCard {...service} />
-            </div>
+        <ul class="glow-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" role="list">
+          {projects.map((project, index) => (
+            <li data-reveal style={`--stagger:${index % 3}`}>
+              <ProjectCard {...project} index={index} />
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </section>
 
-    <!-- Games Section -->
-    <section class="section bg-bg-primary">
+    <!-- 03 · Games -->
+    <section class="section" aria-labelledby="games-title">
       <div class="container">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl md:text-5xl font-bold text-text-primary mb-4" data-animate="fade-up">
-            Play Our Games
-          </h2>
-          <p class="text-lg text-text-secondary" data-animate="fade-up" data-delay="100">
-            Interactive experiences built with Phaser and other game engines
-          </p>
-        </div>
+        <SectionHeader
+          id="games-title"
+          index="03"
+          eyebrow="Playground"
+          title="Where it all started: games."
+          lede="Phaser, Unity and Ionic experiments that became the libraries above. Grab a keyboard."
+        >
+          <Button href="/games" variant="secondary">
+            <i data-lucide="gamepad-2" class="w-4 h-4" aria-hidden="true"></i>
+            All games
+          </Button>
+        </SectionHeader>
 
-        <!-- Featured Game -->
-        <div class="mb-12" data-animate="fade-up" data-delay="200">
-          <p class="text-xs font-semibold text-accent-coral uppercase tracking-widest mb-4">Featured Game</p>
+        <div class="mb-6" data-reveal>
           <GameCard {...games[0]} />
         </div>
-
-        <!-- More Games -->
-        <div class="mb-4">
-          <p class="text-xs font-semibold text-text-muted uppercase tracking-widest mb-4">More Games</p>
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {games.slice(1).map((game, index) => (
-            <div data-animate="fade-up" data-delay={300 + index * 100}>
+            <div data-reveal style={`--stagger:${index % 2}`}>
               <GameCard {...game} />
             </div>
           ))}
@@ -166,294 +136,208 @@ const supportLinks = sponsorPlatforms.filter((p) => !p.primary).slice(0, 4);
       </div>
     </section>
 
-    <!-- About / Founder Section -->
-    <section id="about" class="section bg-bg-secondary">
+    <!-- 04 · Founder -->
+    <section id="about" class="section bg-bg-secondary border-y border-border-subtle" aria-labelledby="founder-title">
       <div class="container">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl md:text-5xl font-bold text-text-primary mb-4" data-animate="fade-up">
-            Meet the Founder
-          </h2>
-        </div>
-
-        <div class="max-w-4xl mx-auto" data-animate="fade-up" data-delay="200">
-          <div class="bg-bg-card border border-border-default rounded-3xl p-8 md:p-12">
-            <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
-              <!-- Photo -->
-              <div class="flex-shrink-0">
-                <div class="w-48 h-48 rounded-full overflow-hidden ring-4 ring-accent-coral/30">
-                  <img
-                    src="/img/jdnichollsc.jpg"
-                    alt="Juan David Nicholls"
-                    width="192"
-                    height="192"
-                    loading="lazy"
-                    class="w-full h-full object-cover"
-                  />
-                </div>
+        <div class="grid gap-12 lg:grid-cols-12 lg:items-center">
+          <div class="lg:col-span-5" data-reveal>
+            <div class="relative max-w-sm">
+              <div class="rounded-3xl" data-parallax-frame>
+              <img
+                src="/img/jdnichollsc.jpg"
+                alt="Juan David Nicholls, founder of Proyecto 26"
+                width="384"
+                height="384"
+                loading="lazy"
+                class="w-full aspect-square object-cover rounded-3xl grayscale-[35%] contrast-[1.05]"
+              />
               </div>
-
-              <!-- Info -->
-              <div class="text-center md:text-left">
-                <h3 class="text-3xl font-bold text-text-primary mb-2">
-                  Juan David Nicholls
-                </h3>
-                <p class="text-accent-coral font-medium mb-4">
-                  Founder & Lead Developer
-                </p>
-                <p class="text-text-secondary mb-6">
-                  Full-Stack Developer and Open Source Contributor with over 14 years of expertise in web, mobile, game, blockchain and cloud development. Skilled in building scalable architectures, seamless user experiences and driving innovation through Open Source. Passionate about sharing knowledge as a speaker and mentor.
-                </p>
-
-                <!-- Location -->
-                <div class="flex items-center justify-center md:justify-start gap-2 text-text-muted mb-6">
-                  <i data-lucide="map-pin" class="w-4 h-4"></i>
-                  <span>Based in Colombia</span>
-                </div>
-
-                <!-- Social Links -->
-                <div class="flex items-center justify-center md:justify-start gap-3">
-                  <a
-                    href="https://linkedin.com/in/jdnichollsc"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="w-10 h-10 rounded-lg bg-bg-hover flex items-center justify-center text-text-secondary hover:text-text-primary hover:bg-bg-tertiary transition-all duration-200"
-                  >
-                    <i data-lucide="linkedin" class="w-5 h-5"></i>
-                  </a>
-                  <a
-                    href="https://github.com/jdnichollsc"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="w-10 h-10 rounded-lg bg-bg-hover flex items-center justify-center text-text-secondary hover:text-text-primary hover:bg-bg-tertiary transition-all duration-200"
-                  >
-                    <i data-lucide="github" class="w-5 h-5"></i>
-                  </a>
-                  <a
-                    href="https://x.com/jdnichollsc"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="w-10 h-10 rounded-lg bg-bg-hover flex items-center justify-center text-text-secondary hover:text-text-primary hover:bg-bg-tertiary transition-all duration-200"
-                  >
-                    <i data-lucide="twitter" class="w-5 h-5"></i>
-                  </a>
-                  <a
-                    href="https://youtube.com/@proyecto26"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="w-10 h-10 rounded-lg bg-bg-hover flex items-center justify-center text-text-secondary hover:text-text-primary hover:bg-bg-tertiary transition-all duration-200"
-                  >
-                    <i data-lucide="youtube" class="w-5 h-5"></i>
-                  </a>
-                </div>
+              <div data-parallax style="--speed:-28px" class="absolute -bottom-4 -right-4 px-4 py-2 rounded-full bg-accent-coral text-[#0c0b0a] font-mono text-xs uppercase tracking-[0.14em]">
+                14+ years
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- Contributors Section -->
-    {contributors.length > 0 && (
-      <section class="py-16 bg-bg-primary">
-        <div class="container">
-          <div class="text-center mb-12">
-            <h2 class="text-4xl md:text-5xl font-bold text-text-primary mb-4" data-animate="fade-up">
-              Our Contributors
-            </h2>
-            <p class="text-lg text-text-secondary max-w-2xl mx-auto" data-animate="fade-up" data-delay="100">
-              Thanks to the developers who help build and improve our projects
+          <div class="lg:col-span-7" data-reveal>
+            <p class="eyebrow mb-6"><span class="text-accent-coral">04</span> Founder</p>
+            <p class="display-lg text-text-primary mb-8">
+              Built by one developer.<br /><span class="text-text-muted">Sustained by a community.</span>
             </p>
-          </div>
+            <h2 id="founder-title" class="text-xl font-semibold text-text-primary">Juan David Nicholls</h2>
+            <p class="text-text-muted mb-6">Founder &amp; Lead Developer</p>
+            <p class="text-text-secondary max-w-[60ch] mb-8">
+              Full-stack developer and open source contributor with over 14 years in web, mobile, game,
+              blockchain and cloud development. Speaker, mentor and, lately, builder of AI agents.
+            </p>
 
-          <div class="flex flex-wrap items-center justify-center gap-4 max-w-3xl mx-auto mb-8" data-animate="fade-up" data-delay="200">
-            {contributors.map((contributor) => (
-              <a
-                href={contributor.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="group relative"
-                title={`@${contributor.username} (${contributor.contributions} contributions)`}
-              >
-                <img
-                  src={`${contributor.avatar}&s=80`}
-                  alt={contributor.username}
-                  width="48"
-                  height="48"
-                  loading="lazy"
-                  class="w-12 h-12 rounded-full ring-2 ring-border-default transition-all duration-200 group-hover:ring-accent-coral group-hover:scale-110"
-                />
-              </a>
-            ))}
-          </div>
-
-          <div class="text-center" data-animate="fade-up" data-delay="300">
-            <Button href="https://github.com/proyecto26" variant="secondary" size="sm" external>
-              Become a Contributor
-              <i data-lucide="arrow-right" class="w-4 h-4"></i>
-            </Button>
+            <ul class="flex items-center gap-2" role="list">
+              {[
+                { href: 'https://linkedin.com/in/jdnichollsc', icon: 'linkedin', label: 'LinkedIn' },
+                { href: 'https://github.com/jdnichollsc', icon: 'github', label: 'GitHub' },
+                { href: 'https://x.com/jdnichollsc', icon: 'twitter', label: 'X (Twitter)' },
+                { href: 'https://youtube.com/@proyecto26', icon: 'youtube', label: 'YouTube' },
+              ].map((s) => (
+                <li>
+                  <a
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={s.label}
+                    class="w-11 h-11 rounded-full border border-border-default flex items-center justify-center text-text-secondary hover:text-text-primary hover:border-border-accent transition-colors"
+                  >
+                    <i data-lucide={s.icon} class="w-5 h-5" aria-hidden="true"></i>
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
-      </section>
-    )}
-
-    <!-- Sponsor Logos Section -->
-    <section class="py-16 bg-bg-secondary">
-      <div class="container">
-        <div class="text-center mb-10">
-          <h2 class="text-2xl md:text-3xl font-bold text-text-primary mb-2" data-animate="fade-up">
-            Backed by
-          </h2>
-          <p class="text-sm text-text-muted" data-animate="fade-up" data-delay="100">
-            Companies and individuals who support our open source work
-          </p>
-        </div>
-
-        {featuredSponsors.length > 0 ? (
-          <div class="flex flex-wrap items-center justify-center gap-8" data-animate="fade-up" data-delay="200">
-            {featuredSponsors.map((sponsor) => (
-              <a
-                href={sponsor.url || '/sponsors'}
-                target={sponsor.url ? '_blank' : undefined}
-                rel={sponsor.url ? 'noopener noreferrer' : undefined}
-                class="group flex items-center justify-center grayscale hover:grayscale-0 opacity-80 hover:opacity-100 transition-all duration-300"
-                title={sponsor.name}
-              >
-                {sponsor.image ? (
-                  <img
-                    src={sponsor.image}
-                    alt={sponsor.name}
-                    width="64"
-                    height="64"
-                    loading="lazy"
-                    class="h-16 w-auto max-w-[160px] object-contain rounded-lg"
-                  />
-                ) : (
-                  <span class="text-lg font-semibold text-text-secondary group-hover:text-text-primary transition-colors duration-200">
-                    {sponsor.name}
-                  </span>
-                )}
-              </a>
-            ))}
-          </div>
-        ) : (
-          <div class="text-center" data-animate="fade-up" data-delay="200">
-            <a
-              href="/sponsors"
-              class="inline-block px-6 py-3 border border-dashed border-border-default rounded-xl text-text-muted hover:text-text-primary hover:border-border-accent transition-all duration-200"
-            >
-              Your logo here &mdash; become a Gold or Platinum sponsor
-            </a>
-          </div>
-        )}
       </div>
     </section>
 
-    <!-- Sponsor Tiers Section -->
-    <section id="contact" class="section bg-bg-secondary">
+    <!-- 05 · Community -->
+    <section class="section" aria-labelledby="community-title">
       <div class="container">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl md:text-5xl font-bold text-text-primary mb-4" data-animate="fade-up">
-            Become a Sponsor
-          </h2>
-          <p class="text-lg text-text-secondary max-w-2xl mx-auto" data-animate="fade-up" data-delay="100">
-            Help us continue building open source tools for developers worldwide. Every contribution makes a difference.
-          </p>
-        </div>
+        <SectionHeader
+          id="community-title"
+          index="05"
+          eyebrow="Community"
+          title="Small contributions, from a lot of people."
+        />
 
-        <!-- Sponsor Tiers -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-          {homepageTiers.map((tier, index) => (
-            <div
-              class:list={[
-                'relative bg-bg-card rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1',
-                tier.featured
-                  ? 'border-2 border-accent-coral shadow-glow-card'
-                  : 'border border-border-default hover:border-border-accent'
-              ]}
-              data-animate="fade-up"
-              data-delay={index * 100}
-            >
-              {tier.featured && (
-                <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-accent-coral text-white text-xs font-bold rounded-full">
-                  Popular
-                </div>
-              )}
-
-              <div class={`w-12 h-12 mb-4 rounded-xl bg-bg-hover flex items-center justify-center`}>
-                <i data-lucide={tier.icon} class={`w-6 h-6 text-accent-${tier.color}`}></i>
-              </div>
-
-              <h3 class="text-lg font-semibold text-text-primary mb-1">{tier.name}</h3>
-              {tier.audience && (
-                <p class="text-text-muted text-xs mb-2">{tier.audience}</p>
-              )}
-              <div class="flex items-baseline gap-1 mb-3">
-                <span class="text-3xl font-bold text-text-primary">{tier.price}</span>
-                <span class="text-text-muted text-sm">{tier.period}</span>
-              </div>
-              <p class="text-text-secondary text-sm mb-4">{tier.description}</p>
-
-              <ul class="space-y-2 mb-6">
-                {tier.benefits.map((benefit) => (
-                  <li class="flex items-start gap-2 text-sm text-text-secondary">
-                    <i data-lucide="check" class="w-4 h-4 text-accent-teal mt-0.5 flex-shrink-0"></i>
-                    {benefit}
+        <div class="grid gap-12 lg:grid-cols-2">
+          {contributors.length > 0 && (
+            <div data-reveal>
+              <h3 class="font-mono text-xs uppercase tracking-[0.14em] text-text-muted mb-6">Contributors</h3>
+              <ul class="flex flex-wrap gap-2 mb-8" role="list">
+                {contributors.map((contributor) => (
+                  <li>
+                    <a
+                      href={contributor.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="block rounded-full"
+                      title={`@${contributor.username} (${contributor.contributions} contributions)`}
+                    >
+                      <img
+                        src={`${contributor.avatar}&s=96`}
+                        alt={`@${contributor.username}`}
+                        width="48"
+                        height="48"
+                        loading="lazy"
+                        class="w-12 h-12 rounded-full ring-1 ring-border-default transition duration-200 hover:ring-accent-coral hover:scale-110 motion-reduce:hover:scale-100"
+                      />
+                    </a>
                   </li>
                 ))}
               </ul>
-
-              <Button
-                href="https://github.com/sponsors/proyecto26"
-                variant={tier.featured ? 'primary' : 'secondary'}
-                size="sm"
-                external
-              >
-                Sponsor
+              <Button href="https://github.com/proyecto26" variant="secondary" size="sm" external>
+                Become a contributor
+                <i data-lucide="arrow-up-right" class="w-4 h-4" aria-hidden="true"></i>
               </Button>
             </div>
-          ))}
-        </div>
+          )}
 
-        <!-- More ways to support -->
-        <div class="max-w-3xl mx-auto">
-          <p class="text-center text-text-muted text-sm mb-6" data-animate="fade-up" data-delay="400">
-            Also available on
-          </p>
-          <div class="flex flex-wrap items-center justify-center gap-4" data-animate="fade-up" data-delay="500">
-            {supportLinks.map((link) => (
-              <a
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="flex items-center gap-2 px-4 py-2 bg-bg-card border border-border-default rounded-lg text-text-secondary hover:text-text-primary hover:border-border-accent transition-all duration-200"
-              >
-                <i data-lucide={link.icon} class="w-4 h-4" style={`color: ${link.color};`}></i>
-                <span class="text-sm font-medium">{link.name}</span>
+          <div data-reveal>
+            <h3 class="font-mono text-xs uppercase tracking-[0.14em] text-text-muted mb-6">Backed by</h3>
+            {featuredSponsors.length > 0 ? (
+              <ul class="flex flex-wrap items-center gap-8" role="list">
+                {featuredSponsors.map((sponsor) => (
+                  <li>
+                    <a
+                      href={sponsor.url || '/sponsors'}
+                      target={sponsor.url ? '_blank' : undefined}
+                      rel={sponsor.url ? 'noopener noreferrer' : undefined}
+                      class="flex items-center grayscale hover:grayscale-0 opacity-80 hover:opacity-100 transition"
+                      title={sponsor.name}
+                    >
+                      {sponsor.image ? (
+                        <img src={sponsor.image} alt={sponsor.name} width="64" height="64" loading="lazy" class="h-14 w-auto max-w-[160px] object-contain rounded-lg" />
+                      ) : (
+                        <span class="text-lg font-semibold text-text-secondary">{sponsor.name}</span>
+                      )}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <a href="/sponsors" class="inline-block px-6 py-4 border border-dashed border-border-default rounded-2xl text-text-muted hover:text-text-primary hover:border-border-accent transition-colors">
+                Your logo here: become a Gold or Platinum sponsor
               </a>
-            ))}
+            )}
           </div>
+        </div>
+      </div>
+    </section>
 
-          <!-- Sponsor updates note -->
-          <p class="text-center text-text-muted text-xs mt-6" data-animate="fade-up" data-delay="520">
-            All sponsors receive monthly development updates via email.
-          </p>
+    <!-- 06 · Sponsor -->
+    <section id="contact" class="section bg-bg-secondary border-t border-border-subtle" aria-labelledby="sponsor-title">
+      <div class="container">
+        <SectionHeader
+          id="sponsor-title"
+          index="06"
+          eyebrow="Sponsor"
+          title="Keep the tools free. Keep them shipping."
+          lede="Thousands of developers already use our tools. Your sponsorship, no matter how small, funds maintenance, new plugins and monthly development updates."
+        >
+          <Button href="/sponsors" variant="primary">
+            All tiers &amp; sponsors
+            <i data-lucide="arrow-right" class="w-4 h-4" aria-hidden="true"></i>
+          </Button>
+        </SectionHeader>
 
-          <!-- Value recap -->
-          <p class="text-center text-text-secondary text-sm max-w-xl mx-auto mt-12 mb-6" data-animate="fade-up" data-delay="550">
-            Over 4,500 developers already trust our tools. Your sponsorship &mdash; no matter how small &mdash; helps us reach more.
-          </p>
+        <ul class="glow-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-14" role="list">
+          {homepageTiers.map((tier) => (
+            <li data-reveal>
+              <div class:list={['glow-card h-full p-6 flex flex-col', tier.featured && '!border-border-accent']}>
+                <div class="flex items-center justify-between mb-6">
+                  <i data-lucide={tier.icon} class={`w-5 h-5 text-accent-${tier.color}`} aria-hidden="true"></i>
+                  {tier.featured && (
+                    <span class="px-2.5 py-0.5 rounded-full bg-accent-coral text-[#0c0b0a] text-xs font-semibold">Popular</span>
+                  )}
+                </div>
+                <h3 class="text-lg font-semibold text-text-primary">{tier.name}</h3>
+                {tier.audience && <p class="text-text-muted text-xs mb-3">{tier.audience}</p>}
+                <p class="flex items-baseline gap-1 mb-3">
+                  <span class="font-display text-4xl font-semibold tracking-tight text-text-primary">{tier.price}</span>
+                  <span class="text-text-muted text-sm">{tier.period}</span>
+                </p>
+                <p class="text-text-secondary text-sm mb-5">{tier.description}</p>
+                <ul class="space-y-2 mb-6" role="list">
+                  {tier.benefits.map((benefit) => (
+                    <li class="flex items-start gap-2 text-sm text-text-secondary">
+                      <i data-lucide="check" class="w-4 h-4 text-accent-teal mt-0.5 flex-shrink-0" aria-hidden="true"></i>
+                      {benefit}
+                    </li>
+                  ))}
+                </ul>
+                <div class="mt-auto relative z-[2]">
+                  <Button href="https://github.com/sponsors/proyecto26" variant={tier.featured ? 'primary' : 'secondary'} size="sm" external>
+                    Sponsor as {tier.name}
+                  </Button>
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
 
-          <!-- View All & Stars -->
-          <div class="flex flex-col sm:flex-row items-center justify-center gap-4" data-animate="fade-up" data-delay="600">
-            <Button href="/sponsors" variant="primary">
-              View All Tiers & Sponsors
-              <i data-lucide="arrow-right" class="w-4 h-4"></i>
-            </Button>
-            <Button href="https://github.com/proyecto26" variant="secondary" external>
-              <i data-lucide="star" class="w-4 h-4"></i>
-              Star on GitHub
-            </Button>
-          </div>
+        <div class="flex flex-wrap items-center gap-3" data-reveal>
+          <span class="font-mono text-xs uppercase tracking-[0.14em] text-text-muted mr-2">Also on</span>
+          {supportLinks.map((link) => (
+            <a
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-2 px-4 py-2 rounded-full border border-border-default text-sm text-text-secondary hover:text-text-primary hover:border-border-accent transition-colors"
+            >
+              <i data-lucide={link.icon} class="w-4 h-4" style={`color: ${link.color};`} aria-hidden="true"></i>
+              {link.name}
+            </a>
+          ))}
+          <Button href="https://github.com/proyecto26" variant="ghost" size="sm" external>
+            <i data-lucide="star" class="w-4 h-4" aria-hidden="true"></i>
+            Star us on GitHub
+          </Button>
         </div>
       </div>
     </section>
@@ -461,30 +345,3 @@ const supportLinks = sponsorPlatforms.filter((p) => !p.primary).slice(0, 4);
 
   <Footer />
 </BaseLayout>
-
-<script>
-  // Initialize animations when GSAP is loaded
-  import { gsap } from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-  gsap.registerPlugin(ScrollTrigger);
-
-  // Fade up animation for elements with data-animate="fade-up"
-  document.querySelectorAll('[data-animate="fade-up"]').forEach((el) => {
-    const delay = parseInt(el.getAttribute('data-delay') || '0') / 1000;
-
-    gsap.from(el, {
-      scrollTrigger: {
-        trigger: el,
-        start: 'top 85%',
-        toggleActions: 'play none none none',
-      },
-      y: 30,
-      opacity: 0,
-      duration: 0.6,
-      delay,
-      ease: 'power2.out',
-    });
-  });
-
-</script>

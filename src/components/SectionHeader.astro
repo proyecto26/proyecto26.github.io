@@ -1,0 +1,33 @@
+---
+/**
+ * Editorial section header: numbered mono eyebrow, display title, optional lede
+ * and an optional action slot aligned to the right on wide screens.
+ */
+interface Props {
+  index?: string;
+  eyebrow: string;
+  title: string;
+  lede?: string;
+  id?: string;
+}
+
+const { index, eyebrow, title, lede, id } = Astro.props;
+---
+
+<div class="grid gap-8 lg:grid-cols-12 lg:items-end mb-14 md:mb-20" data-reveal>
+  <div class="lg:col-span-8">
+    <p class="eyebrow mb-6">
+      {index && <span class="text-accent-coral">{index}</span>}
+      {eyebrow}
+    </p>
+    <h2 id={id} class="display-lg text-text-primary">
+      <Fragment set:html={title} />
+    </h2>
+    {lede && <p class="mt-6 text-lg text-text-secondary max-w-[56ch]">{lede}</p>}
+  </div>
+  {Astro.slots.has('default') && (
+    <div class="lg:col-span-4 lg:justify-self-end">
+      <slot />
+    </div>
+  )}
+</div>

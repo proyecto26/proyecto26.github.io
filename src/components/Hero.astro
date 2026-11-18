@@ -1,85 +1,154 @@
 ---
 import Button from './Button.astro';
 
+interface Props {
+  stars?: string;
+  aiCount?: number;
+}
+
+const { stars = '4,500+', aiCount = 7 } = Astro.props;
+
 const stats = [
-  { value: '4,500+', label: 'GitHub Stars' },
-  { value: '25+', label: 'Projects' },
+  { value: stars, label: 'GitHub stars' },
+  { value: '40+', label: 'Open source repos' },
   { value: '100+', label: 'Contributors' },
+  { value: '2014', label: 'Shipping since', static: true },
 ];
 ---
 
-<section class="hero relative min-h-screen flex items-center pt-[72px] overflow-hidden">
-  <!-- Background image -->
-  <div class="absolute inset-0 bg-black">
-    <img src="/img/p26-retro.jpg" alt="" fetchpriority="high" class="w-full h-full object-cover opacity-40 mix-blend-overlay" />
-    <div class="absolute inset-0 bg-gradient-to-b from-bg-primary/80 via-bg-primary/60 to-bg-secondary"></div>
+<section class="hero relative isolate min-h-[100svh] flex flex-col pt-[72px] overflow-hidden" aria-labelledby="hero-title">
+  <!-- Backdrop: retro artwork, heavily masked so type stays legible -->
+  <div class="absolute inset-0 -z-10" aria-hidden="true">
+    <img
+      src="/img/p26-retro.jpg"
+      alt=""
+      fetchpriority="high"
+      decoding="async"
+      class="hero-art absolute inset-0 w-full h-full object-cover"
+    />
+    <div class="hero-grid absolute inset-0"></div>
   </div>
 
-  <!-- Animated background elements (overlay) -->
-  <div class="absolute inset-0 overflow-hidden pointer-events-none">
-    <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-accent-coral/10 rounded-full blur-3xl animate-pulse-slow"></div>
-    <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent-teal/10 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 1s;"></div>
-  </div>
+  <div class="container flex-1 flex flex-col justify-center py-16 md:py-24" data-hero-content>
+    <a
+      href="#ai-lab"
+      class="group inline-flex self-start items-center gap-3 mb-10 pl-1.5 pr-4 py-1.5 rounded-full border border-border-default bg-bg-primary/60 backdrop-blur-custom text-sm text-text-secondary hover:text-text-primary hover:border-border-accent transition-colors"
+    >
+      <span class="px-2 py-0.5 rounded-full bg-accent-coral text-[#0c0b0a] text-xs font-semibold">New</span>
+      {aiCount} AI agent plugins for Claude Code, Codex &amp; OpenClaw
+      <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true"></i>
+    </a>
 
-  <div class="container relative z-10">
-    <div class="max-w-4xl mx-auto text-center">
-      <!-- Title -->
-      <h1 class="hero-title text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-text-primary mb-6 tracking-tight">
-        <span class="block" data-animate="split-text">PROYECTO 26</span>
-      </h1>
+    <p class="eyebrow mb-8">Open source studio · Since 2014</p>
 
-      <!-- Tagline -->
-      <p class="hero-tagline text-xl sm:text-2xl md:text-3xl text-text-secondary mb-4" data-animate="fade-up" data-delay="200">
-        Changing the world with <span class="text-accent-coral font-semibold">small contributions</span>.
+    <h1 id="hero-title" class="display-xl text-text-primary max-w-[14ch]">
+      Changing the world with <span class="hero-accent">small contributions.</span>
+    </h1>
+
+    <div class="mt-10 md:mt-14 grid gap-10 lg:grid-cols-12 lg:items-end">
+      <p class="lg:col-span-6 text-lg md:text-xl text-text-secondary max-w-[48ch]">
+        We build open source tools for web, mobile and games, and now AI agents that design systems,
+        run experiments, make slides and render video on your own machine.
       </p>
 
-      <!-- Description -->
-      <p class="hero-description text-base sm:text-lg text-text-muted max-w-2xl mx-auto mb-10" data-animate="fade-up" data-delay="400">
-        We build open source tools for Web, Mobile, and Game Development that developers around the world love.
-      </p>
-
-      <!-- CTAs -->
-      <div class="hero-ctas flex flex-col sm:flex-row items-center justify-center gap-4 mb-16" data-animate="fade-up" data-delay="600">
-        <Button href="#projects" variant="primary" size="lg">
-          Explore Projects
+      <div class="lg:col-span-6 flex flex-wrap gap-3 lg:justify-end">
+        <Button href="#ai-lab" variant="primary" size="lg">
+          Explore the AI Lab
+          <i data-lucide="arrow-down" class="w-5 h-5" aria-hidden="true"></i>
         </Button>
         <Button href="/games" variant="secondary" size="lg">
-          <i data-lucide="gamepad-2" class="w-5 h-5"></i>
-          Play Games
+          <i data-lucide="gamepad-2" class="w-5 h-5" aria-hidden="true"></i>
+          Play our games
         </Button>
-      </div>
-
-      <!-- Stats -->
-      <div class="hero-stats flex flex-wrap items-center justify-center gap-8 sm:gap-16" data-animate="fade-up" data-delay="800">
-        {stats.map((stat, index) => (
-          <div class="text-center" data-animate="counter" data-delay={800 + index * 100}>
-            <div class="text-3xl sm:text-4xl md:text-5xl font-extrabold gradient-text mb-1">
-              {stat.value}
-            </div>
-            <div class="text-sm text-text-muted uppercase tracking-wide">
-              {stat.label}
-            </div>
-          </div>
-        ))}
       </div>
     </div>
   </div>
 
-  <!-- Scroll indicator -->
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-    <i data-lucide="chevron-down" class="w-6 h-6 text-text-muted"></i>
+  <!-- Stats strip -->
+  <div class="border-t border-border-default bg-bg-primary/70 backdrop-blur-custom">
+    <dl class="container grid grid-cols-2 md:grid-cols-4">
+      {stats.map((stat, i) => (
+        <div class:list={['py-6 md:py-8', i > 0 && 'md:border-l md:pl-8 border-border-default', i % 2 === 1 && 'border-l pl-6 md:pl-8 border-border-default']}>
+          <dt class="font-mono text-xs uppercase tracking-[0.14em] text-text-muted mb-2">{stat.label}</dt>
+          <dd class="font-display text-3xl md:text-4xl font-semibold tracking-tight text-text-primary tabular-nums" data-count={stat.static ? undefined : stat.value}>{stat.value}</dd>
+        </div>
+      ))}
+    </dl>
   </div>
 </section>
 
 <style>
-  .hero-title {
-    text-shadow: 0 4px 20px rgba(242, 56, 90, 0.2);
+  .hero-art {
+    opacity: 0.28;
+    mix-blend-mode: luminosity;
+    mask-image: radial-gradient(120% 90% at 85% 30%, #000 10%, transparent 70%);
   }
 
-  .gradient-text {
-    background: linear-gradient(135deg, var(--color-accent-coral), var(--color-accent-teal));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  .hero-grid {
+    background-image:
+      linear-gradient(to right, rgb(255 255 255 / 0.035) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(255 255 255 / 0.035) 1px, transparent 1px);
+    background-size: 72px 72px;
+    mask-image: linear-gradient(to bottom, #000, transparent 85%);
+  }
+
+  .hero-accent {
+    color: var(--color-accent-coral);
+  }
+
+  /* Entrance: decorative, only with motion allowed */
+  @media (prefers-reduced-motion: no-preference) {
+    .hero h1,
+    .hero .eyebrow,
+    .hero h1 ~ div,
+    .hero > .container > a {
+      animation: hero-in 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    }
+    .hero > .container > a { animation-delay: 0.05s; }
+    .hero .eyebrow { animation-delay: 0.12s; }
+    .hero h1 { animation-delay: 0.2s; }
+    .hero h1 ~ div { animation-delay: 0.38s; }
+  }
+
+  @keyframes hero-in {
+    from {
+      opacity: 0;
+      translate: 0 1.5rem;
+    }
   }
 </style>
+
+<script>
+  /**
+   * Count the hero stats up from zero once they're on screen. The final text is already
+   * in the HTML (SEO, no-JS, reduced motion); this only animates toward it.
+   */
+  const counters = document.querySelectorAll<HTMLElement>('[data-count]');
+  if (counters.length && matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+    const fmt = new Intl.NumberFormat('en-US');
+    const run = (el: HTMLElement) => {
+      const text = el.dataset.count!;
+      const target = Number(text.replace(/[^0-9.]/g, ''));
+      const suffix = text.replace(/^[0-9.,\s]+/, '');
+      if (!Number.isFinite(target) || target === 0) return;
+      const start = performance.now();
+      const duration = 1400;
+      const step = (now: number) => {
+        const t = Math.min(1, (now - start) / duration);
+        const eased = 1 - Math.pow(1 - t, 4);
+        el.textContent = fmt.format(Math.round(target * eased)) + suffix;
+        if (t < 1) requestAnimationFrame(step);
+        else el.textContent = text;
+      };
+      requestAnimationFrame(step);
+    };
+    const io = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        io.unobserve(entry.target);
+        run(entry.target as HTMLElement);
+      }
+    }, { threshold: 0.6 });
+    counters.forEach((el) => io.observe(el));
+  }
+</script>
